@@ -20,6 +20,7 @@
 
 #box1{
     background-color: #000;
+    margin-top: 40px;
 }
 #box2{
     background-color: #FF2929;
@@ -69,4 +70,63 @@
 
 .button{
     width: 80%;
+}
+.midle-section{
+    width: 100%;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+    align-items: center;
+    text-align: center;  
+    padding: 0;
+    letter-spacing: 0.1em;
+    margin-top:10px;
+
+}
+
+.midle-section h2{
+    margin: 0;
+    font-weight: 600;
+}
+
+.midle-section2 
+
+p{
+    margin: 0;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.1em
+
+    
+
+}
+
+.midle-section2 {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+   
+}
+
+
+
+.homepage .default-button{
+    background-color: rgb(251, 61, 61);
+    color:white;
+    width: 65%;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 9px
+    
+}
+
+.homepage .default-button h3{
+    text-align: center;
+    padding-top: 6px;
 }
