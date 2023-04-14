@@ -1,0 +1,13 @@
+.storePage{
+    width: 100%;
+}
+
+.storePage .img1{
+    margin-top: 60px;
+    width: 100%;
+}
+
+.test{
+    display: flex;
+    justify-content: space-around;
+ }

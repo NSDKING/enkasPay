@@ -1,0 +1,20 @@
+.categories-mobile{
+    width: 90%;
+    height: 22vh;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 5px;  
+    row-gap: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.categories-mobile-box{
+    background-color: #fff8f8ec;
+    height: 10vh;
+    align-items: center;
+    justify-content: center;
+    display:flex ;
+    border-radius: 6px;
+}

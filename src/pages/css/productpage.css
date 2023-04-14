@@ -1,0 +1,143 @@
+.productPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
+.Productimage{
+    border: 1px black solid;
+    width: 90%;
+    height: 350px;
+    margin-top: 81px;
+    border-radius: 10px;
+}
+
+.Productpage-buttons{
+    width: 90%;
+}
+
+.ProductData{
+    text-align: left;
+    width: 90%;
+
+}
+.ProductData-header{
+    width: 100%;
+    border-bottom: 1px #EEEEEE solid;
+    
+}
+.ProductData-type{
+    color: #AAAAAA ;
+    font-size: 16px;
+    font-weight: lighter;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.ProductData-title{
+    color: #000000 ;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.ProductData-price{
+    font-weight: lighter;
+    font-size: 16px;
+    margin-bottom: 16px;
+    margin-top: 0;
+}
+
+.ProductData-box-container{
+    display:flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-top: 20px;
+    
+}
+
+.ProductData-box{
+    height: 40px;
+    width: 80px;
+    border-radius: 8px;
+    background-color: #FFF9F9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+#first{
+    background-color: #EF3636;
+    color: white;
+}
+
+.ProductData-box p{
+    margin: 0;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.quantitybox{
+    width: 85px;
+    height: 40px;
+    border: 1px gray solid;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.recom{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+
+}
+
+.defaultp{
+    font-size: 20px;
+    font-weight: lighter;
+    text-align: left;
+    width: 90%;
+    margin-top: 20px;
+}
+
+.defaultp p{
+    margin: 0;
+}
+
+.ProductPage-message{
+    width: 85%;
+    height: 130px;
+    padding-left:23px ;
+    background-color: #DFE3E7;
+    border-radius: 4px;
+    margin-top: 30px;
+
+
+}
+
+.ProductPage-message-header{
+    display: flex;
+    justify-content: center;
+}
+.ProductPage-message-header img{
+        margin-top: 20px;
+        margin-right: 10px;
+
+}
+.ProductPage-message h3{
+    margin-bottom: 15px;
+}
+
+.ProductPage-message p{
+    font-size: 16px;
+    font-weight: lighter;
+    margin: 0;
+    color: #787575;
+    letter-spacing: 0.1em;
+    text-align: left;
+
+}
