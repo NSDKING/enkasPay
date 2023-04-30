@@ -67,6 +67,7 @@ function App() {
                 <Route path='/ProductPage' Component={ProductPage}/>
                 <Route path='/affiliation' Component={AffiliatePage}/>
                 <Route path='/bundle' Component={BundlePage}/>
+                <Route path='/' Component={storePage}/>
               
  
               </>
