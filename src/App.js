@@ -47,7 +47,7 @@ function App() {
           {
             user ? (
               <>
-                <Route path='/' Component={HomePage}/>
+                <Route path='/' Component={storePage}/>
                 <Route path='/cart'/>
                 <Route path='/store' Component={storePage}/>
                 <Route path='/ProductPage' Component={ProductPage}/>
