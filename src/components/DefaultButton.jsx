@@ -1,6 +1,6 @@
 import "./css/defaultButton.css"
 
-export default function DefaultButton({text, onPress, bgcolor, textcolor, width, height, marginTop, WebkitBoxShadow, MozBoxShadow, boxShadow}) {
+export default function DefaultButton({text, onPress, bgcolor, textcolor, width, height, marginTop, WebkitBoxShadow, MozBoxShadow, boxShadow, type}) {
 
     return(
         
@@ -17,6 +17,7 @@ export default function DefaultButton({text, onPress, bgcolor, textcolor, width,
                 boxShadow:boxShadow,
                 color:textcolor
             }}
+            type={type}
         >
             <p>{text}</p>
         

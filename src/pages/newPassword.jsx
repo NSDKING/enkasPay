@@ -3,14 +3,15 @@ import "./css/PasswordForgotPage.css"
 import DefaultButton from '../components/DefaultButton'
 import { useForm } from "react-hook-form";
 import { Auth } from 'aws-amplify';
-import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
  
-export default function PasswordForgotPage() {
+export default function NewPassword() {
     const {formState: {errors}, handleSubmit, register, watch} = useForm();
-    const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
-          
+    const navigate = useNavigate();
+    
+
     const onSingUpPressed = async (data) =>{
         if(loading){
             return;
@@ -18,11 +19,9 @@ export default function PasswordForgotPage() {
 
         setLoading(true)  
         try {
-            const response = await Auth.forgotPassword(data.email);
-            navigate('/password-reset-confirmation')
-
-             
-         }catch(e){
+            const response = await Auth.forgotPasswordSubmit(data.username, data.code, data.password);
+            navigate('/')
+          }catch(e){
             console.log(e)
          }
         setLoading(false)
@@ -40,12 +39,19 @@ export default function PasswordForgotPage() {
                 <h2>
                     Réinitialisation du mot de passe
                 </h2>
-                <p className='p1'>
-                    Entrez l'<b>adresse e-mail</b> avec laquelle vous vous êtes inscrit. Nous allons vous envoyer un e-mail avec un lien pour réinitialiser votre mot de passe.
-                </p>
+               
                 <input
-                    {...register('email', { required: 'ceci est obligatoire'})}
-                    placeholder="   saisissez votre adresse mail"
+                    {...register('code', { required: 'ceci est obligatoire'})}
+                    placeholder="   saisissez le code envoyez par email"
+                />  
+                   <input
+                    {...register('username', { required: 'ceci est obligatoire'})}
+                    placeholder="   saisissez votre adresse mail "
+                />   
+                <input
+                    {...register('password', { required: 'ceci est obligatoire'})}
+                    placeholder="   saisissez votre nouveau mot de passe "
+                    type="password"
                 />                
                 <DefaultButton 
                     text={"continuer"}  
