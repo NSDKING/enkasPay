@@ -1,15 +1,40 @@
+type Account @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  mail: AWSEmail
+  passe: String
+  profil: String
+  endDateAccount: AWSDate
+  pin: String
+  numero: Int
+  endDateProfil: AWSDate
+}
+
+type BuyRoom @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  productbuy: [Product] @hasMany(indexName: "byBuyRoom", fields: ["id"])
+}
+
+type LikeRoom @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  productLike: [Product] @hasMany(indexName: "byLikeRoom", fields: ["id"])
+}
+
 type DurationPrice {
   one_month: Int
-  two_month: Int
   three_month: Int
+  one_year: Int
 }
 
 type Product @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
-  image: AWSURL
+  image: String
   type: String
   price: DurationPrice
+  buycount: Int
+  likecount: Int
+  likeroomID: ID! @index(name: "byLikeRoom")
+  buyroomID: ID! @index(name: "byBuyRoom")
 }
 
 type User @model @auth(rules: [{allow: public}]) {

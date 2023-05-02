@@ -1,6 +1,213 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createAccount = /* GraphQL */ `
+  mutation CreateAccount(
+    $input: CreateAccountInput!
+    $condition: ModelAccountConditionInput
+  ) {
+    createAccount(input: $input, condition: $condition) {
+      id
+      mail
+      passe
+      profil
+      endDateAccount
+      pin
+      userID
+      numero
+      endDateProfil
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateAccount = /* GraphQL */ `
+  mutation UpdateAccount(
+    $input: UpdateAccountInput!
+    $condition: ModelAccountConditionInput
+  ) {
+    updateAccount(input: $input, condition: $condition) {
+      id
+      mail
+      passe
+      profil
+      endDateAccount
+      pin
+      userID
+      numero
+      endDateProfil
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteAccount = /* GraphQL */ `
+  mutation DeleteAccount(
+    $input: DeleteAccountInput!
+    $condition: ModelAccountConditionInput
+  ) {
+    deleteAccount(input: $input, condition: $condition) {
+      id
+      mail
+      passe
+      profil
+      endDateAccount
+      pin
+      userID
+      numero
+      endDateProfil
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createBuyRoom = /* GraphQL */ `
+  mutation CreateBuyRoom(
+    $input: CreateBuyRoomInput!
+    $condition: ModelBuyRoomConditionInput
+  ) {
+    createBuyRoom(input: $input, condition: $condition) {
+      id
+      productbuy {
+        nextToken
+        startedAt
+      }
+      buyby {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateBuyRoom = /* GraphQL */ `
+  mutation UpdateBuyRoom(
+    $input: UpdateBuyRoomInput!
+    $condition: ModelBuyRoomConditionInput
+  ) {
+    updateBuyRoom(input: $input, condition: $condition) {
+      id
+      productbuy {
+        nextToken
+        startedAt
+      }
+      buyby {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteBuyRoom = /* GraphQL */ `
+  mutation DeleteBuyRoom(
+    $input: DeleteBuyRoomInput!
+    $condition: ModelBuyRoomConditionInput
+  ) {
+    deleteBuyRoom(input: $input, condition: $condition) {
+      id
+      productbuy {
+        nextToken
+        startedAt
+      }
+      buyby {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createLikeRoom = /* GraphQL */ `
+  mutation CreateLikeRoom(
+    $input: CreateLikeRoomInput!
+    $condition: ModelLikeRoomConditionInput
+  ) {
+    createLikeRoom(input: $input, condition: $condition) {
+      id
+      likeby {
+        nextToken
+        startedAt
+      }
+      productLike {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateLikeRoom = /* GraphQL */ `
+  mutation UpdateLikeRoom(
+    $input: UpdateLikeRoomInput!
+    $condition: ModelLikeRoomConditionInput
+  ) {
+    updateLikeRoom(input: $input, condition: $condition) {
+      id
+      likeby {
+        nextToken
+        startedAt
+      }
+      productLike {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteLikeRoom = /* GraphQL */ `
+  mutation DeleteLikeRoom(
+    $input: DeleteLikeRoomInput!
+    $condition: ModelLikeRoomConditionInput
+  ) {
+    deleteLikeRoom(input: $input, condition: $condition) {
+      id
+      likeby {
+        nextToken
+        startedAt
+      }
+      productLike {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createProduct = /* GraphQL */ `
   mutation CreateProduct(
     $input: CreateProductInput!
@@ -13,9 +220,13 @@ export const createProduct = /* GraphQL */ `
       type
       price {
         one_month
-        two_month
         three_month
+        one_year
       }
+      buycount
+      likecount
+      likeroomID
+      buyroomID
       createdAt
       updatedAt
       _version
@@ -36,9 +247,13 @@ export const updateProduct = /* GraphQL */ `
       type
       price {
         one_month
-        two_month
         three_month
+        one_year
       }
+      buycount
+      likecount
+      likeroomID
+      buyroomID
       createdAt
       updatedAt
       _version
@@ -59,9 +274,13 @@ export const deleteProduct = /* GraphQL */ `
       type
       price {
         one_month
-        two_month
         three_month
+        one_year
       }
+      buycount
+      likecount
+      likeroomID
+      buyroomID
       createdAt
       updatedAt
       _version
@@ -82,6 +301,18 @@ export const createUser = /* GraphQL */ `
       phoneNumber
       city
       mail
+      likerooms {
+        nextToken
+        startedAt
+      }
+      buyrooms {
+        nextToken
+        startedAt
+      }
+      Accounts {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -102,6 +333,18 @@ export const updateUser = /* GraphQL */ `
       phoneNumber
       city
       mail
+      likerooms {
+        nextToken
+        startedAt
+      }
+      buyrooms {
+        nextToken
+        startedAt
+      }
+      Accounts {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -122,6 +365,246 @@ export const deleteUser = /* GraphQL */ `
       phoneNumber
       city
       mail
+      likerooms {
+        nextToken
+        startedAt
+      }
+      buyrooms {
+        nextToken
+        startedAt
+      }
+      Accounts {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createBuyRoomUser = /* GraphQL */ `
+  mutation CreateBuyRoomUser(
+    $input: CreateBuyRoomUserInput!
+    $condition: ModelBuyRoomUserConditionInput
+  ) {
+    createBuyRoomUser(input: $input, condition: $condition) {
+      id
+      buyRoomId
+      userId
+      buyRoom {
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      user {
+        id
+        FamilyName
+        LastName
+        phoneNumber
+        city
+        mail
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateBuyRoomUser = /* GraphQL */ `
+  mutation UpdateBuyRoomUser(
+    $input: UpdateBuyRoomUserInput!
+    $condition: ModelBuyRoomUserConditionInput
+  ) {
+    updateBuyRoomUser(input: $input, condition: $condition) {
+      id
+      buyRoomId
+      userId
+      buyRoom {
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      user {
+        id
+        FamilyName
+        LastName
+        phoneNumber
+        city
+        mail
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteBuyRoomUser = /* GraphQL */ `
+  mutation DeleteBuyRoomUser(
+    $input: DeleteBuyRoomUserInput!
+    $condition: ModelBuyRoomUserConditionInput
+  ) {
+    deleteBuyRoomUser(input: $input, condition: $condition) {
+      id
+      buyRoomId
+      userId
+      buyRoom {
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      user {
+        id
+        FamilyName
+        LastName
+        phoneNumber
+        city
+        mail
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createLikeRoomUser = /* GraphQL */ `
+  mutation CreateLikeRoomUser(
+    $input: CreateLikeRoomUserInput!
+    $condition: ModelLikeRoomUserConditionInput
+  ) {
+    createLikeRoomUser(input: $input, condition: $condition) {
+      id
+      likeRoomId
+      userId
+      likeRoom {
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      user {
+        id
+        FamilyName
+        LastName
+        phoneNumber
+        city
+        mail
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateLikeRoomUser = /* GraphQL */ `
+  mutation UpdateLikeRoomUser(
+    $input: UpdateLikeRoomUserInput!
+    $condition: ModelLikeRoomUserConditionInput
+  ) {
+    updateLikeRoomUser(input: $input, condition: $condition) {
+      id
+      likeRoomId
+      userId
+      likeRoom {
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      user {
+        id
+        FamilyName
+        LastName
+        phoneNumber
+        city
+        mail
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteLikeRoomUser = /* GraphQL */ `
+  mutation DeleteLikeRoomUser(
+    $input: DeleteLikeRoomUserInput!
+    $condition: ModelLikeRoomUserConditionInput
+  ) {
+    deleteLikeRoomUser(input: $input, condition: $condition) {
+      id
+      likeRoomId
+      userId
+      likeRoom {
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      user {
+        id
+        FamilyName
+        LastName
+        phoneNumber
+        city
+        mail
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version

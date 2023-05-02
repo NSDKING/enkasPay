@@ -26,21 +26,29 @@ export default function ProductCreateForm(props) {
     name: "",
     image: "",
     type: "",
+    buycount: "",
+    likecount: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [image, setImage] = React.useState(initialValues.image);
   const [type, setType] = React.useState(initialValues.type);
+  const [buycount, setBuycount] = React.useState(initialValues.buycount);
+  const [likecount, setLikecount] = React.useState(initialValues.likecount);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setImage(initialValues.image);
     setType(initialValues.type);
+    setBuycount(initialValues.buycount);
+    setLikecount(initialValues.likecount);
     setErrors({});
   };
   const validations = {
     name: [],
-    image: [{ type: "URL" }],
+    image: [],
     type: [],
+    buycount: [],
+    likecount: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -70,6 +78,8 @@ export default function ProductCreateForm(props) {
           name,
           image,
           type,
+          buycount,
+          likecount,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -127,6 +137,8 @@ export default function ProductCreateForm(props) {
               name: value,
               image,
               type,
+              buycount,
+              likecount,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -153,6 +165,8 @@ export default function ProductCreateForm(props) {
               name,
               image: value,
               type,
+              buycount,
+              likecount,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -179,6 +193,8 @@ export default function ProductCreateForm(props) {
               name,
               image,
               type: value,
+              buycount,
+              likecount,
             };
             const result = onChange(modelFields);
             value = result?.type ?? value;
@@ -192,6 +208,70 @@ export default function ProductCreateForm(props) {
         errorMessage={errors.type?.errorMessage}
         hasError={errors.type?.hasError}
         {...getOverrideProps(overrides, "type")}
+      ></TextField>
+      <TextField
+        label="Buycount"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={buycount}
+        onChange={(e) => {
+          let value = isNaN(parseInt(e.target.value))
+            ? e.target.value
+            : parseInt(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              name,
+              image,
+              type,
+              buycount: value,
+              likecount,
+            };
+            const result = onChange(modelFields);
+            value = result?.buycount ?? value;
+          }
+          if (errors.buycount?.hasError) {
+            runValidationTasks("buycount", value);
+          }
+          setBuycount(value);
+        }}
+        onBlur={() => runValidationTasks("buycount", buycount)}
+        errorMessage={errors.buycount?.errorMessage}
+        hasError={errors.buycount?.hasError}
+        {...getOverrideProps(overrides, "buycount")}
+      ></TextField>
+      <TextField
+        label="Likecount"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={likecount}
+        onChange={(e) => {
+          let value = isNaN(parseInt(e.target.value))
+            ? e.target.value
+            : parseInt(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              name,
+              image,
+              type,
+              buycount,
+              likecount: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.likecount ?? value;
+          }
+          if (errors.likecount?.hasError) {
+            runValidationTasks("likecount", value);
+          }
+          setLikecount(value);
+        }}
+        onBlur={() => runValidationTasks("likecount", likecount)}
+        errorMessage={errors.likecount?.errorMessage}
+        hasError={errors.likecount?.hasError}
+        {...getOverrideProps(overrides, "likecount")}
       ></TextField>
       <Flex
         justifyContent="space-between"

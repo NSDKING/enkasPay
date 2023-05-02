@@ -11,9 +11,13 @@ import BundlePage from './pages/bundlePage';
 import NewPassword from './pages/newPassword';
 import { Auth, Hub } from 'aws-amplify';
 import { useEffect, useState } from 'react';
+import { API, graphqlOperation } from 'aws-amplify';
+import { listProducts } from './graphql/queries';
+import ManageAccount from './pages/ManageAccount';
+import ConsultPage from './pages/ConsultPage';
+import AddAccount from './pages/addAccount';
 
-
-
+ 
 function App() {
   const [user, setUser]= useState(undefined)
   const checkUser = async ()=>{
@@ -22,9 +26,14 @@ function App() {
     });
     setUser(authUser)
   }
+  const getProduct = async()=>{
+    const response= await API.graphql(graphqlOperation(listProducts));
+    console.log(response)
+  }
   useEffect(
     () => {
       checkUser()
+      getProduct()
     },
     [],
   )
@@ -52,6 +61,9 @@ function App() {
                 <Route path='/store' Component={storePage}/>
                 <Route path='/ProductPage' Component={ProductPage}/>
                 <Route path='/affiliation' Component={AffiliatePage}/>
+                <Route path='/ManageAccount' Component={ManageAccount}/>
+                <Route path='/ConsultPage' Component={ConsultPage}/>
+                <Route path='/AddAccount' Component={AddAccount}/>
                 <Route path='/bundle' Component={BundlePage}/>
 
               </>

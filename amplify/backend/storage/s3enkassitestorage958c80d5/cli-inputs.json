@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3enkassitestorage958c80d5",
+  "bucketName": "enkassite-storage-958c80d5",
+  "policyUUID": "9546a714",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ"
+  ]
+}

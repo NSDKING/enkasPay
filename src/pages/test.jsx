@@ -313,3 +313,35 @@ unmountOnExit
 const response =  await API.graphql(
   graphqlOperation(createUser, { input: newUser })
 );nnn
+
+
+
+
+
+Account.map((item =>(
+  <tr key={item.id}>
+      <td>{item.mail}</td>
+      <td>{item.passe}</td>
+      <td>{item.profil}</td>
+      <td>{item.endDateAccount}</td>
+      <td>{item.pin}</td>
+      <td>test</td>
+      <td>{item.numero}</td>
+      <td>{item.endDateProfil}</td>
+
+   
+  </tr>
+))
+
+Accounts.map(item => (
+  <tr key={item.id}>
+      <td>{item.mail}</td>
+      <td>{item.passe}</td>
+      <td>{item.profil}</td>
+      <td>{item.endDateAccount}</td>
+      <td>{item.pin}</td>
+      <td>test</td>
+      <td>{item.numero}</td>
+      <td>{item.endDateProfil}</td>
+  </tr>
+))

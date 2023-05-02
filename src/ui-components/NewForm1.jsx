@@ -8,13 +8,12 @@
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Product } from "../models";
+import { User } from "../models";
 import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
-export default function ProductUpdateForm(props) {
+export default function NewForm1(props) {
   const {
-    id: idProp,
-    product,
+    clearOnSuccess = true,
     onSuccess,
     onError,
     onSubmit,
@@ -24,44 +23,34 @@ export default function ProductUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    name: "",
-    image: "",
-    type: "",
-    buycount: "",
-    likecount: "",
+    FamilyName: "",
+    LastName: "",
+    phoneNumber: "",
+    city: "",
+    mail: "",
   };
-  const [name, setName] = React.useState(initialValues.name);
-  const [image, setImage] = React.useState(initialValues.image);
-  const [type, setType] = React.useState(initialValues.type);
-  const [buycount, setBuycount] = React.useState(initialValues.buycount);
-  const [likecount, setLikecount] = React.useState(initialValues.likecount);
+  const [FamilyName, setFamilyName] = React.useState(initialValues.FamilyName);
+  const [LastName, setLastName] = React.useState(initialValues.LastName);
+  const [phoneNumber, setPhoneNumber] = React.useState(
+    initialValues.phoneNumber
+  );
+  const [city, setCity] = React.useState(initialValues.city);
+  const [mail, setMail] = React.useState(initialValues.mail);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = productRecord
-      ? { ...initialValues, ...productRecord }
-      : initialValues;
-    setName(cleanValues.name);
-    setImage(cleanValues.image);
-    setType(cleanValues.type);
-    setBuycount(cleanValues.buycount);
-    setLikecount(cleanValues.likecount);
+    setFamilyName(initialValues.FamilyName);
+    setLastName(initialValues.LastName);
+    setPhoneNumber(initialValues.phoneNumber);
+    setCity(initialValues.city);
+    setMail(initialValues.mail);
     setErrors({});
   };
-  const [productRecord, setProductRecord] = React.useState(product);
-  React.useEffect(() => {
-    const queryData = async () => {
-      const record = idProp ? await DataStore.query(Product, idProp) : product;
-      setProductRecord(record);
-    };
-    queryData();
-  }, [idProp, product]);
-  React.useEffect(resetStateValues, [productRecord]);
   const validations = {
-    name: [],
-    image: [],
-    type: [],
-    buycount: [],
-    likecount: [],
+    FamilyName: [],
+    LastName: [],
+    phoneNumber: [],
+    city: [],
+    mail: [{ type: "Email" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -88,11 +77,11 @@ export default function ProductUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          name,
-          image,
-          type,
-          buycount,
-          likecount,
+          FamilyName,
+          LastName,
+          phoneNumber,
+          city,
+          mail,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -122,13 +111,12 @@ export default function ProductUpdateForm(props) {
               modelFields[key] = undefined;
             }
           });
-          await DataStore.save(
-            Product.copyOf(productRecord, (updated) => {
-              Object.assign(updated, modelFields);
-            })
-          );
+          await DataStore.save(new User(modelFields));
           if (onSuccess) {
             onSuccess(modelFields);
+          }
+          if (clearOnSuccess) {
+            resetStateValues();
           }
         } catch (err) {
           if (onError) {
@@ -136,170 +124,161 @@ export default function ProductUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "ProductUpdateForm")}
+      {...getOverrideProps(overrides, "NewForm1")}
       {...rest}
     >
       <TextField
-        label="Name"
+        label="Family name"
         isRequired={false}
         isReadOnly={false}
-        value={name}
+        value={FamilyName}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              name: value,
-              image,
-              type,
-              buycount,
-              likecount,
+              FamilyName: value,
+              LastName,
+              phoneNumber,
+              city,
+              mail,
             };
             const result = onChange(modelFields);
-            value = result?.name ?? value;
+            value = result?.FamilyName ?? value;
           }
-          if (errors.name?.hasError) {
-            runValidationTasks("name", value);
+          if (errors.FamilyName?.hasError) {
+            runValidationTasks("FamilyName", value);
           }
-          setName(value);
+          setFamilyName(value);
         }}
-        onBlur={() => runValidationTasks("name", name)}
-        errorMessage={errors.name?.errorMessage}
-        hasError={errors.name?.hasError}
-        {...getOverrideProps(overrides, "name")}
+        onBlur={() => runValidationTasks("FamilyName", FamilyName)}
+        errorMessage={errors.FamilyName?.errorMessage}
+        hasError={errors.FamilyName?.hasError}
+        {...getOverrideProps(overrides, "FamilyName")}
       ></TextField>
       <TextField
-        label="Image"
+        label="Last name"
         isRequired={false}
         isReadOnly={false}
-        value={image}
+        value={LastName}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              name,
-              image: value,
-              type,
-              buycount,
-              likecount,
+              FamilyName,
+              LastName: value,
+              phoneNumber,
+              city,
+              mail,
             };
             const result = onChange(modelFields);
-            value = result?.image ?? value;
+            value = result?.LastName ?? value;
           }
-          if (errors.image?.hasError) {
-            runValidationTasks("image", value);
+          if (errors.LastName?.hasError) {
+            runValidationTasks("LastName", value);
           }
-          setImage(value);
+          setLastName(value);
         }}
-        onBlur={() => runValidationTasks("image", image)}
-        errorMessage={errors.image?.errorMessage}
-        hasError={errors.image?.hasError}
-        {...getOverrideProps(overrides, "image")}
+        onBlur={() => runValidationTasks("LastName", LastName)}
+        errorMessage={errors.LastName?.errorMessage}
+        hasError={errors.LastName?.hasError}
+        {...getOverrideProps(overrides, "LastName")}
       ></TextField>
       <TextField
-        label="Type"
+        label="Phone number"
         isRequired={false}
         isReadOnly={false}
-        value={type}
+        value={phoneNumber}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              name,
-              image,
-              type: value,
-              buycount,
-              likecount,
+              FamilyName,
+              LastName,
+              phoneNumber: value,
+              city,
+              mail,
             };
             const result = onChange(modelFields);
-            value = result?.type ?? value;
+            value = result?.phoneNumber ?? value;
           }
-          if (errors.type?.hasError) {
-            runValidationTasks("type", value);
+          if (errors.phoneNumber?.hasError) {
+            runValidationTasks("phoneNumber", value);
           }
-          setType(value);
+          setPhoneNumber(value);
         }}
-        onBlur={() => runValidationTasks("type", type)}
-        errorMessage={errors.type?.errorMessage}
-        hasError={errors.type?.hasError}
-        {...getOverrideProps(overrides, "type")}
+        onBlur={() => runValidationTasks("phoneNumber", phoneNumber)}
+        errorMessage={errors.phoneNumber?.errorMessage}
+        hasError={errors.phoneNumber?.hasError}
+        {...getOverrideProps(overrides, "phoneNumber")}
       ></TextField>
       <TextField
-        label="Buycount"
+        label="City"
         isRequired={false}
         isReadOnly={false}
-        type="number"
-        step="any"
-        value={buycount}
+        value={city}
         onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
-            ? e.target.value
-            : parseInt(e.target.value);
+          let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              name,
-              image,
-              type,
-              buycount: value,
-              likecount,
+              FamilyName,
+              LastName,
+              phoneNumber,
+              city: value,
+              mail,
             };
             const result = onChange(modelFields);
-            value = result?.buycount ?? value;
+            value = result?.city ?? value;
           }
-          if (errors.buycount?.hasError) {
-            runValidationTasks("buycount", value);
+          if (errors.city?.hasError) {
+            runValidationTasks("city", value);
           }
-          setBuycount(value);
+          setCity(value);
         }}
-        onBlur={() => runValidationTasks("buycount", buycount)}
-        errorMessage={errors.buycount?.errorMessage}
-        hasError={errors.buycount?.hasError}
-        {...getOverrideProps(overrides, "buycount")}
+        onBlur={() => runValidationTasks("city", city)}
+        errorMessage={errors.city?.errorMessage}
+        hasError={errors.city?.hasError}
+        {...getOverrideProps(overrides, "city")}
       ></TextField>
       <TextField
-        label="Likecount"
+        label="Mail"
         isRequired={false}
         isReadOnly={false}
-        type="number"
-        step="any"
-        value={likecount}
+        value={mail}
         onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
-            ? e.target.value
-            : parseInt(e.target.value);
+          let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              name,
-              image,
-              type,
-              buycount,
-              likecount: value,
+              FamilyName,
+              LastName,
+              phoneNumber,
+              city,
+              mail: value,
             };
             const result = onChange(modelFields);
-            value = result?.likecount ?? value;
+            value = result?.mail ?? value;
           }
-          if (errors.likecount?.hasError) {
-            runValidationTasks("likecount", value);
+          if (errors.mail?.hasError) {
+            runValidationTasks("mail", value);
           }
-          setLikecount(value);
+          setMail(value);
         }}
-        onBlur={() => runValidationTasks("likecount", likecount)}
-        errorMessage={errors.likecount?.errorMessage}
-        hasError={errors.likecount?.hasError}
-        {...getOverrideProps(overrides, "likecount")}
+        onBlur={() => runValidationTasks("mail", mail)}
+        errorMessage={errors.mail?.errorMessage}
+        hasError={errors.mail?.hasError}
+        {...getOverrideProps(overrides, "mail")}
       ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
         <Button
-          children="Reset"
+          children="Clear"
           type="reset"
           onClick={(event) => {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || product)}
-          {...getOverrideProps(overrides, "ResetButton")}
+          {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
           gap="15px"
@@ -309,10 +288,7 @@ export default function ProductUpdateForm(props) {
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={
-              !(idProp || product) ||
-              Object.values(errors).some((e) => e?.hasError)
-            }
+            isDisabled={Object.values(errors).some((e) => e?.hasError)}
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>
