@@ -53,12 +53,14 @@ export default function LoginPage() {
 
                 <input
                     {...register('email', { required: 'ceci est obligatoire'})}
+                    type='mail'
                     placeholder="   saisissez votre adresse mail"
                 />
                 <p>{errors.email?.message}</p>
               <input
                     {...register('password', { required: 'ceci est obligatoire'})}  
-                    placeholder="   saisissez votre adresse mail"
+                    type='password'
+                    placeholder="   saisissez votre mot de passe"
                 />
                 <p>{errors.email?.message}</p>
                 
