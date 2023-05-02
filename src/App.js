@@ -81,8 +81,8 @@ function App() {
                 <Route path='/bundle' Component={BundlePage}/>
                 <Route path='/' Component={storePage}/>
                 <Route path='/ManagCeAccount' Component={ManageAccount}/>
-              
- 
+                <Route path='/ConsultPage' Component={ConsultPage}/>
+                <Route path='/AddAccount' Component={AddAccount}/>
               </>
             )
           }
