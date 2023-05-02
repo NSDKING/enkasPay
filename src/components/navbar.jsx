@@ -75,7 +75,7 @@ export default function Navbar() {
                     <div className="navbar-bottom">
                         <DefaultButtonLink text={'log in'} bgcolor={"rgb(250, 44, 44)"} textcolor={"white"} location={'/login'} width={"75px"}  height={'40px'} margin={"20px"}/> 
 
-                        <DefaultButtonLink text={'sign in'} bgcolor={"white"} textcolor={"black"} location={'/signup'} width={"75px"} height={"40px"} margin={"20px"}/> 
+                        <DefaultButtonLink text={'sign in'} bgcolor={"white"} textcolor={"black"} location={'/register'} width={"75px"} height={"40px"} margin={"20px"}/> 
 
                     </div>
                 </div>

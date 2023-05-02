@@ -61,7 +61,7 @@ function App() {
                 <Route path='/store' Component={storePage}/>
                 <Route path='/ProductPage' Component={ProductPage}/>
                 <Route path='/affiliation' Component={AffiliatePage}/>
-                <Route path='/ManageAccount' Component={ManageAccount}/>
+                <Route path='/ManagCeAccount' Component={ManageAccount}/>
                 <Route path='/ConsultPage' Component={ConsultPage}/>
                 <Route path='/AddAccount' Component={AddAccount}/>
                 <Route path='/bundle' Component={BundlePage}/>
@@ -80,6 +80,7 @@ function App() {
                 <Route path='/affiliation' Component={AffiliatePage}/>
                 <Route path='/bundle' Component={BundlePage}/>
                 <Route path='/' Component={storePage}/>
+                <Route path='/ManagCeAccount' Component={ManageAccount}/>
               
  
               </>
