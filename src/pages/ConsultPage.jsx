@@ -60,40 +60,42 @@ export default function ConsultPage() {
             <Link to="/ConsultPage" style={linkStyle}>consulter</Link>
         </nav>
 
+        <div className="tableContainer">
             <table>
-                <thead>
-                    <tr>
-                        <th>mail</th>
-                        <th>passe</th>
-                        <th>profil</th>
-                        <th>fin compte</th>
-                        <th>pin</th>
-                        <th>utilisateur</th>
-                        <th>numero</th>
-                        <th>fin du profil</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {loading ? (
-                        <h2>Loading...</h2>
-                    ) : (
-                        Accounts.map(item => (
-                                <tr key={item.id}>
-                                    <td>{item.mail}</td>
-                                    <td>{item.passe}</td>
-                                    <td>{item.profil}</td>
-                                    <td>{item.endDateAccount}</td>
-                                    <td>{item.pin}</td>
-                                    <td>test</td>
-                                    <td>{item.numero}</td>
-                                    <td>{item.endDateProfil}</td>
-                                </tr>
-                             ))
-                    )} 
-                    
-                </tbody>
-            </table>
+                    <thead>
+                        <tr>
+                            <th>mail</th>
+                            <th>passe</th>
+                            <th>profil</th>
+                            <th>fin compte</th>
+                            <th>pin</th>
+                            <th>utilisateur</th>
+                            <th>numero</th>
+                            <th>fin du profil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {loading ? (
+                            <h2>Loading...</h2>
+                        ) : (
+                            Accounts.map(item => (
+                                    <tr key={item.id}>
+                                        <td>{item.mail}</td>
+                                        <td>{item.passe}</td>
+                                        <td>{item.profil}</td>
+                                        <td>{item.endDateAccount}</td>
+                                        <td>{item.pin}</td>
+                                        <td>test</td>
+                                        <td>{item.numero}</td>
+                                        <td>{item.endDateProfil}</td>
+                                    </tr>
+                                ))
+                        )} 
+                        
+                    </tbody>
+                </table>
 
+        </div>
          
         </section>
        </>

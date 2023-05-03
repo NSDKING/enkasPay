@@ -7,13 +7,14 @@ import { CSSTransition } from 'react-transition-group';
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import { useForm } from "react-hook-form";
 import { createUser, updateUser } from '../graphql/mutations';
+import { useNavigate } from "react-router-dom";
 
   
 
 export default function RegisterPage() {
     const [step, setStep] = useState(1);
     const [useriD, setUserID] = useState(null);
-
+    const navigate = useNavigate();
     const {formState: {errors}, handleSubmit, register, watch} = useForm();
     const [loading, setLoading] = useState(false)
  
@@ -30,11 +31,13 @@ export default function RegisterPage() {
                 username: data.email,
                 password:data.password,
             });
-            setUserID(response.userSub)
+          
             setStep(2)
             console.log(response)
-         }catch(e){
-            console.log(e)
+            
+          }catch(e){
+            console.log(e.name)
+       
          }
         setLoading(false)
      }   
@@ -84,7 +87,8 @@ export default function RegisterPage() {
             const response =  await API.graphql(
                 graphqlOperation(createUser, { input: newUser })
             );
-              console.log(response)
+            console.log(response)
+            navigate("/")
            }catch(e){
             console.log(e)
          }
@@ -129,6 +133,7 @@ export default function RegisterPage() {
 
                         <input
                             {...register('email', { required: 'ceci est obligatoire'})}
+                            type="email"
                             placeholder="   saisissez votre adresse mail"
                             />
 

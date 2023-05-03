@@ -1,16 +1,42 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './css/AddAccount.css'
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { API, graphqlOperation } from 'aws-amplify';
 import { createAccount } from '../graphql/mutations';
+import { listUsers } from '../graphql/queries';
  
 
 export default function AddAccount() {
     const [loading, setLoading] = useState(false)
-    const {formState: {errors}, handleSubmit, register, watch} = useForm();
-
+    const [userList, setUserList] = useState([])
+    const {formState: {errors}, handleSubmit, register, control} = useForm();
+    
+    const getListUsers = async()=>{
+        if(loading){
+          return;
+      }
+      
+      setLoading(true)
+      try {
+      
+        const response= await API.graphql(graphqlOperation(listUsers));
+        console.log(response.data.listUsers.items)
+        setUserList(response.data.listUsers.items)
      
+      }catch(e){
+              console.log(e)
+    
+      }
+      setLoading(false)
+     
+      }
+    useEffect(() => {
+        getListUsers()
+    
+      
+    }, [])
+    
     const linkStyle = {
         float: "left",
         display: "block",
@@ -123,12 +149,21 @@ export default function AddAccount() {
                     />
 
                 <label for="pin">utilisateur :</label>
-                <input 
-                    type="text" 
-                    id="pin" 
-                    name="pin"
-                    {...register('user', { required: 'ceci est obligatoire'})}
-                    
+                <Controller
+                        name="mySelect"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                        <select {...field} >
+                            <option value="">Select...</option>
+                      
+                            {
+                                userList.map(item => (
+                                    <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
+                                ))
+                            }
+                        </select>
+                        )}
                     />
                 
                 <label for="number">numero :</label>

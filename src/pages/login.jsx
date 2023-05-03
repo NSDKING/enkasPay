@@ -6,6 +6,7 @@ import DefaultButtonLink from '../components/DefaultbuttonLink'
 import { Auth } from 'aws-amplify'
  import { useState } from 'react'
 import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
 
 
 const EMAIL_REGEX =
@@ -15,6 +16,7 @@ const EMAIL_REGEX =
 export default function LoginPage() {
     const {formState: {errors}, handleSubmit, register, watch} = useForm();
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate();
 
  
     const onSingInPressed = async (data) =>{
@@ -27,6 +29,7 @@ export default function LoginPage() {
 
             console.log('okay dude')
             const response = await Auth.signIn(data.email, data.password)
+            navigate("/")
              
         }catch(e){
                 alert('oops '+ e.message)
