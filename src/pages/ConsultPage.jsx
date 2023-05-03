@@ -1,13 +1,41 @@
 import { API, graphqlOperation } from 'aws-amplify';
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { listAccounts } from '../graphql/queries'
+import { listAccounts, listUsers } from '../graphql/queries'
 import './css/consultPage.css'
 
 
 export default function ConsultPage() {
     const [Accounts, setAccount] = useState([])
     const [loading, setLoading] = useState(false)
+    const [userList, setUserList] = useState([])
+      
+    const getListUsers = async()=>{
+        if(loading){
+          return;
+      }
+      
+      setLoading(true)
+      try {
+      
+        const response= await API.graphql(graphqlOperation(listUsers));
+        console.log(response.data.listUsers.items)
+        setUserList(response.data.listUsers.items)
+     
+      }catch(e){
+              console.log(e)
+    
+      }
+      setLoading(false)
+     
+      }
+    useEffect(() => {
+        getListUsers()
+    
+      
+    }, [])
+
+    
  
     const linkStyle = {
         float: "left",
@@ -42,10 +70,19 @@ export default function ConsultPage() {
        }
     useEffect(() => {
        getAccount()
-     
-        
+         
     }, [ ])
     
+    const handleName = (userid)=>{
+        let username = "test"
+        userList.map((item)=>{
+            if(item.id === userid){
+                username = item.FamilyName +" "+ item.LastName
+            }
+        })
+        return username
+
+    }
 
     return(
        <>
@@ -85,7 +122,7 @@ export default function ConsultPage() {
                                         <td>{item.profil}</td>
                                         <td>{item.endDateAccount}</td>
                                         <td>{item.pin}</td>
-                                        <td>test</td>
+                                        <td>{handleName(item.userID)}</td>
                                         <td>{item.numero}</td>
                                         <td>{item.endDateProfil}</td>
                                     </tr>
