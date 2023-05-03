@@ -27,8 +27,8 @@ export default function Navbar() {
     }
  
     }
-    async function handleLogout() {
-        await Auth.signOut();
+    const signOut= ()=>{
+        Auth.signOut();
     }
     
     useEffect(
@@ -116,7 +116,7 @@ export default function Navbar() {
                     {
                         user?(
                             <div className="navbar-bottom">
-                                <DefaultButton text={'deconnexion'} bgcolor={"black"} textcolor={"white"} width={"50%"} height={"50px"}  onPress={handleLogout}/>
+                                <DefaultButton text={'deconnexion'} bgcolor={"black"} textcolor={"white"} width={"50%"} height={"50px"}  onPress={signOut}/>
                             </div>
                         ):(
                             <div className="navbar-bottom">

@@ -19,7 +19,7 @@ import AddAccount from './pages/addAccount';
 
  
 function App() {
-  const [user, setUser]= useState(undefined)
+  const [user, setUser]= useState(null)
   const [loading, setLoading] = useState(false)
 
   const checkUser = async ()=>{
@@ -73,7 +73,7 @@ function App() {
 
   }, [ ])
 
-  if(user===undefined){
+  if(user===null){
     return(
       <div className="App">
       <Router>
