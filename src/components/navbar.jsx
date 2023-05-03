@@ -1,16 +1,57 @@
 import "./css/navbar.css"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import next from './img/next.png'
 import DefaultButtonLink from "./DefaultbuttonLink";
 import { Link, useNavigate } from "react-router-dom";
 import logo from './img/logo.png'
+import { Auth, Hub } from "aws-amplify";
+import DefaultButton from "./DefaultButton";
 
 
 export default function Navbar() {
     const [isActive, setIsActive] = useState(false);
     const [navItemclas, setNavItemClas]= useState("off");
     const [navIconclass, setNavIconClas]= useState("hamburger-lines");
+    const [user, setUser]= useState(undefined)
+    const checkUser = async ()=>{
+    try {
+        const authUser = await Auth.currentAuthenticatedUser({
+            bypassCache: true,
+          });
+      setUser(authUser)
+      console.log(authUser)
+
+    } catch(e){
+        setUser(null);
+
+    }
  
+    }
+    async function handleLogout() {
+        await Auth.signOut();
+    }
+    
+    useEffect(
+        () => {
+          checkUser()
+         },
+        [],
+      )
+
+      useEffect(() => {
+  
+        const listener =  (data) => {
+          if(data.payload.event === 'signIn' || data.payload.event === 'signOut' ){
+            checkUser();
+          }
+        }
+        Hub.listen('auth', listener)
+        return () => (Hub.remove('auth', listener))
+    
+      }, [ ])
+    
+      
+
     const toggleActive = ()=>{
         if(isActive ==true){
             setNavItemClas("off")
@@ -72,12 +113,20 @@ export default function Navbar() {
 
                     </div>
 
-                    <div className="navbar-bottom">
-                        <DefaultButtonLink text={'log in'} bgcolor={"rgb(250, 44, 44)"} textcolor={"white"} location={'/login'} width={"75px"}  height={'40px'} margin={"20px"}/> 
+                    {
+                        user?(
+                            <div className="navbar-bottom">
+                                <DefaultButton text={'deconnexion'} bgcolor={"black"} textcolor={"white"} width={"50%"} height={"50px"}  onPress={handleLogout}/>
+                            </div>
+                        ):(
+                            <div className="navbar-bottom">
+                                <DefaultButtonLink text={'log in'} bgcolor={"rgb(250, 44, 44)"} textcolor={"white"} location={'/login'} width={"75px"}  height={'40px'} margin={"20px"}/> 
 
-                        <DefaultButtonLink text={'sign in'} bgcolor={"white"} textcolor={"black"} location={'/register'} width={"75px"} height={"40px"} margin={"20px"}/> 
+                                <DefaultButtonLink text={'sign in'} bgcolor={"white"} textcolor={"black"} location={'/register'} width={"75px"} height={"40px"} margin={"20px"}/> 
 
-                    </div>
+                            </div>
+                        )
+                    }
                 </div>
 
          

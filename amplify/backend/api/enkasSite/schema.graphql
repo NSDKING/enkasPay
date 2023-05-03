@@ -7,16 +7,19 @@ type Account @model @auth(rules: [{allow: public}]) {
   pin: String
   numero: Int
   endDateProfil: AWSDate
+  userID: ID! @index(name: "byUser")
 }
 
 type BuyRoom @model @auth(rules: [{allow: public}]) {
   id: ID!
   productbuy: [Product] @hasMany(indexName: "byBuyRoom", fields: ["id"])
+  users: [User] @manyToMany(relationName: "UserBuyRoom")
 }
 
 type LikeRoom @model @auth(rules: [{allow: public}]) {
   id: ID!
   productLike: [Product] @hasMany(indexName: "byLikeRoom", fields: ["id"])
+  users: [User] @manyToMany(relationName: "UserLikeRoom")
 }
 
 type DurationPrice {
@@ -33,8 +36,8 @@ type Product @model @auth(rules: [{allow: public}]) {
   price: DurationPrice
   buycount: Int
   likecount: Int
-  likeroomID: ID! @index(name: "byLikeRoom")
-  buyroomID: ID! @index(name: "byBuyRoom")
+  likeroomID: ID @index(name: "byLikeRoom")
+  buyroomID: ID @index(name: "byBuyRoom")
 }
 
 type User @model @auth(rules: [{allow: public}]) {
@@ -44,5 +47,8 @@ type User @model @auth(rules: [{allow: public}]) {
   phoneNumber: String
   city: String
   mail: AWSEmail
+  Accounts: [Account] @hasMany(indexName: "byUser", fields: ["id"])
+  BuyRooms: [BuyRoom] @manyToMany(relationName: "UserBuyRoom")
+  LikeRooms: [LikeRoom] @manyToMany(relationName: "UserLikeRoom")
 }
  

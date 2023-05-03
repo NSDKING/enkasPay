@@ -20,15 +20,39 @@ import AddAccount from './pages/addAccount';
  
 function App() {
   const [user, setUser]= useState(undefined)
+  const [loading, setLoading] = useState(false)
+
   const checkUser = async ()=>{
-    const authUser = await Auth.currentAuthenticatedUser({
-      bypassCache: true,
-    });
-    setUser(authUser)
-  }
+    try {
+        const authUser = await Auth.currentAuthenticatedUser({
+            bypassCache: true,
+          });
+      setUser(authUser)
+      console.log(authUser)
+
+    } catch(e){
+        setUser(null);
+
+    }
+ 
+    }
   const getProduct = async()=>{
+    if(loading){
+      return;
+  }
+  
+  setLoading(true)
+  try {
+  
     const response= await API.graphql(graphqlOperation(listProducts));
     console.log(response)
+ 
+  }catch(e){
+          console.log(e)
+
+  }
+  setLoading(false)
+ 
   }
   useEffect(
     () => {
@@ -48,28 +72,12 @@ function App() {
     return () => Hub.remove('auth', listener)
 
   }, [ ])
-  
-  return (
-    <div className="App">
+
+  if(user===undefined){
+    return(
+      <div className="App">
       <Router>
         <Routes>
-          {
-            user ? (
-              <>
-                <Route path='/' Component={storePage}/>
-                <Route path='/cart'/>
-                <Route path='/store' Component={storePage}/>
-                <Route path='/ProductPage' Component={ProductPage}/>
-                <Route path='/affiliation' Component={AffiliatePage}/>
-                <Route path='/ManageAccount' Component={ManageAccount}/>
-                <Route path='/ConsultPage' Component={ConsultPage}/>
-                <Route path='/AddAccount' Component={AddAccount}/>
-                <Route path='/bundle' Component={BundlePage}/>
-
-              </>
-
-            ):(
-              <>
                 <Route path='/register' Component={RegisterPage}/>
                 <Route path='/login' Component={LoginPage}/>
                 <Route path='/login' Component={LoginPage}/>
@@ -81,10 +89,29 @@ function App() {
                 <Route path='/bundle' Component={BundlePage}/>
                 <Route path='/' Component={storePage}/>
               
- 
-              </>
-            )
-          }
+        </Routes>
+      </Router>
+    </div>
+    )
+    
+  }
+  
+  return (
+    <div className="App">
+      <Router>
+        <Routes>
+         
+                <Route path='/' Component={storePage}/>
+                <Route path='/cart'/>
+                <Route path='/store' Component={storePage}/>
+                <Route path='/ProductPage' Component={ProductPage}/>
+                <Route path='/affiliation' Component={AffiliatePage}/>
+                <Route path='/ManageAccount' Component={ManageAccount}/>
+                <Route path='/ConsultPage' Component={ConsultPage}/>
+                <Route path='/AddAccount' Component={AddAccount}/>
+                <Route path='/bundle' Component={BundlePage}/>
+
+            
 
         </Routes>
       </Router>
