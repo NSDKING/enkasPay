@@ -11,10 +11,21 @@ export default function ManageAccount() {
   const navigate = useNavigate();
 
 
-    const
-     handleClick = ()=>{
+    const handleClick = ()=>{
         navigate("/categories1") 
     }
+
+    const handleClick1 = ()=>{
+        navigate("/takeAccount", { state: {  service: 'netflix' } }) 
+    }
+    const handleClick2 = ()=>{
+        navigate("/takeAccount", {state:{ service:'disney'}}) 
+    }
+    const handleClick3 = ()=>{
+        navigate("/takeAccount", {state:{ service:'prime'}}) 
+    }
+ 
+
     
     
  
@@ -36,14 +47,13 @@ export default function ManageAccount() {
             </header>
             <nav className="special_navbar">
                 <Link to="/AddAccount" style={linkStyle}>ajouter</Link>
-                <Link to="" style={linkStyle}>prendre</Link>
+                <Link to="/ManageAccount" style={linkStyle}>prendre</Link>
                 <Link to="/ConsultPage" style={linkStyle}>consulter</Link>
             </nav>
             <div className="categories-mobiles">
-                <div className="categories-mobile-boxs" onClick={handleClick}><img src={netflix} width="75%" alt="netflid"/></div>
-                <div className="categories-mobile-boxs" onClick={handleClick}><img src={disney} width="80%" alt="disney plus"/></div>
-                <div className="categories-mobile-boxs" onClick={handleClick}><img src={PV} width="80%"alt="spotify"/></div>
-                <div className="categories-mobile-boxs" onClick={handleClick}><img src={spotify} width="80%" alt="xbox"/></div>
+                <div className="categories-mobile-boxs" onClick={handleClick1}><img src={netflix} width="75%" alt="netflid"/></div>
+                <div className="categories-mobile-boxs" onClick={handleClick2}><img src={disney} width="80%" alt="disney plus"/></div>
+                <div className="categories-mobile-boxs" onClick={handleClick3}><img src={PV} width="80%"alt="spotify"/></div>
                 <div className="categories-mobile-boxs" onClick={handleClick}><h1>vpn</h1></div>
 
             </div>

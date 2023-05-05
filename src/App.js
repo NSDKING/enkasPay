@@ -16,6 +16,7 @@ import { listProducts } from './graphql/queries';
 import ManageAccount from './pages/ManageAccount';
 import ConsultPage from './pages/ConsultPage';
 import AddAccount from './pages/addAccount';
+import takeAccount from './pages/takeAccount';
 
  
 function App() {
@@ -107,6 +108,7 @@ function App() {
                 <Route path='/ProductPage' Component={ProductPage}/>
                 <Route path='/affiliation' Component={AffiliatePage}/>
                 <Route path='/ManageAccount' Component={ManageAccount}/>
+                <Route path='/takeAccount' Component={takeAccount}/>
                 <Route path='/ConsultPage' Component={ConsultPage}/>
                 <Route path='/AddAccount' Component={AddAccount}/>
                 <Route path='/bundle' Component={BundlePage}/>

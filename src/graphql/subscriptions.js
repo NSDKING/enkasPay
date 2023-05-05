@@ -10,9 +10,11 @@ export const onCreateAccount = /* GraphQL */ `
       profil
       endDateAccount
       pin
-      userID
       numero
       endDateProfil
+      userID
+      free
+      service
       createdAt
       updatedAt
       _version
@@ -30,9 +32,11 @@ export const onUpdateAccount = /* GraphQL */ `
       profil
       endDateAccount
       pin
-      userID
       numero
       endDateProfil
+      userID
+      free
+      service
       createdAt
       updatedAt
       _version
@@ -50,9 +54,11 @@ export const onDeleteAccount = /* GraphQL */ `
       profil
       endDateAccount
       pin
-      userID
       numero
       endDateProfil
+      userID
+      free
+      service
       createdAt
       updatedAt
       _version
@@ -69,7 +75,7 @@ export const onCreateBuyRoom = /* GraphQL */ `
         nextToken
         startedAt
       }
-      buyby {
+      users {
         nextToken
         startedAt
       }
@@ -89,7 +95,7 @@ export const onUpdateBuyRoom = /* GraphQL */ `
         nextToken
         startedAt
       }
-      buyby {
+      users {
         nextToken
         startedAt
       }
@@ -109,7 +115,7 @@ export const onDeleteBuyRoom = /* GraphQL */ `
         nextToken
         startedAt
       }
-      buyby {
+      users {
         nextToken
         startedAt
       }
@@ -125,11 +131,11 @@ export const onCreateLikeRoom = /* GraphQL */ `
   subscription OnCreateLikeRoom($filter: ModelSubscriptionLikeRoomFilterInput) {
     onCreateLikeRoom(filter: $filter) {
       id
-      likeby {
+      productLike {
         nextToken
         startedAt
       }
-      productLike {
+      users {
         nextToken
         startedAt
       }
@@ -145,11 +151,11 @@ export const onUpdateLikeRoom = /* GraphQL */ `
   subscription OnUpdateLikeRoom($filter: ModelSubscriptionLikeRoomFilterInput) {
     onUpdateLikeRoom(filter: $filter) {
       id
-      likeby {
+      productLike {
         nextToken
         startedAt
       }
-      productLike {
+      users {
         nextToken
         startedAt
       }
@@ -165,11 +171,11 @@ export const onDeleteLikeRoom = /* GraphQL */ `
   subscription OnDeleteLikeRoom($filter: ModelSubscriptionLikeRoomFilterInput) {
     onDeleteLikeRoom(filter: $filter) {
       id
-      likeby {
+      productLike {
         nextToken
         startedAt
       }
-      productLike {
+      users {
         nextToken
         startedAt
       }
@@ -262,18 +268,19 @@ export const onCreateUser = /* GraphQL */ `
       phoneNumber
       city
       mail
-      likerooms {
-        nextToken
-        startedAt
-      }
-      buyrooms {
-        nextToken
-        startedAt
-      }
       Accounts {
         nextToken
         startedAt
       }
+      BuyRooms {
+        nextToken
+        startedAt
+      }
+      LikeRooms {
+        nextToken
+        startedAt
+      }
+      staff
       createdAt
       updatedAt
       _version
@@ -291,18 +298,19 @@ export const onUpdateUser = /* GraphQL */ `
       phoneNumber
       city
       mail
-      likerooms {
-        nextToken
-        startedAt
-      }
-      buyrooms {
-        nextToken
-        startedAt
-      }
       Accounts {
         nextToken
         startedAt
       }
+      BuyRooms {
+        nextToken
+        startedAt
+      }
+      LikeRooms {
+        nextToken
+        startedAt
+      }
+      staff
       createdAt
       updatedAt
       _version
@@ -320,18 +328,19 @@ export const onDeleteUser = /* GraphQL */ `
       phoneNumber
       city
       mail
-      likerooms {
-        nextToken
-        startedAt
-      }
-      buyrooms {
-        nextToken
-        startedAt
-      }
       Accounts {
         nextToken
         startedAt
       }
+      BuyRooms {
+        nextToken
+        startedAt
+      }
+      LikeRooms {
+        nextToken
+        startedAt
+      }
+      staff
       createdAt
       updatedAt
       _version
@@ -340,11 +349,11 @@ export const onDeleteUser = /* GraphQL */ `
     }
   }
 `;
-export const onCreateBuyRoomUser = /* GraphQL */ `
-  subscription OnCreateBuyRoomUser(
-    $filter: ModelSubscriptionBuyRoomUserFilterInput
+export const onCreateUserBuyRoom = /* GraphQL */ `
+  subscription OnCreateUserBuyRoom(
+    $filter: ModelSubscriptionUserBuyRoomFilterInput
   ) {
-    onCreateBuyRoomUser(filter: $filter) {
+    onCreateUserBuyRoom(filter: $filter) {
       id
       buyRoomId
       userId
@@ -363,6 +372,7 @@ export const onCreateBuyRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -377,11 +387,11 @@ export const onCreateBuyRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateBuyRoomUser = /* GraphQL */ `
-  subscription OnUpdateBuyRoomUser(
-    $filter: ModelSubscriptionBuyRoomUserFilterInput
+export const onUpdateUserBuyRoom = /* GraphQL */ `
+  subscription OnUpdateUserBuyRoom(
+    $filter: ModelSubscriptionUserBuyRoomFilterInput
   ) {
-    onUpdateBuyRoomUser(filter: $filter) {
+    onUpdateUserBuyRoom(filter: $filter) {
       id
       buyRoomId
       userId
@@ -400,6 +410,7 @@ export const onUpdateBuyRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -414,11 +425,11 @@ export const onUpdateBuyRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteBuyRoomUser = /* GraphQL */ `
-  subscription OnDeleteBuyRoomUser(
-    $filter: ModelSubscriptionBuyRoomUserFilterInput
+export const onDeleteUserBuyRoom = /* GraphQL */ `
+  subscription OnDeleteUserBuyRoom(
+    $filter: ModelSubscriptionUserBuyRoomFilterInput
   ) {
-    onDeleteBuyRoomUser(filter: $filter) {
+    onDeleteUserBuyRoom(filter: $filter) {
       id
       buyRoomId
       userId
@@ -437,6 +448,7 @@ export const onDeleteBuyRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -451,11 +463,11 @@ export const onDeleteBuyRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const onCreateLikeRoomUser = /* GraphQL */ `
-  subscription OnCreateLikeRoomUser(
-    $filter: ModelSubscriptionLikeRoomUserFilterInput
+export const onCreateUserLikeRoom = /* GraphQL */ `
+  subscription OnCreateUserLikeRoom(
+    $filter: ModelSubscriptionUserLikeRoomFilterInput
   ) {
-    onCreateLikeRoomUser(filter: $filter) {
+    onCreateUserLikeRoom(filter: $filter) {
       id
       likeRoomId
       userId
@@ -474,6 +486,7 @@ export const onCreateLikeRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -488,11 +501,11 @@ export const onCreateLikeRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateLikeRoomUser = /* GraphQL */ `
-  subscription OnUpdateLikeRoomUser(
-    $filter: ModelSubscriptionLikeRoomUserFilterInput
+export const onUpdateUserLikeRoom = /* GraphQL */ `
+  subscription OnUpdateUserLikeRoom(
+    $filter: ModelSubscriptionUserLikeRoomFilterInput
   ) {
-    onUpdateLikeRoomUser(filter: $filter) {
+    onUpdateUserLikeRoom(filter: $filter) {
       id
       likeRoomId
       userId
@@ -511,6 +524,7 @@ export const onUpdateLikeRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -525,11 +539,11 @@ export const onUpdateLikeRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteLikeRoomUser = /* GraphQL */ `
-  subscription OnDeleteLikeRoomUser(
-    $filter: ModelSubscriptionLikeRoomUserFilterInput
+export const onDeleteUserLikeRoom = /* GraphQL */ `
+  subscription OnDeleteUserLikeRoom(
+    $filter: ModelSubscriptionUserLikeRoomFilterInput
   ) {
-    onDeleteLikeRoomUser(filter: $filter) {
+    onDeleteUserLikeRoom(filter: $filter) {
       id
       likeRoomId
       userId
@@ -548,6 +562,7 @@ export const onDeleteLikeRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version

@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
@@ -20,6 +20,8 @@ export declare type AccountCreateFormInputValues = {
     pin?: string;
     numero?: number;
     endDateProfil?: string;
+    free?: boolean;
+    service?: string;
 };
 export declare type AccountCreateFormValidationValues = {
     mail?: ValidationFunction<string>;
@@ -29,6 +31,8 @@ export declare type AccountCreateFormValidationValues = {
     pin?: ValidationFunction<string>;
     numero?: ValidationFunction<number>;
     endDateProfil?: ValidationFunction<string>;
+    free?: ValidationFunction<boolean>;
+    service?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type AccountCreateFormOverridesProps = {
@@ -40,6 +44,8 @@ export declare type AccountCreateFormOverridesProps = {
     pin?: PrimitiveOverrideProps<TextFieldProps>;
     numero?: PrimitiveOverrideProps<TextFieldProps>;
     endDateProfil?: PrimitiveOverrideProps<TextFieldProps>;
+    free?: PrimitiveOverrideProps<SwitchFieldProps>;
+    service?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type AccountCreateFormProps = React.PropsWithChildren<{
     overrides?: AccountCreateFormOverridesProps | undefined | null;

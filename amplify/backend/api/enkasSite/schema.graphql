@@ -7,7 +7,9 @@ type Account @model @auth(rules: [{allow: public}]) {
   pin: String
   numero: Int
   endDateProfil: AWSDate
-  userID: ID! @index(name: "byUser")
+  userID: ID @index(name: "byUser")
+  free: Boolean
+  service: String
 }
 
 type BuyRoom @model @auth(rules: [{allow: public}]) {
@@ -50,5 +52,6 @@ type User @model @auth(rules: [{allow: public}]) {
   Accounts: [Account] @hasMany(indexName: "byUser", fields: ["id"])
   BuyRooms: [BuyRoom] @manyToMany(relationName: "UserBuyRoom")
   LikeRooms: [LikeRoom] @manyToMany(relationName: "UserLikeRoom")
+  staff: Boolean
 }
  

@@ -5,6 +5,7 @@ import Carrousel from "../components/carroussel"
 import "./css/store.css"
 import pm from './img/pm.jpg'
 
+
 export default function storePage() {
     return(
         <section className="storePage">

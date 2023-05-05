@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  SwitchField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { User } from "../models";
 import { fetchByPath, validateField } from "./utils";
@@ -28,6 +34,7 @@ export default function NewForm1(props) {
     phoneNumber: "",
     city: "",
     mail: "",
+    staff: false,
   };
   const [FamilyName, setFamilyName] = React.useState(initialValues.FamilyName);
   const [LastName, setLastName] = React.useState(initialValues.LastName);
@@ -36,6 +43,7 @@ export default function NewForm1(props) {
   );
   const [city, setCity] = React.useState(initialValues.city);
   const [mail, setMail] = React.useState(initialValues.mail);
+  const [staff, setStaff] = React.useState(initialValues.staff);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setFamilyName(initialValues.FamilyName);
@@ -43,6 +51,7 @@ export default function NewForm1(props) {
     setPhoneNumber(initialValues.phoneNumber);
     setCity(initialValues.city);
     setMail(initialValues.mail);
+    setStaff(initialValues.staff);
     setErrors({});
   };
   const validations = {
@@ -51,6 +60,7 @@ export default function NewForm1(props) {
     phoneNumber: [],
     city: [],
     mail: [{ type: "Email" }],
+    staff: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -82,6 +92,7 @@ export default function NewForm1(props) {
           phoneNumber,
           city,
           mail,
+          staff,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -141,6 +152,7 @@ export default function NewForm1(props) {
               phoneNumber,
               city,
               mail,
+              staff,
             };
             const result = onChange(modelFields);
             value = result?.FamilyName ?? value;
@@ -169,6 +181,7 @@ export default function NewForm1(props) {
               phoneNumber,
               city,
               mail,
+              staff,
             };
             const result = onChange(modelFields);
             value = result?.LastName ?? value;
@@ -197,6 +210,7 @@ export default function NewForm1(props) {
               phoneNumber: value,
               city,
               mail,
+              staff,
             };
             const result = onChange(modelFields);
             value = result?.phoneNumber ?? value;
@@ -225,6 +239,7 @@ export default function NewForm1(props) {
               phoneNumber,
               city: value,
               mail,
+              staff,
             };
             const result = onChange(modelFields);
             value = result?.city ?? value;
@@ -253,6 +268,7 @@ export default function NewForm1(props) {
               phoneNumber,
               city,
               mail: value,
+              staff,
             };
             const result = onChange(modelFields);
             value = result?.mail ?? value;
@@ -267,6 +283,35 @@ export default function NewForm1(props) {
         hasError={errors.mail?.hasError}
         {...getOverrideProps(overrides, "mail")}
       ></TextField>
+      <SwitchField
+        label="Staff"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={staff}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              FamilyName,
+              LastName,
+              phoneNumber,
+              city,
+              mail,
+              staff: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.staff ?? value;
+          }
+          if (errors.staff?.hasError) {
+            runValidationTasks("staff", value);
+          }
+          setStaff(value);
+        }}
+        onBlur={() => runValidationTasks("staff", staff)}
+        errorMessage={errors.staff?.errorMessage}
+        hasError={errors.staff?.hasError}
+        {...getOverrideProps(overrides, "staff")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

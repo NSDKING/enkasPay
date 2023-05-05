@@ -86,7 +86,7 @@ export default function AddAccount() {
             </header>
             <nav className="special_navbar">
                 <Link to="/AddAccount" style={linkStyle}>ajouter</Link>
-                <Link to="" style={linkStyle}>prendre</Link>
+                <Link to="/ManageAccount" style={linkStyle}>prendre</Link>
                 <Link to="/ConsultPage" style={linkStyle}>consulter</Link>
             </nav>
             	<form id="my-form"

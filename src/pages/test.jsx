@@ -345,3 +345,93 @@ Accounts.map(item => (
       <td>{item.endDateProfil}</td>
   </tr>
 ))
+
+
+import { API, graphqlOperation } from 'aws-amplify';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { listAccounts } from '../graphql/queries';
+
+
+export default function TakeAccount() {
+    const { state } = useLocation();
+    const { service } = state;
+    const [Accounts, setAccount] = useState([])
+    const [loading, setLoading] = useState(false)
+
+      
+    const linkStyle = {
+        float: "left",
+        display: "block",
+        color: '#fff',
+        textAlign: "center",
+        textDecoration: "none",
+        paddingTop: "14px",
+        paddingBottom: "14px",
+        paddingRight:"16px",
+        paddingLeft:"16px",
+    }
+
+    const getAccount = async()=>{
+        if(loading){
+            return;
+        }
+        setLoading(true)  
+
+        try {
+
+            const response= await API.graphql(graphqlOperation(listAccounts));
+            console.log(response.data.listAccounts.items)    
+            setAccount(response.data.listAccounts.items)
+        }catch(e){
+                console.log(e)
+
+        }
+        setLoading(false)
+
+ 
+       }
+    useEffect(() => {
+       getAccount()
+       TakeAccount()
+         
+    }, [ ])
+     
+    const handleAccount = ()=>{
+        let theAccount =  {}
+        Accounts.map((item)=>{
+                if(item.free == true && item.service == service ){
+                    theAccount = item
+                    console.log(item)
+                    console.log(service)
+                    console.log(item.free)
+                }
+    })
+  
+    return(theAccount)
+
+    }
+    return(
+        <section className="takeAccountPage">
+            <header className='ManagementHeader'>
+                <h1>ENKAS</h1>
+            </header>
+            <nav className="special_navbar">
+                <Link to="/AddAccount" style={linkStyle}>ajouter</Link>
+                <Link to="/ManageAccount" style={linkStyle}>prendre</Link>
+                <Link to="/ConsultPage" style={linkStyle}>consulter</Link>
+            </nav>
+                
+       
+        </section>
+    )
+}
+
+                
+<div>
+<p>mail: {TakeAccount().mail}</p>
+<p>passe: {TakeAccount().passe}</p>
+<p>profil: {TakeAccount().pin}</p>
+<p>mail: {TakeAccount().mail}</p>
+
+</div>

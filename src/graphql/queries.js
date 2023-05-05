@@ -10,10 +10,16 @@ export const getAccount = /* GraphQL */ `
       profil
       endDateAccount
       pin
-      userID
       numero
       endDateProfil
+      userID
+      free
+      service
+      createdAt
+      updatedAt
       _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -31,9 +37,11 @@ export const listAccounts = /* GraphQL */ `
         profil
         endDateAccount
         pin
-        userID
         numero
         endDateProfil
+        userID
+        free
+        service
         createdAt
         updatedAt
         _version
@@ -65,9 +73,11 @@ export const syncAccounts = /* GraphQL */ `
         profil
         endDateAccount
         pin
-        userID
         numero
         endDateProfil
+        userID
+        free
+        service
         createdAt
         updatedAt
         _version
@@ -101,9 +111,11 @@ export const accountsByUserID = /* GraphQL */ `
         profil
         endDateAccount
         pin
-        userID
         numero
         endDateProfil
+        userID
+        free
+        service
         createdAt
         updatedAt
         _version
@@ -123,7 +135,7 @@ export const getBuyRoom = /* GraphQL */ `
         nextToken
         startedAt
       }
-      buyby {
+      users {
         nextToken
         startedAt
       }
@@ -185,11 +197,11 @@ export const getLikeRoom = /* GraphQL */ `
   query GetLikeRoom($id: ID!) {
     getLikeRoom(id: $id) {
       id
-      likeby {
+      productLike {
         nextToken
         startedAt
       }
-      productLike {
+      users {
         nextToken
         startedAt
       }
@@ -410,18 +422,19 @@ export const getUser = /* GraphQL */ `
       phoneNumber
       city
       mail
-      likerooms {
-        nextToken
-        startedAt
-      }
-      buyrooms {
-        nextToken
-        startedAt
-      }
       Accounts {
         nextToken
         startedAt
       }
+      BuyRooms {
+        nextToken
+        startedAt
+      }
+      LikeRooms {
+        nextToken
+        startedAt
+      }
+      staff
       createdAt
       updatedAt
       _version
@@ -444,6 +457,7 @@ export const listUsers = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -475,6 +489,7 @@ export const syncUsers = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -486,9 +501,9 @@ export const syncUsers = /* GraphQL */ `
     }
   }
 `;
-export const getBuyRoomUser = /* GraphQL */ `
-  query GetBuyRoomUser($id: ID!) {
-    getBuyRoomUser(id: $id) {
+export const getUserBuyRoom = /* GraphQL */ `
+  query GetUserBuyRoom($id: ID!) {
+    getUserBuyRoom(id: $id) {
       id
       buyRoomId
       userId
@@ -507,6 +522,7 @@ export const getBuyRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -521,13 +537,13 @@ export const getBuyRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const listBuyRoomUsers = /* GraphQL */ `
-  query ListBuyRoomUsers(
-    $filter: ModelBuyRoomUserFilterInput
+export const listUserBuyRooms = /* GraphQL */ `
+  query ListUserBuyRooms(
+    $filter: ModelUserBuyRoomFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listBuyRoomUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listUserBuyRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         buyRoomId
@@ -543,14 +559,14 @@ export const listBuyRoomUsers = /* GraphQL */ `
     }
   }
 `;
-export const syncBuyRoomUsers = /* GraphQL */ `
-  query SyncBuyRoomUsers(
-    $filter: ModelBuyRoomUserFilterInput
+export const syncUserBuyRooms = /* GraphQL */ `
+  query SyncUserBuyRooms(
+    $filter: ModelUserBuyRoomFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncBuyRoomUsers(
+    syncUserBuyRooms(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -571,15 +587,15 @@ export const syncBuyRoomUsers = /* GraphQL */ `
     }
   }
 `;
-export const buyRoomUsersByBuyRoomId = /* GraphQL */ `
-  query BuyRoomUsersByBuyRoomId(
+export const userBuyRoomsByBuyRoomId = /* GraphQL */ `
+  query UserBuyRoomsByBuyRoomId(
     $buyRoomId: ID!
     $sortDirection: ModelSortDirection
-    $filter: ModelBuyRoomUserFilterInput
+    $filter: ModelUserBuyRoomFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    buyRoomUsersByBuyRoomId(
+    userBuyRoomsByBuyRoomId(
       buyRoomId: $buyRoomId
       sortDirection: $sortDirection
       filter: $filter
@@ -601,15 +617,15 @@ export const buyRoomUsersByBuyRoomId = /* GraphQL */ `
     }
   }
 `;
-export const buyRoomUsersByUserId = /* GraphQL */ `
-  query BuyRoomUsersByUserId(
+export const userBuyRoomsByUserId = /* GraphQL */ `
+  query UserBuyRoomsByUserId(
     $userId: ID!
     $sortDirection: ModelSortDirection
-    $filter: ModelBuyRoomUserFilterInput
+    $filter: ModelUserBuyRoomFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    buyRoomUsersByUserId(
+    userBuyRoomsByUserId(
       userId: $userId
       sortDirection: $sortDirection
       filter: $filter
@@ -631,9 +647,9 @@ export const buyRoomUsersByUserId = /* GraphQL */ `
     }
   }
 `;
-export const getLikeRoomUser = /* GraphQL */ `
-  query GetLikeRoomUser($id: ID!) {
-    getLikeRoomUser(id: $id) {
+export const getUserLikeRoom = /* GraphQL */ `
+  query GetUserLikeRoom($id: ID!) {
+    getUserLikeRoom(id: $id) {
       id
       likeRoomId
       userId
@@ -652,6 +668,7 @@ export const getLikeRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -666,13 +683,13 @@ export const getLikeRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const listLikeRoomUsers = /* GraphQL */ `
-  query ListLikeRoomUsers(
-    $filter: ModelLikeRoomUserFilterInput
+export const listUserLikeRooms = /* GraphQL */ `
+  query ListUserLikeRooms(
+    $filter: ModelUserLikeRoomFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listLikeRoomUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listUserLikeRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         likeRoomId
@@ -688,14 +705,14 @@ export const listLikeRoomUsers = /* GraphQL */ `
     }
   }
 `;
-export const syncLikeRoomUsers = /* GraphQL */ `
-  query SyncLikeRoomUsers(
-    $filter: ModelLikeRoomUserFilterInput
+export const syncUserLikeRooms = /* GraphQL */ `
+  query SyncUserLikeRooms(
+    $filter: ModelUserLikeRoomFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncLikeRoomUsers(
+    syncUserLikeRooms(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -716,15 +733,15 @@ export const syncLikeRoomUsers = /* GraphQL */ `
     }
   }
 `;
-export const likeRoomUsersByLikeRoomId = /* GraphQL */ `
-  query LikeRoomUsersByLikeRoomId(
+export const userLikeRoomsByLikeRoomId = /* GraphQL */ `
+  query UserLikeRoomsByLikeRoomId(
     $likeRoomId: ID!
     $sortDirection: ModelSortDirection
-    $filter: ModelLikeRoomUserFilterInput
+    $filter: ModelUserLikeRoomFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    likeRoomUsersByLikeRoomId(
+    userLikeRoomsByLikeRoomId(
       likeRoomId: $likeRoomId
       sortDirection: $sortDirection
       filter: $filter
@@ -746,15 +763,15 @@ export const likeRoomUsersByLikeRoomId = /* GraphQL */ `
     }
   }
 `;
-export const likeRoomUsersByUserId = /* GraphQL */ `
-  query LikeRoomUsersByUserId(
+export const userLikeRoomsByUserId = /* GraphQL */ `
+  query UserLikeRoomsByUserId(
     $userId: ID!
     $sortDirection: ModelSortDirection
-    $filter: ModelLikeRoomUserFilterInput
+    $filter: ModelUserLikeRoomFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    likeRoomUsersByUserId(
+    userLikeRoomsByUserId(
       userId: $userId
       sortDirection: $sortDirection
       filter: $filter

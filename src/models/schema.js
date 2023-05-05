@@ -63,7 +63,21 @@ export const schema = {
                     "name": "userID",
                     "isArray": false,
                     "type": "ID",
-                    "isRequired": true,
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "free": {
+                    "name": "free",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "service": {
+                    "name": "service",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "createdAt": {
@@ -422,6 +436,13 @@ export const schema = {
                         ]
                     }
                 },
+                "staff": {
+                    "name": "staff",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -775,5 +796,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.4",
-    "version": "73ef4d39a9258491495778d329d3f025"
+    "version": "d9704022989473adc44ee1024720cc5b"
 };

@@ -13,9 +13,11 @@ export const createAccount = /* GraphQL */ `
       profil
       endDateAccount
       pin
-      userID
       numero
       endDateProfil
+      userID
+      free
+      service
       createdAt
       updatedAt
       _version
@@ -36,9 +38,11 @@ export const updateAccount = /* GraphQL */ `
       profil
       endDateAccount
       pin
-      userID
       numero
       endDateProfil
+      userID
+      free
+      service
       createdAt
       updatedAt
       _version
@@ -59,9 +63,11 @@ export const deleteAccount = /* GraphQL */ `
       profil
       endDateAccount
       pin
-      userID
       numero
       endDateProfil
+      userID
+      free
+      service
       createdAt
       updatedAt
       _version
@@ -81,7 +87,7 @@ export const createBuyRoom = /* GraphQL */ `
         nextToken
         startedAt
       }
-      buyby {
+      users {
         nextToken
         startedAt
       }
@@ -104,7 +110,7 @@ export const updateBuyRoom = /* GraphQL */ `
         nextToken
         startedAt
       }
-      buyby {
+      users {
         nextToken
         startedAt
       }
@@ -127,7 +133,7 @@ export const deleteBuyRoom = /* GraphQL */ `
         nextToken
         startedAt
       }
-      buyby {
+      users {
         nextToken
         startedAt
       }
@@ -146,11 +152,11 @@ export const createLikeRoom = /* GraphQL */ `
   ) {
     createLikeRoom(input: $input, condition: $condition) {
       id
-      likeby {
+      productLike {
         nextToken
         startedAt
       }
-      productLike {
+      users {
         nextToken
         startedAt
       }
@@ -169,11 +175,11 @@ export const updateLikeRoom = /* GraphQL */ `
   ) {
     updateLikeRoom(input: $input, condition: $condition) {
       id
-      likeby {
+      productLike {
         nextToken
         startedAt
       }
-      productLike {
+      users {
         nextToken
         startedAt
       }
@@ -192,11 +198,11 @@ export const deleteLikeRoom = /* GraphQL */ `
   ) {
     deleteLikeRoom(input: $input, condition: $condition) {
       id
-      likeby {
+      productLike {
         nextToken
         startedAt
       }
-      productLike {
+      users {
         nextToken
         startedAt
       }
@@ -301,18 +307,19 @@ export const createUser = /* GraphQL */ `
       phoneNumber
       city
       mail
-      likerooms {
-        nextToken
-        startedAt
-      }
-      buyrooms {
-        nextToken
-        startedAt
-      }
       Accounts {
         nextToken
         startedAt
       }
+      BuyRooms {
+        nextToken
+        startedAt
+      }
+      LikeRooms {
+        nextToken
+        startedAt
+      }
+      staff
       createdAt
       updatedAt
       _version
@@ -333,18 +340,19 @@ export const updateUser = /* GraphQL */ `
       phoneNumber
       city
       mail
-      likerooms {
-        nextToken
-        startedAt
-      }
-      buyrooms {
-        nextToken
-        startedAt
-      }
       Accounts {
         nextToken
         startedAt
       }
+      BuyRooms {
+        nextToken
+        startedAt
+      }
+      LikeRooms {
+        nextToken
+        startedAt
+      }
+      staff
       createdAt
       updatedAt
       _version
@@ -365,18 +373,19 @@ export const deleteUser = /* GraphQL */ `
       phoneNumber
       city
       mail
-      likerooms {
-        nextToken
-        startedAt
-      }
-      buyrooms {
-        nextToken
-        startedAt
-      }
       Accounts {
         nextToken
         startedAt
       }
+      BuyRooms {
+        nextToken
+        startedAt
+      }
+      LikeRooms {
+        nextToken
+        startedAt
+      }
+      staff
       createdAt
       updatedAt
       _version
@@ -385,12 +394,12 @@ export const deleteUser = /* GraphQL */ `
     }
   }
 `;
-export const createBuyRoomUser = /* GraphQL */ `
-  mutation CreateBuyRoomUser(
-    $input: CreateBuyRoomUserInput!
-    $condition: ModelBuyRoomUserConditionInput
+export const createUserBuyRoom = /* GraphQL */ `
+  mutation CreateUserBuyRoom(
+    $input: CreateUserBuyRoomInput!
+    $condition: ModelUserBuyRoomConditionInput
   ) {
-    createBuyRoomUser(input: $input, condition: $condition) {
+    createUserBuyRoom(input: $input, condition: $condition) {
       id
       buyRoomId
       userId
@@ -409,6 +418,7 @@ export const createBuyRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -423,12 +433,12 @@ export const createBuyRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const updateBuyRoomUser = /* GraphQL */ `
-  mutation UpdateBuyRoomUser(
-    $input: UpdateBuyRoomUserInput!
-    $condition: ModelBuyRoomUserConditionInput
+export const updateUserBuyRoom = /* GraphQL */ `
+  mutation UpdateUserBuyRoom(
+    $input: UpdateUserBuyRoomInput!
+    $condition: ModelUserBuyRoomConditionInput
   ) {
-    updateBuyRoomUser(input: $input, condition: $condition) {
+    updateUserBuyRoom(input: $input, condition: $condition) {
       id
       buyRoomId
       userId
@@ -447,6 +457,7 @@ export const updateBuyRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -461,12 +472,12 @@ export const updateBuyRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const deleteBuyRoomUser = /* GraphQL */ `
-  mutation DeleteBuyRoomUser(
-    $input: DeleteBuyRoomUserInput!
-    $condition: ModelBuyRoomUserConditionInput
+export const deleteUserBuyRoom = /* GraphQL */ `
+  mutation DeleteUserBuyRoom(
+    $input: DeleteUserBuyRoomInput!
+    $condition: ModelUserBuyRoomConditionInput
   ) {
-    deleteBuyRoomUser(input: $input, condition: $condition) {
+    deleteUserBuyRoom(input: $input, condition: $condition) {
       id
       buyRoomId
       userId
@@ -485,6 +496,7 @@ export const deleteBuyRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -499,12 +511,12 @@ export const deleteBuyRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const createLikeRoomUser = /* GraphQL */ `
-  mutation CreateLikeRoomUser(
-    $input: CreateLikeRoomUserInput!
-    $condition: ModelLikeRoomUserConditionInput
+export const createUserLikeRoom = /* GraphQL */ `
+  mutation CreateUserLikeRoom(
+    $input: CreateUserLikeRoomInput!
+    $condition: ModelUserLikeRoomConditionInput
   ) {
-    createLikeRoomUser(input: $input, condition: $condition) {
+    createUserLikeRoom(input: $input, condition: $condition) {
       id
       likeRoomId
       userId
@@ -523,6 +535,7 @@ export const createLikeRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -537,12 +550,12 @@ export const createLikeRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const updateLikeRoomUser = /* GraphQL */ `
-  mutation UpdateLikeRoomUser(
-    $input: UpdateLikeRoomUserInput!
-    $condition: ModelLikeRoomUserConditionInput
+export const updateUserLikeRoom = /* GraphQL */ `
+  mutation UpdateUserLikeRoom(
+    $input: UpdateUserLikeRoomInput!
+    $condition: ModelUserLikeRoomConditionInput
   ) {
-    updateLikeRoomUser(input: $input, condition: $condition) {
+    updateUserLikeRoom(input: $input, condition: $condition) {
       id
       likeRoomId
       userId
@@ -561,6 +574,7 @@ export const updateLikeRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version
@@ -575,12 +589,12 @@ export const updateLikeRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const deleteLikeRoomUser = /* GraphQL */ `
-  mutation DeleteLikeRoomUser(
-    $input: DeleteLikeRoomUserInput!
-    $condition: ModelLikeRoomUserConditionInput
+export const deleteUserLikeRoom = /* GraphQL */ `
+  mutation DeleteUserLikeRoom(
+    $input: DeleteUserLikeRoomInput!
+    $condition: ModelUserLikeRoomConditionInput
   ) {
-    deleteLikeRoomUser(input: $input, condition: $condition) {
+    deleteUserLikeRoom(input: $input, condition: $condition) {
       id
       likeRoomId
       userId
@@ -599,6 +613,7 @@ export const deleteLikeRoomUser = /* GraphQL */ `
         phoneNumber
         city
         mail
+        staff
         createdAt
         updatedAt
         _version

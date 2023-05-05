@@ -33,7 +33,9 @@ type EagerAccount = {
   readonly pin?: string | null;
   readonly numero?: number | null;
   readonly endDateProfil?: string | null;
-  readonly userID: string;
+  readonly userID?: string | null;
+  readonly free?: boolean | null;
+  readonly service?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -51,7 +53,9 @@ type LazyAccount = {
   readonly pin?: string | null;
   readonly numero?: number | null;
   readonly endDateProfil?: string | null;
-  readonly userID: string;
+  readonly userID?: string | null;
+  readonly free?: boolean | null;
+  readonly service?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -148,6 +152,7 @@ type EagerUser = {
   readonly Accounts?: (Account | null)[] | null;
   readonly BuyRooms?: (UserBuyRoom | null)[] | null;
   readonly LikeRooms?: (UserLikeRoom | null)[] | null;
+  readonly staff?: boolean | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -166,6 +171,7 @@ type LazyUser = {
   readonly Accounts: AsyncCollection<Account>;
   readonly BuyRooms: AsyncCollection<UserBuyRoom>;
   readonly LikeRooms: AsyncCollection<UserLikeRoom>;
+  readonly staff?: boolean | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

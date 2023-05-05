@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  SwitchField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Account } from "../models";
 import { fetchByPath, validateField } from "./utils";
@@ -30,6 +36,8 @@ export default function AccountCreateForm(props) {
     pin: "",
     numero: "",
     endDateProfil: "",
+    free: false,
+    service: "",
   };
   const [mail, setMail] = React.useState(initialValues.mail);
   const [passe, setPasse] = React.useState(initialValues.passe);
@@ -42,6 +50,8 @@ export default function AccountCreateForm(props) {
   const [endDateProfil, setEndDateProfil] = React.useState(
     initialValues.endDateProfil
   );
+  const [free, setFree] = React.useState(initialValues.free);
+  const [service, setService] = React.useState(initialValues.service);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setMail(initialValues.mail);
@@ -51,6 +61,8 @@ export default function AccountCreateForm(props) {
     setPin(initialValues.pin);
     setNumero(initialValues.numero);
     setEndDateProfil(initialValues.endDateProfil);
+    setFree(initialValues.free);
+    setService(initialValues.service);
     setErrors({});
   };
   const validations = {
@@ -61,6 +73,8 @@ export default function AccountCreateForm(props) {
     pin: [],
     numero: [],
     endDateProfil: [],
+    free: [],
+    service: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -94,6 +108,8 @@ export default function AccountCreateForm(props) {
           pin,
           numero,
           endDateProfil,
+          free,
+          service,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -155,6 +171,8 @@ export default function AccountCreateForm(props) {
               pin,
               numero,
               endDateProfil,
+              free,
+              service,
             };
             const result = onChange(modelFields);
             value = result?.mail ?? value;
@@ -185,6 +203,8 @@ export default function AccountCreateForm(props) {
               pin,
               numero,
               endDateProfil,
+              free,
+              service,
             };
             const result = onChange(modelFields);
             value = result?.passe ?? value;
@@ -215,6 +235,8 @@ export default function AccountCreateForm(props) {
               pin,
               numero,
               endDateProfil,
+              free,
+              service,
             };
             const result = onChange(modelFields);
             value = result?.profil ?? value;
@@ -246,6 +268,8 @@ export default function AccountCreateForm(props) {
               pin,
               numero,
               endDateProfil,
+              free,
+              service,
             };
             const result = onChange(modelFields);
             value = result?.endDateAccount ?? value;
@@ -276,6 +300,8 @@ export default function AccountCreateForm(props) {
               pin: value,
               numero,
               endDateProfil,
+              free,
+              service,
             };
             const result = onChange(modelFields);
             value = result?.pin ?? value;
@@ -310,6 +336,8 @@ export default function AccountCreateForm(props) {
               pin,
               numero: value,
               endDateProfil,
+              free,
+              service,
             };
             const result = onChange(modelFields);
             value = result?.numero ?? value;
@@ -341,6 +369,8 @@ export default function AccountCreateForm(props) {
               pin,
               numero,
               endDateProfil: value,
+              free,
+              service,
             };
             const result = onChange(modelFields);
             value = result?.endDateProfil ?? value;
@@ -354,6 +384,70 @@ export default function AccountCreateForm(props) {
         errorMessage={errors.endDateProfil?.errorMessage}
         hasError={errors.endDateProfil?.hasError}
         {...getOverrideProps(overrides, "endDateProfil")}
+      ></TextField>
+      <SwitchField
+        label="Free"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={free}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              mail,
+              passe,
+              profil,
+              endDateAccount,
+              pin,
+              numero,
+              endDateProfil,
+              free: value,
+              service,
+            };
+            const result = onChange(modelFields);
+            value = result?.free ?? value;
+          }
+          if (errors.free?.hasError) {
+            runValidationTasks("free", value);
+          }
+          setFree(value);
+        }}
+        onBlur={() => runValidationTasks("free", free)}
+        errorMessage={errors.free?.errorMessage}
+        hasError={errors.free?.hasError}
+        {...getOverrideProps(overrides, "free")}
+      ></SwitchField>
+      <TextField
+        label="Service"
+        isRequired={false}
+        isReadOnly={false}
+        value={service}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mail,
+              passe,
+              profil,
+              endDateAccount,
+              pin,
+              numero,
+              endDateProfil,
+              free,
+              service: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.service ?? value;
+          }
+          if (errors.service?.hasError) {
+            runValidationTasks("service", value);
+          }
+          setService(value);
+        }}
+        onBlur={() => runValidationTasks("service", service)}
+        errorMessage={errors.service?.errorMessage}
+        hasError={errors.service?.hasError}
+        {...getOverrideProps(overrides, "service")}
       ></TextField>
       <Flex
         justifyContent="space-between"
