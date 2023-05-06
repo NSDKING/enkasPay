@@ -286,7 +286,7 @@ export default function RegisterPage() {
                             {errors.city && <p className="text-error">{errors.city?.message}</p>}
 
                             <input 
-                                {...register('birthday', { required: 'ceci est obligatoire'})}
+                                {...register('birthday', { required: 'saisi ta date de naissance'})}
                                 type="date"
                                 placeholder='   saisissez votre date de naissance'
                             />
@@ -294,13 +294,13 @@ export default function RegisterPage() {
 
                             <input 
                                 {...register('number', { 
-                                    required: 'ceci est obligatoire',
+                                    required: 'entre ton numero comme celui ci:+237693040500',
                                     pattern: {
                                                 value: /^\+(?:[0-9]\s?){6,14}[0-9]$/i,
-                                                message: "numero invalide"
+                                                message: "entre ton numero comme celui ci:+237693040500"
                                             }
                                     })}
-                                placeholder='   saisissez votre numero de telephone'
+                                placeholder='saisissez votre numero de telephone'
                             />
                             {errors.number && <p className="text-error">{errors.number?.message}</p>}
 
