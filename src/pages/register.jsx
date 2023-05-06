@@ -220,7 +220,6 @@ export default function RegisterPage() {
                                 MozBoxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} 
                                 boxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'}
                                 type={'submit'}
-                                onPress={onResendPress}
                                 />
 
                             <DefaultButton
@@ -230,7 +229,10 @@ export default function RegisterPage() {
                                 width={"90%"} 
                                 height={"50px"} 
                                 marginTop={"25px"} 
-                                location={"/login"}/>
+                                location={"/login"}
+                                onPress={onResendPress}
+
+                                />
 
 
                         </form>
