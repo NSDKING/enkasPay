@@ -5,7 +5,6 @@ type Account @model @auth(rules: [{allow: public}]) {
   profil: String
   endDateAccount: AWSDate
   pin: String
-  numero: Int
   endDateProfil: AWSDate
   userID: ID @index(name: "byUser")
   free: Boolean

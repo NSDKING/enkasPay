@@ -31,7 +31,6 @@ type EagerAccount = {
   readonly profil?: string | null;
   readonly endDateAccount?: string | null;
   readonly pin?: string | null;
-  readonly numero?: number | null;
   readonly endDateProfil?: string | null;
   readonly userID?: string | null;
   readonly free?: boolean | null;
@@ -51,7 +50,6 @@ type LazyAccount = {
   readonly profil?: string | null;
   readonly endDateAccount?: string | null;
   readonly pin?: string | null;
-  readonly numero?: number | null;
   readonly endDateProfil?: string | null;
   readonly userID?: string | null;
   readonly free?: boolean | null;

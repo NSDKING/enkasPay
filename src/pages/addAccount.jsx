@@ -165,15 +165,6 @@ export default function AddAccount() {
                         </select>
                         )}
                     />
-                
-                <label for="number">numero :</label>
-                <input 
-                    type="number" 
-                    id="number" 
-                    name="number"
-                    {...register('numero', { required: 'ceci est obligatoire'})}
-                    
-                    />
 
                 <input type="submit" id="add-client-btn"  />
                 </form>

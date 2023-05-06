@@ -18,7 +18,6 @@ export declare type AccountCreateFormInputValues = {
     profil?: string;
     endDateAccount?: string;
     pin?: string;
-    numero?: number;
     endDateProfil?: string;
     free?: boolean;
     service?: string;
@@ -29,7 +28,6 @@ export declare type AccountCreateFormValidationValues = {
     profil?: ValidationFunction<string>;
     endDateAccount?: ValidationFunction<string>;
     pin?: ValidationFunction<string>;
-    numero?: ValidationFunction<number>;
     endDateProfil?: ValidationFunction<string>;
     free?: ValidationFunction<boolean>;
     service?: ValidationFunction<string>;
@@ -42,7 +40,6 @@ export declare type AccountCreateFormOverridesProps = {
     profil?: PrimitiveOverrideProps<TextFieldProps>;
     endDateAccount?: PrimitiveOverrideProps<TextFieldProps>;
     pin?: PrimitiveOverrideProps<TextFieldProps>;
-    numero?: PrimitiveOverrideProps<TextFieldProps>;
     endDateProfil?: PrimitiveOverrideProps<TextFieldProps>;
     free?: PrimitiveOverrideProps<SwitchFieldProps>;
     service?: PrimitiveOverrideProps<TextFieldProps>;

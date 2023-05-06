@@ -45,13 +45,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "numero": {
-                    "name": "numero",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "endDateProfil": {
                     "name": "endDateProfil",
                     "isArray": false,
@@ -796,5 +789,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.4",
-    "version": "d9704022989473adc44ee1024720cc5b"
+    "version": "1d34619663c44d03a6c9cbc191494e9b"
 };

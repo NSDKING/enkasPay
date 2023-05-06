@@ -34,7 +34,6 @@ export default function AccountCreateForm(props) {
     profil: "",
     endDateAccount: "",
     pin: "",
-    numero: "",
     endDateProfil: "",
     free: false,
     service: "",
@@ -46,7 +45,6 @@ export default function AccountCreateForm(props) {
     initialValues.endDateAccount
   );
   const [pin, setPin] = React.useState(initialValues.pin);
-  const [numero, setNumero] = React.useState(initialValues.numero);
   const [endDateProfil, setEndDateProfil] = React.useState(
     initialValues.endDateProfil
   );
@@ -59,7 +57,6 @@ export default function AccountCreateForm(props) {
     setProfil(initialValues.profil);
     setEndDateAccount(initialValues.endDateAccount);
     setPin(initialValues.pin);
-    setNumero(initialValues.numero);
     setEndDateProfil(initialValues.endDateProfil);
     setFree(initialValues.free);
     setService(initialValues.service);
@@ -71,7 +68,6 @@ export default function AccountCreateForm(props) {
     profil: [],
     endDateAccount: [],
     pin: [],
-    numero: [],
     endDateProfil: [],
     free: [],
     service: [],
@@ -106,7 +102,6 @@ export default function AccountCreateForm(props) {
           profil,
           endDateAccount,
           pin,
-          numero,
           endDateProfil,
           free,
           service,
@@ -169,7 +164,6 @@ export default function AccountCreateForm(props) {
               profil,
               endDateAccount,
               pin,
-              numero,
               endDateProfil,
               free,
               service,
@@ -201,7 +195,6 @@ export default function AccountCreateForm(props) {
               profil,
               endDateAccount,
               pin,
-              numero,
               endDateProfil,
               free,
               service,
@@ -233,7 +226,6 @@ export default function AccountCreateForm(props) {
               profil: value,
               endDateAccount,
               pin,
-              numero,
               endDateProfil,
               free,
               service,
@@ -266,7 +258,6 @@ export default function AccountCreateForm(props) {
               profil,
               endDateAccount: value,
               pin,
-              numero,
               endDateProfil,
               free,
               service,
@@ -298,7 +289,6 @@ export default function AccountCreateForm(props) {
               profil,
               endDateAccount,
               pin: value,
-              numero,
               endDateProfil,
               free,
               service,
@@ -317,42 +307,6 @@ export default function AccountCreateForm(props) {
         {...getOverrideProps(overrides, "pin")}
       ></TextField>
       <TextField
-        label="Numero"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={numero}
-        onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
-            ? e.target.value
-            : parseInt(e.target.value);
-          if (onChange) {
-            const modelFields = {
-              mail,
-              passe,
-              profil,
-              endDateAccount,
-              pin,
-              numero: value,
-              endDateProfil,
-              free,
-              service,
-            };
-            const result = onChange(modelFields);
-            value = result?.numero ?? value;
-          }
-          if (errors.numero?.hasError) {
-            runValidationTasks("numero", value);
-          }
-          setNumero(value);
-        }}
-        onBlur={() => runValidationTasks("numero", numero)}
-        errorMessage={errors.numero?.errorMessage}
-        hasError={errors.numero?.hasError}
-        {...getOverrideProps(overrides, "numero")}
-      ></TextField>
-      <TextField
         label="End date profil"
         isRequired={false}
         isReadOnly={false}
@@ -367,7 +321,6 @@ export default function AccountCreateForm(props) {
               profil,
               endDateAccount,
               pin,
-              numero,
               endDateProfil: value,
               free,
               service,
@@ -399,7 +352,6 @@ export default function AccountCreateForm(props) {
               profil,
               endDateAccount,
               pin,
-              numero,
               endDateProfil,
               free: value,
               service,
@@ -431,7 +383,6 @@ export default function AccountCreateForm(props) {
               profil,
               endDateAccount,
               pin,
-              numero,
               endDateProfil,
               free,
               service: value,

@@ -13,7 +13,6 @@ export const createAccount = /* GraphQL */ `
       profil
       endDateAccount
       pin
-      numero
       endDateProfil
       userID
       free
@@ -38,7 +37,6 @@ export const updateAccount = /* GraphQL */ `
       profil
       endDateAccount
       pin
-      numero
       endDateProfil
       userID
       free
@@ -63,7 +61,6 @@ export const deleteAccount = /* GraphQL */ `
       profil
       endDateAccount
       pin
-      numero
       endDateProfil
       userID
       free

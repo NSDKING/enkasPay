@@ -35,3 +35,26 @@ Table thead {
     overflow: scroll;
   }
   
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    height: 500px; /* set a fixed height for the modal content container */
+    overflow-y: scroll;
+  }
+  

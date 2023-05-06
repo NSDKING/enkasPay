@@ -10,7 +10,6 @@ export const getAccount = /* GraphQL */ `
       profil
       endDateAccount
       pin
-      numero
       endDateProfil
       userID
       free
@@ -37,7 +36,6 @@ export const listAccounts = /* GraphQL */ `
         profil
         endDateAccount
         pin
-        numero
         endDateProfil
         userID
         free
@@ -73,7 +71,6 @@ export const syncAccounts = /* GraphQL */ `
         profil
         endDateAccount
         pin
-        numero
         endDateProfil
         userID
         free
@@ -111,7 +108,6 @@ export const accountsByUserID = /* GraphQL */ `
         profil
         endDateAccount
         pin
-        numero
         endDateProfil
         userID
         free
