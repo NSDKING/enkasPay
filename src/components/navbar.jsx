@@ -4,8 +4,9 @@ import next from './img/next.png'
 import DefaultButtonLink from "./DefaultbuttonLink";
 import { Link, useNavigate } from "react-router-dom";
 import logo from './img/logo.png'
-import { Auth, Hub } from "aws-amplify";
+import { API, Auth, graphqlOperation, Hub } from "aws-amplify";
 import DefaultButton from "./DefaultButton";
+import { getUser } from "../graphql/queries";
 
 
 export default function Navbar() {
@@ -13,20 +14,28 @@ export default function Navbar() {
     const [navItemclas, setNavItemClas]= useState("off");
     const [navIconclass, setNavIconClas]= useState("hamburger-lines");
     const [user, setUser]= useState(undefined)
+    const [staf, setStaf]= useState(false)
+
     const checkUser = async ()=>{
-    try {
-        const authUser = await Auth.currentAuthenticatedUser({
-            bypassCache: true,
-          });
-      setUser(authUser)
-      console.log(authUser)
+        try {
+            const authUser = await Auth.currentAuthenticatedUser({
+                bypassCache: true,
+              });
+            const userData = await API.graphql(
+                graphqlOperation(getUser, { id: authUser.attributes.sub })
+              );
+            
+          setUser(authUser)
+          setStaf(userData.data.getUser.staff)
+           console.log(authUser)
+    
+        } catch(e){
+            setUser(null);
+    
+        }
+     
+        }
 
-    } catch(e){
-        setUser(null);
-
-    }
- 
-    }
     const signOut= ()=>{
         Auth.signOut();
     }
@@ -110,6 +119,14 @@ export default function Navbar() {
                             <img src={next} width="7%"/>
 
                         </Link>
+                        
+                        {
+                            staf&&(       <Link className="navbar-items-item" style={Styles} to="/ManageAccount">
+                            <p>Staff</p>
+                            <img src={next} width="7%"/>
+
+                        </Link>)
+                        }
 
                     </div>
 

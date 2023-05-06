@@ -12,7 +12,7 @@ import NewPassword from './pages/newPassword';
 import { Auth, Hub } from 'aws-amplify';
 import { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { listProducts } from './graphql/queries';
+import { getUser, listProducts } from './graphql/queries';
 import ManageAccount from './pages/ManageAccount';
 import ConsultPage from './pages/ConsultPage';
 import AddAccount from './pages/addAccount';
@@ -21,15 +21,21 @@ import takeAccount from './pages/takeAccount';
  
 function App() {
   const [user, setUser]= useState(null)
+  const [staf, setStaf]= useState(false)
   const [loading, setLoading] = useState(false)
+  
 
   const checkUser = async ()=>{
     try {
         const authUser = await Auth.currentAuthenticatedUser({
             bypassCache: true,
           });
+        const userData = await API.graphql(
+            graphqlOperation(getUser, { id: authUser.attributes.sub })
+          );
       setUser(authUser)
-      console.log(authUser)
+      setStaf(userData.data.getUser.staff)
+       console.log(authUser)
 
     } catch(e){
         setUser(null);
@@ -96,6 +102,30 @@ function App() {
     )
     
   }
+  if(staf == true){
+    return(
+      <div className="App">
+        <Router>
+          <Routes>
+          
+                  <Route path='/' Component={storePage}/>
+                  <Route path='/cart'/>
+                  <Route path='/store' Component={storePage}/>
+                  <Route path='/ProductPage' Component={ProductPage}/>
+                  <Route path='/affiliation' Component={AffiliatePage}/>
+                  <Route path='/ManageAccount' Component={ManageAccount}/>
+                  <Route path='/takeAccount' Component={takeAccount}/>
+                  <Route path='/ConsultPage' Component={ConsultPage}/>
+                  <Route path='/AddAccount' Component={AddAccount}/>
+                  <Route path='/bundle' Component={BundlePage}/>
+
+              
+
+          </Routes>
+        </Router>
+      </div>
+    )
+  }
   
   return (
     <div className="App">
@@ -107,14 +137,7 @@ function App() {
                 <Route path='/store' Component={storePage}/>
                 <Route path='/ProductPage' Component={ProductPage}/>
                 <Route path='/affiliation' Component={AffiliatePage}/>
-                <Route path='/ManageAccount' Component={ManageAccount}/>
-                <Route path='/takeAccount' Component={takeAccount}/>
-                <Route path='/ConsultPage' Component={ConsultPage}/>
-                <Route path='/AddAccount' Component={AddAccount}/>
                 <Route path='/bundle' Component={BundlePage}/>
-
-            
-
         </Routes>
       </Router>
     </div>

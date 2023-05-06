@@ -3,7 +3,9 @@
     align-items: center;
    
 }
-
+.pp{
+    margin-bottom: 100px;
+}
 .account-box{
     text-align: left;
     margin-left: auto;

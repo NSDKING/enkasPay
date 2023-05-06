@@ -17,6 +17,7 @@ export default function TakeAccount() {
     const [show, setShow] = useState(false)
     const [userList, setUserList] = useState([])
     const [theAccount, setTheAccount] = useState({})
+    const [disp, setDisp] = useState(0)
 
     const {formState: {errors}, handleSubmit, register, control} = useForm();
 
@@ -74,21 +75,25 @@ export default function TakeAccount() {
     useEffect(() => {
        getAccount()
        getListUsers()
-
+ 
          
     }, [ ])
      
     const handleAccount = ()=>{
         setShow(true)
+        let i=0
         Accounts.map((item)=>{
                 if(item.free == true && item.service == service ){
                     setTheAccount(item)
                     console.log(theAccount)
+                    i++
                 }else{
                     console.log('no '+ service + item.service)  
                 }
     })
+    setDisp(i)
     return(theAccount)
+ 
     
     }
 
@@ -129,11 +134,17 @@ export default function TakeAccount() {
                 <Link to="/ManageAccount" style={linkStyle}>prendre</Link>
                 <Link to="/ConsultPage" style={linkStyle}>consulter</Link>
             </nav>
-
+          <div>
+            
+               
+            
+          </div>
            
           {
             show?(
                 <section>
+                    <p className='pp'>il reste {disp} disponible</p>
+                 
                     <form className='miniform'
                           onSubmit={handleSubmit((data=>{
                             handleUseAccount(data)
