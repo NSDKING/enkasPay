@@ -67,3 +67,16 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+
+.text-error{
+    background-color: #e98d9a;
+    color: white;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.none{
+    display: none;
+}

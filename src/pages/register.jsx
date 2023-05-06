@@ -1,12 +1,11 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect} from 'react';
 import logo from './img/logo.png'
 import "./css/register.css"
 import DefaultButton from '../components/DefaultButton';
 import DefaultButtonLink from '../components/DefaultbuttonLink';
-import { CSSTransition } from 'react-transition-group';
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import { useForm } from "react-hook-form";
-import { createUser, updateUser } from '../graphql/mutations';
+import { createUser } from '../graphql/mutations';
 import { useNavigate } from "react-router-dom";
 
   
@@ -14,11 +13,25 @@ import { useNavigate } from "react-router-dom";
 export default function RegisterPage() {
     const [step, setStep] = useState(1);
     const [useriD, setUserID] = useState(null);
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
     const {formState: {errors}, handleSubmit, register, watch} = useForm();
     const [loading, setLoading] = useState(false)
  
     const username = watch("email")
+
+    useEffect(() => {
+        const handleClick = () => {
+          setError(false);
+        };
+    
+        window.addEventListener('click', handleClick);
+    
+        return () => {
+          window.removeEventListener('click', handleClick);
+        };
+      }, []);
+
       
     const onSingUpPressed = async (data) =>{
         if(loading){
@@ -36,7 +49,7 @@ export default function RegisterPage() {
             console.log(response)
             
           }catch(e){
-            console.log(e.name)
+            setError(e.message)
        
          }
         setLoading(false)
@@ -57,7 +70,8 @@ export default function RegisterPage() {
             const signresponse = await Auth.signIn(data.email, data.password)
             
          }catch(e){
-            console.log(e)
+            setError(e.message)
+
          }
         setLoading(false)
      }   
@@ -90,7 +104,7 @@ export default function RegisterPage() {
             console.log(response)
             navigate("/")
            }catch(e){
-            console.log(e)
+            setError(e.message)
          }
         setLoading(false)
      }
@@ -107,8 +121,8 @@ export default function RegisterPage() {
             alert("code renvoyé")
         
             }catch(e){
-            console.log(e)
-         }
+                setError(e.message)
+            }
         setLoading(false)
 
 
@@ -116,8 +130,7 @@ export default function RegisterPage() {
 
  
     return(
-        <section className='registerPage'
-        >
+        <section className='registerPage'>
             <div className="logo">
                 <img src={logo} width="90%"/>
             </div>    
@@ -131,17 +144,22 @@ export default function RegisterPage() {
                     
                         <h2>créer un compte enkasPay</h2>
 
+                        <p className={error? 'text-error': 'none'} >{error}</p>
                         <input
                             {...register('email', { required: 'ceci est obligatoire'})}
                             type="email"
                             placeholder="   saisissez votre adresse mail"
                             />
+                            {errors.email && <p className="text-error">{errors.email?.message}</p>}
+
 
                         <input
                             {...register('password', { required: 'ceci est obligatoire'})}
                             placeholder="   saisissez votre mot de passe"
                             type="password"
-                                                        />
+                        />
+                            {errors.password && <p className="text-error">{errors.password?.message}</p>}
+
 
                         <DefaultButton 
                             text={loading? 'Loading ....': 'continuer'} 
@@ -165,18 +183,25 @@ export default function RegisterPage() {
                         onSubmit={handleSubmit((data=>{
                             setStep(4)
                     }))}>
-                    
+                     
                         <h2>créer un compte enkasPay</h2>
+
+                        <p className={error? 'text-error': 'none'} >{error}</p>
 
                         <input
                             {...register('nom', { required: 'ceci est obligatoire'})}
                             placeholder="   saisissez votre nom de famille"
+                            
                             />
+                            {errors.nom && <p className="text-error">{errors.nom?.message}</p>}
+
 
                         <input
                             {...register('prenom', { required: 'ceci est obligatoire'})}
                             placeholder="   saisissez votre prenom"
                             />
+                            {errors.prenom && <p className="text-error">{errors.prenom?.message}</p>}
+
 
                         <DefaultButton 
                             text={loading? 'Loading ....': 'continuer'} 
@@ -199,14 +224,17 @@ export default function RegisterPage() {
                         <form className='registerPage-body' onSubmit={handleSubmit((data=>{
                             onConfirmPressed(data)
                         }))}> 
+ 
                             <h2>confirme ton email</h2>
 
+                            <p className={error? 'text-error': 'none'} >{error}</p>
                         
                         
                             <input 
                                     {...register('code', { required: 'ceci est obligatoire'})}
                                     placeholder='  entre ton code de confirmation'
                                 />
+                            {errors.code && <p className="text-error">{errors.code?.message}</p>}
                                 
                         
                             <DefaultButton 
@@ -245,21 +273,37 @@ export default function RegisterPage() {
                                 onRegisterData(data)
                             }))
                         }>
+                        
                             <h2>créer un compte enkasPay</h2>
+                       
+                        <p className={error? 'text-error': 'none'} >{error}</p>
+
 
                             <input 
                                 {...register('city', { required: 'ceci est obligatoire'})}
                                 placeholder='   saisissez votre ville de residence'
                             />
+                            {errors.city && <p className="text-error">{errors.city?.message}</p>}
+
                             <input 
                                 {...register('birthday', { required: 'ceci est obligatoire'})}
                                 type="date"
                                 placeholder='   saisissez votre date de naissance'
                             />
+                            {errors.birthday && <p className="text-error">{errors.birthday?.message}</p>}
+
                             <input 
-                                {...register('number', { required: 'ceci est obligatoire'})}
+                                {...register('number', { 
+                                    required: 'ceci est obligatoire',
+                                    pattern: {
+                                                value: /^\+(?:[0-9]\s?){6,14}[0-9]$/i,
+                                                message: "numero invalide"
+                                            }
+                                    })}
                                 placeholder='   saisissez votre numero de telephone'
                             />
+                            {errors.number && <p className="text-error">{errors.number?.message}</p>}
+
                         
 
                             <DefaultButton 
