@@ -101,7 +101,7 @@ export default function Navbar() {
                             <img src={next} width="7%"/>
                         </Link>
                         <Link className="navbar-items-item" style={Styles} to="/store">
-                            <p>store</p>
+                            <p>panier</p>
                             <img src={next} width="7%"/>
                         </Link>
                         <Link className="navbar-items-item" style={Styles} to="/bundle">

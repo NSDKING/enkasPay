@@ -8,7 +8,7 @@ import pv from "./img/prime.png"
 import disney from "./img/disney.jpeg"
 import vpn from "./img/vpn.jpeg"
 import net from './img/netim.png'
-function CatPage5({Articles, setArticles, cover, title, price, type, desc, instruction, condition, setProdTitle, setProdDesc, setProdPrice, setProdCover, setProdInstruction, setProdCondition, setProdType, log, cart, updateCart, slug, setProdSlug}) {
+function CatPage5({Articles, setProdTitle, setProdPrice, setProdCover, setProdType,  cart, updateCart}) {
   
   function CoverImage(slug){
     if(slug == 'net'){

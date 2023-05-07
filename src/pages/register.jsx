@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function RegisterPage() {
-    const [step, setStep] = useState(4);
+    const [step, setStep] = useState(1);
     const [useriD, setUserID] = useState(null);
     const [error, setError] = useState(false);
     const navigate = useNavigate();

@@ -9,7 +9,7 @@ import disney from "./img/disney.jpeg"
 import vpn from "./img/vpn.jpeg"
 import net from './img/netim.png'
 import { useEffect } from "react"
-function CatPage({Articles, setArticles, cover, title, price, type, desc, instruction, condition, setProdTitle, setProdDesc, setProdPrice, setProdCover, setProdInstruction, setProdCondition, setProdType,  log, cart, updateCart, slug, setProdSlug}) {
+function CatPage({Articles, setProdTitle, setProdPrice, setProdCover, setProdType,  cart, updateCart}) {
  
   function CoverImage(slug){
     if(slug == 'net'){
