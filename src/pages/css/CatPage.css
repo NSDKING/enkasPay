@@ -1,0 +1,13 @@
+.CatPage-mobile-Articles-box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.CatPage-mobile-main{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}

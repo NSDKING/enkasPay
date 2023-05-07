@@ -1,21 +1,33 @@
+
 import netflix from './img/netim.png'
 import './css/card.css'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
+export default function Card({cover, title, price, type, setProdTitle, setProdPrice, setProdCover, setProdType, cart, updateCart }){
+    const navigate = useNavigate();
 
-export default function Card(){
+    function handleClick(){
+
+        setProdTitle(title);
+        setProdType(type);
+        setProdPrice(price);
+        navigate('/ProductPage')
+        setProdCover(cover)
+ 
+        console.log(price)
+       
+    
+    }
     return(
-        <Link className='card-box' style={{
-            textDecoration:"none",
-            color: 'black',
-        }} to='/productPage'>
-            <p className='card-box-p-header'>abonnement</p>
-            <div className='card-box-img'>
-                <img src={netflix} />
+        <div className='card-box' >
+            <p className='card-box-p-header'>{type}</p>
+            <div className='card-box-img' onClick={handleClick}>
+                <img src={cover} />
             </div>
             <div className='card-box-body'>
                 <div  className='card-box-body-title'>
-                    <p>profil netflix a partir de:</p>
+                    <p>{title} a partir de:</p>
                 </div>
                 <div className='card-box-body-bottom'>
                     <button className='card-box-body-button'>
@@ -26,12 +38,12 @@ export default function Card(){
 
                     </button> 
                     <div className='card-box-body-price'>
-                        <span>14500FCFA</span>
+                        <span>{price.one_month}FCFA</span>
                     </div>
                 </div>
 
             </div>
-        </Link>
+        </div>
     )
 
 

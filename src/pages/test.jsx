@@ -435,3 +435,126 @@ export default function TakeAccount() {
 <p>mail: {TakeAccount().mail}</p>
 
 </div>
+
+import netflix from './img/netim.png'
+import './css/card.css'
+import { Link } from 'react-router-dom'
+
+
+export default function Card({cover, title, price, type, setProdTitle, setProdPrice, setProdCover, setProdType, cart, updateCart }){
+    return(
+        <Link className='card-box' style={{
+            textDecoration:"none",
+            color: 'black',
+        }} to='/productPage'>
+            <p className='card-box-p-header'>{type}</p>
+            <div className='card-box-img'>
+                <img src={cover} width={"25%"}/>
+            </div>
+            <div className='card-box-body'>
+                <div  className='card-box-body-title'>
+                    <p>{title} a partir de:</p>
+                </div>
+                <div className='card-box-body-bottom'>
+                    <button className='card-box-body-button'>
+                        <i className="fa fa-plus" style={{
+                            fontSize:23,
+                            color: 'white',                            
+                        }}></i>
+
+                    </button> 
+                    <div className='card-box-body-price'>
+                        <span>{price}</span>
+                    </div>
+                </div>
+
+            </div>
+        </Link>
+    )
+
+
+}
+
+
+
+
+
+
+
+
+
+import Navbar from "../components/navbar"
+import "./css/productpage.css"
+import DefaultButton from '../components/DefaultButton'
+import Card from "../components/card"
+import warning from './img/warning.png'
+import logo from './img/logo.png'
+
+export default function ProductPage({cover, title, price, type, setProdTitle, setProdPrice, setProdCover, setProdType, cart, updateCart}) {
+    return(
+        <section className='productPage'>
+            <Navbar></Navbar>
+            <div className="Productimage">
+             
+            </div>
+            {
+                price.three_month === null ?
+                <div className="ProductData">
+                    <div className="ProductData-header">
+                        <p className="ProductData-type">{type}</p>
+                        <h2 className="ProductData-title">{title}</h2>
+                        <p className="ProductData-price">{price.one_month}</p>
+                    </div>
+                  
+                    <p className="ProductData-type"> quantité</p>
+                    <div className="quantitybox"></div>
+                </div>
+            : 
+                <div className="ProductData">
+                    <div className="ProductData-header">
+                        <p className="ProductData-type">{type}</p>
+                        <h2 className="ProductData-title">{title}</h2>
+                        <p className="ProductData-price">2500Fcfa</p>
+                    </div>
+                    <div className="ProductData-box-container">
+                        <div className="ProductData-box" id="first">
+                            <p>1 mois</p>
+                        </div>
+                        <div className="ProductData-box">
+                            <p>3 mois</p>
+                        </div>
+                        <div className="ProductData-box">
+                            <p>6 mois</p>
+                        </div>
+                    </div>
+                    <p className="ProductData-type"> quantité</p>
+                    <div className="quantitybox"></div>
+                </div>
+            }
+            <div className="Productpage-buttons">
+            <DefaultButton text={"ajouter au panier"} bgcolor={"#eb0625"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"20px"} />
+            <DefaultButton text={"acheter maintenant"} bgcolor={"black"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"10px"}/>
+
+            </div>
+            <div className="ProductPage-message">
+                <div className="ProductPage-message-header">
+                    <img src={warning} width="16px" height="16px"/>
+                    <h3>rapidité et efficacité</h3>
+                </div>
+                <p>
+                    effectue ton achat et recois les identifiants 30minutes maximum apres le paiement
+                </p>
+            </div>
+
+            <div className="defaultp">
+                <p>
+                    les clients ont egalement acheté:
+                </p>
+            </div>
+            <div className="recom">
+ 
+                
+            </div>
+         </section>
+    )   
+}

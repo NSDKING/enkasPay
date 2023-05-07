@@ -21,8 +21,7 @@ export default function AddAccount() {
       try {
       
         const response= await API.graphql(graphqlOperation(listUsers));
-        console.log(response.data.listUsers.items)
-        setUserList(response.data.listUsers.items)
+         setUserList(response.data.listUsers.items)
      
       }catch(e){
               console.log(e)
@@ -71,8 +70,7 @@ export default function AddAccount() {
             const response =  await API.graphql(
                 graphqlOperation(createAccount, { input: newAccount })
             );
-            console.log(response)
-         }catch(e){
+          }catch(e){
             console.log(e)
          }
         setLoading(false)

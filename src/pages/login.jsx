@@ -70,6 +70,7 @@ export default function LoginPage() {
                 <p className={error? 'text-error': 'none'} >{error}</p>
 
                 <input
+                    className='form-input'
                     {...register('email', { required: 'ceci est obligatoire'})}
                     type='mail'
                     placeholder="   saisissez votre adresse mail"
@@ -77,6 +78,7 @@ export default function LoginPage() {
                 {errors.email && <p className="text-error">{errors.email?.message}</p>}
 
                 <input
+                    className='form-input'
                     {...register('password', { required: 'ceci est obligatoire'})}  
                     type='password'
                     placeholder="   saisissez votre mot de passe"

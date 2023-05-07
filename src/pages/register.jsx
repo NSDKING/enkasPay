@@ -8,10 +8,9 @@ import { useForm } from "react-hook-form";
 import { createUser } from '../graphql/mutations';
 import { useNavigate } from "react-router-dom";
 
-  
 
 export default function RegisterPage() {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(4);
     const [useriD, setUserID] = useState(null);
     const [error, setError] = useState(false);
     const navigate = useNavigate();
@@ -46,8 +45,7 @@ export default function RegisterPage() {
             });
           
             setStep(2)
-            console.log(response)
-            
+             
           }catch(e){
             setError(e.message)
        
@@ -65,7 +63,6 @@ export default function RegisterPage() {
         try {
             const response = await Auth.confirmSignUp(data.email,data.code);
             setUserID(response.userSub)
-            console.log(response)
             setStep(3)
             const signresponse = await Auth.signIn(data.email, data.password)
             
@@ -93,8 +90,7 @@ export default function RegisterPage() {
                 city: data.city,
                 FamilyName:data.nom,
                 LastName:data.prenom,
-                phoneNumber:6054,
-                 
+                phoneNumber:data.number,
               };
         
              
@@ -146,6 +142,8 @@ export default function RegisterPage() {
 
                         <p className={error? 'text-error': 'none'} >{error}</p>
                         <input
+                            className='form-input'
+
                             {...register('email', { required: 'ceci est obligatoire'})}
                             type="email"
                             placeholder="   saisissez votre adresse mail"
@@ -154,6 +152,7 @@ export default function RegisterPage() {
 
 
                         <input
+                            className='form-input'
                             {...register('password', { required: 'ceci est obligatoire'})}
                             placeholder="   saisissez votre mot de passe"
                             type="password"
@@ -189,6 +188,7 @@ export default function RegisterPage() {
                         <p className={error? 'text-error': 'none'} >{error}</p>
 
                         <input
+                            className='form-input'
                             {...register('nom', { required: 'ceci est obligatoire'})}
                             placeholder="   saisissez votre nom de famille"
                             
@@ -197,6 +197,8 @@ export default function RegisterPage() {
 
 
                         <input
+                            className='form-input'
+
                             {...register('prenom', { required: 'ceci est obligatoire'})}
                             placeholder="   saisissez votre prenom"
                             />
@@ -231,6 +233,8 @@ export default function RegisterPage() {
                         
                         
                             <input 
+                                className='form-input'
+
                                     {...register('code', { required: 'ceci est obligatoire'})}
                                     placeholder='  entre ton code de confirmation'
                                 />
@@ -280,12 +284,15 @@ export default function RegisterPage() {
 
 
                             <input 
+                                className='form-input'
+
                                 {...register('city', { required: 'ceci est obligatoire'})}
                                 placeholder='   saisissez votre ville de residence'
                             />
                             {errors.city && <p className="text-error">{errors.city?.message}</p>}
 
                             <input 
+                                className='form-input'
                                 {...register('birthday', { required: 'saisi ta date de naissance'})}
                                 type="date"
                                 placeholder='   saisissez votre date de naissance'
@@ -293,6 +300,7 @@ export default function RegisterPage() {
                             {errors.birthday && <p className="text-error">{errors.birthday?.message}</p>}
 
                             <input 
+                                className='form-input'
                                 {...register('number', { 
                                     required: 'entre ton numero comme celui ci:+237693040500',
                                     pattern: {
@@ -303,8 +311,6 @@ export default function RegisterPage() {
                                 placeholder='saisissez votre numero de telephone'
                             />
                             {errors.number && <p className="text-error">{errors.number?.message}</p>}
-
-                        
 
                             <DefaultButton 
                                 text={"continuer"} 
@@ -321,9 +327,6 @@ export default function RegisterPage() {
                         </form>
                     )  
                 }
-
- 
-
             <p className='p2'>vous avez un  compte ?</p>
             <DefaultButtonLink text={"connexion"} bgcolor={" #f6dfe2"} textcolor={"#eb0625"} width={"90%"} height={"50px"} marginTop={"10px"} location={"/login"}/>
         </section>

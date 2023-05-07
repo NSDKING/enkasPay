@@ -43,8 +43,7 @@ export default function TakeAccount() {
       try {
       
         const response= await API.graphql(graphqlOperation(listUsers));
-        console.log(response.data.listUsers.items)
-        setUserList(response.data.listUsers.items)
+         setUserList(response.data.listUsers.items)
      
       }catch(e){
               console.log(e)
@@ -85,8 +84,7 @@ export default function TakeAccount() {
         Accounts.map((item)=>{
                 if(item.free == true && item.service == service ){
                     setTheAccount(item)
-                    console.log(theAccount)
-                    i++
+                     i++
                 }else{
                     console.log('no '+ service + item.service)  
                 }
@@ -112,8 +110,7 @@ export default function TakeAccount() {
               };
 
             const response= await API.graphql(graphqlOperation(updateAccount, { input: input }));
-            console.log(response)
-            setShow(false)
+             setShow(false)
        
         }catch(e){
                 console.log(e)

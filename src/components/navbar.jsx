@@ -27,8 +27,7 @@ export default function Navbar() {
             
           setUser(authUser)
           setStaf(userData.data.getUser.staff)
-           console.log(authUser)
-    
+     
         } catch(e){
             setUser(null);
     

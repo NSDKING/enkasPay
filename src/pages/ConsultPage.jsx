@@ -19,8 +19,7 @@ export default function ConsultPage() {
     const handleRowClick = (data) => {
         setShowModal(true);
         setTheAccountData(data)
-        console.log(showModal)
-
+ 
     }
 
       const handleFormClick = async(data) => {
@@ -45,8 +44,7 @@ export default function ConsultPage() {
               };
 
             const response= await API.graphql(graphqlOperation(updateAccount, { input: input }));
-            console.log(response)
-            setShowModal(false);
+             setShowModal(false);
 
        
         }catch(e){
@@ -174,7 +172,6 @@ export default function ConsultPage() {
       try {
       
         const response= await API.graphql(graphqlOperation(listUsers));
-        console.log(response.data.listUsers.items)
         setUserList(response.data.listUsers.items)
      
       }catch(e){
@@ -209,7 +206,6 @@ export default function ConsultPage() {
         try {
 
             const response= await API.graphql(graphqlOperation(listAccounts));
-            console.log(response.data.listAccounts.items)    
             setAccount(response.data.listAccounts.items)
         }catch(e){
                 console.log(e)
@@ -271,8 +267,7 @@ export default function ConsultPage() {
                                     <tr key={item.id} onClick={()=>{
                                         handleRowClick(item)
                                         setTheAccountData(item)
-                                        console.log(item)
-                                        }}>
+                                         }}>
                                         <td>{item.mail}</td>
                                         <td>{item.passe}</td>
                                         <td>{item.profil}</td>

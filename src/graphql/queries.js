@@ -287,22 +287,20 @@ export const listProducts = /* GraphQL */ `
   ) {
     listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        id
-        name
-        image
-        type
         buycount
+        buyroomID
+        id
+        image
         likecount
         likeroomID
-        buyroomID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
+        name
+        type
+        price {
+          one_month
+          three_month
+          one_year
+        }
       }
-      nextToken
-      startedAt
     }
   }
 `;

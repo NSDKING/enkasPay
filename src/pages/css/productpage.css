@@ -10,6 +10,9 @@
     height: 350px;
     margin-top: 81px;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .Productpage-buttons{
@@ -69,7 +72,7 @@
     justify-content: center;
  }
 
-#first{
+ .ProductData-box.selected {
     background-color: #EF3636;
     color: white;
 }
