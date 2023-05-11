@@ -30,13 +30,13 @@ export default function AffiliatePage() {
                 <h1>comment est-ce que je reçois mon argent ?</h1>
                 <div className="textBox">    
 
-                    <Textbox text={"tu reçois ton argent par om où Momo chaque samedi a ta demande. pour le faire clique sur le bouton affiliation dans le menu"}/>
+                    <Textbox text={"tu reçois ton argent par om où Momo chaque samedi a ta demande. pour le faire clique sur le bouton affiliation dans le menu."}/>
                 </div>
-                <h1>Où est-ce que je peux consulter ma solde?</h1>
+                <h1>Où est-ce que je peux consulter mon solde?</h1>
 
                 <div className="textBox">    
 
-                    <Textbox text={"tu peux consulter ton solde, le nombre de personnes qui ont utilisé ton code partenaire sur ce site et même les produits qu’ils ont achetés si tu deviens commerciale"}/>
+                    <Textbox text={"tu peux consulter ton solde, le nombre de personnes qui ont utilisé ton code partenaire sur ce site et même les produits qu’ils ont achetés si tu deviens commerciale."}/>
                 </div>
 
                 <h1>comment devenir commercial?</h1>
