@@ -5,8 +5,8 @@ import ps from "./img/pscard.jpg"
 import spo from "./img/spotifyz.png"
 import xbox from "./img/xbox_card-removebg-preview.png"
 import pv from "./img/prime.png"
-import disney from "./img/disney.jpeg"
-import vpn from "./img/vpn.jpeg"
+ import disney from "./img/disney.png"
+import vpn from "./img/vpn.png"
 import net from './img/netim.png'
 function CatPage5({Articles, setProdTitle, setProdPrice, setProdCover, setProdType,  cart, updateCart}) {
   
