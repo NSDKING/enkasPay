@@ -8,6 +8,7 @@ export default function AffiliatePage() {
     return(
         <section className='affiliatepage'>
             <Navbar/>
+            <div className="marge"></div>
             <div className="affiliatepage-header">
                 <div className="affiliatepage-img">
                 </div>
