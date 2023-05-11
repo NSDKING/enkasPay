@@ -63,7 +63,7 @@ export default function ProductPage({cover, title, price, type, setProdTitle, se
                     </div>
         }          
             <div className="Productpage-buttons">
-            <DefaultButton text={"ajouter au panier"} bgcolor={"#eb0625"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"20px"} />
+            <DefaultButton text={"ajouter au panier"} bgcolor={"#eb0625"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"20px"} onPress={handleClick}/>
             <DefaultButton text={"acheter maintenant"} bgcolor={"black"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"10px"} onPress={handleClick}/>
 
             </div>
