@@ -23,6 +23,7 @@ import CatPage3 from "./pages/CatPage3.jsx";
 import CatPage4 from "./pages/CatPage4.jsx";
 import CatPage5 from "./pages/CatPage5.jsx";
 import CatPage6 from "./pages/CatPage6.jsx";
+import Account from './pages/Account';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -102,6 +103,7 @@ function App() {
       <Router>
         <Routes>
                 <Route path='/register' Component={RegisterPage}/>
+                <Route path='/Account' Component={Account}/>
                 <Route path='/login' Component={LoginPage}/>
                 <Route path='/login' Component={LoginPage}/>
                 <Route path='/password-reset' Component={PasswordForgotPage}/>
@@ -240,6 +242,7 @@ function App() {
       <div className="App">
         <Router>
           <Routes>
+          <Route path='/Account' Component={Account}/>
           <Route path='/' element={<StorePage
                                             Articles={Articles} 
                                             setArticles={setArticles} 
@@ -394,6 +397,7 @@ function App() {
                 />}/>
 
                 <Route path='/cart'/>
+                <Route path='/Account' Component={Account}/>
                 <Route path='/ProductPage' element={
                                                 <ProductPage
                                                       Articles={Articles} 

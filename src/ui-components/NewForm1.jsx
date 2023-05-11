@@ -35,6 +35,7 @@ export default function NewForm1(props) {
     city: "",
     mail: "",
     staff: false,
+    birthdate: "",
   };
   const [FamilyName, setFamilyName] = React.useState(initialValues.FamilyName);
   const [LastName, setLastName] = React.useState(initialValues.LastName);
@@ -44,6 +45,7 @@ export default function NewForm1(props) {
   const [city, setCity] = React.useState(initialValues.city);
   const [mail, setMail] = React.useState(initialValues.mail);
   const [staff, setStaff] = React.useState(initialValues.staff);
+  const [birthdate, setBirthdate] = React.useState(initialValues.birthdate);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setFamilyName(initialValues.FamilyName);
@@ -52,6 +54,7 @@ export default function NewForm1(props) {
     setCity(initialValues.city);
     setMail(initialValues.mail);
     setStaff(initialValues.staff);
+    setBirthdate(initialValues.birthdate);
     setErrors({});
   };
   const validations = {
@@ -61,6 +64,7 @@ export default function NewForm1(props) {
     city: [],
     mail: [{ type: "Email" }],
     staff: [],
+    birthdate: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -93,6 +97,7 @@ export default function NewForm1(props) {
           city,
           mail,
           staff,
+          birthdate,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -153,6 +158,7 @@ export default function NewForm1(props) {
               city,
               mail,
               staff,
+              birthdate,
             };
             const result = onChange(modelFields);
             value = result?.FamilyName ?? value;
@@ -182,6 +188,7 @@ export default function NewForm1(props) {
               city,
               mail,
               staff,
+              birthdate,
             };
             const result = onChange(modelFields);
             value = result?.LastName ?? value;
@@ -211,6 +218,7 @@ export default function NewForm1(props) {
               city,
               mail,
               staff,
+              birthdate,
             };
             const result = onChange(modelFields);
             value = result?.phoneNumber ?? value;
@@ -240,6 +248,7 @@ export default function NewForm1(props) {
               city: value,
               mail,
               staff,
+              birthdate,
             };
             const result = onChange(modelFields);
             value = result?.city ?? value;
@@ -269,6 +278,7 @@ export default function NewForm1(props) {
               city,
               mail: value,
               staff,
+              birthdate,
             };
             const result = onChange(modelFields);
             value = result?.mail ?? value;
@@ -298,6 +308,7 @@ export default function NewForm1(props) {
               city,
               mail,
               staff: value,
+              birthdate,
             };
             const result = onChange(modelFields);
             value = result?.staff ?? value;
@@ -312,6 +323,37 @@ export default function NewForm1(props) {
         hasError={errors.staff?.hasError}
         {...getOverrideProps(overrides, "staff")}
       ></SwitchField>
+      <TextField
+        label="Birthdate"
+        isRequired={false}
+        isReadOnly={false}
+        type="date"
+        value={birthdate}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              FamilyName,
+              LastName,
+              phoneNumber,
+              city,
+              mail,
+              staff,
+              birthdate: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.birthdate ?? value;
+          }
+          if (errors.birthdate?.hasError) {
+            runValidationTasks("birthdate", value);
+          }
+          setBirthdate(value);
+        }}
+        onBlur={() => runValidationTasks("birthdate", birthdate)}
+        errorMessage={errors.birthdate?.errorMessage}
+        hasError={errors.birthdate?.hasError}
+        {...getOverrideProps(overrides, "birthdate")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

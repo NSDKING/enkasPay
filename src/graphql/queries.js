@@ -429,6 +429,7 @@ export const getUser = /* GraphQL */ `
         startedAt
       }
       staff
+      birthdate
       createdAt
       updatedAt
       _version

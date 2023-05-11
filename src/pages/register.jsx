@@ -62,8 +62,8 @@ export default function RegisterPage() {
         console.log(data)
         try {
             const response = await Auth.confirmSignUp(data.email,data.code);
-            setUserID(response.userSub)
-            setStep(3)
+            
+             setStep(3)
             const signresponse = await Auth.signIn(data.email, data.password)
             
          }catch(e){
@@ -82,8 +82,7 @@ export default function RegisterPage() {
           });
 
         setLoading(true)  
-        console.log(data)
-        try {
+         try {
             const newUser = {
                 id: authUser.attributes.sub,
                 mail: data.email,
@@ -94,6 +93,7 @@ export default function RegisterPage() {
                 phoneNumber:data.number,
               };
         
+        console.log(data)
              
             const response =  await API.graphql(
                 graphqlOperation(createUser, { input: newUser })

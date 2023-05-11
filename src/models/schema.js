@@ -436,6 +436,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "birthdate": {
+                    "name": "birthdate",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -789,5 +796,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.4",
-    "version": "1d34619663c44d03a6c9cbc191494e9b"
+    "version": "900012ba61e0a0762609d8f1456339f3"
 };

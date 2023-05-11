@@ -151,6 +151,7 @@ type EagerUser = {
   readonly BuyRooms?: (UserBuyRoom | null)[] | null;
   readonly LikeRooms?: (UserLikeRoom | null)[] | null;
   readonly staff?: boolean | null;
+  readonly birthdate?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -170,6 +171,7 @@ type LazyUser = {
   readonly BuyRooms: AsyncCollection<UserBuyRoom>;
   readonly LikeRooms: AsyncCollection<UserLikeRoom>;
   readonly staff?: boolean | null;
+  readonly birthdate?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

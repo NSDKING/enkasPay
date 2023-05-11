@@ -79,6 +79,17 @@ export default function Navbar() {
         color:'black',
          
      }
+
+    const handleClick= ()=>{
+        if(user==undefined){
+            navigate('/login')
+        }
+        else(
+            navigate("/Account")
+        )
+
+        
+    }
  
     return(
         <div className="navbar">
@@ -100,10 +111,10 @@ export default function Navbar() {
 
                 <div className={navItemclas}>
                     <div className="navbar-items-container">
-                        <Link className="navbar-items-item" style={Styles}>
+                        <div className="navbar-items-item" onClick={handleClick}>
                             <p>comptes</p>
                             <img src={next} width="7%"/>
-                        </Link>
+                        </div>
                         <Link className="navbar-items-item" style={Styles} to="/store">
                             <p>panier</p>
                             <img src={next} width="7%"/>

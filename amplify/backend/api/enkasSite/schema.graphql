@@ -52,5 +52,6 @@ type User @model @auth(rules: [{allow: public}]) {
   BuyRooms: [BuyRoom] @manyToMany(relationName: "UserBuyRoom")
   LikeRooms: [LikeRoom] @manyToMany(relationName: "UserLikeRoom")
   staff: Boolean
+  birthdate: AWSDate
 }
  
