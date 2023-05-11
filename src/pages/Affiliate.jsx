@@ -24,7 +24,7 @@ export default function AffiliatePage() {
             <div className="affiliatepage-body">
                 <h1>comment ça marche?</h1>
                 <div className="textBox">    
-                    <Textbox text={"c’est très simples cliques sur obtenir mon code partenaires puis entre les informations après cela tu recevras ton code partenaire et tu n’auras plus qu’a le partagé et chaque utilisation tu reçois ta due."}/>
+                    <Textbox text={"c’est très simples cliques sur obtenir mon code partenaires puis entre les informations après cela tu recevras ton code partenaire et tu n’auras plus qu’a le partagé et à chaque utilisation tu reçois ton due."}/>
 
                 </div>
                 <h1>comment est-ce que je reçois mon argent ?</h1>
