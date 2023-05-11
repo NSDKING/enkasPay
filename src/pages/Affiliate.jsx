@@ -3,6 +3,7 @@ import pm from './img/pm.jpg'
 import "./css/affiliate.css"
 import DefaultButtonLink from "../components/DefaultbuttonLink";
 import Textbox from "../components/textBox";
+import image from "./img/affimage.png"
   
 export default function AffiliatePage() {
     return(
@@ -11,6 +12,7 @@ export default function AffiliatePage() {
             <div className="marge"></div>
             <div className="affiliatepage-header">
                 <div className="affiliatepage-img">
+                    <img src={image} width="95%"/>
                 </div>
                 <div className="affiliatepage-title">
                     <h1 >

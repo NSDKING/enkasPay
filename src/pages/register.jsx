@@ -127,7 +127,9 @@ export default function RegisterPage() {
  
     return(
         <section className='registerPage'>
-            <div className="logo">
+            <div className="logo" onClick={()=>{
+                    navigate("/")
+                }}>               
                 <img src={logo} width="90%"/>
             </div>    
         

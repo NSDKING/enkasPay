@@ -7,7 +7,7 @@ import logo from './img/logo.png'
 import { API, Auth, graphqlOperation, Hub } from "aws-amplify";
 import DefaultButton from "./DefaultButton";
 import { getUser } from "../graphql/queries";
-
+ 
 
 export default function Navbar() {
     const [isActive, setIsActive] = useState(false);
@@ -15,6 +15,8 @@ export default function Navbar() {
     const [navIconclass, setNavIconClas]= useState("hamburger-lines");
     const [user, setUser]= useState(undefined)
     const [staf, setStaf]= useState(false)
+    const navigate = useNavigate();
+    
 
     const checkUser = async ()=>{
         try {
@@ -82,7 +84,9 @@ export default function Navbar() {
         <div className="navbar">
             <div className="container nav-container">
                 <div className="navbar-header">
-                <div className="logo">
+                <div className="logo" onClick={()=>{
+                    navigate("/")
+                }}>
                     <img src={logo} width="90%"/>
                 </div> 
                 <div className="left-menu-button" onClick={toggleActive}>

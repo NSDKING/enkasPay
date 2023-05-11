@@ -56,8 +56,10 @@ export default function LoginPage() {
 
     return(
         <section className='loginpage' >
-            <div className="logo">
-                <img src={logo} width="90%"/>
+            <div className="logo" onClick={()=>{
+                    navigate("/")
+                }}>
+                            <img src={logo} width="90%"/>
             </div>
 
             

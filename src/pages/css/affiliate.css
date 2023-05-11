@@ -6,13 +6,19 @@
 }
 
 .affiliatepage-img{
+    margin-top: 20px;
     width: 100%;
     height: 290px;
-    border: 1px solid gray;
- 
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
  }
 
+img{
 
+}
 
 .affiliatepage-title h1{
     font-weight: 500;
