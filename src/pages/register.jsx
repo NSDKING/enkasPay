@@ -89,6 +89,7 @@ export default function RegisterPage() {
                 mail: data.email,
                 city: data.city,
                 FamilyName:data.nom,
+                birthdate:data.birthday,
                 LastName:data.prenom,
                 phoneNumber:data.number,
               };
