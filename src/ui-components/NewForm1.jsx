@@ -36,6 +36,7 @@ export default function NewForm1(props) {
     mail: "",
     staff: false,
     birthdate: "",
+    likeroomID: "",
   };
   const [FamilyName, setFamilyName] = React.useState(initialValues.FamilyName);
   const [LastName, setLastName] = React.useState(initialValues.LastName);
@@ -46,6 +47,7 @@ export default function NewForm1(props) {
   const [mail, setMail] = React.useState(initialValues.mail);
   const [staff, setStaff] = React.useState(initialValues.staff);
   const [birthdate, setBirthdate] = React.useState(initialValues.birthdate);
+  const [likeroomID, setLikeroomID] = React.useState(initialValues.likeroomID);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setFamilyName(initialValues.FamilyName);
@@ -55,6 +57,7 @@ export default function NewForm1(props) {
     setMail(initialValues.mail);
     setStaff(initialValues.staff);
     setBirthdate(initialValues.birthdate);
+    setLikeroomID(initialValues.likeroomID);
     setErrors({});
   };
   const validations = {
@@ -65,6 +68,7 @@ export default function NewForm1(props) {
     mail: [{ type: "Email" }],
     staff: [],
     birthdate: [],
+    likeroomID: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -98,6 +102,7 @@ export default function NewForm1(props) {
           mail,
           staff,
           birthdate,
+          likeroomID,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -159,6 +164,7 @@ export default function NewForm1(props) {
               mail,
               staff,
               birthdate,
+              likeroomID,
             };
             const result = onChange(modelFields);
             value = result?.FamilyName ?? value;
@@ -189,6 +195,7 @@ export default function NewForm1(props) {
               mail,
               staff,
               birthdate,
+              likeroomID,
             };
             const result = onChange(modelFields);
             value = result?.LastName ?? value;
@@ -219,6 +226,7 @@ export default function NewForm1(props) {
               mail,
               staff,
               birthdate,
+              likeroomID,
             };
             const result = onChange(modelFields);
             value = result?.phoneNumber ?? value;
@@ -249,6 +257,7 @@ export default function NewForm1(props) {
               mail,
               staff,
               birthdate,
+              likeroomID,
             };
             const result = onChange(modelFields);
             value = result?.city ?? value;
@@ -279,6 +288,7 @@ export default function NewForm1(props) {
               mail: value,
               staff,
               birthdate,
+              likeroomID,
             };
             const result = onChange(modelFields);
             value = result?.mail ?? value;
@@ -309,6 +319,7 @@ export default function NewForm1(props) {
               mail,
               staff: value,
               birthdate,
+              likeroomID,
             };
             const result = onChange(modelFields);
             value = result?.staff ?? value;
@@ -340,6 +351,7 @@ export default function NewForm1(props) {
               mail,
               staff,
               birthdate: value,
+              likeroomID,
             };
             const result = onChange(modelFields);
             value = result?.birthdate ?? value;
@@ -353,6 +365,37 @@ export default function NewForm1(props) {
         errorMessage={errors.birthdate?.errorMessage}
         hasError={errors.birthdate?.hasError}
         {...getOverrideProps(overrides, "birthdate")}
+      ></TextField>
+      <TextField
+        label="Likeroom id"
+        isRequired={false}
+        isReadOnly={false}
+        value={likeroomID}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              FamilyName,
+              LastName,
+              phoneNumber,
+              city,
+              mail,
+              staff,
+              birthdate,
+              likeroomID: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.likeroomID ?? value;
+          }
+          if (errors.likeroomID?.hasError) {
+            runValidationTasks("likeroomID", value);
+          }
+          setLikeroomID(value);
+        }}
+        onBlur={() => runValidationTasks("likeroomID", likeroomID)}
+        errorMessage={errors.likeroomID?.errorMessage}
+        hasError={errors.likeroomID?.hasError}
+        {...getOverrideProps(overrides, "likeroomID")}
       ></TextField>
       <Flex
         justifyContent="space-between"

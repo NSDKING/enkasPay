@@ -13,6 +13,8 @@ import net from './img/netim.png'
 import { useEffect, useState } from "react"
 import { API, graphqlOperation } from "aws-amplify"
 import { listProducts } from "../graphql/queries"
+import { getCommonLikeRoomWithUser } from "../services/LikeRoom"
+import { createLikeRoom, createLikeRoomProduct, updateLikeRoom } from "../graphql/mutations"
 
   
 
@@ -68,6 +70,44 @@ export default function StorePage({Articles, setArticles,setProdTitle,setProdPri
          },
         [],
       )
+
+    const createALikeRoomWithTheUser = async(product)=>{
+      // check if the product is already in the cart
+      const existingLikeRoom = await getCommonLikeRoomWithUser(product.id);
+      if (existingLikeRoom) {
+        const input = { 
+          id: existingLikeRoom.likeRoom.id,
+          _version: existingLikeRoom.likeRoom._version,   
+          number: existingLikeRoom.likeRoom.number + 1,
+        };
+        const result = await API.graphql(graphqlOperation(updateLikeRoom, { input: input }));
+        console.log(result)
+        return;
+      }
+      //create a new LikeRooms
+      const AuthUser = await Auth.currentAuthenticatedUser();
+      const newLikeRoomData  = await API.graphql(
+        graphqlOperation(createLikeRoom, {input:{}})
+        )
+        if(!newLikeRoomData.data?.createRoomsubject){
+          console.log('error creating the chat error')
+        }
+        const newLikeRoom = newLikeRoomData.data?.createRoomsubject;
+
+      //add the cliked product to the LikeRooms
+      await API.graphql(
+        graphqlOperation(createLikeRoomProduct,{
+          input:{likeRoomId:newLikeRoom.id, productId:product.id},
+        })
+        
+      )
+      //add the auth user to the LikeRooms
+     await API.graphql(
+      graphqlOperation(createUserRoomsubject,{
+        input:{roomsubjectId:newSubjectRoom.id, userId:AuthUser.attributes.sub},
+      })
+  )
+    }
 
     return(
         <section className="storePage">

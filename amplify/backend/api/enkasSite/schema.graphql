@@ -55,3 +55,4 @@ type User @model @auth(rules: [{allow: public}]) {
   birthdate: AWSDate
 }
  
+ 

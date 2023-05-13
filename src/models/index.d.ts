@@ -106,8 +106,8 @@ type EagerProduct = {
   readonly price?: DurationPrice | null;
   readonly buycount?: number | null;
   readonly likecount?: number | null;
-  readonly likeroomID?: string | null;
   readonly buyroomID?: string | null;
+  readonly likerooms?: (LikeRoomProduct | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -124,8 +124,8 @@ type LazyProduct = {
   readonly price?: DurationPrice | null;
   readonly buycount?: number | null;
   readonly likecount?: number | null;
-  readonly likeroomID?: string | null;
   readonly buyroomID?: string | null;
+  readonly likerooms: AsyncCollection<LikeRoomProduct>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -134,6 +134,38 @@ export declare type Product = LazyLoading extends LazyLoadingDisabled ? EagerPro
 
 export declare const Product: (new (init: ModelInit<Product>) => Product) & {
   copyOf(source: Product, mutator: (draft: MutableModel<Product>) => MutableModel<Product> | void): Product;
+}
+
+type EagerLikeRoom = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<LikeRoom, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly productLike?: (LikeRoomProduct | null)[] | null;
+  readonly users?: (LikeRoomUser | null)[] | null;
+  readonly number?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyLikeRoom = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<LikeRoom, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly productLike: AsyncCollection<LikeRoomProduct>;
+  readonly users: AsyncCollection<LikeRoomUser>;
+  readonly number?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type LikeRoom = LazyLoading extends LazyLoadingDisabled ? EagerLikeRoom : LazyLikeRoom
+
+export declare const LikeRoom: (new (init: ModelInit<LikeRoom>) => LikeRoom) & {
+  copyOf(source: LikeRoom, mutator: (draft: MutableModel<LikeRoom>) => MutableModel<LikeRoom> | void): LikeRoom;
 }
 
 type EagerUser = {
@@ -149,9 +181,10 @@ type EagerUser = {
   readonly mail?: string | null;
   readonly Accounts?: (Account | null)[] | null;
   readonly BuyRooms?: (UserBuyRoom | null)[] | null;
-  readonly LikeRooms?: (UserLikeRoom | null)[] | null;
   readonly staff?: boolean | null;
   readonly birthdate?: string | null;
+  readonly likeroomID?: string | null;
+  readonly likerooms?: (LikeRoomUser | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -169,9 +202,10 @@ type LazyUser = {
   readonly mail?: string | null;
   readonly Accounts: AsyncCollection<Account>;
   readonly BuyRooms: AsyncCollection<UserBuyRoom>;
-  readonly LikeRooms: AsyncCollection<UserLikeRoom>;
   readonly staff?: boolean | null;
   readonly birthdate?: string | null;
+  readonly likeroomID?: string | null;
+  readonly likerooms: AsyncCollection<LikeRoomUser>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -180,36 +214,6 @@ export declare type User = LazyLoading extends LazyLoadingDisabled ? EagerUser :
 
 export declare const User: (new (init: ModelInit<User>) => User) & {
   copyOf(source: User, mutator: (draft: MutableModel<User>) => MutableModel<User> | void): User;
-}
-
-type EagerLikeRoom = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<LikeRoom, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly productLike?: (Product | null)[] | null;
-  readonly users?: (UserLikeRoom | null)[] | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-type LazyLikeRoom = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<LikeRoom, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly productLike: AsyncCollection<Product>;
-  readonly users: AsyncCollection<UserLikeRoom>;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-export declare type LikeRoom = LazyLoading extends LazyLoadingDisabled ? EagerLikeRoom : LazyLikeRoom
-
-export declare const LikeRoom: (new (init: ModelInit<LikeRoom>) => LikeRoom) & {
-  copyOf(source: LikeRoom, mutator: (draft: MutableModel<LikeRoom>) => MutableModel<LikeRoom> | void): LikeRoom;
 }
 
 type EagerUserBuyRoom = {
@@ -246,36 +250,70 @@ export declare const UserBuyRoom: (new (init: ModelInit<UserBuyRoom>) => UserBuy
   copyOf(source: UserBuyRoom, mutator: (draft: MutableModel<UserBuyRoom>) => MutableModel<UserBuyRoom> | void): UserBuyRoom;
 }
 
-type EagerUserLikeRoom = {
+type EagerLikeRoomProduct = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<UserLikeRoom, 'id'>;
+    identifier: ManagedIdentifier<LikeRoomProduct, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly userId?: string | null;
+  readonly productId?: string | null;
   readonly likeRoomId?: string | null;
-  readonly user: User;
+  readonly product: Product;
   readonly likeRoom: LikeRoom;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyUserLikeRoom = {
+type LazyLikeRoomProduct = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<UserLikeRoom, 'id'>;
+    identifier: ManagedIdentifier<LikeRoomProduct, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly userId?: string | null;
+  readonly productId?: string | null;
   readonly likeRoomId?: string | null;
-  readonly user: AsyncItem<User>;
+  readonly product: AsyncItem<Product>;
   readonly likeRoom: AsyncItem<LikeRoom>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type UserLikeRoom = LazyLoading extends LazyLoadingDisabled ? EagerUserLikeRoom : LazyUserLikeRoom
+export declare type LikeRoomProduct = LazyLoading extends LazyLoadingDisabled ? EagerLikeRoomProduct : LazyLikeRoomProduct
 
-export declare const UserLikeRoom: (new (init: ModelInit<UserLikeRoom>) => UserLikeRoom) & {
-  copyOf(source: UserLikeRoom, mutator: (draft: MutableModel<UserLikeRoom>) => MutableModel<UserLikeRoom> | void): UserLikeRoom;
+export declare const LikeRoomProduct: (new (init: ModelInit<LikeRoomProduct>) => LikeRoomProduct) & {
+  copyOf(source: LikeRoomProduct, mutator: (draft: MutableModel<LikeRoomProduct>) => MutableModel<LikeRoomProduct> | void): LikeRoomProduct;
+}
+
+type EagerLikeRoomUser = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<LikeRoomUser, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly likeRoomId?: string | null;
+  readonly userId?: string | null;
+  readonly likeRoom: LikeRoom;
+  readonly user: User;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyLikeRoomUser = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<LikeRoomUser, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly likeRoomId?: string | null;
+  readonly userId?: string | null;
+  readonly likeRoom: AsyncItem<LikeRoom>;
+  readonly user: AsyncItem<User>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type LikeRoomUser = LazyLoading extends LazyLoadingDisabled ? EagerLikeRoomUser : LazyLikeRoomUser
+
+export declare const LikeRoomUser: (new (init: ModelInit<LikeRoomUser>) => LikeRoomUser) & {
+  copyOf(source: LikeRoomUser, mutator: (draft: MutableModel<LikeRoomUser>) => MutableModel<LikeRoomUser> | void): LikeRoomUser;
 }

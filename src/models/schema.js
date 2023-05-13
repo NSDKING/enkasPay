@@ -262,19 +262,28 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "likeroomID": {
-                    "name": "likeroomID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "buyroomID": {
                     "name": "buyroomID",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": false,
                     "attributes": []
+                },
+                "likerooms": {
+                    "name": "likerooms",
+                    "isArray": true,
+                    "type": {
+                        "model": "LikeRoomProduct"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "product"
+                        ]
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -303,20 +312,102 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byLikeRoom",
-                        "fields": [
-                            "likeroomID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
                         "name": "byBuyRoom",
                         "fields": [
                             "buyroomID"
                         ]
                     }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "LikeRoom": {
+            "name": "LikeRoom",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "productLike": {
+                    "name": "productLike",
+                    "isArray": true,
+                    "type": {
+                        "model": "LikeRoomProduct"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "likeRoom"
+                        ]
+                    }
+                },
+                "users": {
+                    "name": "users",
+                    "isArray": true,
+                    "type": {
+                        "model": "LikeRoomUser"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "likeRoom"
+                        ]
+                    }
+                },
+                "number": {
+                    "name": "number",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "LikeRooms",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
                 },
                 {
                     "type": "auth",
@@ -413,22 +504,6 @@ export const schema = {
                         ]
                     }
                 },
-                "LikeRooms": {
-                    "name": "LikeRooms",
-                    "isArray": true,
-                    "type": {
-                        "model": "UserLikeRoom"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "user"
-                        ]
-                    }
-                },
                 "staff": {
                     "name": "staff",
                     "isArray": false,
@@ -442,6 +517,29 @@ export const schema = {
                     "type": "AWSDate",
                     "isRequired": false,
                     "attributes": []
+                },
+                "likeroomID": {
+                    "name": "likeroomID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "likerooms": {
+                    "name": "likerooms",
+                    "isArray": true,
+                    "type": {
+                        "model": "LikeRoomUser"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "user"
+                        ]
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -468,88 +566,13 @@ export const schema = {
                     "properties": {}
                 },
                 {
-                    "type": "auth",
+                    "type": "key",
                     "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "LikeRoom": {
-            "name": "LikeRoom",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "productLike": {
-                    "name": "productLike",
-                    "isArray": true,
-                    "type": {
-                        "model": "Product"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
+                        "name": "byLikeRoom",
+                        "fields": [
                             "likeroomID"
                         ]
                     }
-                },
-                "users": {
-                    "name": "users",
-                    "isArray": true,
-                    "type": {
-                        "model": "UserLikeRoom"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "likeRoom"
-                        ]
-                    }
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "LikeRooms",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
                 },
                 {
                     "type": "auth",
@@ -667,8 +690,8 @@ export const schema = {
                 }
             ]
         },
-        "UserLikeRoom": {
-            "name": "UserLikeRoom",
+        "LikeRoomProduct": {
+            "name": "LikeRoomProduct",
             "fields": {
                 "id": {
                     "name": "id",
@@ -677,8 +700,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "userId": {
-                    "name": "userId",
+                "productId": {
+                    "name": "productId",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": false,
@@ -691,18 +714,18 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "user": {
-                    "name": "user",
+                "product": {
+                    "name": "product",
                     "isArray": false,
                     "type": {
-                        "model": "User"
+                        "model": "Product"
                     },
                     "isRequired": true,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
                         "targetNames": [
-                            "userId"
+                            "productId"
                         ]
                     }
                 },
@@ -739,7 +762,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "UserLikeRooms",
+            "pluralName": "LikeRoomProducts",
             "attributes": [
                 {
                     "type": "model",
@@ -748,9 +771,9 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byUser",
+                        "name": "byProduct",
                         "fields": [
-                            "userId"
+                            "productId"
                         ]
                     }
                 },
@@ -760,6 +783,104 @@ export const schema = {
                         "name": "byLikeRoom",
                         "fields": [
                             "likeRoomId"
+                        ]
+                    }
+                }
+            ]
+        },
+        "LikeRoomUser": {
+            "name": "LikeRoomUser",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "likeRoomId": {
+                    "name": "likeRoomId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "userId": {
+                    "name": "userId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "likeRoom": {
+                    "name": "likeRoom",
+                    "isArray": false,
+                    "type": {
+                        "model": "LikeRoom"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "likeRoomId"
+                        ]
+                    }
+                },
+                "user": {
+                    "name": "user",
+                    "isArray": false,
+                    "type": {
+                        "model": "User"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "userId"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "LikeRoomUsers",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byLikeRoom",
+                        "fields": [
+                            "likeRoomId"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byUser",
+                        "fields": [
+                            "userId"
                         ]
                     }
                 }
@@ -796,5 +917,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.4",
-    "version": "900012ba61e0a0762609d8f1456339f3"
+    "version": "4291310ba3d5a4cb5ec0b8ece312dee4"
 };

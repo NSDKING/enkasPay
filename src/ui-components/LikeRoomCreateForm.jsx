@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid } from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { LikeRoom } from "../models";
 import { fetchByPath, validateField } from "./utils";
@@ -22,12 +22,18 @@ export default function LikeRoomCreateForm(props) {
     overrides,
     ...rest
   } = props;
-  const initialValues = {};
+  const initialValues = {
+    number: "",
+  };
+  const [number, setNumber] = React.useState(initialValues.number);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
+    setNumber(initialValues.number);
     setErrors({});
   };
-  const validations = {};
+  const validations = {
+    number: [],
+  };
   const runValidationTasks = async (
     fieldName,
     currentValue,
@@ -52,7 +58,9 @@ export default function LikeRoomCreateForm(props) {
       padding="20px"
       onSubmit={async (event) => {
         event.preventDefault();
-        let modelFields = {};
+        let modelFields = {
+          number,
+        };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
             if (Array.isArray(modelFields[fieldName])) {
@@ -97,6 +105,30 @@ export default function LikeRoomCreateForm(props) {
       {...getOverrideProps(overrides, "LikeRoomCreateForm")}
       {...rest}
     >
+      <TextField
+        label="Number"
+        isRequired={false}
+        isReadOnly={false}
+        value={number}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              number: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.number ?? value;
+          }
+          if (errors.number?.hasError) {
+            runValidationTasks("number", value);
+          }
+          setNumber(value);
+        }}
+        onBlur={() => runValidationTasks("number", number)}
+        errorMessage={errors.number?.errorMessage}
+        hasError={errors.number?.hasError}
+        {...getOverrideProps(overrides, "number")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

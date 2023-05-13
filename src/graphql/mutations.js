@@ -157,6 +157,7 @@ export const createLikeRoom = /* GraphQL */ `
         nextToken
         startedAt
       }
+      number
       createdAt
       updatedAt
       _version
@@ -180,6 +181,7 @@ export const updateLikeRoom = /* GraphQL */ `
         nextToken
         startedAt
       }
+      number
       createdAt
       updatedAt
       _version
@@ -203,6 +205,7 @@ export const deleteLikeRoom = /* GraphQL */ `
         nextToken
         startedAt
       }
+      number
       createdAt
       updatedAt
       _version
@@ -228,8 +231,11 @@ export const createProduct = /* GraphQL */ `
       }
       buycount
       likecount
-      likeroomID
       buyroomID
+      likerooms {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -255,8 +261,11 @@ export const updateProduct = /* GraphQL */ `
       }
       buycount
       likecount
-      likeroomID
       buyroomID
+      likerooms {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -282,8 +291,11 @@ export const deleteProduct = /* GraphQL */ `
       }
       buycount
       likecount
-      likeroomID
       buyroomID
+      likerooms {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -312,11 +324,9 @@ export const createUser = /* GraphQL */ `
         nextToken
         startedAt
       }
-      LikeRooms {
-        nextToken
-        startedAt
-      }
       staff
+      birthdate
+      likeroomID
       createdAt
       updatedAt
       _version
@@ -345,11 +355,9 @@ export const updateUser = /* GraphQL */ `
         nextToken
         startedAt
       }
-      LikeRooms {
-        nextToken
-        startedAt
-      }
       staff
+      birthdate
+      likeroomID
       createdAt
       updatedAt
       _version
@@ -378,11 +386,9 @@ export const deleteUser = /* GraphQL */ `
         nextToken
         startedAt
       }
-      LikeRooms {
-        nextToken
-        startedAt
-      }
       staff
+      birthdate
+      likeroomID
       createdAt
       updatedAt
       _version
@@ -416,6 +422,8 @@ export const createUserBuyRoom = /* GraphQL */ `
         city
         mail
         staff
+        birthdate
+        likeroomID
         createdAt
         updatedAt
         _version
@@ -455,6 +463,8 @@ export const updateUserBuyRoom = /* GraphQL */ `
         city
         mail
         staff
+        birthdate
+        likeroomID
         createdAt
         updatedAt
         _version
@@ -494,6 +504,8 @@ export const deleteUserBuyRoom = /* GraphQL */ `
         city
         mail
         staff
+        birthdate
+        likeroomID
         createdAt
         updatedAt
         _version
@@ -508,31 +520,32 @@ export const deleteUserBuyRoom = /* GraphQL */ `
     }
   }
 `;
-export const createUserLikeRoom = /* GraphQL */ `
-  mutation CreateUserLikeRoom(
-    $input: CreateUserLikeRoomInput!
-    $condition: ModelUserLikeRoomConditionInput
+export const createLikeRoomProduct = /* GraphQL */ `
+  mutation CreateLikeRoomProduct(
+    $input: CreateLikeRoomProductInput!
+    $condition: ModelLikeRoomProductConditionInput
   ) {
-    createUserLikeRoom(input: $input, condition: $condition) {
+    createLikeRoomProduct(input: $input, condition: $condition) {
       id
       likeRoomId
-      userId
+      productId
       likeRoom {
         id
+        number
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
       }
-      user {
+      product {
         id
-        FamilyName
-        LastName
-        phoneNumber
-        city
-        mail
-        staff
+        name
+        image
+        type
+        buycount
+        likecount
+        buyroomID
         createdAt
         updatedAt
         _version
@@ -547,31 +560,32 @@ export const createUserLikeRoom = /* GraphQL */ `
     }
   }
 `;
-export const updateUserLikeRoom = /* GraphQL */ `
-  mutation UpdateUserLikeRoom(
-    $input: UpdateUserLikeRoomInput!
-    $condition: ModelUserLikeRoomConditionInput
+export const updateLikeRoomProduct = /* GraphQL */ `
+  mutation UpdateLikeRoomProduct(
+    $input: UpdateLikeRoomProductInput!
+    $condition: ModelLikeRoomProductConditionInput
   ) {
-    updateUserLikeRoom(input: $input, condition: $condition) {
+    updateLikeRoomProduct(input: $input, condition: $condition) {
       id
       likeRoomId
-      userId
+      productId
       likeRoom {
         id
+        number
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
       }
-      user {
+      product {
         id
-        FamilyName
-        LastName
-        phoneNumber
-        city
-        mail
-        staff
+        name
+        image
+        type
+        buycount
+        likecount
+        buyroomID
         createdAt
         updatedAt
         _version
@@ -586,31 +600,32 @@ export const updateUserLikeRoom = /* GraphQL */ `
     }
   }
 `;
-export const deleteUserLikeRoom = /* GraphQL */ `
-  mutation DeleteUserLikeRoom(
-    $input: DeleteUserLikeRoomInput!
-    $condition: ModelUserLikeRoomConditionInput
+export const deleteLikeRoomProduct = /* GraphQL */ `
+  mutation DeleteLikeRoomProduct(
+    $input: DeleteLikeRoomProductInput!
+    $condition: ModelLikeRoomProductConditionInput
   ) {
-    deleteUserLikeRoom(input: $input, condition: $condition) {
+    deleteLikeRoomProduct(input: $input, condition: $condition) {
       id
       likeRoomId
-      userId
+      productId
       likeRoom {
         id
+        number
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
       }
-      user {
+      product {
         id
-        FamilyName
-        LastName
-        phoneNumber
-        city
-        mail
-        staff
+        name
+        image
+        type
+        buycount
+        likecount
+        buyroomID
         createdAt
         updatedAt
         _version

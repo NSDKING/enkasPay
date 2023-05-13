@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps } from "@aws-amplify/ui-react";
+import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { LikeRoom } from "../models";
 export declare type ValidationResponse = {
@@ -13,11 +13,16 @@ export declare type ValidationResponse = {
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type LikeRoomUpdateFormInputValues = {};
-export declare type LikeRoomUpdateFormValidationValues = {};
+export declare type LikeRoomUpdateFormInputValues = {
+    number?: string;
+};
+export declare type LikeRoomUpdateFormValidationValues = {
+    number?: ValidationFunction<string>;
+};
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type LikeRoomUpdateFormOverridesProps = {
     LikeRoomUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    number?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type LikeRoomUpdateFormProps = React.PropsWithChildren<{
     overrides?: LikeRoomUpdateFormOverridesProps | undefined | null;
