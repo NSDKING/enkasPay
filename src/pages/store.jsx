@@ -11,13 +11,13 @@ import disney from "./img/disney.png"
 import vpn from "./img/vpn.png"
 import net from './img/netim.png'
 import { useEffect, useState } from "react"
-import { API, graphqlOperation } from "aws-amplify"
+import { API, Auth, graphqlOperation } from "aws-amplify"
 import { listProducts } from "../graphql/queries"
 import { getCommonLikeRoomWithUser } from "../services/LikeRoom"
 import { createLikeRoom, createLikeRoomProduct, updateLikeRoom } from "../graphql/mutations"
 
   
-
+ 
 export default function StorePage({Articles, setArticles,setProdTitle,setProdPrice, setProdType, setProdCover, cart, updateCart}) {
   const [loading, setLoading] = useState(false)
    function CoverImage(slug){
@@ -95,18 +95,18 @@ export default function StorePage({Articles, setArticles,setProdTitle,setProdPri
         const newLikeRoom = newLikeRoomData.data?.createRoomsubject;
 
       //add the cliked product to the LikeRooms
-      await API.graphql(
+    /**  await API.graphql(
         graphqlOperation(createLikeRoomProduct,{
           input:{likeRoomId:newLikeRoom.id, productId:product.id},
         })
         
-      )
+      ) */
       //add the auth user to the LikeRooms
-     await API.graphql(
+ /**     await API.graphql(
       graphqlOperation(createUserRoomsubject,{
         input:{roomsubjectId:newSubjectRoom.id, userId:AuthUser.attributes.sub},
       })
-  )
+  ) */
     }
 
     return(
