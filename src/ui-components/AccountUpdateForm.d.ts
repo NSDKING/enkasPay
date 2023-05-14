@@ -18,8 +18,8 @@ export declare type AccountUpdateFormInputValues = {
     passe?: string;
     profil?: string;
     endDateAccount?: string;
-    pin?: string;
     endDateProfil?: string;
+    pin?: string;
     free?: boolean;
     service?: string;
 };
@@ -28,8 +28,8 @@ export declare type AccountUpdateFormValidationValues = {
     passe?: ValidationFunction<string>;
     profil?: ValidationFunction<string>;
     endDateAccount?: ValidationFunction<string>;
-    pin?: ValidationFunction<string>;
     endDateProfil?: ValidationFunction<string>;
+    pin?: ValidationFunction<string>;
     free?: ValidationFunction<boolean>;
     service?: ValidationFunction<string>;
 };
@@ -40,8 +40,8 @@ export declare type AccountUpdateFormOverridesProps = {
     passe?: PrimitiveOverrideProps<TextFieldProps>;
     profil?: PrimitiveOverrideProps<TextFieldProps>;
     endDateAccount?: PrimitiveOverrideProps<TextFieldProps>;
-    pin?: PrimitiveOverrideProps<TextFieldProps>;
     endDateProfil?: PrimitiveOverrideProps<TextFieldProps>;
+    pin?: PrimitiveOverrideProps<TextFieldProps>;
     free?: PrimitiveOverrideProps<SwitchFieldProps>;
     service?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;

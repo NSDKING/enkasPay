@@ -1,6 +1,6 @@
 {
   "api": {
-    "enkasSite": {
+    "enkasPay": {
       "dependsOn": [],
       "output": {
         "authConfig": {
@@ -23,7 +23,7 @@
     }
   },
   "auth": {
-    "enkasSite": {
+    "enkasPay": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -35,13 +35,12 @@
           "passwordPolicyCharacters": [
             "REQUIRES_LOWERCASE",
             "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS",
             "REQUIRES_UPPERCASE"
           ],
           "passwordPolicyMinLength": 8
         },
-        "signupAttributes": [
-          "EMAIL"
-        ],
+        "signupAttributes": [],
         "socialProviders": [],
         "usernameAttributes": [
           "EMAIL"
@@ -52,13 +51,6 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
-    }
-  },
-  "storage": {
-    "s3enkassitestorage958c80d5": {
-      "dependsOn": [],
-      "providerPlugin": "awscloudformation",
-      "service": "S3"
     }
   }
 }

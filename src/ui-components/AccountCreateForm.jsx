@@ -33,8 +33,8 @@ export default function AccountCreateForm(props) {
     passe: "",
     profil: "",
     endDateAccount: "",
-    pin: "",
     endDateProfil: "",
+    pin: "",
     free: false,
     service: "",
   };
@@ -44,10 +44,10 @@ export default function AccountCreateForm(props) {
   const [endDateAccount, setEndDateAccount] = React.useState(
     initialValues.endDateAccount
   );
-  const [pin, setPin] = React.useState(initialValues.pin);
   const [endDateProfil, setEndDateProfil] = React.useState(
     initialValues.endDateProfil
   );
+  const [pin, setPin] = React.useState(initialValues.pin);
   const [free, setFree] = React.useState(initialValues.free);
   const [service, setService] = React.useState(initialValues.service);
   const [errors, setErrors] = React.useState({});
@@ -56,8 +56,8 @@ export default function AccountCreateForm(props) {
     setPasse(initialValues.passe);
     setProfil(initialValues.profil);
     setEndDateAccount(initialValues.endDateAccount);
-    setPin(initialValues.pin);
     setEndDateProfil(initialValues.endDateProfil);
+    setPin(initialValues.pin);
     setFree(initialValues.free);
     setService(initialValues.service);
     setErrors({});
@@ -67,8 +67,8 @@ export default function AccountCreateForm(props) {
     passe: [],
     profil: [],
     endDateAccount: [],
-    pin: [],
     endDateProfil: [],
+    pin: [],
     free: [],
     service: [],
   };
@@ -101,8 +101,8 @@ export default function AccountCreateForm(props) {
           passe,
           profil,
           endDateAccount,
-          pin,
           endDateProfil,
+          pin,
           free,
           service,
         };
@@ -163,8 +163,8 @@ export default function AccountCreateForm(props) {
               passe,
               profil,
               endDateAccount,
-              pin,
               endDateProfil,
+              pin,
               free,
               service,
             };
@@ -194,8 +194,8 @@ export default function AccountCreateForm(props) {
               passe: value,
               profil,
               endDateAccount,
-              pin,
               endDateProfil,
+              pin,
               free,
               service,
             };
@@ -225,8 +225,8 @@ export default function AccountCreateForm(props) {
               passe,
               profil: value,
               endDateAccount,
-              pin,
               endDateProfil,
+              pin,
               free,
               service,
             };
@@ -257,8 +257,8 @@ export default function AccountCreateForm(props) {
               passe,
               profil,
               endDateAccount: value,
-              pin,
               endDateProfil,
+              pin,
               free,
               service,
             };
@@ -276,37 +276,6 @@ export default function AccountCreateForm(props) {
         {...getOverrideProps(overrides, "endDateAccount")}
       ></TextField>
       <TextField
-        label="Pin"
-        isRequired={false}
-        isReadOnly={false}
-        value={pin}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              mail,
-              passe,
-              profil,
-              endDateAccount,
-              pin: value,
-              endDateProfil,
-              free,
-              service,
-            };
-            const result = onChange(modelFields);
-            value = result?.pin ?? value;
-          }
-          if (errors.pin?.hasError) {
-            runValidationTasks("pin", value);
-          }
-          setPin(value);
-        }}
-        onBlur={() => runValidationTasks("pin", pin)}
-        errorMessage={errors.pin?.errorMessage}
-        hasError={errors.pin?.hasError}
-        {...getOverrideProps(overrides, "pin")}
-      ></TextField>
-      <TextField
         label="End date profil"
         isRequired={false}
         isReadOnly={false}
@@ -320,8 +289,8 @@ export default function AccountCreateForm(props) {
               passe,
               profil,
               endDateAccount,
-              pin,
               endDateProfil: value,
+              pin,
               free,
               service,
             };
@@ -338,6 +307,37 @@ export default function AccountCreateForm(props) {
         hasError={errors.endDateProfil?.hasError}
         {...getOverrideProps(overrides, "endDateProfil")}
       ></TextField>
+      <TextField
+        label="Pin"
+        isRequired={false}
+        isReadOnly={false}
+        value={pin}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mail,
+              passe,
+              profil,
+              endDateAccount,
+              endDateProfil,
+              pin: value,
+              free,
+              service,
+            };
+            const result = onChange(modelFields);
+            value = result?.pin ?? value;
+          }
+          if (errors.pin?.hasError) {
+            runValidationTasks("pin", value);
+          }
+          setPin(value);
+        }}
+        onBlur={() => runValidationTasks("pin", pin)}
+        errorMessage={errors.pin?.errorMessage}
+        hasError={errors.pin?.hasError}
+        {...getOverrideProps(overrides, "pin")}
+      ></TextField>
       <SwitchField
         label="Free"
         defaultChecked={false}
@@ -351,8 +351,8 @@ export default function AccountCreateForm(props) {
               passe,
               profil,
               endDateAccount,
-              pin,
               endDateProfil,
+              pin,
               free: value,
               service,
             };
@@ -382,8 +382,8 @@ export default function AccountCreateForm(props) {
               passe,
               profil,
               endDateAccount,
-              pin,
               endDateProfil,
+              pin,
               free,
               service: value,
             };

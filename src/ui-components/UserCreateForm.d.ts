@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
@@ -15,25 +15,28 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type UserCreateFormInputValues = {
     FamilyName?: string;
     LastName?: string;
-    phoneNumber?: string;
     city?: string;
     mail?: string;
+    birthdate?: string;
+    staff?: boolean;
 };
 export declare type UserCreateFormValidationValues = {
     FamilyName?: ValidationFunction<string>;
     LastName?: ValidationFunction<string>;
-    phoneNumber?: ValidationFunction<string>;
     city?: ValidationFunction<string>;
     mail?: ValidationFunction<string>;
+    birthdate?: ValidationFunction<string>;
+    staff?: ValidationFunction<boolean>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UserCreateFormOverridesProps = {
     UserCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     FamilyName?: PrimitiveOverrideProps<TextFieldProps>;
     LastName?: PrimitiveOverrideProps<TextFieldProps>;
-    phoneNumber?: PrimitiveOverrideProps<TextFieldProps>;
     city?: PrimitiveOverrideProps<TextFieldProps>;
     mail?: PrimitiveOverrideProps<TextFieldProps>;
+    birthdate?: PrimitiveOverrideProps<TextFieldProps>;
+    staff?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
 export declare type UserCreateFormProps = React.PropsWithChildren<{
     overrides?: UserCreateFormOverridesProps | undefined | null;

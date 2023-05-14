@@ -1,0 +1,56 @@
+type OrderRoom @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  products: [Product] @manyToMany(relationName: "ProductOrderRoom")
+  userID: ID! @index(name: "byUser")
+}
+
+type CartRoom @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  number: String
+  products: [Product] @manyToMany(relationName: "ProductCartRoom")
+  userID: ID! @index(name: "byUser")
+}
+
+type Account @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  mail: AWSEmail
+  passe: String
+  profil: String
+  endDateAccount: AWSDate
+  endDateProfil: AWSDate
+  pin: String
+  free: Boolean
+  service: String
+  User: User @hasOne
+}
+
+type DurationPrice {
+  one_month: Int
+  three_month: Int
+  one_year: Int
+}
+
+type Product @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  image: String
+  type: String
+  price: DurationPrice
+  buycount: Int
+  cartCount: Int
+  CartRooms: [CartRoom] @manyToMany(relationName: "ProductCartRoom")
+  OrderRooms: [OrderRoom] @manyToMany(relationName: "ProductOrderRoom")
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  FamilyName: String
+  LastName: String
+  city: String
+  mail: AWSEmail
+  birthdate: AWSDate
+  staff: Boolean
+  CartRooms: [CartRoom] @hasMany(indexName: "byUser", fields: ["id"])
+  OrderRooms: [OrderRoom] @hasMany(indexName: "byUser", fields: ["id"])
+}
+ 

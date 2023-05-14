@@ -16,34 +16,28 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type UserUpdateFormInputValues = {
     FamilyName?: string;
     LastName?: string;
-    phoneNumber?: string;
     city?: string;
     mail?: string;
-    staff?: boolean;
     birthdate?: string;
-    likeroomID?: string;
+    staff?: boolean;
 };
 export declare type UserUpdateFormValidationValues = {
     FamilyName?: ValidationFunction<string>;
     LastName?: ValidationFunction<string>;
-    phoneNumber?: ValidationFunction<string>;
     city?: ValidationFunction<string>;
     mail?: ValidationFunction<string>;
-    staff?: ValidationFunction<boolean>;
     birthdate?: ValidationFunction<string>;
-    likeroomID?: ValidationFunction<string>;
+    staff?: ValidationFunction<boolean>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UserUpdateFormOverridesProps = {
     UserUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     FamilyName?: PrimitiveOverrideProps<TextFieldProps>;
     LastName?: PrimitiveOverrideProps<TextFieldProps>;
-    phoneNumber?: PrimitiveOverrideProps<TextFieldProps>;
     city?: PrimitiveOverrideProps<TextFieldProps>;
     mail?: PrimitiveOverrideProps<TextFieldProps>;
-    staff?: PrimitiveOverrideProps<SwitchFieldProps>;
     birthdate?: PrimitiveOverrideProps<TextFieldProps>;
-    likeroomID?: PrimitiveOverrideProps<TextFieldProps>;
+    staff?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
 export declare type UserUpdateFormProps = React.PropsWithChildren<{
     overrides?: UserUpdateFormOverridesProps | undefined | null;

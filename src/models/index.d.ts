@@ -20,78 +20,34 @@ export declare type DurationPrice = LazyLoading extends LazyLoadingDisabled ? Ea
 
 export declare const DurationPrice: (new (init: ModelInit<DurationPrice>) => DurationPrice)
 
-type EagerAccount = {
+type EagerOrderRoom = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Account, 'id'>;
+    identifier: ManagedIdentifier<OrderRoom, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly mail?: string | null;
-  readonly passe?: string | null;
-  readonly profil?: string | null;
-  readonly endDateAccount?: string | null;
-  readonly pin?: string | null;
-  readonly endDateProfil?: string | null;
-  readonly userID?: string | null;
-  readonly free?: boolean | null;
-  readonly service?: string | null;
+  readonly products?: (ProductOrderRoom | null)[] | null;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyAccount = {
+type LazyOrderRoom = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Account, 'id'>;
+    identifier: ManagedIdentifier<OrderRoom, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly mail?: string | null;
-  readonly passe?: string | null;
-  readonly profil?: string | null;
-  readonly endDateAccount?: string | null;
-  readonly pin?: string | null;
-  readonly endDateProfil?: string | null;
-  readonly userID?: string | null;
-  readonly free?: boolean | null;
-  readonly service?: string | null;
+  readonly products: AsyncCollection<ProductOrderRoom>;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type Account = LazyLoading extends LazyLoadingDisabled ? EagerAccount : LazyAccount
+export declare type OrderRoom = LazyLoading extends LazyLoadingDisabled ? EagerOrderRoom : LazyOrderRoom
 
-export declare const Account: (new (init: ModelInit<Account>) => Account) & {
-  copyOf(source: Account, mutator: (draft: MutableModel<Account>) => MutableModel<Account> | void): Account;
-}
-
-type EagerBuyRoom = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<BuyRoom, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly productbuy?: (Product | null)[] | null;
-  readonly users?: (UserBuyRoom | null)[] | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-type LazyBuyRoom = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<BuyRoom, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly productbuy: AsyncCollection<Product>;
-  readonly users: AsyncCollection<UserBuyRoom>;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-export declare type BuyRoom = LazyLoading extends LazyLoadingDisabled ? EagerBuyRoom : LazyBuyRoom
-
-export declare const BuyRoom: (new (init: ModelInit<BuyRoom>) => BuyRoom) & {
-  copyOf(source: BuyRoom, mutator: (draft: MutableModel<BuyRoom>) => MutableModel<BuyRoom> | void): BuyRoom;
+export declare const OrderRoom: (new (init: ModelInit<OrderRoom>) => OrderRoom) & {
+  copyOf(source: OrderRoom, mutator: (draft: MutableModel<OrderRoom>) => MutableModel<OrderRoom> | void): OrderRoom;
 }
 
 type EagerProduct = {
@@ -105,9 +61,9 @@ type EagerProduct = {
   readonly type?: string | null;
   readonly price?: DurationPrice | null;
   readonly buycount?: number | null;
-  readonly likecount?: number | null;
-  readonly buyroomID?: string | null;
-  readonly likerooms?: (LikeRoomProduct | null)[] | null;
+  readonly cartCount?: number | null;
+  readonly CartRooms?: (ProductCartRoom | null)[] | null;
+  readonly OrderRooms?: (ProductOrderRoom | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -123,9 +79,9 @@ type LazyProduct = {
   readonly type?: string | null;
   readonly price?: DurationPrice | null;
   readonly buycount?: number | null;
-  readonly likecount?: number | null;
-  readonly buyroomID?: string | null;
-  readonly likerooms: AsyncCollection<LikeRoomProduct>;
+  readonly cartCount?: number | null;
+  readonly CartRooms: AsyncCollection<ProductCartRoom>;
+  readonly OrderRooms: AsyncCollection<ProductOrderRoom>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -136,36 +92,82 @@ export declare const Product: (new (init: ModelInit<Product>) => Product) & {
   copyOf(source: Product, mutator: (draft: MutableModel<Product>) => MutableModel<Product> | void): Product;
 }
 
-type EagerLikeRoom = {
+type EagerCartRoom = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<LikeRoom, 'id'>;
+    identifier: ManagedIdentifier<CartRoom, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly productLike?: (LikeRoomProduct | null)[] | null;
-  readonly users?: (LikeRoomUser | null)[] | null;
   readonly number?: string | null;
+  readonly products?: (ProductCartRoom | null)[] | null;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyLikeRoom = {
+type LazyCartRoom = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<LikeRoom, 'id'>;
+    identifier: ManagedIdentifier<CartRoom, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly productLike: AsyncCollection<LikeRoomProduct>;
-  readonly users: AsyncCollection<LikeRoomUser>;
   readonly number?: string | null;
+  readonly products: AsyncCollection<ProductCartRoom>;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type LikeRoom = LazyLoading extends LazyLoadingDisabled ? EagerLikeRoom : LazyLikeRoom
+export declare type CartRoom = LazyLoading extends LazyLoadingDisabled ? EagerCartRoom : LazyCartRoom
 
-export declare const LikeRoom: (new (init: ModelInit<LikeRoom>) => LikeRoom) & {
-  copyOf(source: LikeRoom, mutator: (draft: MutableModel<LikeRoom>) => MutableModel<LikeRoom> | void): LikeRoom;
+export declare const CartRoom: (new (init: ModelInit<CartRoom>) => CartRoom) & {
+  copyOf(source: CartRoom, mutator: (draft: MutableModel<CartRoom>) => MutableModel<CartRoom> | void): CartRoom;
+}
+
+type EagerAccount = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Account, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly mail?: string | null;
+  readonly passe?: string | null;
+  readonly profil?: string | null;
+  readonly endDateAccount?: string | null;
+  readonly endDateProfil?: string | null;
+  readonly pin?: string | null;
+  readonly free?: boolean | null;
+  readonly service?: string | null;
+  readonly User?: User | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly accountUserId?: string | null;
+}
+
+type LazyAccount = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Account, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly mail?: string | null;
+  readonly passe?: string | null;
+  readonly profil?: string | null;
+  readonly endDateAccount?: string | null;
+  readonly endDateProfil?: string | null;
+  readonly pin?: string | null;
+  readonly free?: boolean | null;
+  readonly service?: string | null;
+  readonly User: AsyncItem<User | undefined>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly accountUserId?: string | null;
+}
+
+export declare type Account = LazyLoading extends LazyLoadingDisabled ? EagerAccount : LazyAccount
+
+export declare const Account: (new (init: ModelInit<Account>) => Account) & {
+  copyOf(source: Account, mutator: (draft: MutableModel<Account>) => MutableModel<Account> | void): Account;
 }
 
 type EagerUser = {
@@ -176,15 +178,12 @@ type EagerUser = {
   readonly id: string;
   readonly FamilyName?: string | null;
   readonly LastName?: string | null;
-  readonly phoneNumber?: string | null;
   readonly city?: string | null;
   readonly mail?: string | null;
-  readonly Accounts?: (Account | null)[] | null;
-  readonly BuyRooms?: (UserBuyRoom | null)[] | null;
-  readonly staff?: boolean | null;
   readonly birthdate?: string | null;
-  readonly likeroomID?: string | null;
-  readonly likerooms?: (LikeRoomUser | null)[] | null;
+  readonly staff?: boolean | null;
+  readonly CartRooms?: (CartRoom | null)[] | null;
+  readonly OrderRooms?: (OrderRoom | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -197,15 +196,12 @@ type LazyUser = {
   readonly id: string;
   readonly FamilyName?: string | null;
   readonly LastName?: string | null;
-  readonly phoneNumber?: string | null;
   readonly city?: string | null;
   readonly mail?: string | null;
-  readonly Accounts: AsyncCollection<Account>;
-  readonly BuyRooms: AsyncCollection<UserBuyRoom>;
-  readonly staff?: boolean | null;
   readonly birthdate?: string | null;
-  readonly likeroomID?: string | null;
-  readonly likerooms: AsyncCollection<LikeRoomUser>;
+  readonly staff?: boolean | null;
+  readonly CartRooms: AsyncCollection<CartRoom>;
+  readonly OrderRooms: AsyncCollection<OrderRoom>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -216,104 +212,70 @@ export declare const User: (new (init: ModelInit<User>) => User) & {
   copyOf(source: User, mutator: (draft: MutableModel<User>) => MutableModel<User> | void): User;
 }
 
-type EagerUserBuyRoom = {
+type EagerProductOrderRoom = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<UserBuyRoom, 'id'>;
+    identifier: ManagedIdentifier<ProductOrderRoom, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly buyRoomId?: string | null;
-  readonly userId?: string | null;
-  readonly buyRoom: BuyRoom;
-  readonly user: User;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-type LazyUserBuyRoom = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<UserBuyRoom, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly buyRoomId?: string | null;
-  readonly userId?: string | null;
-  readonly buyRoom: AsyncItem<BuyRoom>;
-  readonly user: AsyncItem<User>;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-export declare type UserBuyRoom = LazyLoading extends LazyLoadingDisabled ? EagerUserBuyRoom : LazyUserBuyRoom
-
-export declare const UserBuyRoom: (new (init: ModelInit<UserBuyRoom>) => UserBuyRoom) & {
-  copyOf(source: UserBuyRoom, mutator: (draft: MutableModel<UserBuyRoom>) => MutableModel<UserBuyRoom> | void): UserBuyRoom;
-}
-
-type EagerLikeRoomProduct = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<LikeRoomProduct, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
+  readonly orderRoomId?: string | null;
   readonly productId?: string | null;
-  readonly likeRoomId?: string | null;
+  readonly orderRoom: OrderRoom;
   readonly product: Product;
-  readonly likeRoom: LikeRoom;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyLikeRoomProduct = {
+type LazyProductOrderRoom = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<LikeRoomProduct, 'id'>;
+    identifier: ManagedIdentifier<ProductOrderRoom, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly orderRoomId?: string | null;
+  readonly productId?: string | null;
+  readonly orderRoom: AsyncItem<OrderRoom>;
+  readonly product: AsyncItem<Product>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type ProductOrderRoom = LazyLoading extends LazyLoadingDisabled ? EagerProductOrderRoom : LazyProductOrderRoom
+
+export declare const ProductOrderRoom: (new (init: ModelInit<ProductOrderRoom>) => ProductOrderRoom) & {
+  copyOf(source: ProductOrderRoom, mutator: (draft: MutableModel<ProductOrderRoom>) => MutableModel<ProductOrderRoom> | void): ProductOrderRoom;
+}
+
+type EagerProductCartRoom = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ProductCartRoom, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
   readonly productId?: string | null;
-  readonly likeRoomId?: string | null;
+  readonly cartRoomId?: string | null;
+  readonly product: Product;
+  readonly cartRoom: CartRoom;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyProductCartRoom = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ProductCartRoom, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly productId?: string | null;
+  readonly cartRoomId?: string | null;
   readonly product: AsyncItem<Product>;
-  readonly likeRoom: AsyncItem<LikeRoom>;
+  readonly cartRoom: AsyncItem<CartRoom>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type LikeRoomProduct = LazyLoading extends LazyLoadingDisabled ? EagerLikeRoomProduct : LazyLikeRoomProduct
+export declare type ProductCartRoom = LazyLoading extends LazyLoadingDisabled ? EagerProductCartRoom : LazyProductCartRoom
 
-export declare const LikeRoomProduct: (new (init: ModelInit<LikeRoomProduct>) => LikeRoomProduct) & {
-  copyOf(source: LikeRoomProduct, mutator: (draft: MutableModel<LikeRoomProduct>) => MutableModel<LikeRoomProduct> | void): LikeRoomProduct;
-}
-
-type EagerLikeRoomUser = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<LikeRoomUser, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly likeRoomId?: string | null;
-  readonly userId?: string | null;
-  readonly likeRoom: LikeRoom;
-  readonly user: User;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-type LazyLikeRoomUser = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<LikeRoomUser, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly likeRoomId?: string | null;
-  readonly userId?: string | null;
-  readonly likeRoom: AsyncItem<LikeRoom>;
-  readonly user: AsyncItem<User>;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-export declare type LikeRoomUser = LazyLoading extends LazyLoadingDisabled ? EagerLikeRoomUser : LazyLikeRoomUser
-
-export declare const LikeRoomUser: (new (init: ModelInit<LikeRoomUser>) => LikeRoomUser) & {
-  copyOf(source: LikeRoomUser, mutator: (draft: MutableModel<LikeRoomUser>) => MutableModel<LikeRoomUser> | void): LikeRoomUser;
+export declare const ProductCartRoom: (new (init: ModelInit<ProductCartRoom>) => ProductCartRoom) & {
+  copyOf(source: ProductCartRoom, mutator: (draft: MutableModel<ProductCartRoom>) => MutableModel<ProductCartRoom> | void): ProductCartRoom;
 }

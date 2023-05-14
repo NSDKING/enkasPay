@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  SwitchField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { User } from "../models";
 import { fetchByPath, validateField } from "./utils";
@@ -25,32 +31,34 @@ export default function UserCreateForm(props) {
   const initialValues = {
     FamilyName: "",
     LastName: "",
-    phoneNumber: "",
     city: "",
     mail: "",
+    birthdate: "",
+    staff: false,
   };
   const [FamilyName, setFamilyName] = React.useState(initialValues.FamilyName);
   const [LastName, setLastName] = React.useState(initialValues.LastName);
-  const [phoneNumber, setPhoneNumber] = React.useState(
-    initialValues.phoneNumber
-  );
   const [city, setCity] = React.useState(initialValues.city);
   const [mail, setMail] = React.useState(initialValues.mail);
+  const [birthdate, setBirthdate] = React.useState(initialValues.birthdate);
+  const [staff, setStaff] = React.useState(initialValues.staff);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setFamilyName(initialValues.FamilyName);
     setLastName(initialValues.LastName);
-    setPhoneNumber(initialValues.phoneNumber);
     setCity(initialValues.city);
     setMail(initialValues.mail);
+    setBirthdate(initialValues.birthdate);
+    setStaff(initialValues.staff);
     setErrors({});
   };
   const validations = {
     FamilyName: [],
     LastName: [],
-    phoneNumber: [],
     city: [],
     mail: [{ type: "Email" }],
+    birthdate: [],
+    staff: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -79,9 +87,10 @@ export default function UserCreateForm(props) {
         let modelFields = {
           FamilyName,
           LastName,
-          phoneNumber,
           city,
           mail,
+          birthdate,
+          staff,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -138,9 +147,10 @@ export default function UserCreateForm(props) {
             const modelFields = {
               FamilyName: value,
               LastName,
-              phoneNumber,
               city,
               mail,
+              birthdate,
+              staff,
             };
             const result = onChange(modelFields);
             value = result?.FamilyName ?? value;
@@ -166,9 +176,10 @@ export default function UserCreateForm(props) {
             const modelFields = {
               FamilyName,
               LastName: value,
-              phoneNumber,
               city,
               mail,
+              birthdate,
+              staff,
             };
             const result = onChange(modelFields);
             value = result?.LastName ?? value;
@@ -184,34 +195,6 @@ export default function UserCreateForm(props) {
         {...getOverrideProps(overrides, "LastName")}
       ></TextField>
       <TextField
-        label="Phone number"
-        isRequired={false}
-        isReadOnly={false}
-        value={phoneNumber}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              FamilyName,
-              LastName,
-              phoneNumber: value,
-              city,
-              mail,
-            };
-            const result = onChange(modelFields);
-            value = result?.phoneNumber ?? value;
-          }
-          if (errors.phoneNumber?.hasError) {
-            runValidationTasks("phoneNumber", value);
-          }
-          setPhoneNumber(value);
-        }}
-        onBlur={() => runValidationTasks("phoneNumber", phoneNumber)}
-        errorMessage={errors.phoneNumber?.errorMessage}
-        hasError={errors.phoneNumber?.hasError}
-        {...getOverrideProps(overrides, "phoneNumber")}
-      ></TextField>
-      <TextField
         label="City"
         isRequired={false}
         isReadOnly={false}
@@ -222,9 +205,10 @@ export default function UserCreateForm(props) {
             const modelFields = {
               FamilyName,
               LastName,
-              phoneNumber,
               city: value,
               mail,
+              birthdate,
+              staff,
             };
             const result = onChange(modelFields);
             value = result?.city ?? value;
@@ -250,9 +234,10 @@ export default function UserCreateForm(props) {
             const modelFields = {
               FamilyName,
               LastName,
-              phoneNumber,
               city,
               mail: value,
+              birthdate,
+              staff,
             };
             const result = onChange(modelFields);
             value = result?.mail ?? value;
@@ -267,6 +252,65 @@ export default function UserCreateForm(props) {
         hasError={errors.mail?.hasError}
         {...getOverrideProps(overrides, "mail")}
       ></TextField>
+      <TextField
+        label="Birthdate"
+        isRequired={false}
+        isReadOnly={false}
+        type="date"
+        value={birthdate}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              FamilyName,
+              LastName,
+              city,
+              mail,
+              birthdate: value,
+              staff,
+            };
+            const result = onChange(modelFields);
+            value = result?.birthdate ?? value;
+          }
+          if (errors.birthdate?.hasError) {
+            runValidationTasks("birthdate", value);
+          }
+          setBirthdate(value);
+        }}
+        onBlur={() => runValidationTasks("birthdate", birthdate)}
+        errorMessage={errors.birthdate?.errorMessage}
+        hasError={errors.birthdate?.hasError}
+        {...getOverrideProps(overrides, "birthdate")}
+      ></TextField>
+      <SwitchField
+        label="Staff"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={staff}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              FamilyName,
+              LastName,
+              city,
+              mail,
+              birthdate,
+              staff: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.staff ?? value;
+          }
+          if (errors.staff?.hasError) {
+            runValidationTasks("staff", value);
+          }
+          setStaff(value);
+        }}
+        onBlur={() => runValidationTasks("staff", staff)}
+        errorMessage={errors.staff?.errorMessage}
+        hasError={errors.staff?.hasError}
+        {...getOverrideProps(overrides, "staff")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

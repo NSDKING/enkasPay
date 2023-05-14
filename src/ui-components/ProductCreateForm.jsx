@@ -27,20 +27,20 @@ export default function ProductCreateForm(props) {
     image: "",
     type: "",
     buycount: "",
-    likecount: "",
+    cartCount: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [image, setImage] = React.useState(initialValues.image);
   const [type, setType] = React.useState(initialValues.type);
   const [buycount, setBuycount] = React.useState(initialValues.buycount);
-  const [likecount, setLikecount] = React.useState(initialValues.likecount);
+  const [cartCount, setCartCount] = React.useState(initialValues.cartCount);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setImage(initialValues.image);
     setType(initialValues.type);
     setBuycount(initialValues.buycount);
-    setLikecount(initialValues.likecount);
+    setCartCount(initialValues.cartCount);
     setErrors({});
   };
   const validations = {
@@ -48,7 +48,7 @@ export default function ProductCreateForm(props) {
     image: [],
     type: [],
     buycount: [],
-    likecount: [],
+    cartCount: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -79,7 +79,7 @@ export default function ProductCreateForm(props) {
           image,
           type,
           buycount,
-          likecount,
+          cartCount,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -138,7 +138,7 @@ export default function ProductCreateForm(props) {
               image,
               type,
               buycount,
-              likecount,
+              cartCount,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -166,7 +166,7 @@ export default function ProductCreateForm(props) {
               image: value,
               type,
               buycount,
-              likecount,
+              cartCount,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -194,7 +194,7 @@ export default function ProductCreateForm(props) {
               image,
               type: value,
               buycount,
-              likecount,
+              cartCount,
             };
             const result = onChange(modelFields);
             value = result?.type ?? value;
@@ -226,7 +226,7 @@ export default function ProductCreateForm(props) {
               image,
               type,
               buycount: value,
-              likecount,
+              cartCount,
             };
             const result = onChange(modelFields);
             value = result?.buycount ?? value;
@@ -242,12 +242,12 @@ export default function ProductCreateForm(props) {
         {...getOverrideProps(overrides, "buycount")}
       ></TextField>
       <TextField
-        label="Likecount"
+        label="Cart count"
         isRequired={false}
         isReadOnly={false}
         type="number"
         step="any"
-        value={likecount}
+        value={cartCount}
         onChange={(e) => {
           let value = isNaN(parseInt(e.target.value))
             ? e.target.value
@@ -258,20 +258,20 @@ export default function ProductCreateForm(props) {
               image,
               type,
               buycount,
-              likecount: value,
+              cartCount: value,
             };
             const result = onChange(modelFields);
-            value = result?.likecount ?? value;
+            value = result?.cartCount ?? value;
           }
-          if (errors.likecount?.hasError) {
-            runValidationTasks("likecount", value);
+          if (errors.cartCount?.hasError) {
+            runValidationTasks("cartCount", value);
           }
-          setLikecount(value);
+          setCartCount(value);
         }}
-        onBlur={() => runValidationTasks("likecount", likecount)}
-        errorMessage={errors.likecount?.errorMessage}
-        hasError={errors.likecount?.hasError}
-        {...getOverrideProps(overrides, "likecount")}
+        onBlur={() => runValidationTasks("cartCount", cartCount)}
+        errorMessage={errors.cartCount?.errorMessage}
+        hasError={errors.cartCount?.hasError}
+        {...getOverrideProps(overrides, "cartCount")}
       ></TextField>
       <Flex
         justifyContent="space-between"
