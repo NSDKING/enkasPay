@@ -1,89 +1,5 @@
 export const schema = {
     "models": {
-        "OrderRoom": {
-            "name": "OrderRoom",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "products": {
-                    "name": "products",
-                    "isArray": true,
-                    "type": {
-                        "model": "ProductOrderRoom"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "orderRoom"
-                        ]
-                    }
-                },
-                "userID": {
-                    "name": "userID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "OrderRooms",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byUser",
-                        "fields": [
-                            "userID"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
         "Product": {
             "name": "Product",
             "fields": {
@@ -138,11 +54,11 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "CartRooms": {
-                    "name": "CartRooms",
+                "OrderRooms": {
+                    "name": "OrderRooms",
                     "isArray": true,
                     "type": {
-                        "model": "ProductCartRoom"
+                        "model": "ProductOrderRoom"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -154,11 +70,11 @@ export const schema = {
                         ]
                     }
                 },
-                "OrderRooms": {
-                    "name": "OrderRooms",
+                "CartRooms": {
+                    "name": "CartRooms",
                     "isArray": true,
                     "type": {
-                        "model": "ProductOrderRoom"
+                        "model": "ProductCartRoom"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -212,6 +128,90 @@ export const schema = {
                 }
             ]
         },
+        "OrderRoom": {
+            "name": "OrderRoom",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "userID": {
+                    "name": "userID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "products": {
+                    "name": "products",
+                    "isArray": true,
+                    "type": {
+                        "model": "ProductOrderRoom"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "orderRoom"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "OrderRooms",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byUser",
+                        "fields": [
+                            "userID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "CartRoom": {
             "name": "CartRoom",
             "fields": {
@@ -229,6 +229,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "userID": {
+                    "name": "userID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "products": {
                     "name": "products",
                     "isArray": true,
@@ -244,13 +251,6 @@ export const schema = {
                             "cartRoom"
                         ]
                     }
-                },
-                "userID": {
-                    "name": "userID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -572,13 +572,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "orderRoomId": {
-                    "name": "orderRoomId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "productId": {
                     "name": "productId",
                     "isArray": false,
@@ -586,20 +579,12 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "orderRoom": {
-                    "name": "orderRoom",
+                "orderRoomId": {
+                    "name": "orderRoomId",
                     "isArray": false,
-                    "type": {
-                        "model": "OrderRoom"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetNames": [
-                            "orderRoomId"
-                        ]
-                    }
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
                 },
                 "product": {
                     "name": "product",
@@ -613,6 +598,21 @@ export const schema = {
                         "connectionType": "BELONGS_TO",
                         "targetNames": [
                             "productId"
+                        ]
+                    }
+                },
+                "orderRoom": {
+                    "name": "orderRoom",
+                    "isArray": false,
+                    "type": {
+                        "model": "OrderRoom"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "orderRoomId"
                         ]
                     }
                 },
@@ -643,18 +643,18 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byOrderRoom",
+                        "name": "byProduct",
                         "fields": [
-                            "orderRoomId"
+                            "productId"
                         ]
                     }
                 },
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byProduct",
+                        "name": "byOrderRoom",
                         "fields": [
-                            "productId"
+                            "orderRoomId"
                         ]
                     }
                 }

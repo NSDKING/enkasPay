@@ -4,11 +4,14 @@ import './css/home.css'
 import om from './img/om.png'
 import mtn from './img/mtn.png'
 import mobile from './img/mobileFronts.png'
+import { createProductsFromCSV } from './add';
+import { createProduct } from "../graphql/mutations";
 
 export default function HomePage() {
     return(
         <section className="homepage">
             <Navbar/>
+     
             <div className="marge"></div>
             <img src={mobile} width="100%" />
             <div className='midle-section'>

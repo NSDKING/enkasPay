@@ -64,7 +64,7 @@ function App() {
     try {
     
       const response= await API.graphql(graphqlOperation(listProducts));
- 
+      console.log(response)
       setArticles(response.data.listProducts.items)
    
     }catch(e){
@@ -79,9 +79,7 @@ function App() {
     () => {
       checkUser()
       getProduct()
-      console.log(price)
-      console.log(title)
-      console.log(type)
+ 
  
     },
     [],

@@ -1,7 +1,10 @@
 .storePage{
     width: 100%;
 }
-
+.testBUTT{
+    width: 50%;
+    height: 200px;
+}
 .storePage .img1{
     margin-top: 60px;
     width: 100%;

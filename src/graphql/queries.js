@@ -272,17 +272,12 @@ export const getProduct = /* GraphQL */ `
       }
       buycount
       likecount
-      buyroomID
       likerooms {
         nextToken
         startedAt
       }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
+ 
+      }
   }
 `;
 export const listProducts = /* GraphQL */ `
@@ -293,19 +288,19 @@ export const listProducts = /* GraphQL */ `
   ) {
     listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        buycount
-        buyroomID
-        id
-        image
-        likecount
-        likeroomID
         name
-        type
+        image
+        id
         price {
           one_month
-          three_month
           one_year
+          three_month
         }
+        type
+        cartCount
+        buycount
+        _deleted
+        _version
       }
     }
   }

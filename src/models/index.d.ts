@@ -20,36 +20,6 @@ export declare type DurationPrice = LazyLoading extends LazyLoadingDisabled ? Ea
 
 export declare const DurationPrice: (new (init: ModelInit<DurationPrice>) => DurationPrice)
 
-type EagerOrderRoom = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<OrderRoom, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly products?: (ProductOrderRoom | null)[] | null;
-  readonly userID: string;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-type LazyOrderRoom = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<OrderRoom, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly products: AsyncCollection<ProductOrderRoom>;
-  readonly userID: string;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-export declare type OrderRoom = LazyLoading extends LazyLoadingDisabled ? EagerOrderRoom : LazyOrderRoom
-
-export declare const OrderRoom: (new (init: ModelInit<OrderRoom>) => OrderRoom) & {
-  copyOf(source: OrderRoom, mutator: (draft: MutableModel<OrderRoom>) => MutableModel<OrderRoom> | void): OrderRoom;
-}
-
 type EagerProduct = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Product, 'id'>;
@@ -62,8 +32,8 @@ type EagerProduct = {
   readonly price?: DurationPrice | null;
   readonly buycount?: number | null;
   readonly cartCount?: number | null;
-  readonly CartRooms?: (ProductCartRoom | null)[] | null;
   readonly OrderRooms?: (ProductOrderRoom | null)[] | null;
+  readonly CartRooms?: (ProductCartRoom | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -80,8 +50,8 @@ type LazyProduct = {
   readonly price?: DurationPrice | null;
   readonly buycount?: number | null;
   readonly cartCount?: number | null;
-  readonly CartRooms: AsyncCollection<ProductCartRoom>;
   readonly OrderRooms: AsyncCollection<ProductOrderRoom>;
+  readonly CartRooms: AsyncCollection<ProductCartRoom>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -92,6 +62,36 @@ export declare const Product: (new (init: ModelInit<Product>) => Product) & {
   copyOf(source: Product, mutator: (draft: MutableModel<Product>) => MutableModel<Product> | void): Product;
 }
 
+type EagerOrderRoom = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<OrderRoom, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly userID: string;
+  readonly products?: (ProductOrderRoom | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyOrderRoom = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<OrderRoom, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly userID: string;
+  readonly products: AsyncCollection<ProductOrderRoom>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type OrderRoom = LazyLoading extends LazyLoadingDisabled ? EagerOrderRoom : LazyOrderRoom
+
+export declare const OrderRoom: (new (init: ModelInit<OrderRoom>) => OrderRoom) & {
+  copyOf(source: OrderRoom, mutator: (draft: MutableModel<OrderRoom>) => MutableModel<OrderRoom> | void): OrderRoom;
+}
+
 type EagerCartRoom = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<CartRoom, 'id'>;
@@ -99,8 +99,8 @@ type EagerCartRoom = {
   };
   readonly id: string;
   readonly number?: string | null;
-  readonly products?: (ProductCartRoom | null)[] | null;
   readonly userID: string;
+  readonly products?: (ProductCartRoom | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -112,8 +112,8 @@ type LazyCartRoom = {
   };
   readonly id: string;
   readonly number?: string | null;
-  readonly products: AsyncCollection<ProductCartRoom>;
   readonly userID: string;
+  readonly products: AsyncCollection<ProductCartRoom>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -218,10 +218,10 @@ type EagerProductOrderRoom = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly orderRoomId?: string | null;
   readonly productId?: string | null;
-  readonly orderRoom: OrderRoom;
+  readonly orderRoomId?: string | null;
   readonly product: Product;
+  readonly orderRoom: OrderRoom;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -232,10 +232,10 @@ type LazyProductOrderRoom = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly orderRoomId?: string | null;
   readonly productId?: string | null;
-  readonly orderRoom: AsyncItem<OrderRoom>;
+  readonly orderRoomId?: string | null;
   readonly product: AsyncItem<Product>;
+  readonly orderRoom: AsyncItem<OrderRoom>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

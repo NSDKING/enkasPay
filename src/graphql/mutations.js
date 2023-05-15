@@ -229,18 +229,8 @@ export const createProduct = /* GraphQL */ `
         three_month
         one_year
       }
-      buycount
-      likecount
-      buyroomID
-      likerooms {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
+ 
+   
     }
   }
 `;
@@ -289,15 +279,8 @@ export const deleteProduct = /* GraphQL */ `
         three_month
         one_year
       }
-      buycount
-      likecount
-      buyroomID
-      likerooms {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
+  
+  
       _version
       _deleted
       _lastChangedAt

@@ -1,14 +1,26 @@
+type Product @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  image: String
+  type: String
+  price: DurationPrice
+  buycount: Int
+  cartCount: Int
+  OrderRooms: [OrderRoom] @manyToMany(relationName: "ProductOrderRoom")
+  CartRooms: [CartRoom] @manyToMany(relationName: "ProductCartRoom")
+}
+
 type OrderRoom @model @auth(rules: [{allow: public}]) {
   id: ID!
-  products: [Product] @manyToMany(relationName: "ProductOrderRoom")
   userID: ID! @index(name: "byUser")
+  products: [Product] @manyToMany(relationName: "ProductOrderRoom")
 }
 
 type CartRoom @model @auth(rules: [{allow: public}]) {
   id: ID!
   number: String
-  products: [Product] @manyToMany(relationName: "ProductCartRoom")
   userID: ID! @index(name: "byUser")
+  products: [Product] @manyToMany(relationName: "ProductCartRoom")
 }
 
 type Account @model @auth(rules: [{allow: public}]) {
@@ -28,18 +40,6 @@ type DurationPrice {
   one_month: Int
   three_month: Int
   one_year: Int
-}
-
-type Product @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  name: String
-  image: String
-  type: String
-  price: DurationPrice
-  buycount: Int
-  cartCount: Int
-  CartRooms: [CartRoom] @manyToMany(relationName: "ProductCartRoom")
-  OrderRooms: [OrderRoom] @manyToMany(relationName: "ProductOrderRoom")
 }
 
 type User @model @auth(rules: [{allow: public}]) {

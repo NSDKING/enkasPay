@@ -14,11 +14,10 @@ import { useEffect, useState } from "react"
 import { API, Auth, graphqlOperation } from "aws-amplify"
 import { listProducts } from "../graphql/queries"
 import { getCommonLikeRoomWithUser } from "../services/LikeRoom"
-import { createLikeRoom, createLikeRoomProduct, updateLikeRoom } from "../graphql/mutations"
+import { createLikeRoom, createLikeRoomProduct, deleteProduct, updateLikeRoom } from "../graphql/mutations"
 
   
- 
-export default function StorePage({Articles, setArticles,setProdTitle,setProdPrice, setProdType, setProdCover, cart, updateCart}) {
+ export default function StorePage({Articles, setArticles,setProdTitle,setProdPrice, setProdType, setProdCover, cart, updateCart}) {
   const [loading, setLoading] = useState(false)
    function CoverImage(slug){
     if(slug == 'net'){
@@ -39,7 +38,7 @@ export default function StorePage({Articles, setArticles,setProdTitle,setProdPri
     if(slug == 'disney'){
         return disney
       }
-    if(slug == 'vpn'){
+    if(slug == 'VPN'){
         return vpn
       }
    
@@ -54,7 +53,22 @@ export default function StorePage({Articles, setArticles,setProdTitle,setProdPri
       try {
       
         const response= await API.graphql(graphqlOperation(listProducts));
-         setArticles(response.data.listProducts.items)
+        setArticles(response.data.listProducts.items)
+
+        for (let i = 0; i < response.data.listProducts.items.length; i++) {
+          if(response.data.listProducts.items[i].name==null){
+              console.log(response.data.listProducts.items[i].name)
+
+                const input = {
+                  id: response.data.listProducts.items[i].id
+                };
+
+                const result = await API.graphql(graphqlOperation(deleteProduct, { input }));
+                console.log(result)
+                console.log("c'est regle")
+          }
+        }
+
      
       }catch(e){
               console.log(e)
