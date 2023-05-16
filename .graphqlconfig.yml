@@ -1,6 +1,6 @@
 projects:
-  enkasSite:
-    schemaPath: amplify/backend/api/enkasSite/build/schema.graphql
+  enkasPay:
+    schemaPath: amplify/backend/api/enkasPay/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
@@ -13,6 +13,3 @@ projects:
         region: us-east-1
         apiId: null
         maxDepth: 2
-extensions:
-  amplify:
-    version: 3

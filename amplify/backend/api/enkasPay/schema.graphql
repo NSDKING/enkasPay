@@ -52,5 +52,6 @@ type User @model @auth(rules: [{allow: public}]) {
   staff: Boolean
   CartRooms: [CartRoom] @hasMany(indexName: "byUser", fields: ["id"])
   OrderRooms: [OrderRoom] @hasMany(indexName: "byUser", fields: ["id"])
+  phoneNumber: String
 }
  

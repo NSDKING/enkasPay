@@ -184,6 +184,7 @@ type EagerUser = {
   readonly staff?: boolean | null;
   readonly CartRooms?: (CartRoom | null)[] | null;
   readonly OrderRooms?: (OrderRoom | null)[] | null;
+  readonly phoneNumber?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -202,6 +203,7 @@ type LazyUser = {
   readonly staff?: boolean | null;
   readonly CartRooms: AsyncCollection<CartRoom>;
   readonly OrderRooms: AsyncCollection<OrderRoom>;
+  readonly phoneNumber?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

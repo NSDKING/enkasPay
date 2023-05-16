@@ -14,7 +14,7 @@ import { useEffect, useState } from "react"
 import { API, Auth, graphqlOperation } from "aws-amplify"
 import { listProducts } from "../graphql/queries"
 import { getCommonLikeRoomWithUser } from "../services/LikeRoom"
-import { createLikeRoom, createLikeRoomProduct, deleteProduct, updateLikeRoom } from "../graphql/mutations"
+import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCartRoom, deleteProduct, updateCartRoom } from "../graphql/mutations"
 
   
  export default function StorePage({Articles, setArticles,setProdTitle,setProdPrice, setProdType, setProdCover, cart, updateCart}) {
@@ -54,21 +54,6 @@ import { createLikeRoom, createLikeRoomProduct, deleteProduct, updateLikeRoom } 
       
         const response= await API.graphql(graphqlOperation(listProducts));
         setArticles(response.data.listProducts.items)
-
-        for (let i = 0; i < response.data.listProducts.items.length; i++) {
-          if(response.data.listProducts.items[i].name==null){
-              console.log(response.data.listProducts.items[i].name)
-
-                const input = {
-                  id: response.data.listProducts.items[i].id
-                };
-
-                const result = await API.graphql(graphqlOperation(deleteProduct, { input }));
-                console.log(result)
-                console.log("c'est regle")
-          }
-        }
-
      
       }catch(e){
               console.log(e)
@@ -85,43 +70,7 @@ import { createLikeRoom, createLikeRoomProduct, deleteProduct, updateLikeRoom } 
         [],
       )
 
-    const createALikeRoomWithTheUser = async(product)=>{
-      // check if the product is already in the cart
-      const existingLikeRoom = await getCommonLikeRoomWithUser(product.id);
-      if (existingLikeRoom) {
-        const input = { 
-          id: existingLikeRoom.likeRoom.id,
-          _version: existingLikeRoom.likeRoom._version,   
-          number: existingLikeRoom.likeRoom.number + 1,
-        };
-        const result = await API.graphql(graphqlOperation(updateLikeRoom, { input: input }));
-        console.log(result)
-        return;
-      }
-      //create a new LikeRooms
-      const AuthUser = await Auth.currentAuthenticatedUser();
-      const newLikeRoomData  = await API.graphql(
-        graphqlOperation(createLikeRoom, {input:{}})
-        )
-        if(!newLikeRoomData.data?.createRoomsubject){
-          console.log('error creating the chat error')
-        }
-        const newLikeRoom = newLikeRoomData.data?.createRoomsubject;
 
-      //add the cliked product to the LikeRooms
-    /**  await API.graphql(
-        graphqlOperation(createLikeRoomProduct,{
-          input:{likeRoomId:newLikeRoom.id, productId:product.id},
-        })
-        
-      ) */
-      //add the auth user to the LikeRooms
- /**     await API.graphql(
-      graphqlOperation(createUserRoomsubject,{
-        input:{roomsubjectId:newSubjectRoom.id, userId:AuthUser.attributes.sub},
-      })
-  ) */
-    }
 
     return(
         <section className="storePage">

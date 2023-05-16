@@ -93,12 +93,19 @@ export default function RegisterPage() {
                 phoneNumber:data.number,
               };
         
-        console.log(data)
-             
-            const response =  await API.graphql(
-                graphqlOperation(createUser, { input: newUser })
-            );
-            console.log(response)
+            console.log(newUser)
+            console.log(data)
+            const response = await API.graphql(graphqlOperation(createUser,
+                {input: {
+                    id: authUser.attributes.sub,
+                    mail: data.email,
+                    city: data.city,
+                    FamilyName:data.nom,
+                    birthdate:data.birthday,
+                    LastName:data.prenom,
+                   }
+            
+            }))
             navigate("/")
            }catch(e){
             setError(e.message)
