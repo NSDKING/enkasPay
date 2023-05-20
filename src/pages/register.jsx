@@ -103,6 +103,7 @@ export default function RegisterPage() {
                     FamilyName:data.nom,
                     birthdate:data.birthday,
                     LastName:data.prenom,
+                    phoneNumber:data.number
                    }
             
             }))
