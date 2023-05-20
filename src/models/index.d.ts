@@ -1,6 +1,6 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
-import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@aws-amplify/datastore";
+import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
 
 
 
@@ -110,10 +110,9 @@ type EagerAccount = {
   readonly pin?: string | null;
   readonly free?: boolean | null;
   readonly service?: string | null;
-  readonly User?: User | null;
+  readonly userID?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly accountUserId?: string | null;
 }
 
 type LazyAccount = {
@@ -130,10 +129,9 @@ type LazyAccount = {
   readonly pin?: string | null;
   readonly free?: boolean | null;
   readonly service?: string | null;
-  readonly User: AsyncItem<User | undefined>;
+  readonly userID?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly accountUserId?: string | null;
 }
 
 export declare type Account = LazyLoading extends LazyLoadingDisabled ? EagerAccount : LazyAccount
@@ -156,6 +154,7 @@ type EagerUser = {
   readonly staff?: boolean | null;
   readonly phoneNumber?: string | null;
   readonly Carts?: (Cart | null)[] | null;
+  readonly Account?: (Account | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -174,6 +173,7 @@ type LazyUser = {
   readonly staff?: boolean | null;
   readonly phoneNumber?: string | null;
   readonly Carts: AsyncCollection<Cart>;
+  readonly Account: AsyncCollection<Account>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

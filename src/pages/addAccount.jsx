@@ -66,10 +66,11 @@ export default function AddAccount() {
                 userID:data.user,
               };
         
-             
-            const response =  await API.graphql(
+              const response =  await API.graphql(
                 graphqlOperation(createAccount, { input: newAccount })
             );
+             console.log(data)
+            alert('ok')
           }catch(e){
             console.log(e)
          }
@@ -148,7 +149,7 @@ export default function AddAccount() {
 
                 <label for="pin">utilisateur :</label>
                 <Controller
-                        name="mySelect"
+                        name="user"
                         control={control}
                         defaultValue=""
                         render={({ field }) => (

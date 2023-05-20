@@ -283,23 +283,12 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "User": {
-                    "name": "User",
+                "userID": {
+                    "name": "userID",
                     "isArray": false,
-                    "type": {
-                        "model": "User"
-                    },
+                    "type": "ID",
                     "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": [
-                            "id"
-                        ],
-                        "targetNames": [
-                            "accountUserId"
-                        ]
-                    }
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -316,13 +305,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
-                },
-                "accountUserId": {
-                    "name": "accountUserId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
                 }
             },
             "syncable": true,
@@ -331,6 +313,15 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byUser",
+                        "fields": [
+                            "userID"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -425,6 +416,22 @@ export const schema = {
                         ]
                     }
                 },
+                "Account": {
+                    "name": "Account",
+                    "isArray": true,
+                    "type": {
+                        "model": "Account"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "userID"
+                        ]
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -498,5 +505,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.4",
-    "version": "57bafa58f4126f223ce030e30400bc97"
+    "version": "0df4b53db7b7dfa0413f97691aa1bde4"
 };

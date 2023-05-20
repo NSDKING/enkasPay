@@ -166,7 +166,6 @@ export const getProduct = /* GraphQL */ `
     }
   }
 `;
-
 export const listProducts = /* GraphQL */ `
   query ListProducts(
     $filter: ModelProductFilterInput
@@ -192,7 +191,6 @@ export const listProducts = /* GraphQL */ `
     }
   }
 `;
-
 export const syncProducts = /* GraphQL */ `
   query SyncProducts(
     $filter: ModelProductFilterInput
@@ -236,27 +234,12 @@ export const getAccount = /* GraphQL */ `
       pin
       free
       service
-      User {
-        id
-        FamilyName
-        LastName
-        city
-        mail
-        birthdate
-        staff
-        phoneNumber
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      accountUserId
     }
   }
 `;
@@ -277,12 +260,12 @@ export const listAccounts = /* GraphQL */ `
         pin
         free
         service
+        userID
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        accountUserId
       }
       nextToken
       startedAt
@@ -312,12 +295,49 @@ export const syncAccounts = /* GraphQL */ `
         pin
         free
         service
+        userID
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        accountUserId
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const accountsByUserID = /* GraphQL */ `
+  query AccountsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelAccountFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    accountsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        mail
+        passe
+        profil
+        endDateAccount
+        endDateProfil
+        pin
+        free
+        service
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
       startedAt
@@ -336,6 +356,10 @@ export const getUser = /* GraphQL */ `
       staff
       phoneNumber
       Carts {
+        nextToken
+        startedAt
+      }
+      Account {
         nextToken
         startedAt
       }

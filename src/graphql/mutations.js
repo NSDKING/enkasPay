@@ -163,27 +163,12 @@ export const createAccount = /* GraphQL */ `
       pin
       free
       service
-      User {
-        id
-        FamilyName
-        LastName
-        city
-        mail
-        birthdate
-        staff
-        phoneNumber
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      accountUserId
     }
   }
 `;
@@ -202,27 +187,12 @@ export const updateAccount = /* GraphQL */ `
       pin
       free
       service
-      User {
-        id
-        FamilyName
-        LastName
-        city
-        mail
-        birthdate
-        staff
-        phoneNumber
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      accountUserId
     }
   }
 `;
@@ -241,27 +211,12 @@ export const deleteAccount = /* GraphQL */ `
       pin
       free
       service
-      User {
-        id
-        FamilyName
-        LastName
-        city
-        mail
-        birthdate
-        staff
-        phoneNumber
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      accountUserId
     }
   }
 `;
@@ -280,6 +235,10 @@ export const createUser = /* GraphQL */ `
       staff
       phoneNumber
       Carts {
+        nextToken
+        startedAt
+      }
+      Account {
         nextToken
         startedAt
       }
@@ -309,6 +268,10 @@ export const updateUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Account {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -332,6 +295,10 @@ export const deleteUser = /* GraphQL */ `
       staff
       phoneNumber
       Carts {
+        nextToken
+        startedAt
+      }
+      Account {
         nextToken
         startedAt
       }

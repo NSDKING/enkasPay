@@ -142,27 +142,12 @@ export const onCreateAccount = /* GraphQL */ `
       pin
       free
       service
-      User {
-        id
-        FamilyName
-        LastName
-        city
-        mail
-        birthdate
-        staff
-        phoneNumber
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      accountUserId
     }
   }
 `;
@@ -178,27 +163,12 @@ export const onUpdateAccount = /* GraphQL */ `
       pin
       free
       service
-      User {
-        id
-        FamilyName
-        LastName
-        city
-        mail
-        birthdate
-        staff
-        phoneNumber
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      accountUserId
     }
   }
 `;
@@ -214,27 +184,12 @@ export const onDeleteAccount = /* GraphQL */ `
       pin
       free
       service
-      User {
-        id
-        FamilyName
-        LastName
-        city
-        mail
-        birthdate
-        staff
-        phoneNumber
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      accountUserId
     }
   }
 `;
@@ -250,6 +205,10 @@ export const onCreateUser = /* GraphQL */ `
       staff
       phoneNumber
       Carts {
+        nextToken
+        startedAt
+      }
+      Account {
         nextToken
         startedAt
       }
@@ -276,6 +235,10 @@ export const onUpdateUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Account {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -296,6 +259,10 @@ export const onDeleteUser = /* GraphQL */ `
       staff
       phoneNumber
       Carts {
+        nextToken
+        startedAt
+      }
+      Account {
         nextToken
         startedAt
       }

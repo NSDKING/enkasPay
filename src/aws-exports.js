@@ -26,7 +26,6 @@ const awsmobile = {
         "passwordPolicyCharacters": [
             "REQUIRES_LOWERCASE",
             "REQUIRES_NUMBERS",
-            "REQUIRES_SYMBOLS",
             "REQUIRES_UPPERCASE"
         ]
     },

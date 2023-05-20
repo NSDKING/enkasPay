@@ -28,7 +28,7 @@ type Account @model @auth(rules: [{allow: public}]) {
   pin: String
   free: Boolean
   service: String
-  User: User @hasOne
+  userID: ID @index(name: "byUser")
 }
 
 type DurationPrice {
@@ -47,5 +47,6 @@ type User @model @auth(rules: [{allow: public}]) {
   staff: Boolean
   phoneNumber: String
   Carts: [Cart] @hasMany(indexName: "byUser", fields: ["id"])
+  Account: [Account] @hasMany(indexName: "byUser", fields: ["id"])
 }
  
