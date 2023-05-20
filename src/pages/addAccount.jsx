@@ -64,6 +64,7 @@ export default function AddAccount() {
                 pin:data.pin,
                 numero:data.numero,
                 userID:data.user,
+                service:data.service,
                 free:false,
               };
         
@@ -164,6 +165,23 @@ export default function AddAccount() {
                         </select>
                         )}
                     />
+                
+                <label for="pin">service :</label>
+                <Controller
+                        name="service"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                        <select {...field} >
+                            <option value="">Select...</option>
+                            <option value="netflix">netflix</option>
+                            <option value="adn">adn</option>
+                            <option value="spotify">spotify</option>
+                            <option value="disney">disney</option>
+                        </select>
+                        )}
+                    />
+
 
                 <input type="submit" id="add-client-btn"  />
                 </form>
