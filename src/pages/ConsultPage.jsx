@@ -17,8 +17,8 @@ export default function ConsultPage() {
     const [userList, setUserList] = useState([])
     const [showModal, setShowModal] = useState(false);
     const {formState: {errors}, handleSubmit, register, control, setValue} = useForm();
-    const [theAccountData, setTheAccountData] = useState({})
- 
+    const [searchTerm, setSearchTerm] = useState('');
+
     
     const handleupdate = (data)=>{
         navigate("/updateAccount", { state: {  item: data } }) 
@@ -95,6 +95,13 @@ export default function ConsultPage() {
 
     }
 
+ 
+    
+      const filteredAccounts = Accounts.filter((account) => {
+        const username = handleName(account.userID).toLowerCase();
+        return username.includes(searchTerm.toLowerCase());
+      });
+
     return(
        <>
                 <section className='ConsultPage'>
@@ -107,6 +114,17 @@ export default function ConsultPage() {
             <Link to="/ManageAccount" style={linkStyle}>prendre</Link>
             <Link to="/ConsultPage" style={linkStyle}>consulter</Link>
         </nav>
+
+        <div className="searchContainer">
+      <input
+        type="text"
+        className="searchInput"
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+ 
+    </div>
 
         <div className="tableContainer">
             <table>
@@ -127,7 +145,7 @@ export default function ConsultPage() {
                         {loading ? (
                             <h2>Loading...</h2>
                         ) : (
-                            Accounts.filter(item =>{
+                            filteredAccounts.filter(item =>{
                                 if (item._deleted !=true) {
                                         return item;
                                         }     
