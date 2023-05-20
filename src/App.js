@@ -25,6 +25,7 @@ import CatPage5 from "./pages/CatPage5.jsx";
 import CatPage6 from "./pages/CatPage6.jsx";
 import Account from './pages/Account';
 import CartPage from './pages/cartPage';
+import UpdateAccount from './pages/updateAccount';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -293,6 +294,7 @@ function App() {
                 />}/>
                   
                   <Route path='/affiliation' Component={AffiliatePage}/>
+                  <Route path='/updateAccount' Component={UpdateAccount}/>
                   <Route path='/ManageAccount' Component={ManageAccount}/>
                   <Route path='/takeAccount' Component={takeAccount}/>
                   <Route path='/ConsultPage' Component={ConsultPage}/>

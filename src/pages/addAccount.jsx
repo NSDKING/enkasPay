@@ -64,13 +64,13 @@ export default function AddAccount() {
                 pin:data.pin,
                 numero:data.numero,
                 userID:data.user,
+                free:false,
               };
         
               const response =  await API.graphql(
                 graphqlOperation(createAccount, { input: newAccount })
             );
-             console.log(data)
-            alert('ok')
+             alert('ok')
           }catch(e){
             console.log(e)
          }
