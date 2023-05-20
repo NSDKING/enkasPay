@@ -1,6 +1,66 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createCart = /* GraphQL */ `
+  mutation CreateCart(
+    $input: CreateCartInput!
+    $condition: ModelCartConditionInput
+  ) {
+    createCart(input: $input, condition: $condition) {
+      id
+      number
+      productID
+      userID
+      price
+      nb_month
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateCart = /* GraphQL */ `
+  mutation UpdateCart(
+    $input: UpdateCartInput!
+    $condition: ModelCartConditionInput
+  ) {
+    updateCart(input: $input, condition: $condition) {
+      id
+      number
+      productID
+      userID
+      price
+      nb_month
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteCart = /* GraphQL */ `
+  mutation DeleteCart(
+    $input: DeleteCartInput!
+    $condition: ModelCartConditionInput
+  ) {
+    deleteCart(input: $input, condition: $condition) {
+      id
+      number
+      productID
+      userID
+      price
+      nb_month
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createProduct = /* GraphQL */ `
   mutation CreateProduct(
     $input: CreateProductInput!
@@ -18,11 +78,7 @@ export const createProduct = /* GraphQL */ `
       }
       buycount
       cartCount
-      OrderRooms {
-        nextToken
-        startedAt
-      }
-      CartRooms {
+      Carts {
         nextToken
         startedAt
       }
@@ -51,11 +107,7 @@ export const updateProduct = /* GraphQL */ `
       }
       buycount
       cartCount
-      OrderRooms {
-        nextToken
-        startedAt
-      }
-      CartRooms {
+      Carts {
         nextToken
         startedAt
       }
@@ -84,133 +136,7 @@ export const deleteProduct = /* GraphQL */ `
       }
       buycount
       cartCount
-      OrderRooms {
-        nextToken
-        startedAt
-      }
-      CartRooms {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const createOrderRoom = /* GraphQL */ `
-  mutation CreateOrderRoom(
-    $input: CreateOrderRoomInput!
-    $condition: ModelOrderRoomConditionInput
-  ) {
-    createOrderRoom(input: $input, condition: $condition) {
-      id
-      userID
-      products {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updateOrderRoom = /* GraphQL */ `
-  mutation UpdateOrderRoom(
-    $input: UpdateOrderRoomInput!
-    $condition: ModelOrderRoomConditionInput
-  ) {
-    updateOrderRoom(input: $input, condition: $condition) {
-      id
-      userID
-      products {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deleteOrderRoom = /* GraphQL */ `
-  mutation DeleteOrderRoom(
-    $input: DeleteOrderRoomInput!
-    $condition: ModelOrderRoomConditionInput
-  ) {
-    deleteOrderRoom(input: $input, condition: $condition) {
-      id
-      userID
-      products {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const createCartRoom = /* GraphQL */ `
-  mutation CreateCartRoom(
-    $input: CreateCartRoomInput!
-    $condition: ModelCartRoomConditionInput
-  ) {
-    createCartRoom(input: $input, condition: $condition) {
-      id
-      number
-      userID
-      products {
- 
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updateCartRoom = /* GraphQL */ `
-  mutation UpdateCartRoom(
-    $input: UpdateCartRoomInput!
-    $condition: ModelCartRoomConditionInput
-  ) {
-    updateCartRoom(input: $input, condition: $condition) {
-      id
-      number
-      userID
-      products {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deleteCartRoom = /* GraphQL */ `
-  mutation DeleteCartRoom(
-    $input: DeleteCartRoomInput!
-    $condition: ModelCartRoomConditionInput
-  ) {
-    deleteCartRoom(input: $input, condition: $condition) {
-      id
-      number
-      userID
-      products {
+      Carts {
         nextToken
         startedAt
       }
@@ -245,6 +171,7 @@ export const createAccount = /* GraphQL */ `
         mail
         birthdate
         staff
+        phoneNumber
         createdAt
         updatedAt
         _version
@@ -283,6 +210,7 @@ export const updateAccount = /* GraphQL */ `
         mail
         birthdate
         staff
+        phoneNumber
         createdAt
         updatedAt
         _version
@@ -321,6 +249,7 @@ export const deleteAccount = /* GraphQL */ `
         mail
         birthdate
         staff
+        phoneNumber
         createdAt
         updatedAt
         _version
@@ -336,7 +265,7 @@ export const deleteAccount = /* GraphQL */ `
     }
   }
 `;
-export const  createUser = /* GraphQL */ `
+export const createUser = /* GraphQL */ `
   mutation CreateUser(
     $input: CreateUserInput!
     $condition: ModelUserConditionInput
@@ -350,11 +279,7 @@ export const  createUser = /* GraphQL */ `
       birthdate
       staff
       phoneNumber
-      CartRooms {
-        nextToken
-        startedAt
-      }
-      OrderRooms {
+      Carts {
         nextToken
         startedAt
       }
@@ -379,11 +304,8 @@ export const updateUser = /* GraphQL */ `
       mail
       birthdate
       staff
-      CartRooms {
-        nextToken
-        startedAt
-      }
-      OrderRooms {
+      phoneNumber
+      Carts {
         nextToken
         startedAt
       }
@@ -408,250 +330,10 @@ export const deleteUser = /* GraphQL */ `
       mail
       birthdate
       staff
-      CartRooms {
+      phoneNumber
+      Carts {
         nextToken
         startedAt
-      }
-      OrderRooms {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const createProductOrderRoom = /* GraphQL */ `
-  mutation CreateProductOrderRoom(
-    $input: CreateProductOrderRoomInput!
-    $condition: ModelProductOrderRoomConditionInput
-  ) {
-    createProductOrderRoom(input: $input, condition: $condition) {
-      id
-      productId
-      orderRoomId
-      product {
-        id
-        name
-        image
-        type
-        buycount
-        cartCount
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      orderRoom {
-        id
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updateProductOrderRoom = /* GraphQL */ `
-  mutation UpdateProductOrderRoom(
-    $input: UpdateProductOrderRoomInput!
-    $condition: ModelProductOrderRoomConditionInput
-  ) {
-    updateProductOrderRoom(input: $input, condition: $condition) {
-      id
-      productId
-      orderRoomId
-      product {
-        id
-        name
-        image
-        type
-        buycount
-        cartCount
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      orderRoom {
-        id
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deleteProductOrderRoom = /* GraphQL */ `
-  mutation DeleteProductOrderRoom(
-    $input: DeleteProductOrderRoomInput!
-    $condition: ModelProductOrderRoomConditionInput
-  ) {
-    deleteProductOrderRoom(input: $input, condition: $condition) {
-      id
-      productId
-      orderRoomId
-      product {
-        id
-        name
-        image
-        type
-        buycount
-        cartCount
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      orderRoom {
-        id
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const createProductCartRoom = /* GraphQL */ `
-  mutation CreateProductCartRoom(
-    $input: CreateProductCartRoomInput!
-    $condition: ModelProductCartRoomConditionInput
-  ) {
-    createProductCartRoom(input: $input, condition: $condition) {
-      id
-      productId
-      cartRoomId
-      product {
-        id
-        name
-        image
-        type
-        buycount
-        cartCount
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      cartRoom {
-        id
-        number
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updateProductCartRoom = /* GraphQL */ `
-  mutation UpdateProductCartRoom(
-    $input: UpdateProductCartRoomInput!
-    $condition: ModelProductCartRoomConditionInput
-  ) {
-    updateProductCartRoom(input: $input, condition: $condition) {
-      id
-      productId
-      cartRoomId
-      product {
-        id
-        name
-        image
-        type
-        buycount
-        cartCount
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      cartRoom {
-        id
-        number
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deleteProductCartRoom = /* GraphQL */ `
-  mutation DeleteProductCartRoom(
-    $input: DeleteProductCartRoomInput!
-    $condition: ModelProductCartRoomConditionInput
-  ) {
-    deleteProductCartRoom(input: $input, condition: $condition) {
-      id
-      productId
-      cartRoomId
-      product {
-        id
-        name
-        image
-        type
-        buycount
-        cartCount
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      cartRoom {
-        id
-        number
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt

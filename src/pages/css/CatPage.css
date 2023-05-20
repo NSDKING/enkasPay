@@ -11,3 +11,8 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.cart-items-container{
+    align-items: center;
+    
+}

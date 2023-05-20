@@ -1,6 +1,6 @@
 import { API, graphqlOperation, Auth } from "aws-amplify";
  
-export const getCommonBuyRoomWithUser = async (userID) => {
+export const dkdk = async (userID) => {
   const authUser = await Auth.currentAuthenticatedUser();
 
   // get all chat room of user1

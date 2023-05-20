@@ -115,10 +115,7 @@ export default function Navbar() {
                             <p>comptes</p>
                             <img src={next} width="7%"/>
                         </div>
-                        <Link className="navbar-items-item" style={Styles} to="/store">
-                            <p>panier</p>
-                            <img src={next} width="7%"/>
-                        </Link>
+ 
                         <Link className="navbar-items-item" style={Styles} to="/bundle">
                             <p>bundle</p>
                             <img src={next} width="7%"/>

@@ -24,17 +24,25 @@ import CatPage4 from "./pages/CatPage4.jsx";
 import CatPage5 from "./pages/CatPage5.jsx";
 import CatPage6 from "./pages/CatPage6.jsx";
 import Account from './pages/Account';
+import CartPage from './pages/cartPage';
   
 function App() {
   const [user, setUser]= useState(null)
   const [staf, setStaf]= useState(false)
   const [loading, setLoading] = useState(false)
   const [Articles, setArticles] = useState([])
-  const [cart, updateCart] = useState([])
+  const [cart, setCart] = useState([])
+  const [cartProduct, setCartProduct] = useState([])
+
   const [title ,setProdTitle] = useState()
   const [price ,setProdPrice] = useState()
   const [cover ,setProdCover] = useState()
-   const [type ,setProdType] = useState()
+  const [type ,setProdType] = useState()
+  const [id ,setProdId] = useState()
+
+
+  
+ 
   
 
   const checkUser = async ()=>{
@@ -64,7 +72,6 @@ function App() {
     try {
     
       const response= await API.graphql(graphqlOperation(listProducts));
-      console.log(response)
       setArticles(response.data.listProducts.items)
    
     }catch(e){
@@ -79,6 +86,7 @@ function App() {
     () => {
       checkUser()
       getProduct()
+ 
  
  
     },
@@ -115,117 +123,132 @@ function App() {
                                                       cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
                                                       setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}   
+                                                       setProdId={setProdId}
                                                 /> 
                 }/>
                 <Route path='/affiliation' Component={AffiliatePage}/>
                 <Route path='/bundle' Component={BundlePage}/>
                 <Route path='/' element={<StorePage
-                                             Articles={Articles} 
-                                            setArticles={setArticles} 
-                                            title={title} 
-                                            cover={cover} 
-                                            type={type} 
-                                            price={price} 
-                                            setProdTitle={setProdTitle} 
-                                            setProdCover={setProdCover}                                
-                                            setProdPrice={setProdPrice} 
-                                            setProdType={setProdType} 
-                                            cart={cart}
-                                            updateCart={updateCart}
+                                                      Articles={Articles} 
+                                                      setArticles={setArticles} 
+                                                      title={title} 
+                                                      cover={cover} 
+                                                      type={type} 
+                                                      price={price} 
+                                                      id={id}
+                                                      setProdTitle={setProdTitle} 
+                                                      setProdCover={setProdCover}                                
+                                                      setProdPrice={setProdPrice} 
+                                                      setProdType={setProdType} 
+                                                      cart={cart}
+                                                          
+                                                      setProdId={setProdId}
                   />}
                   
                   />
   
                 <Route path="/categories2" element={<CatPage2 
                                                       Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
 
               <Route path="/categories1" element={<CatPage 
                                                       Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
             <Route path="/categories3" element={<CatPage3
                                                       Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
               <Route path="/categories4" element={<CatPage4 
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
             <Route path="/categories5" element={<CatPage5 
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
           <Route path="/categories6" element={<CatPage6 
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
                              
               
@@ -252,10 +275,22 @@ function App() {
                                             setProdCover={setProdCover}                                
                                             setProdPrice={setProdPrice} 
                                             setProdType={setProdType} 
-                                            cart={cart}
-                                            updateCart={updateCart}
+                           
                 />}/>
-                <Route path='/cart'/>
+                <Route path='/cart' Component={<CartPage
+                                            Articles={Articles} 
+                                            setArticles={setArticles} 
+                                            title={title} 
+                                            cover={cover} 
+                                            type={type} 
+                                            price={price} 
+                                            setProdTitle={setProdTitle} 
+                                            setProdCover={setProdCover}                                
+                                            setProdPrice={setProdPrice} 
+                                            setProdType={setProdType} 
+                                           
+
+                />}/>
                   
                   <Route path='/affiliation' Component={AffiliatePage}/>
                   <Route path='/ManageAccount' Component={ManageAccount}/>
@@ -276,94 +311,106 @@ function App() {
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}   
+                                                          
                                                 /> 
                 }/>
               
               <Route path="/categories2" element={<CatPage2 
                                                       Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
 
               <Route path="/categories1" element={<CatPage 
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
             <Route path="/categories3" element={<CatPage3
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
               <Route path="/categories4" element={<CatPage4 
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
             <Route path="/categories5" element={<CatPage5 
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
           <Route path="/categories6" element={<CatPage6 
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
                              
               
@@ -391,10 +438,12 @@ function App() {
                                             setProdPrice={setProdPrice} 
                                             setProdType={setProdType} 
                                             cart={cart}
-                                            updateCart={updateCart}
+                                             
                 />}/>
 
-                <Route path='/cart'/>
+                <Route path='/cart' element={<CartPage>
+
+                </CartPage>}/>
                 <Route path='/Account' Component={Account}/>
                 <Route path='/ProductPage' element={
                                                 <ProductPage
@@ -409,96 +458,108 @@ function App() {
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}   
+                                                          
                                                 /> 
                 }/>
                 <Route path='/affiliation' Component={AffiliatePage}/>
                 <Route path='/bundle' Component={BundlePage}/>
                 
                 <Route path="/categories2" element={<CatPage2 
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
 
               <Route path="/categories1" element={<CatPage 
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
             <Route path="/categories3" element={<CatPage3
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
               <Route path="/categories4" element={<CatPage4 
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
             <Route path="/categories5" element={<CatPage5 
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
           <Route path="/categories6" element={<CatPage6 
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles}
+                                                       Articles={Articles} 
+                                                      setArticles={setArticles} 
                                                       title={title} 
-                                                      cover={cover}
+                                                      cover={cover} 
                                                       type={type} 
                                                       price={price} 
+                                                      id={id}
                                                       setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}    
+                                                      setProdCover={setProdCover}                                
                                                       setProdPrice={setProdPrice} 
                                                       setProdType={setProdType} 
                                                       cart={cart}
-                                                      updateCart={updateCart}
+                                                          
+                                                      setProdId={setProdId}
                                                       />} exact />
                              
               
@@ -509,3 +570,24 @@ function App() {
 }
 
 export default App;
+
+
+
+export const listCartRooms = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
+        id
+        Carts {
+            items {
+              id
+              number
+              _version
+              productID
+              userID
+              _deleted
+            }
+          }   
+    }
+  }
+`;
+ 

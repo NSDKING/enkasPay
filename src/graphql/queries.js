@@ -1,6 +1,145 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getCart = /* GraphQL */ `
+  query GetCart($id: ID!) {
+    getCart(id: $id) {
+      id
+      number
+      productID
+      userID
+      price
+      nb_month
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listCarts = /* GraphQL */ `
+  query ListCarts(
+    $filter: ModelCartFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCarts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        number
+        productID
+        userID
+        price
+        nb_month
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncCarts = /* GraphQL */ `
+  query SyncCarts(
+    $filter: ModelCartFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncCarts(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        number
+        productID
+        userID
+        price
+        nb_month
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const cartsByProductID = /* GraphQL */ `
+  query CartsByProductID(
+    $productID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCartFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    cartsByProductID(
+      productID: $productID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        number
+        productID
+        userID
+        price
+        nb_month
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const cartsByUserID = /* GraphQL */ `
+  query CartsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCartFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    cartsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        number
+        productID
+        userID
+        price
+        nb_month
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getProduct = /* GraphQL */ `
   query GetProduct($id: ID!) {
     getProduct(id: $id) {
@@ -15,11 +154,7 @@ export const getProduct = /* GraphQL */ `
       }
       buycount
       cartCount
-      OrderRooms {
-        nextToken
-        startedAt
-      }
-      CartRooms {
+      Carts {
         nextToken
         startedAt
       }
@@ -89,198 +224,6 @@ export const syncProducts = /* GraphQL */ `
     }
   }
 `;
-export const getOrderRoom = /* GraphQL */ `
-  query GetOrderRoom($id: ID!) {
-    getOrderRoom(id: $id) {
-      id
-      userID
-      products {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listOrderRooms = /* GraphQL */ `
-  query ListOrderRooms(
-    $filter: ModelOrderRoomFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listOrderRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncOrderRooms = /* GraphQL */ `
-  query SyncOrderRooms(
-    $filter: ModelOrderRoomFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncOrderRooms(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const orderRoomsByUserID = /* GraphQL */ `
-  query OrderRoomsByUserID(
-    $userID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelOrderRoomFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    orderRoomsByUserID(
-      userID: $userID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getCartRoom = /* GraphQL */ `
-  query GetCartRoom($id: ID!) {
-    getCartRoom(id: $id) {
-      id
-      number
-      userID
-      products {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listCartRooms = /* GraphQL */ `
-  query ListCartRooms(
-    $filter: ModelCartRoomFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listCartRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        number
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncCartRooms = /* GraphQL */ `
-  query SyncCartRooms(
-    $filter: ModelCartRoomFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncCartRooms(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        number
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const cartRoomsByUserID = /* GraphQL */ `
-  query CartRoomsByUserID(
-    $userID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelCartRoomFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    cartRoomsByUserID(
-      userID: $userID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        number
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getAccount = /* GraphQL */ `
   query GetAccount($id: ID!) {
     getAccount(id: $id) {
@@ -301,6 +244,7 @@ export const getAccount = /* GraphQL */ `
         mail
         birthdate
         staff
+        phoneNumber
         createdAt
         updatedAt
         _version
@@ -390,11 +334,8 @@ export const getUser = /* GraphQL */ `
       mail
       birthdate
       staff
-      CartRooms {
-        nextToken
-        startedAt
-      }
-      OrderRooms {
+      phoneNumber
+      Carts {
         nextToken
         startedAt
       }
@@ -421,6 +362,7 @@ export const listUsers = /* GraphQL */ `
         mail
         birthdate
         staff
+        phoneNumber
         createdAt
         updatedAt
         _version
@@ -453,307 +395,7 @@ export const syncUsers = /* GraphQL */ `
         mail
         birthdate
         staff
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getProductOrderRoom = /* GraphQL */ `
-  query GetProductOrderRoom($id: ID!) {
-    getProductOrderRoom(id: $id) {
-      id
-      productId
-      orderRoomId
-      product {
-        id
-        name
-        image
-        type
-        buycount
-        cartCount
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      orderRoom {
-        id
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listProductOrderRooms = /* GraphQL */ `
-  query ListProductOrderRooms(
-    $filter: ModelProductOrderRoomFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listProductOrderRooms(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        productId
-        orderRoomId
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncProductOrderRooms = /* GraphQL */ `
-  query SyncProductOrderRooms(
-    $filter: ModelProductOrderRoomFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncProductOrderRooms(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        productId
-        orderRoomId
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const productOrderRoomsByProductId = /* GraphQL */ `
-  query ProductOrderRoomsByProductId(
-    $productId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelProductOrderRoomFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    productOrderRoomsByProductId(
-      productId: $productId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        productId
-        orderRoomId
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const productOrderRoomsByOrderRoomId = /* GraphQL */ `
-  query ProductOrderRoomsByOrderRoomId(
-    $orderRoomId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelProductOrderRoomFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    productOrderRoomsByOrderRoomId(
-      orderRoomId: $orderRoomId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        productId
-        orderRoomId
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getProductCartRoom = /* GraphQL */ `
-  query GetProductCartRoom($id: ID!) {
-    getProductCartRoom(id: $id) {
-      id
-      productId
-      cartRoomId
-      product {
-        id
-        name
-        image
-        type
-        buycount
-        cartCount
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      cartRoom {
-        id
-        number
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listProductCartRooms = /* GraphQL */ `
-  query ListProductCartRooms(
-    $filter: ModelProductCartRoomFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listProductCartRooms(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        productId
-        cartRoomId
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncProductCartRooms = /* GraphQL */ `
-  query SyncProductCartRooms(
-    $filter: ModelProductCartRoomFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncProductCartRooms(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        productId
-        cartRoomId
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const productCartRoomsByProductId = /* GraphQL */ `
-  query ProductCartRoomsByProductId(
-    $productId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelProductCartRoomFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    productCartRoomsByProductId(
-      productId: $productId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        productId
-        cartRoomId
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const productCartRoomsByCartRoomId = /* GraphQL */ `
-  query ProductCartRoomsByCartRoomId(
-    $cartRoomId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelProductCartRoomFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    productCartRoomsByCartRoomId(
-      cartRoomId: $cartRoomId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        productId
-        cartRoomId
+        phoneNumber
         createdAt
         updatedAt
         _version

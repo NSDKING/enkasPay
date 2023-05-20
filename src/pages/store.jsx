@@ -13,11 +13,10 @@ import net from './img/netim.png'
 import { useEffect, useState } from "react"
 import { API, Auth, graphqlOperation } from "aws-amplify"
 import { listProducts } from "../graphql/queries"
-import { getCommonLikeRoomWithUser } from "../services/LikeRoom"
 import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCartRoom, deleteProduct, updateCartRoom } from "../graphql/mutations"
 
   
- export default function StorePage({Articles, setArticles,setProdTitle,setProdPrice, setProdType, setProdCover, cart, updateCart}) {
+ export default function StorePage({Articles, setArticles,setProdId,setProdTitle,setProdPrice, setProdType, setProdCover}) {
   const [loading, setLoading] = useState(false)
    function CoverImage(slug){
     if(slug == 'net'){
@@ -89,17 +88,19 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
                 }     
             }).map((Article, index) =>(
               <Card
-              key={index}
-              cover={CoverImage(Article.image)}
-              title={Article.name}
-              price={Article.price}
-              type={Article.type}
-              setProdTitle={setProdTitle}
-              setProdPrice={setProdPrice}
-              setProdType={setProdType}
-              setProdCover={setProdCover}
-              cart={cart}
-              updateCart={updateCart}
+                        key={index}
+                        cover={CoverImage(Article.image)}
+                        title={Article.name}
+                        price={Article.price}
+                        type={Article.type}
+                        articles={Article}
+                        id={Article.id}
+                        setProdTitle={setProdTitle}
+                        setProdId={setProdId}
+                        setProdPrice={setProdPrice}
+                        setProdType={setProdType}
+                        setProdCover={setProdCover}
+ 
               />     
             ))
 
@@ -116,17 +117,19 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
                 }     
             }).map((Article, index) =>(
                 <Card
-              key={index}
-              cover={CoverImage(Article.image)}
-              title={Article.name}
-              price={Article.price}
-              type={Article.type}
-              setProdTitle={setProdTitle}
-              setProdPrice={setProdPrice}
-              setProdCover={setProdCover}
-              setProdType={setProdType}
-              cart={cart}
-              updateCart={updateCart}
+                        key={index}
+                        cover={CoverImage(Article.image)}
+                        title={Article.name}
+                        price={Article.price}
+                        type={Article.type}
+                        articles={Article}
+                        id={Article.id}
+                        setProdTitle={setProdTitle}
+                        setProdId={setProdId}
+                        setProdPrice={setProdPrice}
+                        setProdType={setProdType}
+                        setProdCover={setProdCover}
+              
               />     
             ))
 
@@ -144,18 +147,19 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
                 }     
             }).map((Article, index) =>(
                 <Card
-                    key={index}
-                    cover={CoverImage(Article.image)}
-                    title={Article.name}
-                    price={Article.price}
-                    type={Article.type}
-                    setProdTitle={setProdTitle}
-                    setProdPrice={setProdPrice}
-                    setProdCover={setProdCover}
-                    cart={cart}
-                    updateCart={updateCart}
-                    setProdType={setProdType}
-
+                        key={index}
+                        cover={CoverImage(Article.image)}
+                        title={Article.name}
+                        price={Article.price}
+                        type={Article.type}
+                        articles={Article}
+                        id={Article.id}
+                        setProdTitle={setProdTitle}
+                        setProdId={setProdId}
+                        setProdPrice={setProdPrice}
+                        setProdType={setProdType}
+                        setProdCover={setProdCover}
+                   
               />     
               
             ))
@@ -175,17 +179,19 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
                     }     
                 }).map((Article, index) =>(
                     <Card
-                key={index}
-                cover={CoverImage(Article.image)}
-                title={Article.name}
-                price={Article.price}
-                type={Article.type}
-                setProdTitle={setProdTitle}
-                setProdPrice={setProdPrice}
-                setProdCover={setProdCover}
-                setProdType={setProdType}
-                cart={cart}
-                updateCart={updateCart}
+                        key={index}
+                        cover={CoverImage(Article.image)}
+                        title={Article.name}
+                        price={Article.price}
+                        type={Article.type}
+                        articles={Article}
+                        id={Article.id}
+                        setProdTitle={setProdTitle}
+                        setProdId={setProdId}
+                        setProdPrice={setProdPrice}
+                        setProdType={setProdType}
+                        setProdCover={setProdCover}
+                
                 />     
                 ))
 
@@ -203,17 +209,19 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
                     }     
                 }).map((Article, index) =>(
                     <Card
-                key={index}
-                cover={CoverImage(Article.image)}
-                title={Article.name}
-                price={Article.price}
-                type={Article.type}
-                setProdTitle={setProdTitle}
-                setProdPrice={setProdPrice}
-                setProdCover={setProdCover}
-                setProdType={setProdType}
-                cart={cart}
-                updateCart={updateCart}
+                        key={index}
+                        cover={CoverImage(Article.image)}
+                        title={Article.name}
+                        price={Article.price}
+                        type={Article.type}
+                        articles={Article}
+                        id={Article.id}
+                        setProdTitle={setProdTitle}
+                        setProdId={setProdId}
+                        setProdPrice={setProdPrice}
+                        setProdType={setProdType}
+                        setProdCover={setProdCover}
+           
                 />     
                 ))
 
@@ -232,17 +240,19 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
                 }     
             }).map((Article, index) =>(
                 <Card
-            key={index}
-            cover={CoverImage(Article.image)}
-            title={Article.name}
-            price={Article.price}
-            type={Article.type}
-            setProdTitle={setProdTitle}
-            setProdPrice={setProdPrice}
-            setProdCover={setProdCover}
-            setProdType={setProdType}
-            cart={cart}
-            updateCart={updateCart}
+                        key={index}
+                        cover={CoverImage(Article.image)}
+                        title={Article.name}
+                        price={Article.price}
+                        type={Article.type}
+                        articles={Article}
+                        id={Article.id}
+                        setProdTitle={setProdTitle}
+                        setProdId={setProdId}
+                        setProdPrice={setProdPrice}
+                        setProdType={setProdType}
+                        setProdCover={setProdCover}
+       
             />     
             ))
 

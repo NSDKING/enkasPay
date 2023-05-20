@@ -1,42 +1,32 @@
 import { API, graphqlOperation, Auth } from "aws-amplify";
  
-export const getCommonLikeRoomWithUser = async (prodId) => {
+export const dd = async (prodId) => {
   const authUser = await Auth.currentAuthenticatedUser();
 
   // get all chat room of user1
   const response = await API.graphql(
-    graphqlOperation(listLikeRooms, { id: authUser.attributes.sub })
+    graphqlOperation(listCartRooms, { id: authUser.attributes.sub })
   );
 
   
-  const likeRooms = response.data?.getUser?.Roomsubjects?.items || [];
-  const likeRoom = likeRooms.find((likeRoomItem) => {
-    return (
-      likeRoomItem.likeRoom.users.items.length === 2 &&
-      likeRoomItem.likeRoom.users.items.some(
-        (userItem) => userItem.user.id === prodId
-      )
-    );
-  });
+  const cartRooms = response.data?.getUser?.cartRooms?.items || [];
+  console.log(cartRooms)
+  ;
 
-  return likeRoom;
-};
+ };
 
-export const listLikeRooms = /* GraphQL */ `
+export const listCartRooms = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
         id
-        LikeRooms {
+        CartRooms {
           items {
-            likeRoom {
-              id
-              number
-              _version
-              users {
-                items {
-                  user {
-                    id
-                  }
+            id
+            number
+            products {
+              items {
+                product {
+                  id
                 }
               }
             }

@@ -3,7 +3,9 @@ import "./css/productpage.css"
 import DefaultButton from '../components/DefaultButton'
 import Card from "../components/card"
 import warning from './img/warning.png'
-import logo from './img/logo.png'
+import { API, Auth, graphqlOperation } from 'aws-amplify';
+import { createCart, updateCart } from '../graphql/mutations';
+import { getCommonCartRoomWithUser } from '../services/CartRoom';
 import { useEffect, useState } from "react"
 
 export default function ProductPage({cover, title, price, type, setProdTitle, setProdPrice, setProdCover, setProdType, cart, updateCart}) {
@@ -12,6 +14,77 @@ export default function ProductPage({cover, title, price, type, setProdTitle, se
     const handleClick = () => {
         window.location.href = 'https://wa.me/237652737914';
       };
+
+      const createACartWithTheUser = async(product, price, nb_month)=>{
+        try{
+            //verify if the cart already exist
+            const existantCartRoom = await getCommonCartRoomWithUser(product.id)
+            if (existantCartRoom) {
+                //verify if the CartRoom is deleted or not
+                if(existantCartRoom._deleted ==true){
+                      
+            const authUser = await Auth.currentAuthenticatedUser({
+                bypassCache: true,
+              }); 
+            const newCartRoomData = await API.graphql(
+                graphqlOperation(createCart,{
+                    input:{
+                        number:1,
+                        productID: product.id,
+                        userID:authUser.attributes.sub,
+                        price:price,
+                        nb_month:nb_month,
+                    },
+                })
+                
+                )  
+            alert("ajouté au panier")
+ 
+
+                }else{
+                    
+                    const newNumber = existantCartRoom.number + 1
+                    const newPrice = existantCartRoom.number + 1
+                    const input = { 
+                        id: existantCartRoom.id,
+                        _version: existantCartRoom._version,   
+                        number: newNumber,
+                        price:price,
+                        nb_month:nb_month,
+                       };
+            
+                    const result = await API.graphql(graphqlOperation(updateCart, { input: input }));
+                    alert("ajouté au panier")
+ 
+                }
+                 return;
+              }
+
+            //try to create a cart
+  
+            const authUser = await Auth.currentAuthenticatedUser({
+                bypassCache: true,
+              }); 
+            const newCartRoomData = await API.graphql(
+                graphqlOperation(createCart,{
+                    input:{
+                        number:1,
+                        productID: product.id,
+                        userID:authUser.attributes.sub,
+                        price:price,
+                        nb_month:nb_month,
+                    },
+                })
+                
+                ) 
+             alert("ajouté au panier")
+ 
+        }
+        catch(e){
+            console.log(e)
+        }
+      
+      }
     
     return(
         <section className='productPage'>

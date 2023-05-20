@@ -1,3 +1,12 @@
+type Cart @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  number: Int
+  productID: ID @index(name: "byProduct")
+  userID: ID @index(name: "byUser")
+  price: Float
+  nb_month: String
+}
+
 type Product @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
@@ -6,21 +15,7 @@ type Product @model @auth(rules: [{allow: public}]) {
   price: DurationPrice
   buycount: Int
   cartCount: Int
-  OrderRooms: [OrderRoom] @manyToMany(relationName: "ProductOrderRoom")
-  CartRooms: [CartRoom] @manyToMany(relationName: "ProductCartRoom")
-}
-
-type OrderRoom @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  userID: ID! @index(name: "byUser")
-  products: [Product] @manyToMany(relationName: "ProductOrderRoom")
-}
-
-type CartRoom @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  number: String
-  userID: ID! @index(name: "byUser")
-  products: [Product] @manyToMany(relationName: "ProductCartRoom")
+  Carts: [Cart] @hasMany(indexName: "byProduct", fields: ["id"])
 }
 
 type Account @model @auth(rules: [{allow: public}]) {
@@ -50,8 +45,7 @@ type User @model @auth(rules: [{allow: public}]) {
   mail: AWSEmail
   birthdate: AWSDate
   staff: Boolean
-  CartRooms: [CartRoom] @hasMany(indexName: "byUser", fields: ["id"])
-  OrderRooms: [OrderRoom] @hasMany(indexName: "byUser", fields: ["id"])
   phoneNumber: String
+  Carts: [Cart] @hasMany(indexName: "byUser", fields: ["id"])
 }
  
