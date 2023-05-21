@@ -107,7 +107,7 @@ export default function RegisterPage() {
                    }
             
             }))
-            navigate("/")
+             navigate("/")
            }catch(e){
             setError(e.message)
          }

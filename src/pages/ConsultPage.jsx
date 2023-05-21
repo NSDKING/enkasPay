@@ -36,7 +36,7 @@ export default function ConsultPage() {
       
         const response= await API.graphql(graphqlOperation(listUsers));
         setUserList(response.data.listUsers.items)
-     
+        console.log(response)
       }catch(e){
               console.log(e)
     

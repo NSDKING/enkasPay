@@ -7,13 +7,40 @@ import { API, Auth, graphqlOperation } from 'aws-amplify';
 import { createCart, updateCart } from '../graphql/mutations';
 import { getCommonCartRoomWithUser } from '../services/CartRoom';
 import { useEffect, useState } from "react"
-
+import { useNavigate } from "react-router-dom"
+ 
 export default function ProductPage({cover, title, price, type, setProdTitle, setProdPrice, setProdCover, setProdType, cart, updateCart}) {
     const [priceClicked, setPriceClicked] = useState(price.one_month)
     const [selectedBox, setSelectedBox] = useState(0);
-    const handleClick = () => {
-        window.location.href = 'https://wa.me/237652737914';
-      };
+    const navigate = useNavigate();
+    const [user, setUser]= useState(null)
+
+    const checkUser = async ()=>{
+        try {
+            const authUser = await Auth.currentAuthenticatedUser({
+                bypassCache: true,
+              });
+         
+          setUser(authUser)
+      
+        } catch(e){
+            setUser(null);
+    
+        }
+     
+        }
+  
+        
+    const handleClick = async () => {
+        if(user===null){
+            alert("tu n'es pas connecté")
+            navigate('/login')
+        }else{
+            window.location.href = 'https://wa.me/237652737914';
+
+        }
+
+       };
 
       const createACartWithTheUser = async(product, price, nb_month)=>{
         try{
@@ -85,6 +112,14 @@ export default function ProductPage({cover, title, price, type, setProdTitle, se
         }
       
       }
+
+    useEffect(
+    () => {
+      checkUser()
+
+    },
+    [],
+  )
     
     return(
         <section className='productPage'>
