@@ -62,7 +62,7 @@ export default function TakeAccount() {
         try {
 
             const response= await API.graphql(graphqlOperation(listAccounts));
-             setAccount(response.data.listAccounts.items)
+            setAccount(response.data.listAccounts.items)
          }catch(e){
                 console.log(e)
 

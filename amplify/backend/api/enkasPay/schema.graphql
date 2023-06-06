@@ -1,7 +1,22 @@
+type OneYear @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  price: String
+}
+
+type ThreeMonth @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  price: String
+}
+
+type OneMonth @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  price: Int
+}
+
 type Cart @model @auth(rules: [{allow: public}]) {
   id: ID!
   number: Int
-  productID: ID @index(name: "byProduct")
+  productID: ID! @index(name: "byProduct")
   userID: ID @index(name: "byUser")
   price: Float
   nb_month: String
@@ -16,6 +31,9 @@ type Product @model @auth(rules: [{allow: public}]) {
   buycount: Int
   cartCount: Int
   Carts: [Cart] @hasMany(indexName: "byProduct", fields: ["id"])
+  OneMonth: OneMonth @hasOne
+  ThreeMonth: ThreeMonth @hasOne
+  OneYear: OneYear @hasOne
 }
 
 type Account @model @auth(rules: [{allow: public}]) {

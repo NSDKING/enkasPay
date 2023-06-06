@@ -1,6 +1,6 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
-import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
+import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@aws-amplify/datastore";
 
 
 
@@ -20,6 +20,90 @@ export declare type DurationPrice = LazyLoading extends LazyLoadingDisabled ? Ea
 
 export declare const DurationPrice: (new (init: ModelInit<DurationPrice>) => DurationPrice)
 
+type EagerOneYear = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<OneYear, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly price?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyOneYear = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<OneYear, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly price?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type OneYear = LazyLoading extends LazyLoadingDisabled ? EagerOneYear : LazyOneYear
+
+export declare const OneYear: (new (init: ModelInit<OneYear>) => OneYear) & {
+  copyOf(source: OneYear, mutator: (draft: MutableModel<OneYear>) => MutableModel<OneYear> | void): OneYear;
+}
+
+type EagerThreeMonth = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ThreeMonth, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly price?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyThreeMonth = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ThreeMonth, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly price?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type ThreeMonth = LazyLoading extends LazyLoadingDisabled ? EagerThreeMonth : LazyThreeMonth
+
+export declare const ThreeMonth: (new (init: ModelInit<ThreeMonth>) => ThreeMonth) & {
+  copyOf(source: ThreeMonth, mutator: (draft: MutableModel<ThreeMonth>) => MutableModel<ThreeMonth> | void): ThreeMonth;
+}
+
+type EagerOneMonth = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<OneMonth, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly price?: number | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyOneMonth = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<OneMonth, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly price?: number | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type OneMonth = LazyLoading extends LazyLoadingDisabled ? EagerOneMonth : LazyOneMonth
+
+export declare const OneMonth: (new (init: ModelInit<OneMonth>) => OneMonth) & {
+  copyOf(source: OneMonth, mutator: (draft: MutableModel<OneMonth>) => MutableModel<OneMonth> | void): OneMonth;
+}
+
 type EagerCart = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Cart, 'id'>;
@@ -27,7 +111,7 @@ type EagerCart = {
   };
   readonly id: string;
   readonly number?: number | null;
-  readonly productID?: string | null;
+  readonly productID: string;
   readonly userID?: string | null;
   readonly price?: number | null;
   readonly nb_month?: string | null;
@@ -42,7 +126,7 @@ type LazyCart = {
   };
   readonly id: string;
   readonly number?: number | null;
-  readonly productID?: string | null;
+  readonly productID: string;
   readonly userID?: string | null;
   readonly price?: number | null;
   readonly nb_month?: string | null;
@@ -69,8 +153,14 @@ type EagerProduct = {
   readonly buycount?: number | null;
   readonly cartCount?: number | null;
   readonly Carts?: (Cart | null)[] | null;
+  readonly OneMonth?: OneMonth | null;
+  readonly ThreeMonth?: ThreeMonth | null;
+  readonly OneYear?: OneYear | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+  readonly productOneMonthId?: string | null;
+  readonly productThreeMonthId?: string | null;
+  readonly productOneYearId?: string | null;
 }
 
 type LazyProduct = {
@@ -86,8 +176,14 @@ type LazyProduct = {
   readonly buycount?: number | null;
   readonly cartCount?: number | null;
   readonly Carts: AsyncCollection<Cart>;
+  readonly OneMonth: AsyncItem<OneMonth | undefined>;
+  readonly ThreeMonth: AsyncItem<ThreeMonth | undefined>;
+  readonly OneYear: AsyncItem<OneYear | undefined>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+  readonly productOneMonthId?: string | null;
+  readonly productThreeMonthId?: string | null;
+  readonly productOneYearId?: string | null;
 }
 
 export declare type Product = LazyLoading extends LazyLoadingDisabled ? EagerProduct : LazyProduct

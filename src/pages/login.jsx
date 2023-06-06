@@ -98,7 +98,7 @@ export default function LoginPage() {
 
                 <p className='p2'>vous n'avez pas de compte ?</p>
                 <DefaultButtonLink text={"S'inscrire"} bgcolor={" #f6dfe2"} textcolor={"#eb0625"} width={"90%"} height={"50px"} marginTop={"10px"} location={"/register"}/>
-        
+          
              
         </section>
     )   

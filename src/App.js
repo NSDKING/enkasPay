@@ -26,6 +26,9 @@ import CatPage6 from "./pages/CatPage6.jsx";
 import Account from './pages/Account';
 import CartPage from './pages/cartPage';
 import UpdateAccount from './pages/updateAccount';
+import ConfirmPage from './pages/ConfirmPage';
+import DataRegistration from './pages/DataRegistration';
+import ConfirmPageHelp from './pages/ConfirmPageHelp';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -251,6 +254,9 @@ function App() {
                                                           
                                                       setProdId={setProdId}
                                                       />} exact />
+              <Route path='/register-confirmation' Component={ConfirmPage}/>
+              <Route path='/register-confirmation-help' Component={ConfirmPageHelp}/>
+              <Route path='/data-registration' Component={DataRegistration}/>
                              
               
         </Routes>
@@ -414,6 +420,7 @@ function App() {
                                                           
                                                       setProdId={setProdId}
                                                       />} exact />
+            <Route path='/register-confirmation' Component={ConfirmPage}/>
                              
               
 
@@ -563,7 +570,7 @@ function App() {
                                                           
                                                       setProdId={setProdId}
                                                       />} exact />
-                             
+                              
               
         </Routes>
       </Router>

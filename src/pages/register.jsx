@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
     const [step, setStep] = useState(1);
-    const [useriD, setUserID] = useState(null);
     const [error, setError] = useState(false);
     const navigate = useNavigate();
     const {formState: {errors}, handleSubmit, register, watch} = useForm();
@@ -44,7 +43,10 @@ export default function RegisterPage() {
                 password:data.password,
             });
           
-            setStep(2)
+            navigate("/register-confirmation", { state: { 
+                password: data.password,
+                email:data.email,
+            } }) 
              
           }catch(e){
             setError(e.message)
@@ -141,9 +143,7 @@ export default function RegisterPage() {
                 }}>               
                 <img src={logo} width="90%"/>
             </div>    
-        
-            {
-                    step==1&&(  
+            
                     <form className='registerPage-body' 
                         onSubmit={handleSubmit((data=>{
                         onSingUpPressed(data)
@@ -185,159 +185,7 @@ export default function RegisterPage() {
                             />
     
                     </form>
-                 )
-                }
-                {
-                    step==3&&(  
-                    <form className='registerPage-body' 
-                        onSubmit={handleSubmit((data=>{
-                            setStep(4)
-                    }))}>
-                     
-                        <h2>créer un compte enkasPay</h2>
-
-                        <p className={error? 'text-error': 'none'} >{error}</p>
-
-                        <input
-                            className='form-input'
-                            {...register('nom', { required: 'ceci est obligatoire'})}
-                            placeholder="   saisissez votre nom de famille"
-                            
-                            />
-                            {errors.nom && <p className="text-error">{errors.nom?.message}</p>}
-
-
-                        <input
-                            className='form-input'
-
-                            {...register('prenom', { required: 'ceci est obligatoire'})}
-                            placeholder="   saisissez votre prenom"
-                            />
-                            {errors.prenom && <p className="text-error">{errors.prenom?.message}</p>}
-
-
-                        <DefaultButton 
-                            text={loading? 'Loading ....': 'continuer'} 
-                            bgcolor={"#eb0625"} 
-                            textcolor={"white"} 
-                            width={"100%"} 
-                            height={"50px"} 
-                            marginTop={"30px"} 
-                            WebkitBoxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} 
-                            MozBoxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} 
-                            boxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'}
-                            type={'submit'}
-                            />
-    
-                    </form>
-                 )
-                }
-                {
-                    step==2&&(
-                        <form className='registerPage-body' onSubmit={handleSubmit((data=>{
-                            onConfirmPressed(data)
-                        }))}> 
- 
-                            <h2>confirme ton email</h2>
-
-                            <p className={error? 'text-error': 'none'} >{error}</p>
-                        
-                        
-                            <input 
-                                className='form-input'
-
-                                    {...register('code', { required: 'ceci est obligatoire'})}
-                                    placeholder='  entre ton code de confirmation'
-                                />
-                            {errors.code && <p className="text-error">{errors.code?.message}</p>}
-                                
-                        
-                            <DefaultButton 
-                                text={"continuer"} 
-                                bgcolor={"#eb0625"} 
-                                textcolor={"white"} 
-                                width={"100%"} 
-                                height={"50px"} 
-                                marginTop={"30px"} 
-                                WebkitBoxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} 
-                                MozBoxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} 
-                                boxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'}
-                                type={'submit'}
-                                />
-
-                            <DefaultButton
-                                text={"renvoyer"} 
-                                bgcolor={" #f6dfe2"} 
-                                textcolor={"#eb0625"} 
-                                width={"90%"} 
-                                height={"50px"} 
-                                marginTop={"25px"} 
-                                location={"/login"}
-                                onPress={onResendPress}
-
-                                />
-
-
-                        </form>
-                    )  
-                }
-                {
-                    step==4&&(
-                        <form className='registerPage-body' onSubmit={
-                            handleSubmit((data=>{
-                                onRegisterData(data)
-                            }))
-                        }>
-                        
-                            <h2>créer un compte enkasPay</h2>
-                       
-                        <p className={error? 'text-error': 'none'} >{error}</p>
-
-
-                            <input 
-                                className='form-input'
-
-                                {...register('city', { required: 'ceci est obligatoire'})}
-                                placeholder='   saisissez votre ville de residence'
-                            />
-                            {errors.city && <p className="text-error">{errors.city?.message}</p>}
-
-                            <input 
-                                className='form-input'
-                                {...register('birthday', { required: 'saisi ta date de naissance'})}
-                                type="date"
-                                placeholder='   saisissez votre date de naissance'
-                            />
-                            {errors.birthday && <p className="text-error">{errors.birthday?.message}</p>}
-
-                            <input 
-                                className='form-input'
-                                {...register('number', { 
-                                    required: 'entre ton numero comme celui ci:+237693040500',
-                                    pattern: {
-                                                value: /^\+(?:[0-9]\s?){6,14}[0-9]$/i,
-                                                message: "entre ton numero comme celui ci:+237693040500"
-                                            }
-                                    })}
-                                placeholder='saisissez votre numero de telephone'
-                            />
-                            {errors.number && <p className="text-error">{errors.number?.message}</p>}
-
-                            <DefaultButton 
-                                text={"continuer"} 
-                                bgcolor={"#eb0625"} 
-                                textcolor={"white"} 
-                                width={"100%"} 
-                                height={"50px"} 
-                                marginTop={"30px"} 
-                                WebkitBoxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} 
-                                MozBoxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} 
-                                boxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'}
-                                />
-
-                        </form>
-                    )  
-                }
+                  
             <p className='p2'>vous avez un  compte ?</p>
             <DefaultButtonLink text={"connexion"} bgcolor={" #f6dfe2"} textcolor={"#eb0625"} width={"90%"} height={"50px"} marginTop={"10px"} location={"/login"}/>
         </section>
