@@ -10,6 +10,8 @@ import pv from "./img/prime.png"
 import disney from "./img/disney.png"
 import vpn from "./img/vpn.png"
 import net from './img/netim.png'
+import appmus from './img/appmus.png'
+import adn from './img/adn.png'
 import { useEffect, useState } from "react"
 import { API, Auth, graphqlOperation } from "aws-amplify"
 import { listProducts } from "../graphql/queries"
@@ -39,6 +41,15 @@ import { listProducts } from "../graphql/queries"
       }
     if(img == 'VPN'){
         return vpn
+      }
+      if(img == 'VPN'){
+        return vpn
+      }
+      if(img == 'appmus'){
+        return appmus
+      }
+      if(img == 'adn'){
+        return adn
       }
   }
   
@@ -197,31 +208,81 @@ import { listProducts } from "../graphql/queries"
 
     </section>
 
-    <h3>vpn</h3>
+        <h3>vpn</h3>
 
-<section className="BoxCard-mobile">
+    <section className="BoxCard-mobile">
 
-{  
-        Articles.filter(Article =>{
-        if (Article.name.toLowerCase().includes("vpn".toLowerCase())  ) {
-                return Article;
-                }     
-            }).map((Article, index) =>(
-                <Card
-                        key={index}
-                        cover={CoverImage(Article.image)}
-                        title={Article.name}
-                        OneMonth={Article.OneMonth.price}
-                        type={Article.type}                   
-                        slug={Article.slug}
-                   
-       
-            />     
-            ))
+    {  
+            Articles.filter(Article =>{
+            if (Article.name.toLowerCase().includes("vpn".toLowerCase())  ) {
+                    return Article;
+                    }     
+                }).map((Article, index) =>(
+                    <Card
+                            key={index}
+                            cover={CoverImage(Article.image)}
+                            title={Article.name}
+                            OneMonth={Article.OneMonth.price}
+                            type={Article.type}                   
+                            slug={Article.slug}
+                      
+          
+                />     
+                ))
 
-    }
+        }
 
-</section>
+    </section>
+        <h3>apple music</h3>
+
+    <section className="BoxCard-mobile">
+
+    {  
+            Articles.filter(Article =>{
+            if (Article.name.toLowerCase().includes("apple".toLowerCase())  ) {
+                    return Article;
+                    }     
+                }).map((Article, index) =>(
+                    <Card
+                            key={index}
+                            cover={CoverImage(Article.image)}
+                            title={Article.name}
+                            OneMonth={Article.OneMonth.price}
+                            type={Article.type}                   
+                            slug={Article.slug}
+                      
+          
+                />     
+                ))
+
+        }
+
+    </section>
+        <h3>vpn</h3>
+
+    <section className="BoxCard-mobile">
+
+    {  
+            Articles.filter(Article =>{
+            if (Article.name.toLowerCase().includes("adn".toLowerCase())  ) {
+                    return Article;
+                    }     
+                }).map((Article, index) =>(
+                    <Card
+                            key={index}
+                            cover={CoverImage(Article.image)}
+                            title={Article.name}
+                            OneMonth={Article.OneMonth.price}
+                            type={Article.type}                   
+                            slug={Article.slug}
+                      
+          
+                />     
+                ))
+
+        }
+
+    </section>
         </section>
     )
 

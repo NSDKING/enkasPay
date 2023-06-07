@@ -7,35 +7,45 @@ import xbox from "./img/xbox_card-removebg-preview.png"
 import pv from "./img/prime.png"
 import disney from "./img/disney.png"
 import vpn from "./img/vpn.png"
+import appmus from './img/appmus.png'
+import adn from './img/adn.png'
 import net from './img/netim.png'
 import { useEffect } from "react"
-function CatPage({Articles, setProdTitle, setProdPrice, setProdCover, setProdType,  cart, updateCart}) {
- 
-  function CoverImage(slug){
-    if(slug == 'net'){
+function CatPage({Articles, cart, updateCart}) {
+
+  function CoverImage(img){
+    if(img == 'net'){
       return net
     }
-    if(slug == 'pv'){
+    if(img == 'pv'){
       return pv
     }
-    if(slug == 'psn'){
+    if(img == 'psn'){
       return ps
     }
-    if(slug == 'xbox'){
+    if(img == 'xbox'){
       return xbox
     }
-    if(slug == 'spo'){
+    if(img == 'spo'){
       return spo
     }
-    if(slug == 'disney'){
+    if(img == 'disney'){
         return disney
       }
-    if(slug == 'vpn'){
+    if(img == 'VPN'){
         return vpn
       }
-   
-  
+      if(img == 'VPN'){
+        return vpn
+      }
+      if(img == 'appmus'){
+        return appmus
+      }
+      if(img == 'adn'){
+        return adn
+      }
   }
+  
   useEffect(() => {
     
    

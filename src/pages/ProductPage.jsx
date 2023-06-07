@@ -16,6 +16,9 @@ import pv from "./img/prime.png"
 import disney from "./img/disney.png"
 import vpn from "./img/vpn.png"
 import net from './img/netim.png'
+import appmus from './img/appmus.png'
+import adn from './img/adn.png'
+
 import { useParams } from 'react-router-dom';
 
 
@@ -51,6 +54,15 @@ export default function ProductPage({ cart, updateCart}) {
           }
         if(img == 'VPN'){
             return vpn
+          }
+          if(img == 'VPN'){
+            return vpn
+          }
+          if(img == 'appmus'){
+            return appmus
+          }
+          if(img == 'adn'){
+            return adn
           }
       }
       
