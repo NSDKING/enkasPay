@@ -10,6 +10,8 @@ export default function PasswordForgotPage() {
     const {formState: {errors}, handleSubmit, register, watch} = useForm();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false);
+
           
     const onSingUpPressed = async (data) =>{
         if(loading){
@@ -23,7 +25,8 @@ export default function PasswordForgotPage() {
 
              
          }catch(e){
-            console.log(e)
+             setError(e.message)
+
          }
         setLoading(false)
      }   
@@ -40,6 +43,8 @@ export default function PasswordForgotPage() {
                 <h2>
                     Réinitialisation du mot de passe
                 </h2>
+                <p className={error? 'text-error': 'none'} >{error}</p>
+
                 <p className='p1'>
                     Entrez l'<b>adresse e-mail</b> avec laquelle vous vous êtes inscrit. Nous allons vous envoyer un e-mail avec un lien pour réinitialiser votre mot de passe.
                 </p>
