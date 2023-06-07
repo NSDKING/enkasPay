@@ -26,7 +26,8 @@ type EagerOneYear = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly price?: string | null;
+  readonly name?: string | null;
+  readonly price?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -37,7 +38,8 @@ type LazyOneYear = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly price?: string | null;
+  readonly name?: string | null;
+  readonly price?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -54,7 +56,8 @@ type EagerThreeMonth = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly price?: string | null;
+  readonly name?: string | null;
+  readonly price?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -65,7 +68,8 @@ type LazyThreeMonth = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly price?: string | null;
+  readonly name?: string | null;
+  readonly price?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -82,6 +86,7 @@ type EagerOneMonth = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
+  readonly name?: string | null;
   readonly price?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -93,6 +98,7 @@ type LazyOneMonth = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
+  readonly name?: string | null;
   readonly price?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -156,6 +162,7 @@ type EagerProduct = {
   readonly OneMonth?: OneMonth | null;
   readonly ThreeMonth?: ThreeMonth | null;
   readonly OneYear?: OneYear | null;
+  readonly slug?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly productOneMonthId?: string | null;
@@ -179,6 +186,7 @@ type LazyProduct = {
   readonly OneMonth: AsyncItem<OneMonth | undefined>;
   readonly ThreeMonth: AsyncItem<ThreeMonth | undefined>;
   readonly OneYear: AsyncItem<OneYear | undefined>;
+  readonly slug?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly productOneMonthId?: string | null;

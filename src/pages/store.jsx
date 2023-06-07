@@ -13,36 +13,35 @@ import net from './img/netim.png'
 import { useEffect, useState } from "react"
 import { API, Auth, graphqlOperation } from "aws-amplify"
 import { listProducts } from "../graphql/queries"
-import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCartRoom, deleteProduct, updateCartRoom } from "../graphql/mutations"
-
+ 
   
  export default function StorePage({Articles, setArticles,setProdId,setProdTitle,setProdPrice, setProdType, setProdCover}) {
   const [loading, setLoading] = useState(false)
-   function CoverImage(slug){
-    if(slug == 'net'){
+
+   function CoverImage(img){
+    if(img == 'net'){
       return net
     }
-    if(slug == 'pv'){
+    if(img == 'pv'){
       return pv
     }
-    if(slug == 'psn'){
+    if(img == 'psn'){
       return ps
     }
-    if(slug == 'xbox'){
+    if(img == 'xbox'){
       return xbox
     }
-    if(slug == 'spo'){
+    if(img == 'spo'){
       return spo
     }
-    if(slug == 'disney'){
+    if(img == 'disney'){
         return disney
       }
-    if(slug == 'VPN'){
+    if(img == 'VPN'){
         return vpn
       }
-   
-  
   }
+  
     const getProduct = async()=>{
         if(loading){
           return;
@@ -65,6 +64,7 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
     useEffect(
         () => {
            getProduct()
+       
          },
         [],
       )
@@ -91,17 +91,11 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
                         key={index}
                         cover={CoverImage(Article.image)}
                         title={Article.name}
-                        price={Article.price}
-                        type={Article.type}
-                        articles={Article}
-                        id={Article.id}
-                        setProdTitle={setProdTitle}
-                        setProdId={setProdId}
-                        setProdPrice={setProdPrice}
-                        setProdType={setProdType}
-                        setProdCover={setProdCover}
- 
-              />     
+                        OneMonth={Article.OneMonth.price}
+                        type={Article.type}                   
+                        slug={Article.slug}
+                        Article={Article}
+                    />        
             ))
 
       }
@@ -116,21 +110,14 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
                   return Article;
                 }     
             }).map((Article, index) =>(
-                <Card
+              <Card
                         key={index}
                         cover={CoverImage(Article.image)}
                         title={Article.name}
-                        price={Article.price}
-                        type={Article.type}
-                        articles={Article}
-                        id={Article.id}
-                        setProdTitle={setProdTitle}
-                        setProdId={setProdId}
-                        setProdPrice={setProdPrice}
-                        setProdType={setProdType}
-                        setProdCover={setProdCover}
-              
-              />     
+                        OneMonth={Article.OneMonth.price}
+                        type={Article.type}                   
+                        slug={Article.slug}
+                    />      
             ))
 
       }
@@ -146,21 +133,14 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
                   return Article;
                 }     
             }).map((Article, index) =>(
-                <Card
+              <Card
                         key={index}
                         cover={CoverImage(Article.image)}
                         title={Article.name}
-                        price={Article.price}
-                        type={Article.type}
-                        articles={Article}
-                        id={Article.id}
-                        setProdTitle={setProdTitle}
-                        setProdId={setProdId}
-                        setProdPrice={setProdPrice}
-                        setProdType={setProdType}
-                        setProdCover={setProdCover}
-                   
-              />     
+                        OneMonth={Article.OneMonth.price}
+                        type={Article.type}                   
+                        slug={Article.slug}
+                    />      
               
             ))
 
@@ -178,21 +158,14 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
                     return Article;
                     }     
                 }).map((Article, index) =>(
-                    <Card
+                  <Card
                         key={index}
                         cover={CoverImage(Article.image)}
                         title={Article.name}
-                        price={Article.price}
-                        type={Article.type}
-                        articles={Article}
-                        id={Article.id}
-                        setProdTitle={setProdTitle}
-                        setProdId={setProdId}
-                        setProdPrice={setProdPrice}
-                        setProdType={setProdType}
-                        setProdCover={setProdCover}
-                
-                />     
+                        OneMonth={Article.OneMonth.price}
+                        type={Article.type}                   
+                        slug={Article.slug}
+                    />     
                 ))
 
         }
@@ -208,21 +181,16 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
                     return Article;
                     }     
                 }).map((Article, index) =>(
-                    <Card
+                  <Card
                         key={index}
                         cover={CoverImage(Article.image)}
                         title={Article.name}
-                        price={Article.price}
-                        type={Article.type}
-                        articles={Article}
-                        id={Article.id}
-                        setProdTitle={setProdTitle}
-                        setProdId={setProdId}
-                        setProdPrice={setProdPrice}
-                        setProdType={setProdType}
-                        setProdCover={setProdCover}
-           
-                />     
+                        OneMonth={Article.OneMonth.price}
+                        type={Article.type}                   
+                        slug={Article.slug}
+                   
+       
+            />      
                 ))
 
         }
@@ -243,15 +211,10 @@ import { createCartRoom, createLikeRoom, createLikeRoomProduct, createProductCar
                         key={index}
                         cover={CoverImage(Article.image)}
                         title={Article.name}
-                        price={Article.price}
-                        type={Article.type}
-                        articles={Article}
-                        id={Article.id}
-                        setProdTitle={setProdTitle}
-                        setProdId={setProdId}
-                        setProdPrice={setProdPrice}
-                        setProdType={setProdType}
-                        setProdCover={setProdCover}
+                        OneMonth={Article.OneMonth.price}
+                        type={Article.type}                   
+                        slug={Article.slug}
+                   
        
             />     
             ))

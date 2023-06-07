@@ -77,7 +77,7 @@ function App() {
     
       const response= await API.graphql(graphqlOperation(listProducts));
       setArticles(response.data.listProducts.items)
-   
+    
     }catch(e){
             console.log(e)
   
@@ -90,7 +90,7 @@ function App() {
     () => {
       checkUser()
       getProduct()
- 
+      console.log(user)
  
  
     },
@@ -119,23 +119,9 @@ function App() {
                 <Route path='/password-reset' Component={PasswordForgotPage}/>
                 <Route path='/password-reset-confirmation' Component={NewPassword}/>
                 <Route path='/store' Component={StorePage}/>
-                <Route path='/ProductPage' element={
-                                                <ProductPage
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles} 
-                                                      title={title} 
-                                                      cover={cover} 
-                                                      type={type} 
-                                                      price={price} 
-                                                      id={id}
-                                                      setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}                                
-                                                      setProdPrice={setProdPrice} 
-                                                      setProdType={setProdType} 
-                                                      cart={cart}
-                                                       setProdId={setProdId}
-                                                /> 
-                }/>
+                <Route exact path="/ProductPage/:slug" Component={ProductPage} />
+          
+          
                 <Route path='/affiliation' Component={AffiliatePage}/>
                 <Route path='/bundle' Component={BundlePage}/>
                 <Route path='/' element={<StorePage
@@ -306,22 +292,7 @@ function App() {
                   <Route path='/ConsultPage' Component={ConsultPage}/>
                   <Route path='/AddAccount' Component={AddAccount}/>
                   <Route path='/bundle' Component={BundlePage}/>
-                  <Route path='/ProductPage' element={
-                                                <ProductPage
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles} 
-                                                      title={title} 
-                                                      cover={cover} 
-                                                      type={type} 
-                                                      price={price} 
-                                                      setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}                                
-                                                      setProdPrice={setProdPrice} 
-                                                      setProdType={setProdType} 
-                                                      cart={cart}
-                                                          
-                                                /> 
-                }/>
+            
               
               <Route path="/categories2" element={<CatPage2 
                                                       Articles={Articles} 
@@ -454,22 +425,7 @@ function App() {
 
                 </CartPage>}/>
                 <Route path='/Account' Component={Account}/>
-                <Route path='/ProductPage' element={
-                                                <ProductPage
-                                                      Articles={Articles} 
-                                                      setArticles={setArticles} 
-                                                      title={title} 
-                                                      cover={cover} 
-                                                      type={type} 
-                                                      price={price} 
-                                                      setProdTitle={setProdTitle} 
-                                                      setProdCover={setProdCover}                                
-                                                      setProdPrice={setProdPrice} 
-                                                      setProdType={setProdType} 
-                                                      cart={cart}
-                                                          
-                                                /> 
-                }/>
+                 
                 <Route path='/affiliation' Component={AffiliatePage}/>
                 <Route path='/bundle' Component={BundlePage}/>
                 

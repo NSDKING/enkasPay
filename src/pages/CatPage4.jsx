@@ -54,18 +54,13 @@ function CatPage4({Articles, setProdTitle, setProdPrice, setProdCover, setProdTy
                               }     
                           }).map((Article, index) =>(
                             <Card
-                              key={index}
-                              cover={CoverImage(Article.image)}
-                              title={Article.name}
-                              price={Article.price}
-                              type={Article.type}
-                              setProdTitle={setProdTitle}
-                              setProdPrice={setProdPrice}
-                              setProdType={setProdType}
-                              setProdCover={setProdCover}
-                              cart={cart}
-                              updateCart={updateCart}
-                            />
+                                key={index}
+                                cover={CoverImage(Article.image)}
+                                title={Article.name}
+                                OneMonth={Article.OneMonth.price}
+                                type={Article.type}                   
+                                slug={Article.slug}
+                            /> 
 
                           ))
 

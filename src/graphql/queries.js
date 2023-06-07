@@ -1,6 +1,198 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getOneYear = /* GraphQL */ `
+  query GetOneYear($id: ID!) {
+    getOneYear(id: $id) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listOneYears = /* GraphQL */ `
+  query ListOneYears(
+    $filter: ModelOneYearFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listOneYears(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncOneYears = /* GraphQL */ `
+  query SyncOneYears(
+    $filter: ModelOneYearFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncOneYears(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getThreeMonth = /* GraphQL */ `
+  query GetThreeMonth($id: ID!) {
+    getThreeMonth(id: $id) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listThreeMonths = /* GraphQL */ `
+  query ListThreeMonths(
+    $filter: ModelThreeMonthFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listThreeMonths(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncThreeMonths = /* GraphQL */ `
+  query SyncThreeMonths(
+    $filter: ModelThreeMonthFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncThreeMonths(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getOneMonth = /* GraphQL */ `
+  query GetOneMonth($id: ID!) {
+    getOneMonth(id: $id) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listOneMonths = /* GraphQL */ `
+  query ListOneMonths(
+    $filter: ModelOneMonthFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listOneMonths(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncOneMonths = /* GraphQL */ `
+  query SyncOneMonths(
+    $filter: ModelOneMonthFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncOneMonths(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getCart = /* GraphQL */ `
   query GetCart($id: ID!) {
     getCart(id: $id) {
@@ -74,72 +266,6 @@ export const syncCarts = /* GraphQL */ `
     }
   }
 `;
-export const cartsByProductID = /* GraphQL */ `
-  query CartsByProductID(
-    $productID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelCartFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    cartsByProductID(
-      productID: $productID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        number
-        productID
-        userID
-        price
-        nb_month
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const cartsByUserID = /* GraphQL */ `
-  query CartsByUserID(
-    $userID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelCartFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    cartsByUserID(
-      userID: $userID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        number
-        productID
-        userID
-        price
-        nb_month
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getProduct = /* GraphQL */ `
   query GetProduct($id: ID!) {
     getProduct(id: $id) {
@@ -158,11 +284,45 @@ export const getProduct = /* GraphQL */ `
         nextToken
         startedAt
       }
+      OneMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      ThreeMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      OneYear {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      slug
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      productOneMonthId
+      productThreeMonthId
+      productOneYearId
     }
   }
 `;
@@ -174,20 +334,28 @@ export const listProducts = /* GraphQL */ `
   ) {
     listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        name
-        image
-        id
-        price {
-          one_month
-          one_year
-          three_month
+        OneYear {
+          id
+          price
         }
-        type
-        cartCount
+        OneMonth {
+          id
+          price
+          _version
+        }
+        ThreeMonth {
+          price
+        }
         buycount
-        _deleted
-        _version
+        cartCount
+        image
+        name
+        id
+        slug
+        type
       }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -211,11 +379,15 @@ export const syncProducts = /* GraphQL */ `
         type
         buycount
         cartCount
+        slug
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        productOneMonthId
+        productThreeMonthId
+        productOneYearId
       }
       nextToken
       startedAt
@@ -284,43 +456,6 @@ export const syncAccounts = /* GraphQL */ `
       limit: $limit
       nextToken: $nextToken
       lastSync: $lastSync
-    ) {
-      items {
-        id
-        mail
-        passe
-        profil
-        endDateAccount
-        endDateProfil
-        pin
-        free
-        service
-        userID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const accountsByUserID = /* GraphQL */ `
-  query AccountsByUserID(
-    $userID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelAccountFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    accountsByUserID(
-      userID: $userID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
     ) {
       items {
         id
@@ -420,6 +555,109 @@ export const syncUsers = /* GraphQL */ `
         birthdate
         staff
         phoneNumber
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const cartsByProductID = /* GraphQL */ `
+  query CartsByProductID(
+    $productID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCartFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    cartsByProductID(
+      productID: $productID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        number
+        productID
+        userID
+        price
+        nb_month
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const cartsByUserID = /* GraphQL */ `
+  query CartsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCartFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    cartsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        number
+        productID
+        userID
+        price
+        nb_month
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const accountsByUserID = /* GraphQL */ `
+  query AccountsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelAccountFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    accountsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        mail
+        passe
+        profil
+        endDateAccount
+        endDateProfil
+        pin
+        free
+        service
+        userID
         createdAt
         updatedAt
         _version

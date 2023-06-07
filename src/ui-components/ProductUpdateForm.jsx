@@ -29,12 +29,14 @@ export default function ProductUpdateForm(props) {
     type: "",
     buycount: "",
     cartCount: "",
+    slug: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [image, setImage] = React.useState(initialValues.image);
   const [type, setType] = React.useState(initialValues.type);
   const [buycount, setBuycount] = React.useState(initialValues.buycount);
   const [cartCount, setCartCount] = React.useState(initialValues.cartCount);
+  const [slug, setSlug] = React.useState(initialValues.slug);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = productRecord
@@ -45,6 +47,7 @@ export default function ProductUpdateForm(props) {
     setType(cleanValues.type);
     setBuycount(cleanValues.buycount);
     setCartCount(cleanValues.cartCount);
+    setSlug(cleanValues.slug);
     setErrors({});
   };
   const [productRecord, setProductRecord] = React.useState(product);
@@ -62,6 +65,7 @@ export default function ProductUpdateForm(props) {
     type: [],
     buycount: [],
     cartCount: [],
+    slug: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -93,6 +97,7 @@ export default function ProductUpdateForm(props) {
           type,
           buycount,
           cartCount,
+          slug,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -153,6 +158,7 @@ export default function ProductUpdateForm(props) {
               type,
               buycount,
               cartCount,
+              slug,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -181,6 +187,7 @@ export default function ProductUpdateForm(props) {
               type,
               buycount,
               cartCount,
+              slug,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -209,6 +216,7 @@ export default function ProductUpdateForm(props) {
               type: value,
               buycount,
               cartCount,
+              slug,
             };
             const result = onChange(modelFields);
             value = result?.type ?? value;
@@ -241,6 +249,7 @@ export default function ProductUpdateForm(props) {
               type,
               buycount: value,
               cartCount,
+              slug,
             };
             const result = onChange(modelFields);
             value = result?.buycount ?? value;
@@ -273,6 +282,7 @@ export default function ProductUpdateForm(props) {
               type,
               buycount,
               cartCount: value,
+              slug,
             };
             const result = onChange(modelFields);
             value = result?.cartCount ?? value;
@@ -286,6 +296,35 @@ export default function ProductUpdateForm(props) {
         errorMessage={errors.cartCount?.errorMessage}
         hasError={errors.cartCount?.hasError}
         {...getOverrideProps(overrides, "cartCount")}
+      ></TextField>
+      <TextField
+        label="Slug"
+        isRequired={false}
+        isReadOnly={false}
+        value={slug}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              image,
+              type,
+              buycount,
+              cartCount,
+              slug: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.slug ?? value;
+          }
+          if (errors.slug?.hasError) {
+            runValidationTasks("slug", value);
+          }
+          setSlug(value);
+        }}
+        onBlur={() => runValidationTasks("slug", slug)}
+        errorMessage={errors.slug?.errorMessage}
+        hasError={errors.slug?.hasError}
+        {...getOverrideProps(overrides, "slug")}
       ></TextField>
       <Flex
         justifyContent="space-between"

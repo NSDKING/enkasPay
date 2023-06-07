@@ -1,6 +1,138 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateOneYear = /* GraphQL */ `
+  subscription OnCreateOneYear($filter: ModelSubscriptionOneYearFilterInput) {
+    onCreateOneYear(filter: $filter) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateOneYear = /* GraphQL */ `
+  subscription OnUpdateOneYear($filter: ModelSubscriptionOneYearFilterInput) {
+    onUpdateOneYear(filter: $filter) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteOneYear = /* GraphQL */ `
+  subscription OnDeleteOneYear($filter: ModelSubscriptionOneYearFilterInput) {
+    onDeleteOneYear(filter: $filter) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateThreeMonth = /* GraphQL */ `
+  subscription OnCreateThreeMonth(
+    $filter: ModelSubscriptionThreeMonthFilterInput
+  ) {
+    onCreateThreeMonth(filter: $filter) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateThreeMonth = /* GraphQL */ `
+  subscription OnUpdateThreeMonth(
+    $filter: ModelSubscriptionThreeMonthFilterInput
+  ) {
+    onUpdateThreeMonth(filter: $filter) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteThreeMonth = /* GraphQL */ `
+  subscription OnDeleteThreeMonth(
+    $filter: ModelSubscriptionThreeMonthFilterInput
+  ) {
+    onDeleteThreeMonth(filter: $filter) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateOneMonth = /* GraphQL */ `
+  subscription OnCreateOneMonth($filter: ModelSubscriptionOneMonthFilterInput) {
+    onCreateOneMonth(filter: $filter) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateOneMonth = /* GraphQL */ `
+  subscription OnUpdateOneMonth($filter: ModelSubscriptionOneMonthFilterInput) {
+    onUpdateOneMonth(filter: $filter) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteOneMonth = /* GraphQL */ `
+  subscription OnDeleteOneMonth($filter: ModelSubscriptionOneMonthFilterInput) {
+    onDeleteOneMonth(filter: $filter) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateCart = /* GraphQL */ `
   subscription OnCreateCart($filter: ModelSubscriptionCartFilterInput) {
     onCreateCart(filter: $filter) {
@@ -70,11 +202,45 @@ export const onCreateProduct = /* GraphQL */ `
         nextToken
         startedAt
       }
+      OneMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      ThreeMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      OneYear {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      slug
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      productOneMonthId
+      productThreeMonthId
+      productOneYearId
     }
   }
 `;
@@ -96,11 +262,45 @@ export const onUpdateProduct = /* GraphQL */ `
         nextToken
         startedAt
       }
+      OneMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      ThreeMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      OneYear {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      slug
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      productOneMonthId
+      productThreeMonthId
+      productOneYearId
     }
   }
 `;
@@ -122,11 +322,45 @@ export const onDeleteProduct = /* GraphQL */ `
         nextToken
         startedAt
       }
+      OneMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      ThreeMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      OneYear {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      slug
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      productOneMonthId
+      productThreeMonthId
+      productOneYearId
     }
   }
 `;

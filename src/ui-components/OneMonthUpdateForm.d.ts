@@ -14,14 +14,17 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type OneMonthUpdateFormInputValues = {
+    name?: string;
     price?: number;
 };
 export declare type OneMonthUpdateFormValidationValues = {
+    name?: ValidationFunction<string>;
     price?: ValidationFunction<number>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type OneMonthUpdateFormOverridesProps = {
     OneMonthUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    name?: PrimitiveOverrideProps<TextFieldProps>;
     price?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type OneMonthUpdateFormProps = React.PropsWithChildren<{

@@ -8,12 +8,97 @@ import { createCart, updateCart } from '../graphql/mutations';
 import { getCommonCartRoomWithUser } from '../services/CartRoom';
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
- 
-export default function ProductPage({cover, title, price, type, setProdTitle, setProdPrice, setProdCover, setProdType, cart, updateCart}) {
-    const [priceClicked, setPriceClicked] = useState(price.one_month)
+import { listProducts } from "../graphql/queries"
+import ps from "./img/pscard.jpg"
+import spo from "./img/spotifyz.png"
+import xbox from "./img/xbox_card-removebg-preview.png"
+import pv from "./img/prime.png"
+import disney from "./img/disney.png"
+import vpn from "./img/vpn.png"
+import net from './img/netim.png'
+import { useParams } from 'react-router-dom';
+
+
+export default function ProductPage({ cart, updateCart}) {
     const [selectedBox, setSelectedBox] = useState(0);
+    const [Articles, setArticles] = useState([])
+    const [ArticlesPage, setArticlesPage] = useState([])
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const [user, setUser]= useState(null)
+    const { slug } = useParams();
+    const [priceClicked, setPriceClicked] = useState("")
+
+
+    function CoverImage(img){
+        if(img == 'net'){
+          return net
+        }
+        if(img == 'pv'){
+          return pv
+        }
+        if(img == 'psn'){
+          return ps
+        }
+        if(img == 'xbox'){
+          return xbox
+        }
+        if(img == 'spo'){
+          return spo
+        }
+        if(img == 'disney'){
+            return disney
+          }
+        if(img == 'VPN'){
+            return vpn
+          }
+      }
+      
+
+    const getProduct = async () => {
+        try {
+          setLoading(true);
+          const response = await API.graphql(graphqlOperation(listProducts));
+          setArticles(response.data.listProducts.items);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+    
+  
+
+    useEffect(
+        () => {
+          getProduct()
+        },
+        [],
+      )
+    /*get the Article data by slug */
+    const getProductbySlug= (slug)=>{
+        for(let i=0;i<Articles.length;i++){
+            if(Articles[i].slug==slug){
+                setArticlesPage(Articles[i])
+                break; 
+            }
+
+        }
+        console.log(ArticlesPage)
+
+    }
+
+    useEffect(() => {
+        if (!loading) {
+          getProductbySlug(slug);
+        }
+      }, [Articles, loading]);
+    
+      useEffect(() => {
+        if (ArticlesPage.OneMonth) { 
+          setPriceClicked(ArticlesPage.OneMonth.price);
+        }
+      }, [ArticlesPage]); 
 
     const checkUser = async ()=>{
         try {
@@ -125,16 +210,16 @@ export default function ProductPage({cover, title, price, type, setProdTitle, se
         <section className='productPage'>
             <Navbar></Navbar>
             <div className="Productimage">
-                <img src={cover} width="70%"/>
+                <img src={CoverImage(ArticlesPage.image)} width="70%"/>
 
             </div>
         {
-            price.three_month === null ?
+            ArticlesPage.ThreeMonth === null ?
                 <div className="ProductData">
                     <div className="ProductData-header">
-                        <p className="ProductData-type">{type}</p>
-                        <h2 className="ProductData-title">{title}</h2>
-                        <p className="ProductData-price">{price.one_month}Fcfa</p>
+                        <p className="ProductData-type">{ArticlesPage.type}</p>
+                        <h2 className="ProductData-title">{ArticlesPage.name}</h2>
+                        <p className="ProductData-price">{ArticlesPage.OneMonth.price}Fcfa</p>
                     </div>
  
                 
@@ -142,28 +227,28 @@ export default function ProductPage({cover, title, price, type, setProdTitle, se
             : 
                 <div className="ProductData">
                         <div className="ProductData-header">
-                            <p className="ProductData-type">{type}</p>
-                            <h2 className="ProductData-title">{title}</h2>
+                            <p className="ProductData-type">{ArticlesPage.type}</p>
+                            <h2 className="ProductData-title">{ArticlesPage.name}</h2>
                             <p className="ProductData-price">{priceClicked}Fcfa</p>
                         </div>
                         <div className="ProductData-box-container">
                         <div className={`ProductData-box ${selectedBox === 0 ? 'selected' : ''}`} onClick={() => {
                             setSelectedBox(0) 
-                            setPriceClicked(price.one_month)
+                            setPriceClicked(ArticlesPage.OneMonth.price)
                         }}>
                                 <p>1 mois</p>
                             </div>
                             <div className={`ProductData-box ${selectedBox === 1 ? 'selected' : ''}`} onClick={() => {
                             setSelectedBox(1) 
-                            setPriceClicked(price.three_month)
+                            setPriceClicked(ArticlesPage.ThreeMonth.price)
                         }}>
                                 <p>3 mois</p>
                             </div>
                             <div className={`ProductData-box ${selectedBox === 2 ? 'selected' : ''}`} onClick={() => {
                             setSelectedBox(2) 
-                            setPriceClicked(price.one_year)
+                            setPriceClicked(ArticlesPage.OneYear.price)
                         }}>
-                                <p>6 mois</p>
+                                <p>12 mois</p>
                             </div>
                         </div>
                       </div>

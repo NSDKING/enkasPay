@@ -24,14 +24,17 @@ export default function OneMonthUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
+    name: "",
     price: "",
   };
+  const [name, setName] = React.useState(initialValues.name);
   const [price, setPrice] = React.useState(initialValues.price);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = oneMonthRecord
       ? { ...initialValues, ...oneMonthRecord }
       : initialValues;
+    setName(cleanValues.name);
     setPrice(cleanValues.price);
     setErrors({});
   };
@@ -47,6 +50,7 @@ export default function OneMonthUpdateForm(props) {
   }, [idProp, oneMonth]);
   React.useEffect(resetStateValues, [oneMonthRecord]);
   const validations = {
+    name: [],
     price: [],
   };
   const runValidationTasks = async (
@@ -74,6 +78,7 @@ export default function OneMonthUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
+          name,
           price,
         };
         const validationResponses = await Promise.all(
@@ -122,6 +127,31 @@ export default function OneMonthUpdateForm(props) {
       {...rest}
     >
       <TextField
+        label="Name"
+        isRequired={false}
+        isReadOnly={false}
+        value={name}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name: value,
+              price,
+            };
+            const result = onChange(modelFields);
+            value = result?.name ?? value;
+          }
+          if (errors.name?.hasError) {
+            runValidationTasks("name", value);
+          }
+          setName(value);
+        }}
+        onBlur={() => runValidationTasks("name", name)}
+        errorMessage={errors.name?.errorMessage}
+        hasError={errors.name?.hasError}
+        {...getOverrideProps(overrides, "name")}
+      ></TextField>
+      <TextField
         label="Price"
         isRequired={false}
         isReadOnly={false}
@@ -129,11 +159,12 @@ export default function OneMonthUpdateForm(props) {
         step="any"
         value={price}
         onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
+          let value = isNaN(parseFloat(e.target.value))
             ? e.target.value
-            : parseInt(e.target.value);
+            : parseFloat(e.target.value);
           if (onChange) {
             const modelFields = {
+              name,
               price: value,
             };
             const result = onChange(modelFields);

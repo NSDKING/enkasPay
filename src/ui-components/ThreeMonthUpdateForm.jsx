@@ -24,14 +24,17 @@ export default function ThreeMonthUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
+    name: "",
     price: "",
   };
+  const [name, setName] = React.useState(initialValues.name);
   const [price, setPrice] = React.useState(initialValues.price);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = threeMonthRecord
       ? { ...initialValues, ...threeMonthRecord }
       : initialValues;
+    setName(cleanValues.name);
     setPrice(cleanValues.price);
     setErrors({});
   };
@@ -47,6 +50,7 @@ export default function ThreeMonthUpdateForm(props) {
   }, [idProp, threeMonth]);
   React.useEffect(resetStateValues, [threeMonthRecord]);
   const validations = {
+    name: [],
     price: [],
   };
   const runValidationTasks = async (
@@ -74,6 +78,7 @@ export default function ThreeMonthUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
+          name,
           price,
         };
         const validationResponses = await Promise.all(
@@ -122,14 +127,44 @@ export default function ThreeMonthUpdateForm(props) {
       {...rest}
     >
       <TextField
-        label="Price"
+        label="Name"
         isRequired={false}
         isReadOnly={false}
-        value={price}
+        value={name}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              name: value,
+              price,
+            };
+            const result = onChange(modelFields);
+            value = result?.name ?? value;
+          }
+          if (errors.name?.hasError) {
+            runValidationTasks("name", value);
+          }
+          setName(value);
+        }}
+        onBlur={() => runValidationTasks("name", name)}
+        errorMessage={errors.name?.errorMessage}
+        hasError={errors.name?.hasError}
+        {...getOverrideProps(overrides, "name")}
+      ></TextField>
+      <TextField
+        label="Price"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={price}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              name,
               price: value,
             };
             const result = onChange(modelFields);

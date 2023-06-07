@@ -13,14 +13,17 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type OneYearCreateFormInputValues = {
-    price?: string;
+    name?: string;
+    price?: number;
 };
 export declare type OneYearCreateFormValidationValues = {
-    price?: ValidationFunction<string>;
+    name?: ValidationFunction<string>;
+    price?: ValidationFunction<number>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type OneYearCreateFormOverridesProps = {
     OneYearCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    name?: PrimitiveOverrideProps<TextFieldProps>;
     price?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type OneYearCreateFormProps = React.PropsWithChildren<{

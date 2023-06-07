@@ -1,6 +1,159 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createOneYear = /* GraphQL */ `
+  mutation CreateOneYear(
+    $input: CreateOneYearInput!
+    $condition: ModelOneYearConditionInput
+  ) {
+    createOneYear(input: $input, condition: $condition) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateOneYear = /* GraphQL */ `
+  mutation UpdateOneYear(
+    $input: UpdateOneYearInput!
+    $condition: ModelOneYearConditionInput
+  ) {
+    updateOneYear(input: $input, condition: $condition) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteOneYear = /* GraphQL */ `
+  mutation DeleteOneYear(
+    $input: DeleteOneYearInput!
+    $condition: ModelOneYearConditionInput
+  ) {
+    deleteOneYear(input: $input, condition: $condition) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createThreeMonth = /* GraphQL */ `
+  mutation CreateThreeMonth(
+    $input: CreateThreeMonthInput!
+    $condition: ModelThreeMonthConditionInput
+  ) {
+    createThreeMonth(input: $input, condition: $condition) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateThreeMonth = /* GraphQL */ `
+  mutation UpdateThreeMonth(
+    $input: UpdateThreeMonthInput!
+    $condition: ModelThreeMonthConditionInput
+  ) {
+    updateThreeMonth(input: $input, condition: $condition) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteThreeMonth = /* GraphQL */ `
+  mutation DeleteThreeMonth(
+    $input: DeleteThreeMonthInput!
+    $condition: ModelThreeMonthConditionInput
+  ) {
+    deleteThreeMonth(input: $input, condition: $condition) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createOneMonth = /* GraphQL */ `
+  mutation CreateOneMonth(
+    $input: CreateOneMonthInput!
+    $condition: ModelOneMonthConditionInput
+  ) {
+    createOneMonth(input: $input, condition: $condition) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateOneMonth = /* GraphQL */ `
+  mutation UpdateOneMonth(
+    $input: UpdateOneMonthInput!
+    $condition: ModelOneMonthConditionInput
+  ) {
+    updateOneMonth(input: $input, condition: $condition) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteOneMonth = /* GraphQL */ `
+  mutation DeleteOneMonth(
+    $input: DeleteOneMonthInput!
+    $condition: ModelOneMonthConditionInput
+  ) {
+    deleteOneMonth(input: $input, condition: $condition) {
+      id
+      name
+      price
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createCart = /* GraphQL */ `
   mutation CreateCart(
     $input: CreateCartInput!
@@ -82,11 +235,45 @@ export const createProduct = /* GraphQL */ `
         nextToken
         startedAt
       }
+      OneMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      ThreeMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      OneYear {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      slug
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      productOneMonthId
+      productThreeMonthId
+      productOneYearId
     }
   }
 `;
@@ -111,11 +298,45 @@ export const updateProduct = /* GraphQL */ `
         nextToken
         startedAt
       }
+      OneMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      ThreeMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      OneYear {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      slug
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      productOneMonthId
+      productThreeMonthId
+      productOneYearId
     }
   }
 `;
@@ -140,11 +361,45 @@ export const deleteProduct = /* GraphQL */ `
         nextToken
         startedAt
       }
+      OneMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      ThreeMonth {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      OneYear {
+        id
+        name
+        price
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      slug
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      productOneMonthId
+      productThreeMonthId
+      productOneYearId
     }
   }
 `;

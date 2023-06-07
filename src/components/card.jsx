@@ -7,22 +7,15 @@ import { API, Auth, graphqlOperation } from 'aws-amplify';
 import { createCart, updateCart } from '../graphql/mutations';
 import { getCommonCartRoomWithUser } from '../services/CartRoom';
   
-export default function Card({articles, cover, title, price, type, setProdTitle, setProdPrice, setProdCover, setProdType, loading,setLoading }){
+export default function Card({Article,cover, title, OneMonth, type, slug}){
     const navigate = useNavigate();
 
     function handleClick(){
+        navigate('/ProductPage/'+ slug); 
 
-        setProdTitle(title);
-        setProdType(type);
-        setProdPrice(price);
-        navigate('/ProductPage')
-        setProdCover(cover)
- 
-        console.log(price)
-       
-    
     }
 
+    /*get the Article data by slug */
         
 
     const createACartWithTheUser = async(product)=>{
@@ -107,7 +100,7 @@ export default function Card({articles, cover, title, price, type, setProdTitle,
 
                     </button> 
                     <div className='card-box-body-price'>
-                        <span>{price.one_month}FCFA</span>
+                        <span>{OneMonth}FCFA</span>
                     </div>
                 </div>
 

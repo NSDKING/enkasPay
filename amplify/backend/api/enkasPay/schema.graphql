@@ -1,16 +1,19 @@
 type OneYear @model @auth(rules: [{allow: public}]) {
   id: ID!
-  price: String
+  name: String
+  price: Float
 }
 
 type ThreeMonth @model @auth(rules: [{allow: public}]) {
   id: ID!
-  price: String
+  name: String
+  price: Float
 }
 
 type OneMonth @model @auth(rules: [{allow: public}]) {
   id: ID!
-  price: Int
+  name: String
+  price: Float
 }
 
 type Cart @model @auth(rules: [{allow: public}]) {
@@ -34,6 +37,7 @@ type Product @model @auth(rules: [{allow: public}]) {
   OneMonth: OneMonth @hasOne
   ThreeMonth: ThreeMonth @hasOne
   OneYear: OneYear @hasOne
+  slug: String
 }
 
 type Account @model @auth(rules: [{allow: public}]) {
