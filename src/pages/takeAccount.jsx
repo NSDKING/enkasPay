@@ -149,23 +149,21 @@ export default function TakeAccount() {
                         </div>
                     
                     <label>utilisateur :</label>
-                        <Controller
-                                name="user"
-                                control={control}
-                                defaultValue=""
-                                render={({ field }) => (
-                                <select {...field} >
+                    <input type="text" 
+                                    list="user" 
+                                    {...register('user', { required: 'ceci est obligatoire'})}
+
+                                />
+                                <datalist id="user">
                                     <option value="">Select...</option>
 
-                                    {
-                                        userList.map(item => (
-                                            <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
-                                        ))
-                                    }
-                                </select>
-                                )}
-                            />
-                        
+                                        {
+                                            userList.map(item => (
+                                                <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
+                                            ))
+                                        }
+
+                                </datalist>
                         <DefaultButton text={'utiliser'} bgcolor={"black"} textcolor={"white"} width={"50%"} height={"50px"} type={"submit"} marginTop={"20px"}/>
                         <DefaultButton text={'annuler'} bgcolor={"black"} textcolor={"white"} width={"50%"} height={"50px"} onPress={()=>{setShow(false)}} marginTop={"20px"}/>
 

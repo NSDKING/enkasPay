@@ -14,7 +14,7 @@ export default function AccountSoon() {
     getAccount();
     AccountFinishSoon();
     console.log(finishSoon)
-  }, []);
+  }, [Accounts]);
 
   function getCurrentDate() {
     const today = new Date();
@@ -98,9 +98,8 @@ export default function AccountSoon() {
             </tr>
           </thead>
           <tbody>
-            {loading ? (
-              <h2>Loading...</h2>
-            ) : (
+            {
+            
               finishSoon.map(item => (
                 <tr key={item.id} onClick={() => {
                   handleupdate(item);
@@ -111,7 +110,7 @@ export default function AccountSoon() {
                   <td>{daysBetween(item.endDateAccount, getCurrentDate())}</td>
                 </tr>
               ))
-            )}
+            }
           </tbody>
         </table>
       </div>

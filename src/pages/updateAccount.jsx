@@ -16,8 +16,7 @@ export default function UpdateAccount() {
     const [loading, setLoading] = useState(false)
     const {formState: {errors}, handleSubmit, register, control, setValue} = useForm();
     const [userList, setUserList] = useState([])
-    const [user, setUser]= useState(null)
-
+ 
     const handleFormClick = async(data) => {
         if(loading){
             return;
@@ -168,23 +167,23 @@ export default function UpdateAccount() {
                                     
                                     />
 
-                                <label for="pin">utilisateur :</label>
-                                <Controller
-                                        name="user"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ field }) => (
-                                        <select {...field} >
-                                            <option value="null">Select...</option>
-                                    
-                                            {
-                                                userList.map(item => (
-                                                    <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
-                                                ))
-                                            }
-                                        </select>
-                                        )}
-                                    />
+                                <label>utilisateur :</label>
+                                
+                                <input type="text" 
+                                    list="user" 
+                                    {...register('user', { required: 'ceci est obligatoire'})}
+
+                                />
+                                <datalist id="user">
+                                    <option value="">Select...</option>
+
+                                        {
+                                            userList.map(item => (
+                                                <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
+                                            ))
+                                        }
+
+                                </datalist>
                                 <label for="pin">free :</label>
 
                             <Controller

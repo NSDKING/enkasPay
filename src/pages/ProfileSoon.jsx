@@ -19,7 +19,7 @@ export default function ProfileSoon() {
         getListUsers()
         getAccount();
         AccountFinishSoon();
-        }, []);
+        }, [userList, Accounts]);
       
     function add10Days() {
         const date = new Date();
@@ -57,6 +57,7 @@ export default function ProfileSoon() {
      
       }
 
+    
     const getAccount = async()=>{
         if(loading){
             return;
@@ -67,7 +68,7 @@ export default function ProfileSoon() {
 
             const response= await API.graphql(graphqlOperation(listAccounts));
             setAccount(response.data.listAccounts.items)
-          }catch(e){
+           }catch(e){
                 console.log(e)
 
         }
@@ -115,15 +116,13 @@ export default function ProfileSoon() {
     const AccountFinishSoon = () => {
         let newDate = add10Days();
         let today = getCurrentDate();
-        console.log(newDate)
-
+ 
         let finishSoonAccounts = Accounts.filter(item => {
           return today < item.endDateProfil && item.endDateProfil < newDate;
         });
     
         setFinishSoon(finishSoonAccounts);
-        console.log(finishSoonAccounts);
-      };
+       };
     
     return(
         <section>
@@ -143,9 +142,8 @@ export default function ProfileSoon() {
                              </tr>
                         </thead>
                         <tbody>
-                            {loading ? (
-                                <h2>Loading...</h2>
-                            ) : (
+                            {
+                                
                                 finishSoon.filter(item =>{
                                     if (item._deleted !=true) {
                                             return item;
@@ -165,7 +163,7 @@ export default function ProfileSoon() {
                                          </tr>
 
                                     ))
-                            )} 
+                            } 
                             
                         </tbody>
                     </table>

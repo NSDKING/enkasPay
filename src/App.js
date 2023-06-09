@@ -33,6 +33,9 @@ import SaveOrder from './pages/SaveOrder';
 import Soon from './pages/soon';
 import AccountSoon from './pages/AccountSoon';
 import ProfileSoon from './pages/ProfileSoon';
+import Today from './pages/Today';
+import AccountToday from './pages/AccountToday';
+import ProfileToday from './pages/ProfilToday';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -296,10 +299,14 @@ function App() {
                   <Route path='/ConsultPage' Component={ConsultPage}/>
                   <Route path='/AddAccount' Component={AddAccount}/>
                   <Route path='/SaveOrder' Component={SaveOrder}/>
+                  <Route path='/today' Component={Today}/>
+                  <Route path='/Account-today' Component={AccountToday}/>
+                  <Route path='/Profile-today' Component={ProfileToday}/>
                   <Route path='/soon' Component={Soon}/>
                   <Route path='/Account-soon' Component={AccountSoon}/>
                   <Route path='/Profile-soon' Component={ProfileSoon}/>
                   <Route path='/bundle' Component={BundlePage}/>
+                  <Route exact path="/ProductPage/:slug" Component={ProductPage} />
             
               
               <Route path="/categories2" element={<CatPage2 
@@ -436,6 +443,7 @@ function App() {
                  
                 <Route path='/affiliation' Component={AffiliatePage}/>
                 <Route path='/bundle' Component={BundlePage}/>
+                <Route exact path="/ProductPage/:slug" Component={ProductPage} />
                 
                 <Route path="/categories2" element={<CatPage2 
                                                        Articles={Articles} 

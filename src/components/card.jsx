@@ -11,7 +11,7 @@ export default function Card({Article,cover, title, OneMonth, type, slug}){
     const navigate = useNavigate();
 
     function handleClick(){
-        navigate('/ProductPage/'+ slug); 
+        navigate(`/ProductPage/${slug}`);  
 
     }
 
