@@ -8,7 +8,6 @@ import { createCart, updateCart } from '../graphql/mutations';
 import { getCommonCartRoomWithUser } from '../services/CartRoom';
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { listProducts } from "../graphql/queries"
 import ps from "./img/pscard.jpg"
 import spo from "./img/spotifyz.png"
 import xbox from "./img/xbox_card-removebg-preview.png"
@@ -266,7 +265,7 @@ export default function ProductPage({ cart, updateCart}) {
                       </div>
         }          
             <div className="Productpage-buttons">
-            <DefaultButton text={"ajouter au panier"} bgcolor={"#eb0625"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"20px"} onPress={handleClick}/>
+            <DefaultButton text={"discuter avec un conseiller"} bgcolor={"#eb0625"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"20px"} onPress={handleClick}/>
             <DefaultButton text={"acheter maintenant"} bgcolor={"black"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"10px"} onPress={handleClick}/>
 
             </div>
@@ -292,3 +291,37 @@ export default function ProductPage({ cart, updateCart}) {
          </section>
     )   
 }
+
+export const listProducts = /* GraphQL */ `
+  query ListProducts(
+    $filter: ModelProductFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        OneYear {
+          id
+          price
+        }
+        OneMonth {
+          id
+          price
+          _version
+        }
+        ThreeMonth {
+          price
+        }
+        buycount
+        cartCount
+        image
+        name
+        id
+        slug
+        type
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;

@@ -14,7 +14,6 @@ import appmus from './img/appmus.png'
 import adn from './img/adn.png'
 import { useEffect, useState } from "react"
 import { API, Auth, graphqlOperation } from "aws-amplify"
-import { listProducts } from "../graphql/queries"
  
   
  export default function StorePage({Articles, setArticles,setProdId,setProdTitle,setProdPrice, setProdType, setProdCover}) {
@@ -287,3 +286,37 @@ import { listProducts } from "../graphql/queries"
     )
 
 }
+
+export const listProducts = /* GraphQL */ `
+  query ListProducts(
+    $filter: ModelProductFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        OneYear {
+          id
+          price
+        }
+        OneMonth {
+          id
+          price
+          _version
+        }
+        ThreeMonth {
+          price
+        }
+        buycount
+        cartCount
+        image
+        name
+        id
+        slug
+        type
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;

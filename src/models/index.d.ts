@@ -4,21 +4,41 @@ import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@a
 
 
 
-type EagerDurationPrice = {
-  readonly one_month?: number | null;
-  readonly three_month?: number | null;
-  readonly one_year?: number | null;
+
+
+type EagerOrder = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Order, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly price?: string | null;
+  readonly userID: string;
+  readonly date?: string | null;
+  readonly productID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
 }
 
-type LazyDurationPrice = {
-  readonly one_month?: number | null;
-  readonly three_month?: number | null;
-  readonly one_year?: number | null;
+type LazyOrder = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Order, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly price?: string | null;
+  readonly userID: string;
+  readonly date?: string | null;
+  readonly productID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
 }
 
-export declare type DurationPrice = LazyLoading extends LazyLoadingDisabled ? EagerDurationPrice : LazyDurationPrice
+export declare type Order = LazyLoading extends LazyLoadingDisabled ? EagerOrder : LazyOrder
 
-export declare const DurationPrice: (new (init: ModelInit<DurationPrice>) => DurationPrice)
+export declare const Order: (new (init: ModelInit<Order>) => Order) & {
+  copyOf(source: Order, mutator: (draft: MutableModel<Order>) => MutableModel<Order> | void): Order;
+}
 
 type EagerOneYear = {
   readonly [__modelMeta__]: {
@@ -155,7 +175,6 @@ type EagerProduct = {
   readonly name?: string | null;
   readonly image?: string | null;
   readonly type?: string | null;
-  readonly price?: DurationPrice | null;
   readonly buycount?: number | null;
   readonly cartCount?: number | null;
   readonly Carts?: (Cart | null)[] | null;
@@ -163,6 +182,7 @@ type EagerProduct = {
   readonly ThreeMonth?: ThreeMonth | null;
   readonly OneYear?: OneYear | null;
   readonly slug?: string | null;
+  readonly Orders?: (Order | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly productOneMonthId?: string | null;
@@ -179,7 +199,6 @@ type LazyProduct = {
   readonly name?: string | null;
   readonly image?: string | null;
   readonly type?: string | null;
-  readonly price?: DurationPrice | null;
   readonly buycount?: number | null;
   readonly cartCount?: number | null;
   readonly Carts: AsyncCollection<Cart>;
@@ -187,6 +206,7 @@ type LazyProduct = {
   readonly ThreeMonth: AsyncItem<ThreeMonth | undefined>;
   readonly OneYear: AsyncItem<OneYear | undefined>;
   readonly slug?: string | null;
+  readonly Orders: AsyncCollection<Order>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly productOneMonthId?: string | null;
@@ -259,6 +279,7 @@ type EagerUser = {
   readonly phoneNumber?: string | null;
   readonly Carts?: (Cart | null)[] | null;
   readonly Account?: (Account | null)[] | null;
+  readonly Orders?: (Order | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -278,6 +299,7 @@ type LazyUser = {
   readonly phoneNumber?: string | null;
   readonly Carts: AsyncCollection<Cart>;
   readonly Account: AsyncCollection<Account>;
+  readonly Orders: AsyncCollection<Order>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

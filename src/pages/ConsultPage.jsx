@@ -7,6 +7,7 @@ import { useForm, Controller } from "react-hook-form";
 import { updateAccount } from '../graphql/mutations';
 import { Alert } from '@aws-amplify/ui-react';
 import { useNavigate } from 'react-router-dom';
+import StafNavbar from '../components/StafNavbar';
 
 
 export default function ConsultPage() {
@@ -36,8 +37,7 @@ export default function ConsultPage() {
       
         const response= await API.graphql(graphqlOperation(listUsers));
         setUserList(response.data.listUsers.items)
-        console.log(response)
-      }catch(e){
+       }catch(e){
               console.log(e)
     
       }
@@ -81,11 +81,13 @@ export default function ConsultPage() {
     useEffect(() => {
        getAccount()
        getListUsers()
+       console.log(Accounts)
+
          
     }, [ ])
     
     const handleName = (userid)=>{
-        let username = "test"
+        let username = " "
         userList.map((item)=>{
             if(item.id === userid){
                 username = item.FamilyName +" "+ item.LastName
@@ -94,6 +96,18 @@ export default function ConsultPage() {
         return username
 
     }
+
+    const handleNum = (userid)=>{
+        let username = " "
+        userList.map((item)=>{
+            if(item.id === userid){
+                username = item.phoneNumber
+            }
+        })
+        return username
+
+    }
+
 
  
     
@@ -106,14 +120,7 @@ export default function ConsultPage() {
        <>
                 <section className='ConsultPage'>
 
-        <header className='ManagementHeader'> 
-            <h1>ENKAS</h1>
-        </header>
-        <nav className="special_navbar">
-            <Link to="/AddAccount" style={linkStyle}>ajouter</Link>
-            <Link to="/ManageAccount" style={linkStyle}>prendre</Link>
-            <Link to="/ConsultPage" style={linkStyle}>consulter</Link>
-        </nav>
+        <StafNavbar></StafNavbar>
 
         <div className="searchContainer">
       <input
@@ -160,7 +167,7 @@ export default function ConsultPage() {
                                         <td>{item.endDateAccount}</td>
                                         <td>{item.pin}</td>
                                         <td>{handleName(item.userID)}</td>
-                                        <td>{item.numero}</td>
+                                        <td>{handleNum(item.userID)}</td>
                                         <td>{item.endDateProfil}</td>
                                         <td>{String(item.free)}</td>
                                     </tr>

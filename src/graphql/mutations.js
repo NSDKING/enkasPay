@@ -1,6 +1,63 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createOrder = /* GraphQL */ `
+  mutation CreateOrder(
+    $input: CreateOrderInput!
+    $condition: ModelOrderConditionInput
+  ) {
+    createOrder(input: $input, condition: $condition) {
+      id
+      price
+      userID
+      date
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateOrder = /* GraphQL */ `
+  mutation UpdateOrder(
+    $input: UpdateOrderInput!
+    $condition: ModelOrderConditionInput
+  ) {
+    updateOrder(input: $input, condition: $condition) {
+      id
+      price
+      userID
+      date
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteOrder = /* GraphQL */ `
+  mutation DeleteOrder(
+    $input: DeleteOrderInput!
+    $condition: ModelOrderConditionInput
+  ) {
+    deleteOrder(input: $input, condition: $condition) {
+      id
+      price
+      userID
+      date
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createOneYear = /* GraphQL */ `
   mutation CreateOneYear(
     $input: CreateOneYearInput!
@@ -224,11 +281,6 @@ export const createProduct = /* GraphQL */ `
       name
       image
       type
-      price {
-        one_month
-        three_month
-        one_year
-      }
       buycount
       cartCount
       Carts {
@@ -266,6 +318,10 @@ export const createProduct = /* GraphQL */ `
         _lastChangedAt
       }
       slug
+      Orders {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -287,11 +343,6 @@ export const updateProduct = /* GraphQL */ `
       name
       image
       type
-      price {
-        one_month
-        three_month
-        one_year
-      }
       buycount
       cartCount
       Carts {
@@ -329,6 +380,10 @@ export const updateProduct = /* GraphQL */ `
         _lastChangedAt
       }
       slug
+      Orders {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -350,11 +405,6 @@ export const deleteProduct = /* GraphQL */ `
       name
       image
       type
-      price {
-        one_month
-        three_month
-        one_year
-      }
       buycount
       cartCount
       Carts {
@@ -392,6 +442,10 @@ export const deleteProduct = /* GraphQL */ `
         _lastChangedAt
       }
       slug
+      Orders {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -497,6 +551,10 @@ export const createUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Orders {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -527,6 +585,10 @@ export const updateUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Orders {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -554,6 +616,10 @@ export const deleteUser = /* GraphQL */ `
         startedAt
       }
       Account {
+        nextToken
+        startedAt
+      }
+      Orders {
         nextToken
         startedAt
       }

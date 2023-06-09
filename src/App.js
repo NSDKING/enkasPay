@@ -12,7 +12,7 @@ import NewPassword from './pages/newPassword';
 import { Auth, Hub } from 'aws-amplify';
 import { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { getUser, listProducts } from './graphql/queries';
+import { getUser } from './graphql/queries';
 import ManageAccount from './pages/ManageAccount';
 import ConsultPage from './pages/ConsultPage';
 import AddAccount from './pages/addAccount';
@@ -29,6 +29,10 @@ import UpdateAccount from './pages/updateAccount';
 import ConfirmPage from './pages/ConfirmPage';
 import DataRegistration from './pages/DataRegistration';
 import ConfirmPageHelp from './pages/ConfirmPageHelp';
+import SaveOrder from './pages/SaveOrder';
+import Soon from './pages/soon';
+import AccountSoon from './pages/AccountSoon';
+import ProfileSoon from './pages/ProfileSoon';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -291,6 +295,10 @@ function App() {
                   <Route path='/takeAccount' Component={takeAccount}/>
                   <Route path='/ConsultPage' Component={ConsultPage}/>
                   <Route path='/AddAccount' Component={AddAccount}/>
+                  <Route path='/SaveOrder' Component={SaveOrder}/>
+                  <Route path='/soon' Component={Soon}/>
+                  <Route path='/Account-soon' Component={AccountSoon}/>
+                  <Route path='/Profile-soon' Component={ProfileSoon}/>
                   <Route path='/bundle' Component={BundlePage}/>
             
               
@@ -556,3 +564,37 @@ export const listCartRooms = /* GraphQL */ `
   }
 `;
  
+
+export const listProducts = /* GraphQL */ `
+  query ListProducts(
+    $filter: ModelProductFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        OneYear {
+          id
+          price
+        }
+        OneMonth {
+          id
+          price
+          _version
+        }
+        ThreeMonth {
+          price
+        }
+        buycount
+        cartCount
+        image
+        name
+        id
+        slug
+        type
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;

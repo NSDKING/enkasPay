@@ -12,7 +12,6 @@ import net from './img/netim.png'
 import appmus from './img/appmus.png'
 import adn from './img/adn.png'
 import { API, Auth, graphqlOperation } from "aws-amplify"
-import { listProducts } from "../graphql/queries";
 import CartBox from "../components/cartBox"
 
 
@@ -247,3 +246,37 @@ export default function CartPage({setProdId,setProdTitle,setProdPrice, setProdTy
   }
 `;
  
+
+export const listProducts = /* GraphQL */ `
+  query ListProducts(
+    $filter: ModelProductFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        OneYear {
+          id
+          price
+        }
+        OneMonth {
+          id
+          price
+          _version
+        }
+        ThreeMonth {
+          price
+        }
+        buycount
+        cartCount
+        image
+        name
+        id
+        slug
+        type
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;

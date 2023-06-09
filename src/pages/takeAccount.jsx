@@ -7,6 +7,8 @@ import './css/takenAccount.css';
 import { useForm, Controller } from "react-hook-form";
 import { listUsers } from '../graphql/queries';
 import { updateAccount } from '../graphql/mutations';
+import { useNavigate } from 'react-router-dom';
+import StafNavbar from '../components/StafNavbar';
 
 
 export default function TakeAccount() {
@@ -18,6 +20,8 @@ export default function TakeAccount() {
     const [userList, setUserList] = useState([])
     const [theAccount, setTheAccount] = useState({})
     const [disp, setDisp] = useState(0)
+    const navigate = useNavigate();
+
 
     const {formState: {errors}, handleSubmit, register, control} = useForm();
 
@@ -123,19 +127,9 @@ export default function TakeAccount() {
     }
     return(
         <section className="takeAccountPage">
-            <header className='ManagementHeader'>
-                <h1>ENKAS</h1>
-            </header>
-            <nav className="special_navbar">
-                <Link to="/AddAccount" style={linkStyle}>ajouter</Link>
-                <Link to="/ManageAccount" style={linkStyle}>prendre</Link>
-                <Link to="/ConsultPage" style={linkStyle}>consulter</Link>
-            </nav>
-          <div>
-            
-               
-            
-          </div>
+        	
+            <StafNavbar></StafNavbar>
+        
            
           {
             show?(

@@ -5,6 +5,7 @@ import disney from "../components/img/Dplus.png"
 import PV from "../components/img/primevideo.png"
 import spotify from "../components/img/spotify.png"
 import { useNavigate } from 'react-router-dom';
+import StafNavbar from '../components/StafNavbar';
 
 
 export default function ManageAccount() {
@@ -25,9 +26,6 @@ export default function ManageAccount() {
         navigate("/takeAccount", {state:{ service:'prime'}}) 
     }
  
-
-    
-    
  
     const linkStyle = {
         float: "left",
@@ -42,14 +40,7 @@ export default function ManageAccount() {
     }
     return(
         <section className='ManageAccountPage'>
-        	<header className='ManagementHeader'>
-                <h1>ENKAS</h1>
-            </header>
-            <nav className="special_navbar">
-                <Link to="/AddAccount" style={linkStyle}>ajouter</Link>
-                <Link to="/ManageAccount" style={linkStyle}>prendre</Link>
-                <Link to="/ConsultPage" style={linkStyle}>consulter</Link>
-            </nav>
+        	<StafNavbar></StafNavbar>
             <div className="categories-mobiles">
                 <div className="categories-mobile-boxs" onClick={handleClick1}><img src={netflix} width="75%" alt="netflid"/></div>
                 <div className="categories-mobile-boxs" onClick={handleClick2}><img src={disney} width="80%" alt="disney plus"/></div>

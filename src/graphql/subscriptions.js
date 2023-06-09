@@ -1,6 +1,54 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateOrder = /* GraphQL */ `
+  subscription OnCreateOrder($filter: ModelSubscriptionOrderFilterInput) {
+    onCreateOrder(filter: $filter) {
+      id
+      price
+      userID
+      date
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateOrder = /* GraphQL */ `
+  subscription OnUpdateOrder($filter: ModelSubscriptionOrderFilterInput) {
+    onUpdateOrder(filter: $filter) {
+      id
+      price
+      userID
+      date
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteOrder = /* GraphQL */ `
+  subscription OnDeleteOrder($filter: ModelSubscriptionOrderFilterInput) {
+    onDeleteOrder(filter: $filter) {
+      id
+      price
+      userID
+      date
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateOneYear = /* GraphQL */ `
   subscription OnCreateOneYear($filter: ModelSubscriptionOneYearFilterInput) {
     onCreateOneYear(filter: $filter) {
@@ -191,11 +239,6 @@ export const onCreateProduct = /* GraphQL */ `
       name
       image
       type
-      price {
-        one_month
-        three_month
-        one_year
-      }
       buycount
       cartCount
       Carts {
@@ -233,6 +276,10 @@ export const onCreateProduct = /* GraphQL */ `
         _lastChangedAt
       }
       slug
+      Orders {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -251,11 +298,6 @@ export const onUpdateProduct = /* GraphQL */ `
       name
       image
       type
-      price {
-        one_month
-        three_month
-        one_year
-      }
       buycount
       cartCount
       Carts {
@@ -293,6 +335,10 @@ export const onUpdateProduct = /* GraphQL */ `
         _lastChangedAt
       }
       slug
+      Orders {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -311,11 +357,6 @@ export const onDeleteProduct = /* GraphQL */ `
       name
       image
       type
-      price {
-        one_month
-        three_month
-        one_year
-      }
       buycount
       cartCount
       Carts {
@@ -353,6 +394,10 @@ export const onDeleteProduct = /* GraphQL */ `
         _lastChangedAt
       }
       slug
+      Orders {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -446,6 +491,10 @@ export const onCreateUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Orders {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -473,6 +522,10 @@ export const onUpdateUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Orders {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -497,6 +550,10 @@ export const onDeleteUser = /* GraphQL */ `
         startedAt
       }
       Account {
+        nextToken
+        startedAt
+      }
+      Orders {
         nextToken
         startedAt
       }

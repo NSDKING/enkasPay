@@ -1,0 +1,22 @@
+.selectField ul {
+    list-style: none;
+    padding: 0;
+    max-height: 200px; /* Adjust the height as needed */
+    overflow-y: auto;
+    background-color: #f9f9f9; /* Background color of the ul */
+    border: 1px solid #ccc; /* Border style for the ul */
+    border-radius: 4px; /* Border radius for the ul */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+.selectField  ul li {
+    padding: 8px;
+    cursor: pointer;
+    background-color: #ffffff; /* Background color of the li */
+    border: 1px solid #ccc; /* Border style for the li */
+    border-radius: 4px; 
+  }
+  
+.selectField  ul li:hover {
+    background-color: #f4f4f4;
+}

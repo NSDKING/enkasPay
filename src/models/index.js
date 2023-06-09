@@ -4,15 +4,15 @@ import { schema } from './schema';
 
 
 
-const { OneYear, ThreeMonth, OneMonth, Cart, Product, Account, User, DurationPrice } = initSchema(schema);
+const { Order, OneYear, ThreeMonth, OneMonth, Cart, Product, Account, User } = initSchema(schema);
 
 export {
+  Order,
   OneYear,
   ThreeMonth,
   OneMonth,
   Cart,
   Product,
   Account,
-  User,
-  DurationPrice
+  User
 };

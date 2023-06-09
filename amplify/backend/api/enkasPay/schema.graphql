@@ -1,3 +1,11 @@
+type Order @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  price: String
+  userID: ID! @index(name: "byUser")
+  date: AWSDate
+  productID: ID! @index(name: "byProduct")
+}
+
 type OneYear @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
@@ -30,7 +38,6 @@ type Product @model @auth(rules: [{allow: public}]) {
   name: String
   image: String
   type: String
-  price: DurationPrice
   buycount: Int
   cartCount: Int
   Carts: [Cart] @hasMany(indexName: "byProduct", fields: ["id"])
@@ -38,6 +45,7 @@ type Product @model @auth(rules: [{allow: public}]) {
   ThreeMonth: ThreeMonth @hasOne
   OneYear: OneYear @hasOne
   slug: String
+  Orders: [Order] @hasMany(indexName: "byProduct", fields: ["id"])
 }
 
 type Account @model @auth(rules: [{allow: public}]) {
@@ -53,12 +61,6 @@ type Account @model @auth(rules: [{allow: public}]) {
   userID: ID @index(name: "byUser")
 }
 
-type DurationPrice {
-  one_month: Int
-  three_month: Int
-  one_year: Int
-}
-
 type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   FamilyName: String
@@ -70,5 +72,6 @@ type User @model @auth(rules: [{allow: public}]) {
   phoneNumber: String
   Carts: [Cart] @hasMany(indexName: "byUser", fields: ["id"])
   Account: [Account] @hasMany(indexName: "byUser", fields: ["id"])
+  Orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
 }
  

@@ -1,6 +1,140 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getOrder = /* GraphQL */ `
+  query GetOrder($id: ID!) {
+    getOrder(id: $id) {
+      id
+      price
+      userID
+      date
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listOrders = /* GraphQL */ `
+  query ListOrders(
+    $filter: ModelOrderFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        price
+        userID
+        date
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncOrders = /* GraphQL */ `
+  query SyncOrders(
+    $filter: ModelOrderFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncOrders(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        price
+        userID
+        date
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const ordersByUserID = /* GraphQL */ `
+  query OrdersByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelOrderFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    ordersByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        price
+        userID
+        date
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const ordersByProductID = /* GraphQL */ `
+  query OrdersByProductID(
+    $productID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelOrderFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    ordersByProductID(
+      productID: $productID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        price
+        userID
+        date
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getOneYear = /* GraphQL */ `
   query GetOneYear($id: ID!) {
     getOneYear(id: $id) {
@@ -266,6 +400,72 @@ export const syncCarts = /* GraphQL */ `
     }
   }
 `;
+export const cartsByProductID = /* GraphQL */ `
+  query CartsByProductID(
+    $productID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCartFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    cartsByProductID(
+      productID: $productID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        number
+        productID
+        userID
+        price
+        nb_month
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const cartsByUserID = /* GraphQL */ `
+  query CartsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCartFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    cartsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        number
+        productID
+        userID
+        price
+        nb_month
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getProduct = /* GraphQL */ `
   query GetProduct($id: ID!) {
     getProduct(id: $id) {
@@ -273,11 +473,6 @@ export const getProduct = /* GraphQL */ `
       name
       image
       type
-      price {
-        one_month
-        three_month
-        one_year
-      }
       buycount
       cartCount
       Carts {
@@ -315,6 +510,10 @@ export const getProduct = /* GraphQL */ `
         _lastChangedAt
       }
       slug
+      Orders {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -334,25 +533,21 @@ export const listProducts = /* GraphQL */ `
   ) {
     listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        OneYear {
-          id
-          price
-        }
-        OneMonth {
-          id
-          price
-          _version
-        }
-        ThreeMonth {
-          price
-        }
+        id
+        name
+        image
+        type
         buycount
         cartCount
-        image
-        name
-        id
         slug
-        type
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        productOneMonthId
+        productThreeMonthId
+        productOneYearId
       }
       nextToken
       startedAt
@@ -479,6 +674,43 @@ export const syncAccounts = /* GraphQL */ `
     }
   }
 `;
+export const accountsByUserID = /* GraphQL */ `
+  query AccountsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelAccountFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    accountsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        mail
+        passe
+        profil
+        endDateAccount
+        endDateProfil
+        pin
+        free
+        service
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
@@ -495,6 +727,10 @@ export const getUser = /* GraphQL */ `
         startedAt
       }
       Account {
+        nextToken
+        startedAt
+      }
+      Orders {
         nextToken
         startedAt
       }
@@ -555,109 +791,6 @@ export const syncUsers = /* GraphQL */ `
         birthdate
         staff
         phoneNumber
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const cartsByProductID = /* GraphQL */ `
-  query CartsByProductID(
-    $productID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelCartFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    cartsByProductID(
-      productID: $productID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        number
-        productID
-        userID
-        price
-        nb_month
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const cartsByUserID = /* GraphQL */ `
-  query CartsByUserID(
-    $userID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelCartFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    cartsByUserID(
-      userID: $userID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        number
-        productID
-        userID
-        price
-        nb_month
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const accountsByUserID = /* GraphQL */ `
-  query AccountsByUserID(
-    $userID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelAccountFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    accountsByUserID(
-      userID: $userID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        mail
-        passe
-        profil
-        endDateAccount
-        endDateProfil
-        pin
-        free
-        service
-        userID
         createdAt
         updatedAt
         _version

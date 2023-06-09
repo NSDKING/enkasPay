@@ -5,12 +5,15 @@ import { useForm, Controller } from "react-hook-form";
 import { API, graphqlOperation } from 'aws-amplify';
 import { createAccount } from '../graphql/mutations';
 import { listUsers } from '../graphql/queries';
+import { useNavigate } from 'react-router-dom';
+import StafNavbar from '../components/StafNavbar';
  
 
 export default function AddAccount() {
     const [loading, setLoading] = useState(false)
     const [userList, setUserList] = useState([])
     const {formState: {errors}, handleSubmit, register, control} = useForm();
+    const navigate = useNavigate();
     
     const getListUsers = async()=>{
         if(loading){
@@ -72,6 +75,7 @@ export default function AddAccount() {
                 graphqlOperation(createAccount, { input: newAccount })
             );
              alert('ok')
+            navigate("/ManageAccount")
           }catch(e){
             console.log(e)
          }
@@ -81,15 +85,8 @@ export default function AddAccount() {
     return(
         <section className="AddAccountPage">
 
-            <header className='ManagementHeader'>
-                <h1>ENKAS</h1>
-            </header>
-            <nav className="special_navbar">
-                <Link to="/AddAccount" style={linkStyle}>ajouter</Link>
-                <Link to="/ManageAccount" style={linkStyle}>prendre</Link>
-                <Link to="/ConsultPage" style={linkStyle}>consulter</Link>
-            </nav>
-            	<form id="my-form"
+            <StafNavbar></StafNavbar>
+            <form id="my-form"
                     onSubmit={handleSubmit((data=>{
                          onPress(data)
                     }))}>
@@ -149,23 +146,23 @@ export default function AddAccount() {
                     />
 
                 <label for="pin">utilisateur :</label>
-                <Controller
-                        name="user"
-                        control={control}
-                        defaultValue=""
-                        render={({ field }) => (
-                        <select {...field} >
-                            <option value="">Select...</option>
-                      
-                            {
-                                userList.map(item => (
-                                    <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
-                                ))
-                            }
-                        </select>
-                        )}
-                    />
                 
+                    
+                <input type="text" 
+                    list="user" 
+                    {...register('user', { required: 'ceci est obligatoire'})}
+
+                />
+                <datalist id="user">
+                    <option value="">Select...</option>
+
+                        {
+                            userList.map(item => (
+                                <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
+                            ))
+                        }
+
+                </datalist>
                 <label for="pin">service :</label>
                 <Controller
                         name="service"
