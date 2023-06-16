@@ -22,7 +22,7 @@ export default function ConsultPage() {
 
     
     const handleupdate = (data)=>{
-        navigate("/updateAccount", { state: {  item: data } }) 
+        navigate("/click-account", { state: {  item: data } }) 
      }
 
   
@@ -184,26 +184,3 @@ export default function ConsultPage() {
        </>
     )
 }
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

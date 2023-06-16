@@ -122,7 +122,7 @@ export default function AddAccount() {
                     type="date" 
                     id="fin-abonnement" 
                     name="fin-abonnement"
-                    {...register('endDateProfil', { required: 'ceci est obligatoire'})}
+                    {...register('endDateProfil')}
                     
                     />
 
@@ -148,13 +148,10 @@ export default function AddAccount() {
                 <label for="pin">utilisateur :</label>
                 
                     
-                <input type="text" 
-                    list="user" 
-                    {...register('user', { required: 'ceci est obligatoire'})}
+                <input type="text" list="user" {...register('user', { required: false })} />
 
-                />
                 <datalist id="user">
-                    <option value="">Select...</option>
+                    <option value=" ">Select...</option>
 
                         {
                             userList.map(item => (
