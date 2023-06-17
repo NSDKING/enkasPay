@@ -38,6 +38,8 @@ import AccountToday from './pages/AccountToday';
 import ProfileToday from './pages/ProfilToday';
 import ClickAccount from './pages/clickAccount';
 import ConsultAccount from './pages/ConsultAccount';
+import CustomerList from './pages/CustomerList';
+import CustomerData from './pages/CustomerData';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -309,6 +311,8 @@ function App() {
                   <Route path='/Account-soon' Component={AccountSoon}/>
                   <Route path='/Profile-soon' Component={ProfileSoon}/>
                   <Route path='/bundle' Component={BundlePage}/>
+                  <Route path='/customer-list' Component={CustomerList}/>
+                  <Route path='/customer-data' Component={CustomerData}/>
                   <Route path='/click-account' Component={ClickAccount}/>
                   <Route exact path="/ProductPage/:slug" Component={ProductPage} />
             

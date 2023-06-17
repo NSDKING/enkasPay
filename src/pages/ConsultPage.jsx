@@ -1,11 +1,8 @@
 import { API, graphqlOperation } from 'aws-amplify';
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
 import { listAccounts, listUsers } from '../graphql/queries'
 import './css/consultPage.css'
-import { useForm, Controller } from "react-hook-form";
-import { updateAccount } from '../graphql/mutations';
-import { Alert } from '@aws-amplify/ui-react';
+import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import StafNavbar from '../components/StafNavbar';
 
