@@ -61,7 +61,7 @@ export default function UpdateAccount() {
             }
               
      
-              alert('ok')
+            alert('ok')
             navigate("/ConsultPage")
 
        
@@ -119,9 +119,9 @@ export default function UpdateAccount() {
                                     id="profil" 
                                     name="profil"
                                     defaultValue={item.profil}
-                                    {...register('profil', { required: 'ceci est obligatoire'})}
-                                    
-                                    />
+                                    {...register('profil', { required: false })}
+                                />
+             
 
                                 <label for="profil">passe :</label>
                                 <input 
