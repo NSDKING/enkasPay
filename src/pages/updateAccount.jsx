@@ -24,6 +24,7 @@ export default function UpdateAccount() {
         }
         
         setLoading(true)
+        console.log(data)
         try {
             if(data.user==""){
                 const input = { 
@@ -35,11 +36,11 @@ export default function UpdateAccount() {
                     endDateProfil:data.endDateProfil,
                     pin:data.pin,
                     numero:data.numero,
-                    _version:item._version
-                    
+                    free:data.free,
+                    _version:item._version,
                   };
                 const response= await API.graphql(graphqlOperation(updateAccount, { input: input }));
-                console.log(response)
+     
 
             }else{
 
@@ -53,11 +54,13 @@ export default function UpdateAccount() {
                     pin:data.pin,
                     numero:data.numero,
                     userID:data.user,
-                    _version:item._version
+                    _version:item._version,
+                    free:data.free,
+
                     
                   };
                 const response= await API.graphql(graphqlOperation(updateAccount, { input: input }));
-                  console.log(response)
+        
             }
               
      
@@ -190,6 +193,7 @@ export default function UpdateAccount() {
                                                     defaultValue=""
                                                     render={({ field }) => (
                                                     <select {...field} >
+                                                        <option value="">select....</option>
                                                         <option value={true}>true</option>
                                                         <option value={false}>false</option>
                                                 
