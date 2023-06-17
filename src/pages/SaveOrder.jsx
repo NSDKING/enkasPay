@@ -135,13 +135,11 @@ export default function SaveOrder() {
             }
         )}>
             <label>User ID</label>
+            <input type="text" list="user" {...register('user', { required: false })} />
 
-            <input type="text" 
-                list="user" 
-                {...register('user', { required: 'ceci est obligatoire'})}
-
-            />
             <datalist id="user">
+                <option value=" ">Select...</option>
+
                     {
                         userList.map(item => (
                             <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>

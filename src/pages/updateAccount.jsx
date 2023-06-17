@@ -170,13 +170,10 @@ export default function UpdateAccount() {
 
                                 <label>utilisateur :</label>
                                 
-                                <input type="text" 
-                                    list="user" 
-                                    {...register('user', { required: 'ceci est obligatoire'})}
+                                <input type="text" list="user" {...register('user', { required: false })} />
 
-                                />
                                 <datalist id="user">
-                                    <option value="">Select...</option>
+                                    <option value=" ">Select...</option>
 
                                         {
                                             userList.map(item => (

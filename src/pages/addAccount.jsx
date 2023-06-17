@@ -55,20 +55,32 @@ export default function AddAccount() {
         if(loading){
             return;
         }
-
+        console.log(data)
         setLoading(true)  
         try {
+            let freeValue;
+            let endDateProfilValue;
+            if(data.endDateProfil==""){
+                endDateProfilValue=null
+            }else{
+                endDateProfilValue=data.endDateProfil
+            }
+            if(data.user==" "){
+                freeValue= true
+            }else{
+                freeValue=false
+            }
             const newAccount = {
                 mail: data.mail,
                 profil: data.profil,
                 passe:data.passe,
                 endDateAccount:data.endDateAccount,
-                endDateProfil:data.endDateProfil,
+                endDateProfil:endDateProfilValue,
                 pin:data.pin,
                 numero:data.numero,
                 userID:data.user,
                 service:data.service,
-                free:false,
+                free:freeValue,
               };
         
               const response =  await API.graphql(
@@ -104,8 +116,7 @@ export default function AddAccount() {
                     type="text" 
                     id="profil" 
                     name="profil"
-                    {...register('profil', { required: 'ceci est obligatoire'})}
-                    
+                    {...register('profil', { required: false })}
                     />
 
                 <label for="profil">passe :</label>
