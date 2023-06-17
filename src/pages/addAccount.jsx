@@ -75,7 +75,7 @@ export default function AddAccount() {
                 profil: data.profil,
                 passe:data.passe,
                 endDateAccount:data.endDateAccount,
-                endDateProfil:null,
+                endDateProfil:endDateProfilValue,
                 pin:data.pin,
                 numero:data.numero,
                 userID:data.user,
