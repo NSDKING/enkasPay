@@ -40,6 +40,8 @@ import ClickAccount from './pages/clickAccount';
 import ConsultAccount from './pages/ConsultAccount';
 import CustomerList from './pages/CustomerList';
 import CustomerData from './pages/CustomerData';
+import UserAccountList from './pages/UserAccountList';
+import UserOrderList from './pages/UserOrderList';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -314,6 +316,8 @@ function App() {
                   <Route path='/customer-list' Component={CustomerList}/>
                   <Route path='/customer-data' Component={CustomerData}/>
                   <Route path='/click-account' Component={ClickAccount}/>
+                  <Route path='/User-account-list' Component={UserAccountList}/>
+                  <Route path='/User-order-list' Component={UserOrderList}/>
                   <Route exact path="/ProductPage/:slug" Component={ProductPage} />
             
               

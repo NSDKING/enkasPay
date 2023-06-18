@@ -1,27 +1,26 @@
-import { API, graphqlOperation } from 'aws-amplify';
-import { useEffect, useState } from 'react'
-import { listAccounts, listUsers } from '../graphql/queries'
-import './css/consultPage.css'
-import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
-import StafNavbar from '../components/StafNavbar';
+import { API, graphqlOperation } from "aws-amplify";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getUser, listAccounts, listUsers } from "../graphql/queries";
+import StafNavbar from "../components/StafNavbar";
 
 
-export default function ConsultPage() {
-    const navigate = useNavigate();
+export default function UserAccountList(){  
+    const { state } = useLocation();
+    const { item } = state;
     const [Accounts, setAccount] = useState([])
+    const [UserAccountList, setUserAccountList] = useState([])
     const [loading, setLoading] = useState(false)
     const [userList, setUserList] = useState([])
-    const {formState: {errors}, handleSubmit, register, control, setValue} = useForm();
-    const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
 
-    
+
     const handleupdate = (data)=>{
         navigate("/click-account", { state: {  item: data } }) 
      }
 
   
-      
+
     const getListUsers = async()=>{
         if(loading){
           return;
@@ -39,6 +38,8 @@ export default function ConsultPage() {
       setLoading(false)
      
       }
+
+
 
     const getAccount = async()=>{
         if(loading){
@@ -59,14 +60,33 @@ export default function ConsultPage() {
  
        }
 
-    useEffect(() => {
-       getAccount()
-       getListUsers()
-   
-         
-    }, [ ])
+       const getUserAccount = () => {
+            let list = []
+            for(let i=0;i<=Accounts.length;i++){
+                if(Accounts[i] != null){
+                    if(Accounts[i].userID == item){
+                        list.push(Accounts[i])
+                    }
+                }
+            }
+            setUserAccountList(list)
+
+       }
+
     
-    const handleName = (userid)=>{
+    useEffect(() => {
+        getAccount()
+       getListUsers()
+
+     }, [ ])
+
+   
+    useEffect(()=>{
+        getUserAccount()
+     }, [Accounts])
+  
+
+     const handleName = (userid)=>{
         let username = " "
         userList.map((item)=>{
             if(item.id === userid){
@@ -89,31 +109,10 @@ export default function ConsultPage() {
     }
 
 
- 
-    
-      const filteredAccounts = Accounts.filter((account) => {
-        const username = handleName(account.userID).toLowerCase();
-        return username.includes(searchTerm.toLowerCase());
-      });
-
-    return(
-       <>
-        <section className='ConsultPage'>
-
-        <StafNavbar></StafNavbar>
-
-        <div className="searchContainer">
-      <input
-        type="text"
-        className="searchInput"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
- 
-    </div>
-
-        <div className="tableContainer">
+     return(
+        <section>
+            <StafNavbar></StafNavbar>
+             <div className="tableContainer">
             <table>
                     <thead>
                         <tr>
@@ -125,14 +124,13 @@ export default function ConsultPage() {
                             <th>utilisateur</th>
                             <th>numero</th>
                             <th>fin du profil</th>
-                            <th>free</th>
-                        </tr>
+                         </tr>
                     </thead>
                     <tbody>
                         {loading ? (
                             <h2>Loading...</h2>
                         ) : (
-                            filteredAccounts.filter(item =>{
+                            UserAccountList.filter(item =>{
                                 if (item._deleted !=true) {
                                         return item;
                                         }     
@@ -149,8 +147,7 @@ export default function ConsultPage() {
                                         <td>{handleName(item.userID)}</td>
                                         <td>{handleNum(item.userID)}</td>
                                         <td>{item.endDateProfil}</td>
-                                        <td>{String(item.free)}</td>
-                                    </tr>
+                                     </tr>
                                 ))
                         )} 
                         
@@ -158,9 +155,9 @@ export default function ConsultPage() {
                 </table>
 
         </div>
-         
+
         </section>
- 
-       </>
-    )
-}
+     )
+
+
+}  

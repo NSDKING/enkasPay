@@ -14,8 +14,8 @@ export default function CustomerList() {
     const navigate = useNavigate();
 
       
-    const handleClick = (data)=>{
-        navigate("/customer-data", { state: {  users: data } }) 
+    const handleClick = (UserID)=>{
+        navigate("/customer-data", { state: {  item: UserID } }) 
      }
     
     const getListUsers = async()=>{
@@ -28,8 +28,7 @@ export default function CustomerList() {
       
         const response= await API.graphql(graphqlOperation(listUsers));
         setUserList(response.data.listUsers.items)
-        console.log(response)
-       }catch(e){
+        }catch(e){
               console.log(e)
     
       }
@@ -90,8 +89,7 @@ export default function CustomerList() {
                                         }     
                                 }).map(item => (
                                     <tr key={item.id} onClick={()=>{
-                                   
- 
+                                        handleClick(item.id) 
                                          }}>
                                         <td>{item.FamilyName}</td>
                                         <td>{item.LastName}</td>
