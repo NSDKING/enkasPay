@@ -51,7 +51,17 @@ export default function AccountToday() {
           return  item.endDateAccount == today;
         });
 
-        setFinishToday(finishTodayAccounts);
+        let listAccount=[]
+        let listAccountMail = []
+
+        finishTodayAccounts.forEach((item)=>{
+          if(!listAccountMail.includes(item.mail)){
+            listAccount.push(item)
+            listAccountMail.push(item.mail)
+    
+          }
+        })
+        setFinishToday(listAccount);
        };
       
  

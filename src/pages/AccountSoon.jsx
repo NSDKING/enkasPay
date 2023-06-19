@@ -13,8 +13,7 @@ export default function AccountSoon() {
   useEffect(() => {
     getAccount();
     AccountFinishSoon();
-    console.log(finishSoon)
-  }, [Accounts]);
+   }, [Accounts]);
 
   function getCurrentDate() {
     const today = new Date();
@@ -69,16 +68,25 @@ export default function AccountSoon() {
   const AccountFinishSoon = () => {
     let newDate = add10Days();
     let today = getCurrentDate();
-    console.log(newDate)
-   
+    
 
     let finishSoonAccounts = Accounts.filter(item => {
       return today < item.endDateAccount && item.endDateAccount < newDate;
     });
+    
+    let listAccount=[]
+    let listAccountMail = []
 
-    setFinishSoon(finishSoonAccounts);
-    console.log(finishSoonAccounts);
-  };
+    finishSoonAccounts.forEach((item)=>{
+      if(!listAccountMail.includes(item.mail)){
+        listAccount.push(item)
+        listAccountMail.push(item.mail)
+
+      }
+    })
+
+    setFinishSoon(listAccount);
+   };
 
   const handleupdate = (data) => {
     navigate("/updateAccount", { state: { item: data } });
