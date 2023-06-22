@@ -85,6 +85,28 @@ export default function ProfilAccountList() {
 
     }
 
+    const handleName = (userid)=>{
+        let username = " "
+        userList.map((item)=>{
+            if(item.id === userid){
+                username = item.FamilyName +" "+ item.LastName
+            }
+        })
+        return username
+
+    }
+
+    const handleNum = (userid)=>{
+        let username = " "
+        userList.map((item)=>{
+            if(item.id === userid){
+                username = item.phoneNumber
+            }
+        })
+        return username
+
+    }
+
 
 
      return(
@@ -100,6 +122,9 @@ export default function ProfilAccountList() {
                             <th>fin</th>
                             <th>service</th>
                             <th>free</th>
+                            <th>utilisateur</th>
+                            <th>numero</th>
+
                           </tr>
                     </thead>
                     <tbody>
@@ -114,7 +139,9 @@ export default function ProfilAccountList() {
                                         <td className="std">{item.pin}</td>
                                         <td className="std">{item.endDateProfil}</td> 
                                         <td className="std">{item.service}</td> 
-                                        <td className="std">{String(item.free)}</td> 
+                                        <td className="std">{String(item.free)}</td>
+                                        <td>{handleName(item.userID)}</td>
+                                        <td>{handleNum(item.userID)}</td> 
                                      </tr>
                                 ))
                         )} 
