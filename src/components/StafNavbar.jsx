@@ -30,6 +30,7 @@ export default function StafNavbar() {
                     <Link to="/SaveOrder" style={linkStyle}>order</Link>
                     <Link to="/today" style={linkStyle}>today</Link>
                     <Link to="/customer-list" style={linkStyle}>clients</Link>
+                    <Link to="/accounts-list" style={linkStyle}>comptes</Link>
                 </nav>
         </section>
     )

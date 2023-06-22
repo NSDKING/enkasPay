@@ -56,6 +56,7 @@ export default function CustomerList() {
     return(
         <section>
             <StafNavbar></StafNavbar>
+            <h3>clients: {userList.length}</h3>
             <div className="searchContainer">
                 <input
                     type="number"

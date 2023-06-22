@@ -113,7 +113,7 @@ export default function AddAccount() {
 
                 <label for="profil">profil :</label>
                 <input 
-                    type="text" 
+                    type="number" 
                     id="profil" 
                     name="profil"
                     {...register('profil', { required: false })}

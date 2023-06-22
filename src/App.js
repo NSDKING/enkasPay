@@ -42,6 +42,8 @@ import CustomerList from './pages/CustomerList';
 import CustomerData from './pages/CustomerData';
 import UserAccountList from './pages/UserAccountList';
 import UserOrderList from './pages/UserOrderList';
+import AccountList from './pages/AccountList';
+import ProfilAccountList from './pages/ProfileAccountList';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -315,8 +317,10 @@ function App() {
                   <Route path='/bundle' Component={BundlePage}/>
                   <Route path='/customer-list' Component={CustomerList}/>
                   <Route path='/customer-data' Component={CustomerData}/>
+                  <Route path='/profile-list' Component={ProfilAccountList}/>
                   <Route path='/click-account' Component={ClickAccount}/>
                   <Route path='/User-account-list' Component={UserAccountList}/>
+                  <Route path='/accounts-list' Component={AccountList}/>
                   <Route path='/User-order-list' Component={UserOrderList}/>
                   <Route exact path="/ProductPage/:slug" Component={ProductPage} />
             
