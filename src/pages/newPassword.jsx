@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 export default function NewPassword() {
     const {formState: {errors}, handleSubmit, register, watch} = useForm();
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false);
+
     const navigate = useNavigate();
     
 
@@ -22,8 +24,8 @@ export default function NewPassword() {
             const response = await Auth.forgotPasswordSubmit(data.username, data.code, data.password);
             navigate('/')
           }catch(e){
-            console.log(e)
-         }
+            setError(e.message)
+        }
         setLoading(false)
      }   
     return(
@@ -39,20 +41,29 @@ export default function NewPassword() {
                 <h2>
                     Réinitialisation du mot de passe
                 </h2>
+
+                <p className={error? 'text-error': 'none'} >{error}</p>
                
                 <input
                     {...register('code', { required: 'ceci est obligatoire'})}
                     placeholder="   saisissez le code envoyez par email"
                 />  
+                
+                {errors.code && <p className="text-error">{errors.code?.message}</p>}
+
                    <input
                     {...register('username', { required: 'ceci est obligatoire'})}
                     placeholder="   saisissez votre adresse mail "
                 />   
+                {errors.username && <p className="text-error">{errors.username?.message}</p>}
+
                 <input
                     {...register('password', { required: 'ceci est obligatoire'})}
                     placeholder="   saisissez votre nouveau mot de passe "
                     type="password"
                 />                
+                {errors.password && <p className="text-error">{errors.password?.message}</p>}
+                
                 <DefaultButton 
                     text={"continuer"}  
                     bgcolor={"#eb0625"} 
