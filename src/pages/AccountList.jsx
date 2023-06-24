@@ -46,21 +46,23 @@ export default function AccountList() {
           service: item.service,
           _version: item._version,
           _deleted: item._deleted,
-          remplissage: 1,
+          remplissage: item.free ? 0 : 1,
         }
         listAccount.push(newItem)
         listAccountMail.push(newItem.mail)
       } else {
         listAccount.forEach((account) => {
           if (account.mail == item.mail) {
-            if (!account.free) {
-              account.remplissage = account.remplissage + 1
+            if(!item.free){
+              let updatedAccount = { ...account, remplissage: account.remplissage + 1 };
+              listAccount = listAccount.map((a) => (a.mail === item.mail ? updatedAccount : a));
             }
           }
         })
       }
     })
     setUaccountList(listAccount)
+    console.log(listAccount)
   }
 
   useEffect(() => {

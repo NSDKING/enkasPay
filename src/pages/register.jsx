@@ -55,86 +55,10 @@ export default function RegisterPage() {
         setLoading(false)
      }   
 
-     const onConfirmPressed = async (data) =>{
-        if(loading){
-            return;
-        }
-        
-        setLoading(true)  
-        console.log(data)
-        try {
-            const response = await Auth.confirmSignUp(data.email,data.code);
-            
-             setStep(3)
-            const signresponse = await Auth.signIn(data.email, data.password)
-            
-         }catch(e){
-            setError(e.message)
+     
 
-         }
-        setLoading(false)
-     }   
-
-    const onRegisterData = async (data) =>{
-        if(loading){
-            return;
-        }
-        const authUser = await Auth.currentAuthenticatedUser({
-            bypassCache: true,
-          });
-
-        setLoading(true)  
-         try {
-            const newUser = {
-                id: authUser.attributes.sub,
-                mail: data.email,
-                city: data.city,
-                FamilyName:data.nom,
-                birthdate:data.birthday,
-                LastName:data.prenom,
-                phoneNumber:data.number,
-              };
-        
-            console.log(newUser)
-            console.log(data)
-            const response = await API.graphql(graphqlOperation(createUser,
-                {input: {
-                    id: authUser.attributes.sub,
-                    mail: data.email,
-                    city: data.city,
-                    FamilyName:data.nom,
-                    birthdate:data.birthday,
-                    LastName:data.prenom,
-                    phoneNumber:data.number
-                   }
-            
-            }))
-             navigate("/")
-           }catch(e){
-            setError(e.message)
-         }
-        setLoading(false)
-     }
-
-     const onResendPress = async () =>{
-        if(loading){
-            return;
-        }
-    
-
-        setLoading(true)  
-         try {
-            const response = await Auth.resendSignUp(username);
-            alert("code renvoyé")
-        
-            }catch(e){
-                setError(e.message)
-            }
-        setLoading(false)
-
-
-     }
-
+ 
+ 
  
     return(
         <section className='registerPage'>

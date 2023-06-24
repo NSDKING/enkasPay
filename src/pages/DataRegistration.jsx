@@ -152,6 +152,7 @@ export default function DataRegistration() {
 
                             <input 
                                 className='form-input'
+                                type='number'
                                 {...register('number', { 
                                     required: 'entre ton numero comme celui ci:+237693040500',
                                     pattern: {
