@@ -13,7 +13,6 @@ export default function ProfilAccountList() {
     const [searchNum, setSearchNum] = useState('');
     const [userList, setUserList] = useState([])
     const { state } = useLocation();
-    const { mail } = state;
 
         
     const handleupdate = (data)=>{
@@ -75,7 +74,7 @@ export default function ProfilAccountList() {
     const getProfile =()=>{
         let profile = []
         AccountList.forEach((item)=>{
-            if(item.mail == mail){
+            if(item.mail == state.mail){
                 profile.push(item)
 
             }

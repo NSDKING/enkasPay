@@ -54,3 +54,9 @@ select{
 	border-radius: 6px;
 }
 
+#my-form{
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}

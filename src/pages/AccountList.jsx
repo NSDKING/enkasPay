@@ -12,8 +12,9 @@ export default function AccountList() {
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
-  const handleClick = (mail, remplissage) => {
-    navigate("/profile-list", { state: { mail: mail, remplissage: remplissage } });
+  const handleClick = (item) => {
+    navigate("/click-accountList", { state: { item:item } }) 
+
   }
 
   const getAccount = async () => {
@@ -112,7 +113,7 @@ export default function AccountList() {
             ) : (
               filteredAccountList.map(item => (
                 <tr key={item.id} onClick={() => {
-                  handleClick(item.mail, item.remplissage)
+                  handleClick(item)
                 }}>
                   <td className="std">{item.mail}</td>
                   <td className="std">{item.passe}</td>

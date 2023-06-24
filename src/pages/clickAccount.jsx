@@ -45,6 +45,7 @@ export default function ClickAccount() {
    
         navigate("/updateAccount", { state: {  item: item } }) 
       };
+      
     return(
         <section>
             <StafNavbar/>
