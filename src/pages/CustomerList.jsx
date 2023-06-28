@@ -43,6 +43,7 @@ export default function CustomerList() {
 
   useEffect(() => {
     getListUsers();
+    console.log(userList)
   }, []);
 
   return (

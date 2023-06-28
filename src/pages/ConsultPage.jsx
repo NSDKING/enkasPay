@@ -62,9 +62,12 @@ export default function ConsultPage() {
     useEffect(() => {
        getAccount()
        getListUsers()
+    
         console.log(Accounts)
          
     }, [ ])
+    
+ 
     
     const handleName = (userid)=>{
         let username = " "
