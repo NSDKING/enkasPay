@@ -61,7 +61,7 @@ export default function SaveOrder() {
   setLoading(true)
   try {
   
-    const response= await API.graphql(graphqlOperation(listUsers));
+    const response= await API.graphql(graphqlOperation(listUsers, { limit: 1000 }));
      setUserList(response.data.listUsers.items)
      console.log(userList)
  
