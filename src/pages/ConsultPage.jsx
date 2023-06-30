@@ -49,7 +49,7 @@ export default function ConsultPage() {
 
         try {
 
-            const response= await API.graphql(graphqlOperation(listAccounts));
+            const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
             setAccount(response.data.listAccounts.items)
          }catch(e){
                 console.log(e)
