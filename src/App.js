@@ -49,6 +49,7 @@ import UpdateAccountList from './pages/updateAccountList';
 import OrderList from './pages/OrderList';
 import { updateOrder } from './graphql/mutations';
 import UpdateOrder from './pages/UpdateOrder';
+import Past from './pages/past';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -326,7 +327,7 @@ function App() {
                   <Route path='/click-account' Component={ClickAccount}/>
                   <Route path='/update-accountList' Component={UpdateAccountList}/>
                   <Route path='/update-OrderList' Component={UpdateOrder}/>
-                  
+                  <Route path='/Past' Component={Past}/>               
                   <Route path='/click-accountList' Component={ClickAccountList}/>
                   <Route path='/User-account-list' Component={UserAccountList}/>
                   <Route path='/accounts-list' Component={AccountList}/>
