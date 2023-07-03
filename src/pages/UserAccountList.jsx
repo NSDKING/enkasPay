@@ -66,10 +66,11 @@ export default function UserAccountList(){
                 if(Accounts[i] != null){
                     if(Accounts[i].userID == item){
                         list.push(Accounts[i])
-                    }
+                     }
                 }
             }
             setUserAccountList(list)
+            console.log(UserAccountList)
 
        }
 
@@ -77,12 +78,14 @@ export default function UserAccountList(){
     useEffect(() => {
         getAccount()
        getListUsers()
+       console.log(UserAccountList)
 
      }, [ ])
 
    
     useEffect(()=>{
         getUserAccount()
+    
      }, [Accounts])
   
 
@@ -131,7 +134,7 @@ export default function UserAccountList(){
                             <h2>Loading...</h2>
                         ) : (
                             UserAccountList.filter(item =>{
-                                if (item._deleted !=true) {
+                                if (!item._deleted) {
                                         return item;
                                         }     
                                 }).map(item => (

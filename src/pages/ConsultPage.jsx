@@ -53,7 +53,7 @@ export default function ConsultPage() {
             setAccount(response.data.listAccounts.items)
          }catch(e){
                 console.log(e)
-
+ 
         }
         setLoading(false)
 
@@ -63,7 +63,7 @@ export default function ConsultPage() {
     useEffect(() => {
        getAccount()
        getListUsers()
-    
+ 
         console.log(Accounts)
          
     }, [ ])

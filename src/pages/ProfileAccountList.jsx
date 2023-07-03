@@ -74,14 +74,21 @@ export default function ProfilAccountList() {
 
     const getProfile =()=>{
         let profile = []
+        let profileNotDeleted = []
+
         AccountList.forEach((item)=>{
             if(item.mail == state.mail){
                 profile.push(item)
 
             }
         })
-
-        setProfileList(profile)
+        profile.filter(item =>{
+            if (!item._deleted) {
+                profileNotDeleted.push(item);
+                    } 
+                 } )
+        console.log(profileNotDeleted)
+        setProfileList(profileNotDeleted)
 
     }
 

@@ -87,19 +87,7 @@ export default function UserOrderList(){
     setLoading(false)
     
     }
-
-    const getProductbyID= (id)=>{
-        let product 
-        for(let i=0;i<Articles.length;i++){
-            if(Articles[i].id==id){
-               product= Articles[i]
-             }
-
-        }
-        return product
-    }
-
-
+ 
     useEffect(() => {
         getOrder()
         getListUsers()
@@ -112,7 +100,7 @@ export default function UserOrderList(){
     useEffect(()=>{
         getUserOrders()
         getCA()
-     }, [Orders])
+      }, [Orders])
 
     const handleName = (userid)=>{
         let username = " "
@@ -136,16 +124,29 @@ export default function UserOrderList(){
 
     }
 
+    
+
     const getCA = ()=>{
-        let ca;
-        for(let i=0;i<Orders.length;i++){
-            ca = Orders[i].price+ca;
-            console.log(Orders[i].price)
+        let number=0;
+        for(let i=0;i<UserOrderList.length;i++){
+            number = parseInt(UserOrderList[i].price)+number;
+            console.log(number)
         }
-         setCa(ca) 
+         setCa(number) 
     }
 
 
+        
+    const handleProductName = (productID)=>{
+        let productName = " "
+        Articles.map((item)=>{
+            if(item.id === productID){
+                productName= item.name
+            }
+        })
+        return productName
+
+    }
     return(
         <section>
             <StafNavbar></StafNavbar>
@@ -176,13 +177,7 @@ export default function UserOrderList(){
                                     <tr key={order.id}>
                                         <td>{order.price}</td>
                                         <td>{handleName(order.userID)}</td>
-                                        <td>{
-                                       
-                                       (getProductbyID(order.productI)!=undefined)?getProductbyID(order.productID).name : null
-                                       
-
-                                       
-                                   }</td>
+                                        <td>{handleProductName(order.productID)}</td>
                                         <td>{order.date}</td>
                                         <td>{handleNum(order.userID)}</td>
 
