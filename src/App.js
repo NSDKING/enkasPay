@@ -50,6 +50,7 @@ import OrderList from './pages/OrderList';
 import { updateOrder } from './graphql/mutations';
 import UpdateOrder from './pages/UpdateOrder';
 import Past from './pages/past';
+import CustomerUpdate from './pages/customerUpdate';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -323,6 +324,7 @@ function App() {
                   <Route path='/bundle' Component={BundlePage}/>
                   <Route path='/customer-list' Component={CustomerList}/>
                   <Route path='/customer-data' Component={CustomerData}/>
+                  <Route path='/customer-update' Component={CustomerUpdate}/>
                   <Route path='/profile-list' Component={ProfilAccountList}/>
                   <Route path='/click-account' Component={ClickAccount}/>
                   <Route path='/update-accountList' Component={UpdateAccountList}/>

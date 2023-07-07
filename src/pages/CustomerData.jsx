@@ -15,7 +15,11 @@ export default function CustomerData() {
     const handleClickOrder = ()=>{
         navigate("/User-order-list", { state: {  item: item } }) 
     }
-
+    
+    const handleClickUpdate = ()=>{
+        navigate("/customer-update ", { state: {  item: item } }) 
+    }
+    
     useEffect(()=>{
         console.log(item)
     },[])   
@@ -28,6 +32,9 @@ export default function CustomerData() {
             </button>
             <button className="button" onClick={handleClickOrder}>
                     Orders
+            </button>
+            <button className="button" onClick={handleClickUpdate}>
+                    modifier
             </button>
 
         </section>
