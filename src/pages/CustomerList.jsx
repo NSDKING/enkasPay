@@ -50,7 +50,14 @@ export default function CustomerList() {
   return (
     <section>
       <StafNavbar></StafNavbar>
+    <div className="head-cust-list">
       <h3>clients: {userList.length}</h3>
+      <button
+        onClick={()=>{
+          navigate('/Create-guestAccount')
+        }}
+      >Add geust</button>
+    </div>
       <div className="searchContainer">
         <input
           type="text"
