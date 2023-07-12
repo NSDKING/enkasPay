@@ -52,6 +52,7 @@ import UpdateOrder from './pages/UpdateOrder';
 import Past from './pages/past';
 import CustomerUpdate from './pages/customerUpdate';
 import AddGuestCust from './pages/addGuestCust';
+import AccountTypeList from './pages/AccountTypeList';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -335,6 +336,7 @@ function App() {
                   <Route path='/click-accountList' Component={ClickAccountList}/>
                   <Route path='/User-account-list' Component={UserAccountList}/>
                   <Route path='/accounts-list' Component={AccountList}/>
+                  <Route path='/choose-accounts-list-type' Component={AccountTypeList}/>
                   <Route path='/User-order-list' Component={UserOrderList}/>
                   <Route path='/order-list' Component={OrderList}/>
                   <Route exact path="/ProductPage/:slug" Component={ProductPage} />

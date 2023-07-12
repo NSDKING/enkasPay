@@ -4,8 +4,13 @@ import { listAccounts } from "../graphql/queries";
 import { API, graphqlOperation } from 'aws-amplify';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+
 
 export default function AccountList() {
+  const { state } = useLocation();
+  const { service } = state;
+
   const [loading, setLoading] = useState(false);
   const [AccountList, setAccountList] = useState([]);
   const [UaccountList, setUaccountList] = useState([]);
@@ -24,8 +29,15 @@ export default function AccountList() {
     setLoading(true);
 
     try {
+      let list= []
       const response = await API.graphql(graphqlOperation(listAccounts));
-      setAccountList(response.data.listAccounts.items);
+      response.data.listAccounts.items.forEach((item)=>{
+        if(item.service == service){
+          list.push(item)
+        }
+
+      })
+      setAccountList(list);
     } catch (e) {
       console.log(e);
     }
