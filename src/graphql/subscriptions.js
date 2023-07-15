@@ -1,13 +1,129 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateAffiliationContact = /* GraphQL */ `
+  subscription OnCreateAffiliationContact(
+    $filter: ModelSubscriptionAffiliationContactFilterInput
+  ) {
+    onCreateAffiliationContact(filter: $filter) {
+      id
+      affiliationID
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateAffiliationContact = /* GraphQL */ `
+  subscription OnUpdateAffiliationContact(
+    $filter: ModelSubscriptionAffiliationContactFilterInput
+  ) {
+    onUpdateAffiliationContact(filter: $filter) {
+      id
+      affiliationID
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteAffiliationContact = /* GraphQL */ `
+  subscription OnDeleteAffiliationContact(
+    $filter: ModelSubscriptionAffiliationContactFilterInput
+  ) {
+    onDeleteAffiliationContact(filter: $filter) {
+      id
+      affiliationID
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateAffiliation = /* GraphQL */ `
+  subscription OnCreateAffiliation(
+    $filter: ModelSubscriptionAffiliationFilterInput
+  ) {
+    onCreateAffiliation(filter: $filter) {
+      id
+      ca
+      code
+      utilisations
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      userID
+      statut
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateAffiliation = /* GraphQL */ `
+  subscription OnUpdateAffiliation(
+    $filter: ModelSubscriptionAffiliationFilterInput
+  ) {
+    onUpdateAffiliation(filter: $filter) {
+      id
+      ca
+      code
+      utilisations
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      userID
+      statut
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteAffiliation = /* GraphQL */ `
+  subscription OnDeleteAffiliation(
+    $filter: ModelSubscriptionAffiliationFilterInput
+  ) {
+    onDeleteAffiliation(filter: $filter) {
+      id
+      ca
+      code
+      utilisations
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      userID
+      statut
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateOrder = /* GraphQL */ `
   subscription OnCreateOrder($filter: ModelSubscriptionOrderFilterInput) {
     onCreateOrder(filter: $filter) {
       id
       price
       userID
-      date
       productID
       createdAt
       updatedAt
@@ -23,7 +139,6 @@ export const onUpdateOrder = /* GraphQL */ `
       id
       price
       userID
-      date
       productID
       createdAt
       updatedAt
@@ -39,7 +154,6 @@ export const onDeleteOrder = /* GraphQL */ `
       id
       price
       userID
-      date
       productID
       createdAt
       updatedAt
@@ -495,6 +609,15 @@ export const onCreateUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Affiliations {
+        nextToken
+        startedAt
+      }
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      statut
       createdAt
       updatedAt
       _version
@@ -526,6 +649,15 @@ export const onUpdateUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Affiliations {
+        nextToken
+        startedAt
+      }
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      statut
       createdAt
       updatedAt
       _version
@@ -557,6 +689,15 @@ export const onDeleteUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Affiliations {
+        nextToken
+        startedAt
+      }
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      statut
       createdAt
       updatedAt
       _version

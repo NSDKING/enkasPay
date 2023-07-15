@@ -14,7 +14,9 @@ export default function Navbar() {
     const [navItemclas, setNavItemClas]= useState("off");
     const [navIconclass, setNavIconClas]= useState("hamburger-lines");
     const [user, setUser]= useState(undefined)
+    const [loading, setLoading] = useState(false);
     const [staf, setStaf]= useState(false)
+    const [Affiliate, setAffiliate]= useState(false)
     const navigate = useNavigate();
     
 
@@ -37,6 +39,25 @@ export default function Navbar() {
      
         }
 
+        const checkAffiliation = async () => {
+            try {
+              setLoading(true);
+              const authUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+              const response = await API.graphql(graphqlOperation(getUserAffiliation, { id: authUser.attributes.sub }));
+              if(response.data.getUser.Affiliations.items.length== 0){
+                setAffiliate(false)
+             
+              }else{
+                setAffiliate(true)
+
+              }
+             } catch (error) {
+              console.log(error);
+            } finally {
+              setLoading(false);
+            }
+          };
+
     const signOut= ()=>{
         Auth.signOut();
     }
@@ -44,6 +65,7 @@ export default function Navbar() {
     useEffect(
         () => {
           checkUser()
+          checkAffiliation()
          },
         [],
       )
@@ -121,7 +143,7 @@ export default function Navbar() {
                             <img src={next} width="7%"/>
                         </Link>
 
-                        <Link className="navbar-items-item" style={Styles} to="/affiliation">
+                        <Link className="navbar-items-item" style={Styles} to={Affiliate?'/affiliation-main' :'/affiliation'}>
                             <p>affiliation</p>
                             <img src={next} width="7%"/>
                         </Link>
@@ -162,3 +184,23 @@ export default function Navbar() {
         </div>
     )
 }
+
+
+
+export const getUserAffiliation = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
+      Affiliations {
+        items {
+          _version
+          _deleted
+          ca
+          code
+          utilisations
+          id
+          statut
+        }
+      }
+    }
+  }
+`;

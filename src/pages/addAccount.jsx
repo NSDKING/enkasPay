@@ -7,6 +7,7 @@ import { createAccount } from '../graphql/mutations';
 import { listUsers } from '../graphql/queries';
 import { useNavigate } from 'react-router-dom';
 import StafNavbar from '../components/StafNavbar';
+import DefaultButton from '../components/DefaultButton';
  
 
 export default function AddAccount() {
@@ -188,7 +189,7 @@ export default function AddAccount() {
                     />
 
 
-                <input type="submit" id="add-client-btn"  />
+         
                 </form>
         </section>
     )

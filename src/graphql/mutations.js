@@ -1,6 +1,129 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createAffiliationContact = /* GraphQL */ `
+  mutation CreateAffiliationContact(
+    $input: CreateAffiliationContactInput!
+    $condition: ModelAffiliationContactConditionInput
+  ) {
+    createAffiliationContact(input: $input, condition: $condition) {
+      id
+      affiliationID
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateAffiliationContact = /* GraphQL */ `
+  mutation UpdateAffiliationContact(
+    $input: UpdateAffiliationContactInput!
+    $condition: ModelAffiliationContactConditionInput
+  ) {
+    updateAffiliationContact(input: $input, condition: $condition) {
+      id
+      affiliationID
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteAffiliationContact = /* GraphQL */ `
+  mutation DeleteAffiliationContact(
+    $input: DeleteAffiliationContactInput!
+    $condition: ModelAffiliationContactConditionInput
+  ) {
+    deleteAffiliationContact(input: $input, condition: $condition) {
+      id
+      affiliationID
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createAffiliation = /* GraphQL */ `
+  mutation CreateAffiliation(
+    $input: CreateAffiliationInput!
+    $condition: ModelAffiliationConditionInput
+  ) {
+    createAffiliation(input: $input, condition: $condition) {
+      id
+      ca
+      code
+      utilisations
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      userID
+      statut
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateAffiliation = /* GraphQL */ `
+  mutation UpdateAffiliation(
+    $input: UpdateAffiliationInput!
+    $condition: ModelAffiliationConditionInput
+  ) {
+    updateAffiliation(input: $input, condition: $condition) {
+      id
+      ca
+      code
+      utilisations
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      userID
+      statut
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteAffiliation = /* GraphQL */ `
+  mutation DeleteAffiliation(
+    $input: DeleteAffiliationInput!
+    $condition: ModelAffiliationConditionInput
+  ) {
+    deleteAffiliation(input: $input, condition: $condition) {
+      id
+      ca
+      code
+      utilisations
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      userID
+      statut
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createOrder = /* GraphQL */ `
   mutation CreateOrder(
     $input: CreateOrderInput!
@@ -10,7 +133,6 @@ export const createOrder = /* GraphQL */ `
       id
       price
       userID
-      date
       productID
       createdAt
       updatedAt
@@ -29,7 +151,6 @@ export const updateOrder = /* GraphQL */ `
       id
       price
       userID
-      date
       productID
       createdAt
       updatedAt
@@ -48,7 +169,6 @@ export const deleteOrder = /* GraphQL */ `
       id
       price
       userID
-      date
       productID
       createdAt
       updatedAt
@@ -555,6 +675,15 @@ export const createUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Affiliations {
+        nextToken
+        startedAt
+      }
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      statut
       createdAt
       updatedAt
       _version
@@ -589,6 +718,15 @@ export const updateUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Affiliations {
+        nextToken
+        startedAt
+      }
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      statut
       createdAt
       updatedAt
       _version
@@ -623,6 +761,15 @@ export const deleteUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Affiliations {
+        nextToken
+        startedAt
+      }
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      statut
       createdAt
       updatedAt
       _version

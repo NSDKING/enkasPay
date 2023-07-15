@@ -10,14 +10,12 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function RegisterPage() {
-    const [step, setStep] = useState(1);
     const [error, setError] = useState(false);
     const navigate = useNavigate();
-    const {formState: {errors}, handleSubmit, register, watch} = useForm();
+    const {formState: {errors}, handleSubmit, register} = useForm();
     const [loading, setLoading] = useState(false)
  
-    const username = watch("email")
-
+ 
     useEffect(() => {
         const handleClick = () => {
           setError(false);

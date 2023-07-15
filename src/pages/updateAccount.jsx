@@ -65,7 +65,7 @@ export default function UpdateAccount() {
               
      
             alert('ok')
-            navigate("/ConsultPage")
+            navigate("/accounts-list")
 
        
         }catch(e){

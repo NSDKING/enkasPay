@@ -1,8 +1,23 @@
+type AffiliationContact @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  affiliationID: ID! @index(name: "byAffiliation")
+  userID: ID! @index(name: "byUser")
+}
+
+type Affiliation @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  ca: Float
+  code: String
+  utilisations: String
+  AffiliationContacts: [AffiliationContact] @hasMany(indexName: "byAffiliation", fields: ["id"])
+  userID: ID! @index(name: "byUser")
+  statut: String
+}
+
 type Order @model @auth(rules: [{allow: public}]) {
   id: ID!
   price: String
   userID: ID! @index(name: "byUser")
-  date: AWSDate
   productID: ID! @index(name: "byProduct")
 }
 
@@ -73,5 +88,8 @@ type User @model @auth(rules: [{allow: public}]) {
   Carts: [Cart] @hasMany(indexName: "byUser", fields: ["id"])
   Account: [Account] @hasMany(indexName: "byUser", fields: ["id"])
   Orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
+  Affiliations: [Affiliation] @hasMany(indexName: "byUser", fields: ["id"])
+  AffiliationContacts: [AffiliationContact] @hasMany(indexName: "byUser", fields: ["id"])
+  statut: String
 }
  

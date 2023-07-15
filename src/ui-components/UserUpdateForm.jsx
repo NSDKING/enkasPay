@@ -37,6 +37,7 @@ export default function UserUpdateForm(props) {
     birthdate: "",
     staff: false,
     phoneNumber: "",
+    statut: "",
   };
   const [FamilyName, setFamilyName] = React.useState(initialValues.FamilyName);
   const [LastName, setLastName] = React.useState(initialValues.LastName);
@@ -47,6 +48,7 @@ export default function UserUpdateForm(props) {
   const [phoneNumber, setPhoneNumber] = React.useState(
     initialValues.phoneNumber
   );
+  const [statut, setStatut] = React.useState(initialValues.statut);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = userRecord
@@ -59,6 +61,7 @@ export default function UserUpdateForm(props) {
     setBirthdate(cleanValues.birthdate);
     setStaff(cleanValues.staff);
     setPhoneNumber(cleanValues.phoneNumber);
+    setStatut(cleanValues.statut);
     setErrors({});
   };
   const [userRecord, setUserRecord] = React.useState(user);
@@ -78,6 +81,7 @@ export default function UserUpdateForm(props) {
     birthdate: [],
     staff: [],
     phoneNumber: [],
+    statut: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -111,6 +115,7 @@ export default function UserUpdateForm(props) {
           birthdate,
           staff,
           phoneNumber,
+          statut,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -173,6 +178,7 @@ export default function UserUpdateForm(props) {
               birthdate,
               staff,
               phoneNumber,
+              statut,
             };
             const result = onChange(modelFields);
             value = result?.FamilyName ?? value;
@@ -203,6 +209,7 @@ export default function UserUpdateForm(props) {
               birthdate,
               staff,
               phoneNumber,
+              statut,
             };
             const result = onChange(modelFields);
             value = result?.LastName ?? value;
@@ -233,6 +240,7 @@ export default function UserUpdateForm(props) {
               birthdate,
               staff,
               phoneNumber,
+              statut,
             };
             const result = onChange(modelFields);
             value = result?.city ?? value;
@@ -263,6 +271,7 @@ export default function UserUpdateForm(props) {
               birthdate,
               staff,
               phoneNumber,
+              statut,
             };
             const result = onChange(modelFields);
             value = result?.mail ?? value;
@@ -294,6 +303,7 @@ export default function UserUpdateForm(props) {
               birthdate: value,
               staff,
               phoneNumber,
+              statut,
             };
             const result = onChange(modelFields);
             value = result?.birthdate ?? value;
@@ -324,6 +334,7 @@ export default function UserUpdateForm(props) {
               birthdate,
               staff: value,
               phoneNumber,
+              statut,
             };
             const result = onChange(modelFields);
             value = result?.staff ?? value;
@@ -354,6 +365,7 @@ export default function UserUpdateForm(props) {
               birthdate,
               staff,
               phoneNumber: value,
+              statut,
             };
             const result = onChange(modelFields);
             value = result?.phoneNumber ?? value;
@@ -367,6 +379,37 @@ export default function UserUpdateForm(props) {
         errorMessage={errors.phoneNumber?.errorMessage}
         hasError={errors.phoneNumber?.hasError}
         {...getOverrideProps(overrides, "phoneNumber")}
+      ></TextField>
+      <TextField
+        label="Statut"
+        isRequired={false}
+        isReadOnly={false}
+        value={statut}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              FamilyName,
+              LastName,
+              city,
+              mail,
+              birthdate,
+              staff,
+              phoneNumber,
+              statut: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.statut ?? value;
+          }
+          if (errors.statut?.hasError) {
+            runValidationTasks("statut", value);
+          }
+          setStatut(value);
+        }}
+        onBlur={() => runValidationTasks("statut", statut)}
+        errorMessage={errors.statut?.errorMessage}
+        hasError={errors.statut?.hasError}
+        {...getOverrideProps(overrides, "statut")}
       ></TextField>
       <Flex
         justifyContent="space-between"

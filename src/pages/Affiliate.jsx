@@ -1,11 +1,58 @@
 import Navbar from "../components/navbar";
 import pm from './img/pm.jpg'
 import "./css/affiliate.css"
-import DefaultButtonLink from "../components/DefaultbuttonLink";
 import Textbox from "../components/textBox";
 import image from "./img/affimage.png"
-  
+import DefaultButton from "../components/DefaultButton";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"
+import { Auth } from "aws-amplify";
+
+
+
+
+
 export default function AffiliatePage() {
+    const [user, setUser]= useState(null)
+    const navigate = useNavigate();
+
+
+    const handleLink = async () => {
+        if(user===null){
+            alert("tu n'es pas connecté")
+            navigate('/login')
+        }else{
+            navigate('/affiliation-form')
+    
+        }
+    
+       };
+        
+
+    const checkUser = async ()=>{
+        try {
+            const authUser = await Auth.currentAuthenticatedUser({
+                bypassCache: true,
+              });
+         
+          setUser(authUser)
+      
+        } catch(e){
+            setUser(null);
+    
+        }
+     
+        }
+  
+        
+    useEffect(
+        () => {
+          checkUser()
+    
+        },
+        [],
+      )
+        
     return(
         <section className='affiliatepage'>
             <Navbar/>
@@ -15,14 +62,14 @@ export default function AffiliatePage() {
                     <img src={image} width="95%"/>
                 </div>
                 <div className="affiliatepage-title">
-                    <h1 >
+                    <h1>
                         devient un  partenaires affilié
                     </h1>
                 </div>
                 <p className="affiliatepage-first-text">
                     aide nous a promouvoir enkaspay et gagne des commissions grace à ton code partenaire               
                  </p>
-                <DefaultButtonLink text={"obtenir mon code partenaire"} bgcolor={"#eb0625"} textcolor={"white"} width={"90%"} height={"50px"} marginTop={"10px"} location={"/login"}/>
+                <DefaultButton text={"obtenir mon code partenaire"} bgcolor={"#eb0625"} textcolor={"white"} width={"90%"} height={"50px"} marginTop={"10px"} location={"/affiliation-form"} onPress={handleLink}/>
             </div>
             <div className="affiliatepage-body">
                 <h1>comment ça marche?</h1>

@@ -6,6 +6,74 @@ import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@a
 
 
 
+type EagerAffiliationContact = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<AffiliationContact, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly affiliationID: string;
+  readonly userID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyAffiliationContact = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<AffiliationContact, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly affiliationID: string;
+  readonly userID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type AffiliationContact = LazyLoading extends LazyLoadingDisabled ? EagerAffiliationContact : LazyAffiliationContact
+
+export declare const AffiliationContact: (new (init: ModelInit<AffiliationContact>) => AffiliationContact) & {
+  copyOf(source: AffiliationContact, mutator: (draft: MutableModel<AffiliationContact>) => MutableModel<AffiliationContact> | void): AffiliationContact;
+}
+
+type EagerAffiliation = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Affiliation, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly ca?: number | null;
+  readonly code?: string | null;
+  readonly utilisations?: string | null;
+  readonly AffiliationContacts?: (AffiliationContact | null)[] | null;
+  readonly userID: string;
+  readonly statut?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyAffiliation = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Affiliation, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly ca?: number | null;
+  readonly code?: string | null;
+  readonly utilisations?: string | null;
+  readonly AffiliationContacts: AsyncCollection<AffiliationContact>;
+  readonly userID: string;
+  readonly statut?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Affiliation = LazyLoading extends LazyLoadingDisabled ? EagerAffiliation : LazyAffiliation
+
+export declare const Affiliation: (new (init: ModelInit<Affiliation>) => Affiliation) & {
+  copyOf(source: Affiliation, mutator: (draft: MutableModel<Affiliation>) => MutableModel<Affiliation> | void): Affiliation;
+}
+
 type EagerOrder = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Order, 'id'>;
@@ -14,7 +82,6 @@ type EagerOrder = {
   readonly id: string;
   readonly price?: string | null;
   readonly userID: string;
-  readonly date?: string | null;
   readonly productID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -28,7 +95,6 @@ type LazyOrder = {
   readonly id: string;
   readonly price?: string | null;
   readonly userID: string;
-  readonly date?: string | null;
   readonly productID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -280,6 +346,9 @@ type EagerUser = {
   readonly Carts?: (Cart | null)[] | null;
   readonly Account?: (Account | null)[] | null;
   readonly Orders?: (Order | null)[] | null;
+  readonly Affiliations?: (Affiliation | null)[] | null;
+  readonly AffiliationContacts?: (AffiliationContact | null)[] | null;
+  readonly statut?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -300,6 +369,9 @@ type LazyUser = {
   readonly Carts: AsyncCollection<Cart>;
   readonly Account: AsyncCollection<Account>;
   readonly Orders: AsyncCollection<Order>;
+  readonly Affiliations: AsyncCollection<Affiliation>;
+  readonly AffiliationContacts: AsyncCollection<AffiliationContact>;
+  readonly statut?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

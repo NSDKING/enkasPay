@@ -1,13 +1,247 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getAffiliationContact = /* GraphQL */ `
+  query GetAffiliationContact($id: ID!) {
+    getAffiliationContact(id: $id) {
+      id
+      affiliationID
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listAffiliationContacts = /* GraphQL */ `
+  query ListAffiliationContacts(
+    $filter: ModelAffiliationContactFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAffiliationContacts(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        affiliationID
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncAffiliationContacts = /* GraphQL */ `
+  query SyncAffiliationContacts(
+    $filter: ModelAffiliationContactFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncAffiliationContacts(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        affiliationID
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const affiliationContactsByAffiliationID = /* GraphQL */ `
+  query AffiliationContactsByAffiliationID(
+    $affiliationID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelAffiliationContactFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    affiliationContactsByAffiliationID(
+      affiliationID: $affiliationID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        affiliationID
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const affiliationContactsByUserID = /* GraphQL */ `
+  query AffiliationContactsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelAffiliationContactFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    affiliationContactsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        affiliationID
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getAffiliation = /* GraphQL */ `
+  query GetAffiliation($id: ID!) {
+    getAffiliation(id: $id) {
+      id
+      ca
+      code
+      utilisations
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      userID
+      statut
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listAffiliations = /* GraphQL */ `
+  query ListAffiliations(
+    $filter: ModelAffiliationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAffiliations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        ca
+        code
+        utilisations
+        userID
+        statut
+        _version
+        _deleted
+       }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncAffiliations = /* GraphQL */ `
+  query SyncAffiliations(
+    $filter: ModelAffiliationFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncAffiliations(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        ca
+        code
+        utilisations
+        userID
+        statut
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const affiliationsByUserID = /* GraphQL */ `
+  query AffiliationsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelAffiliationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    affiliationsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        ca
+        code
+        utilisations
+        userID
+        statut
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getOrder = /* GraphQL */ `
   query GetOrder($id: ID!) {
     getOrder(id: $id) {
       id
       price
       userID
-      date
       productID
       createdAt
       updatedAt
@@ -28,7 +262,6 @@ export const listOrders = /* GraphQL */ `
         id
         price
         userID
-        date
         productID
         createdAt
         updatedAt
@@ -58,7 +291,6 @@ export const syncOrders = /* GraphQL */ `
         id
         price
         userID
-        date
         productID
         createdAt
         updatedAt
@@ -90,7 +322,6 @@ export const ordersByUserID = /* GraphQL */ `
         id
         price
         userID
-        date
         productID
         createdAt
         updatedAt
@@ -122,7 +353,6 @@ export const ordersByProductID = /* GraphQL */ `
         id
         price
         userID
-        date
         productID
         createdAt
         updatedAt
@@ -734,6 +964,15 @@ export const getUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      Affiliations {
+        nextToken
+        startedAt
+      }
+      AffiliationContacts {
+        nextToken
+        startedAt
+      }
+      statut
       createdAt
       updatedAt
       _version
@@ -758,6 +997,7 @@ export const listUsers = /* GraphQL */ `
         birthdate
         staff
         phoneNumber
+        statut
         createdAt
         updatedAt
         _version
@@ -791,6 +1031,7 @@ export const syncUsers = /* GraphQL */ `
         birthdate
         staff
         phoneNumber
+        statut
         createdAt
         updatedAt
         _version

@@ -53,6 +53,9 @@ import Past from './pages/past';
 import CustomerUpdate from './pages/customerUpdate';
 import AddGuestCust from './pages/addGuestCust';
 import AccountTypeList from './pages/AccountTypeList';
+import AffiliationForm from './pages/AffiliationForm';
+import AffiliateMain from './pages/affiliatemain';
+import StaffAffiliate from './pages/StaffAffiliate';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -310,6 +313,10 @@ function App() {
                 />}/>
                   
                   <Route path='/affiliation' Component={AffiliatePage}/>
+                  <Route path='/affiliation-form' Component={AffiliationForm}/>
+                  <Route path='/affiliation-main' Component={AffiliateMain}/>
+                  <Route path='/staff-Affiliation' Component={StaffAffiliate}/>
+                 
                   <Route path='/updateAccount' Component={UpdateAccount}/>
                   <Route path='/ManageAccount' Component={ManageAccount}/>
                   <Route path='/takeAccount' Component={takeAccount}/>
@@ -475,6 +482,8 @@ function App() {
                 <Route path='/Account' Component={Account}/>
                  
                 <Route path='/affiliation' Component={AffiliatePage}/>
+                <Route path='/affiliation-form' Component={AffiliationForm}/>
+                <Route path='/affiliation-main' Component={AffiliateMain}/>
                 <Route path='/bundle' Component={BundlePage}/>
                 <Route exact path="/ProductPage/:slug" Component={ProductPage} />
                 

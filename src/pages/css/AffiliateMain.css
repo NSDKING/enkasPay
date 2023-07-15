@@ -1,0 +1,51 @@
+.Aff-head{
+    width: 80%;
+    height: 60px;
+    background-color: #000000;
+    color: white;
+    border-radius: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-top:10% ;
+}
+.AffiliationMainPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.Aff-head .ca{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.codeBox{
+    background-color: #EF3636;
+    width: 30%;
+    height: 36px;
+    border-radius: 7px;
+    display: flex;
+    margin: 0;
+    text-align: center;
+    justify-content: center;
+    margin-top: 4%;
+}
+
+.codeBox p{
+    text-align: center;
+    margin: 10%;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.Aff-midle{
+    margin: 5%;
+    height: 40px;
+    width: 80%;
+    background-color: #DFE3E7;
+    border-radius: 7px;
+}
