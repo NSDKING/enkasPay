@@ -1,6 +1,54 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateProspect = /* GraphQL */ `
+  subscription OnCreateProspect($filter: ModelSubscriptionProspectFilterInput) {
+    onCreateProspect(filter: $filter) {
+      id
+      contrat
+      valeur
+      statut
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateProspect = /* GraphQL */ `
+  subscription OnUpdateProspect($filter: ModelSubscriptionProspectFilterInput) {
+    onUpdateProspect(filter: $filter) {
+      id
+      contrat
+      valeur
+      statut
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteProspect = /* GraphQL */ `
+  subscription OnDeleteProspect($filter: ModelSubscriptionProspectFilterInput) {
+    onDeleteProspect(filter: $filter) {
+      id
+      contrat
+      valeur
+      statut
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateAffiliationContact = /* GraphQL */ `
   subscription OnCreateAffiliationContact(
     $filter: ModelSubscriptionAffiliationContactFilterInput
@@ -618,6 +666,10 @@ export const onCreateUser = /* GraphQL */ `
         startedAt
       }
       statut
+      Prospects {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -658,6 +710,10 @@ export const onUpdateUser = /* GraphQL */ `
         startedAt
       }
       statut
+      Prospects {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -698,6 +754,10 @@ export const onDeleteUser = /* GraphQL */ `
         startedAt
       }
       statut
+      Prospects {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version

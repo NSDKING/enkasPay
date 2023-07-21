@@ -144,7 +144,7 @@ export default function AffiliationForm() {
                         />
 
                         
-                            {errors.password && <p className="text-error">{errors.age?.message}</p>}
+                            {errors.age && <p className="text-error">{errors.age?.message}</p>}
 
 
 

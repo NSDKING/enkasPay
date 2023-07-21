@@ -1,0 +1,36 @@
+.crm-tableContainer{
+    width: 100%;
+    height: 100px;
+
+}
+.ProspectPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    width: 100%;
+ }
+.crm-head-table{
+    width: 97%;
+    background-color: #030025;
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+    align-items: center;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+ }
+
+.crm-head-table-box{
+    background-color: #F2F4FB;
+    width: 22%;
+    height: 32px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+ 
+
+}

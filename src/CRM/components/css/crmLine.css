@@ -1,0 +1,55 @@
+.crmLine {
+    width: 97%;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: space-around;
+    height: 60px; /* Increased height */
+    align-items: center;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    font-weight: 600; /* Increased font weight */
+    font-family: 'Arial', sans-serif; /* Special font */
+  }
+  
+  .crmLine-box {
+    width: 22%;
+    height: 32px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #6c63ff; /* Added border */
+  }
+  
+  .crmLine-box p {
+    margin: 0; /* Reset paragraph margin */
+  }
+
+   
+  .crmLine-box .conclue {
+    background-color: #26D08A;
+}
+  
+  .crmLine-box.Nouveau {
+    background-color: #FFD326;
+  }
+  
+  .crmLine-box.perdu {
+    background-color: #E2445C;
+  }
+  
+  .crmLine-box.proposition {
+    background-color: #299267;
+  }
+  
+  .crmLine-box.decouverte {
+    background-color: #2698C9;
+}
+  
+  .crmLine-box.negotiation {
+    background-color: #784BD1;
+  }
+  

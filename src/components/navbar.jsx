@@ -36,7 +36,7 @@ export default function Navbar() {
             setUser(null);
     
         }
-     
+
         }
 
         const checkAffiliation = async () => {

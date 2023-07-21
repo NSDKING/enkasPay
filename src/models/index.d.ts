@@ -6,6 +6,40 @@ import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@a
 
 
 
+type EagerProspect = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Prospect, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly contrat?: string | null;
+  readonly valeur?: number | null;
+  readonly statut?: string | null;
+  readonly userID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyProspect = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Prospect, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly contrat?: string | null;
+  readonly valeur?: number | null;
+  readonly statut?: string | null;
+  readonly userID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Prospect = LazyLoading extends LazyLoadingDisabled ? EagerProspect : LazyProspect
+
+export declare const Prospect: (new (init: ModelInit<Prospect>) => Prospect) & {
+  copyOf(source: Prospect, mutator: (draft: MutableModel<Prospect>) => MutableModel<Prospect> | void): Prospect;
+}
+
 type EagerAffiliationContact = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<AffiliationContact, 'id'>;
@@ -44,7 +78,7 @@ type EagerAffiliation = {
   readonly id: string;
   readonly ca?: number | null;
   readonly code?: string | null;
-  readonly utilisations?: string | null;
+  readonly utilisations?: number | null;
   readonly AffiliationContacts?: (AffiliationContact | null)[] | null;
   readonly userID: string;
   readonly statut?: string | null;
@@ -60,7 +94,7 @@ type LazyAffiliation = {
   readonly id: string;
   readonly ca?: number | null;
   readonly code?: string | null;
-  readonly utilisations?: string | null;
+  readonly utilisations?: number | null;
   readonly AffiliationContacts: AsyncCollection<AffiliationContact>;
   readonly userID: string;
   readonly statut?: string | null;
@@ -349,6 +383,7 @@ type EagerUser = {
   readonly Affiliations?: (Affiliation | null)[] | null;
   readonly AffiliationContacts?: (AffiliationContact | null)[] | null;
   readonly statut?: string | null;
+  readonly Prospects?: (Prospect | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -372,6 +407,7 @@ type LazyUser = {
   readonly Affiliations: AsyncCollection<Affiliation>;
   readonly AffiliationContacts: AsyncCollection<AffiliationContact>;
   readonly statut?: string | null;
+  readonly Prospects: AsyncCollection<Prospect>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

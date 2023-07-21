@@ -5,14 +5,13 @@ import './css/consultPage.css'
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import StafNavbar from '../components/StafNavbar';
-
+ 
 
 export default function ConsultPage() {
     const navigate = useNavigate();
     const [Accounts, setAccount] = useState([])
     const [loading, setLoading] = useState(false)
     const [userList, setUserList] = useState([])
-    const {formState: {errors}, handleSubmit, register, control, setValue} = useForm();
     const [searchTerm, setSearchTerm] = useState('');
 
     

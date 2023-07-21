@@ -56,6 +56,10 @@ import AccountTypeList from './pages/AccountTypeList';
 import AffiliationForm from './pages/AffiliationForm';
 import AffiliateMain from './pages/affiliatemain';
 import StaffAffiliate from './pages/StaffAffiliate';
+import CrmHomePage from './CRM/pages/HomePage';
+import ProspectPage from './CRM/pages/ProspectPage';
+import UpdateCrmLine from './CRM/pages/updateCrmline';
+import AddProspect from './CRM/pages/AddProspect';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -447,9 +451,16 @@ function App() {
                                                       setProdId={setProdId}
                                                       />} exact />
             <Route path='/register-confirmation' Component={ConfirmPage}/>
-                             
-              
 
+
+          /*paths for the crm app */
+
+            <Route path='/crm-HomePage' Component={CrmHomePage}/>
+            <Route path='/crm-prospect' Component={ProspectPage}/>
+            <Route path='/crm-update-line' Component={UpdateCrmLine}/>
+            <Route path='/crm-add-line' Component={AddProspect}/>
+ 
+             
           </Routes>
         </Router>
       </div>

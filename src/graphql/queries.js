@@ -1,6 +1,108 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getProspect = /* GraphQL */ `
+  query GetProspect($id: ID!) {
+    getProspect(id: $id) {
+      id
+      contrat
+      valeur
+      statut
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listProspects = /* GraphQL */ `
+  query ListProspects(
+    $filter: ModelProspectFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProspects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        contrat
+        valeur
+        statut
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncProspects = /* GraphQL */ `
+  query SyncProspects(
+    $filter: ModelProspectFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncProspects(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        contrat
+        valeur
+        statut
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const prospectsByUserID = /* GraphQL */ `
+  query ProspectsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelProspectFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    prospectsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        contrat
+        valeur
+        statut
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getAffiliationContact = /* GraphQL */ `
   query GetAffiliationContact($id: ID!) {
     getAffiliationContact(id: $id) {
@@ -164,9 +266,12 @@ export const listAffiliations = /* GraphQL */ `
         utilisations
         userID
         statut
+        createdAt
+        updatedAt
         _version
         _deleted
-       }
+        _lastChangedAt
+      }
       nextToken
       startedAt
     }
@@ -973,6 +1078,10 @@ export const getUser = /* GraphQL */ `
         startedAt
       }
       statut
+      Prospects {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
