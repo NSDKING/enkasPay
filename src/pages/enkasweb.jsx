@@ -9,8 +9,9 @@ const PageEnkasWeb = () => {
         <p>Offrant des services de création de sites Web.</p>
         <p>Contact : 652737914</p>
         <div style={{ marginTop: '20px' }}>
-          <a href="https://www.enkas.net" target="_blank" rel="noopener noreferrer">Visitez notre site Web</a><br />
-          <a href="https://main.d17vcd7gdz2awq.amplifyapp.com/" target="_blank" rel="noopener noreferrer">Visitez notre portfolio</a>
+            <h2>quelques exemple</h2>
+          <a href="https://www.enkas.net" target="_blank" rel="noopener noreferrer">site de e commerce</a><br />
+          <a href="https://main.d17vcd7gdz2awq.amplifyapp.com/" target="_blank" rel="noopener noreferrer">ball de libermann</a>
         </div>
       </div>
     </div>
