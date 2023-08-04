@@ -60,6 +60,7 @@ import CrmHomePage from './CRM/pages/HomePage';
 import ProspectPage from './CRM/pages/ProspectPage';
 import UpdateCrmLine from './CRM/pages/updateCrmline';
 import AddProspect from './CRM/pages/AddProspect';
+import PageEnkasWeb from './pages/enkasweb';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -150,6 +151,7 @@ function App() {
                 <Route path='/password-reset' Component={PasswordForgotPage}/>
                 <Route path='/password-reset-confirmation' Component={NewPassword}/>
                 <Route path='/store' Component={StorePage}/>
+                <Route path='/enkas-web-devellopment' Component={PageEnkasWeb}/>
                 <Route exact path="/ProductPage/:slug" Component={ProductPage} />
           
           
