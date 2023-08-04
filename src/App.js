@@ -290,6 +290,8 @@ function App() {
         <Router>
           <Routes>
           <Route path='/Account' Component={Account}/>
+          <Route path='/enkas-web-devellopment' Component={PageEnkasWeb}/>
+
           <Route path='/' element={<StorePage
                                             Articles={Articles} 
                                             setArticles={setArticles} 
@@ -473,6 +475,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
+        <Route path='/enkas-web-devellopment' Component={PageEnkasWeb}/>
          
         <Route path='/' element={<StorePage
                                             Articles={Articles} 
