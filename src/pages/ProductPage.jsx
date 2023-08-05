@@ -138,6 +138,14 @@ export default function ProductPage({ cart, updateCart}) {
 
        };
 
+       const handleClick2 = async () => {
+       
+            window.location.href = 'https://wa.me/237652737914';
+
+        
+
+       };
+
       const createACartWithTheUser = async(product, price, nb_month)=>{
         try{
             //verify if the cart already exist
@@ -266,7 +274,7 @@ export default function ProductPage({ cart, updateCart}) {
         }          
             <div className="Productpage-buttons">
             <DefaultButton text={"discuter avec un conseiller"} bgcolor={"#eb0625"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"20px"} onPress={handleClick}/>
-            <DefaultButton text={"acheter maintenant"} bgcolor={"black"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"10px"} onPress={handleClick}/>
+            <DefaultButton text={"acheter maintenant"} bgcolor={"black"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"10px"} onPress={handleClick2}/>
 
             </div>
             <div className="ProductPage-message">
