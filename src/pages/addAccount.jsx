@@ -188,6 +188,7 @@ export default function AddAccount() {
                         )}
                     />
 
+                    <DefaultButton text={loading? 'Loading ....': 'enregistrer'} bgcolor={"#eb0625"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"30px"} WebkitBoxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} MozBoxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} boxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} type={'submit'}/>
 
          
                 </form>
@@ -195,3 +196,4 @@ export default function AddAccount() {
     )
 
 }
+
