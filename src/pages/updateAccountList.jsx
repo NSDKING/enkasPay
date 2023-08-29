@@ -80,7 +80,7 @@ export default function UpdateAccountList() {
                 })
          
                 alert('ok')
-                navigate("/accounts-list")
+                navigate("/choose-accounts-list-type")
     
            
             }catch(e){
