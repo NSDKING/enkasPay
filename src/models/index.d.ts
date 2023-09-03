@@ -16,6 +16,9 @@ type EagerProspect = {
   readonly valeur?: number | null;
   readonly statut?: string | null;
   readonly userID: string;
+  readonly goodcount?: number | null;
+  readonly pbcount?: number | null;
+  readonly description?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -30,6 +33,9 @@ type LazyProspect = {
   readonly valeur?: number | null;
   readonly statut?: string | null;
   readonly userID: string;
+  readonly goodcount?: number | null;
+  readonly pbcount?: number | null;
+  readonly description?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

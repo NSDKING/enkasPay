@@ -20,7 +20,7 @@ import { DataStore } from "aws-amplify";
 export default function AccountUpdateForm(props) {
   const {
     id: idProp,
-    account,
+    account: accountModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -66,14 +66,16 @@ export default function AccountUpdateForm(props) {
     setService(cleanValues.service);
     setErrors({});
   };
-  const [accountRecord, setAccountRecord] = React.useState(account);
+  const [accountRecord, setAccountRecord] = React.useState(accountModelProp);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = idProp ? await DataStore.query(Account, idProp) : account;
+      const record = idProp
+        ? await DataStore.query(Account, idProp)
+        : accountModelProp;
       setAccountRecord(record);
     };
     queryData();
-  }, [idProp, account]);
+  }, [idProp, accountModelProp]);
   React.useEffect(resetStateValues, [accountRecord]);
   const validations = {
     mail: [{ type: "Email" }],
@@ -90,9 +92,10 @@ export default function AccountUpdateForm(props) {
     currentValue,
     getDisplayValue
   ) => {
-    const value = getDisplayValue
-      ? getDisplayValue(currentValue)
-      : currentValue;
+    const value =
+      currentValue && getDisplayValue
+        ? getDisplayValue(currentValue)
+        : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -143,8 +146,8 @@ export default function AccountUpdateForm(props) {
         }
         try {
           Object.entries(modelFields).forEach(([key, value]) => {
-            if (typeof value === "string" && value.trim() === "") {
-              modelFields[key] = undefined;
+            if (typeof value === "string" && value === "") {
+              modelFields[key] = null;
             }
           });
           await DataStore.save(
@@ -425,7 +428,7 @@ export default function AccountUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || account)}
+          isDisabled={!(idProp || accountModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -437,7 +440,7 @@ export default function AccountUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || account) ||
+              !(idProp || accountModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

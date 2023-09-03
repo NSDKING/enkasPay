@@ -14,7 +14,7 @@ import { DataStore } from "aws-amplify";
 export default function ProductUpdateForm(props) {
   const {
     id: idProp,
-    product,
+    product: productModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -50,14 +50,16 @@ export default function ProductUpdateForm(props) {
     setSlug(cleanValues.slug);
     setErrors({});
   };
-  const [productRecord, setProductRecord] = React.useState(product);
+  const [productRecord, setProductRecord] = React.useState(productModelProp);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = idProp ? await DataStore.query(Product, idProp) : product;
+      const record = idProp
+        ? await DataStore.query(Product, idProp)
+        : productModelProp;
       setProductRecord(record);
     };
     queryData();
-  }, [idProp, product]);
+  }, [idProp, productModelProp]);
   React.useEffect(resetStateValues, [productRecord]);
   const validations = {
     name: [],
@@ -72,9 +74,10 @@ export default function ProductUpdateForm(props) {
     currentValue,
     getDisplayValue
   ) => {
-    const value = getDisplayValue
-      ? getDisplayValue(currentValue)
-      : currentValue;
+    const value =
+      currentValue && getDisplayValue
+        ? getDisplayValue(currentValue)
+        : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -123,8 +126,8 @@ export default function ProductUpdateForm(props) {
         }
         try {
           Object.entries(modelFields).forEach(([key, value]) => {
-            if (typeof value === "string" && value.trim() === "") {
-              modelFields[key] = undefined;
+            if (typeof value === "string" && value === "") {
+              modelFields[key] = null;
             }
           });
           await DataStore.save(
@@ -337,7 +340,7 @@ export default function ProductUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || product)}
+          isDisabled={!(idProp || productModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -349,7 +352,7 @@ export default function ProductUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || product) ||
+              !(idProp || productModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

@@ -14,7 +14,7 @@ import { DataStore } from "aws-amplify";
 export default function ThreeMonthUpdateForm(props) {
   const {
     id: idProp,
-    threeMonth,
+    threeMonth: threeMonthModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -38,16 +38,17 @@ export default function ThreeMonthUpdateForm(props) {
     setPrice(cleanValues.price);
     setErrors({});
   };
-  const [threeMonthRecord, setThreeMonthRecord] = React.useState(threeMonth);
+  const [threeMonthRecord, setThreeMonthRecord] =
+    React.useState(threeMonthModelProp);
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
         ? await DataStore.query(ThreeMonth, idProp)
-        : threeMonth;
+        : threeMonthModelProp;
       setThreeMonthRecord(record);
     };
     queryData();
-  }, [idProp, threeMonth]);
+  }, [idProp, threeMonthModelProp]);
   React.useEffect(resetStateValues, [threeMonthRecord]);
   const validations = {
     name: [],
@@ -58,9 +59,10 @@ export default function ThreeMonthUpdateForm(props) {
     currentValue,
     getDisplayValue
   ) => {
-    const value = getDisplayValue
-      ? getDisplayValue(currentValue)
-      : currentValue;
+    const value =
+      currentValue && getDisplayValue
+        ? getDisplayValue(currentValue)
+        : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -105,8 +107,8 @@ export default function ThreeMonthUpdateForm(props) {
         }
         try {
           Object.entries(modelFields).forEach(([key, value]) => {
-            if (typeof value === "string" && value.trim() === "") {
-              modelFields[key] = undefined;
+            if (typeof value === "string" && value === "") {
+              modelFields[key] = null;
             }
           });
           await DataStore.save(
@@ -191,7 +193,7 @@ export default function ThreeMonthUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || threeMonth)}
+          isDisabled={!(idProp || threeMonthModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -203,7 +205,7 @@ export default function ThreeMonthUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || threeMonth) ||
+              !(idProp || threeMonthModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

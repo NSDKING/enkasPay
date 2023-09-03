@@ -38,6 +38,27 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "goodcount": {
+                    "name": "goodcount",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "pbcount": {
+                    "name": "pbcount",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -1211,6 +1232,6 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "codegenVersion": "3.3.4",
-    "version": "64b362c931a6b6a4f19542d864686dd7"
+    "codegenVersion": "3.4.4",
+    "version": "b6a5680e421624d3caea610db775e790"
 };
