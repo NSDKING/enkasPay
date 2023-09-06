@@ -1,12 +1,16 @@
+type Description @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  text: String
+  title: String
+  userID: ID! @index(name: "byUser")
+}
+
 type Prospect @model @auth(rules: [{allow: public}]) {
   id: ID!
   contrat: String
   valeur: Float
   statut: String
   userID: ID! @index(name: "byUser")
-  goodcount: Float
-  pbcount: Float
-  description: String
 }
 
 type AffiliationContact @model @auth(rules: [{allow: public}]) {
@@ -103,5 +107,7 @@ type User @model @auth(rules: [{allow: public}]) {
   AffiliationContacts: [AffiliationContact] @hasMany(indexName: "byUser", fields: ["id"])
   statut: String
   Prospects: [Prospect] @hasMany(indexName: "byUser", fields: ["id"])
-}
- 
+  goodcount: Float
+  pbcount: Float
+  Descriptions: [Description] @hasMany(indexName: "byUser", fields: ["id"])
+} 

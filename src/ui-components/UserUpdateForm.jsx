@@ -38,6 +38,8 @@ export default function UserUpdateForm(props) {
     staff: false,
     phoneNumber: "",
     statut: "",
+    goodcount: "",
+    pbcount: "",
   };
   const [FamilyName, setFamilyName] = React.useState(initialValues.FamilyName);
   const [LastName, setLastName] = React.useState(initialValues.LastName);
@@ -49,6 +51,8 @@ export default function UserUpdateForm(props) {
     initialValues.phoneNumber
   );
   const [statut, setStatut] = React.useState(initialValues.statut);
+  const [goodcount, setGoodcount] = React.useState(initialValues.goodcount);
+  const [pbcount, setPbcount] = React.useState(initialValues.pbcount);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = userRecord
@@ -62,6 +66,8 @@ export default function UserUpdateForm(props) {
     setStaff(cleanValues.staff);
     setPhoneNumber(cleanValues.phoneNumber);
     setStatut(cleanValues.statut);
+    setGoodcount(cleanValues.goodcount);
+    setPbcount(cleanValues.pbcount);
     setErrors({});
   };
   const [userRecord, setUserRecord] = React.useState(userModelProp);
@@ -84,6 +90,8 @@ export default function UserUpdateForm(props) {
     staff: [],
     phoneNumber: [],
     statut: [],
+    goodcount: [],
+    pbcount: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -119,6 +127,8 @@ export default function UserUpdateForm(props) {
           staff,
           phoneNumber,
           statut,
+          goodcount,
+          pbcount,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -182,6 +192,8 @@ export default function UserUpdateForm(props) {
               staff,
               phoneNumber,
               statut,
+              goodcount,
+              pbcount,
             };
             const result = onChange(modelFields);
             value = result?.FamilyName ?? value;
@@ -213,6 +225,8 @@ export default function UserUpdateForm(props) {
               staff,
               phoneNumber,
               statut,
+              goodcount,
+              pbcount,
             };
             const result = onChange(modelFields);
             value = result?.LastName ?? value;
@@ -244,6 +258,8 @@ export default function UserUpdateForm(props) {
               staff,
               phoneNumber,
               statut,
+              goodcount,
+              pbcount,
             };
             const result = onChange(modelFields);
             value = result?.city ?? value;
@@ -275,6 +291,8 @@ export default function UserUpdateForm(props) {
               staff,
               phoneNumber,
               statut,
+              goodcount,
+              pbcount,
             };
             const result = onChange(modelFields);
             value = result?.mail ?? value;
@@ -307,6 +325,8 @@ export default function UserUpdateForm(props) {
               staff,
               phoneNumber,
               statut,
+              goodcount,
+              pbcount,
             };
             const result = onChange(modelFields);
             value = result?.birthdate ?? value;
@@ -338,6 +358,8 @@ export default function UserUpdateForm(props) {
               staff: value,
               phoneNumber,
               statut,
+              goodcount,
+              pbcount,
             };
             const result = onChange(modelFields);
             value = result?.staff ?? value;
@@ -369,6 +391,8 @@ export default function UserUpdateForm(props) {
               staff,
               phoneNumber: value,
               statut,
+              goodcount,
+              pbcount,
             };
             const result = onChange(modelFields);
             value = result?.phoneNumber ?? value;
@@ -400,6 +424,8 @@ export default function UserUpdateForm(props) {
               staff,
               phoneNumber,
               statut: value,
+              goodcount,
+              pbcount,
             };
             const result = onChange(modelFields);
             value = result?.statut ?? value;
@@ -413,6 +439,80 @@ export default function UserUpdateForm(props) {
         errorMessage={errors.statut?.errorMessage}
         hasError={errors.statut?.hasError}
         {...getOverrideProps(overrides, "statut")}
+      ></TextField>
+      <TextField
+        label="Goodcount"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={goodcount}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              FamilyName,
+              LastName,
+              city,
+              mail,
+              birthdate,
+              staff,
+              phoneNumber,
+              statut,
+              goodcount: value,
+              pbcount,
+            };
+            const result = onChange(modelFields);
+            value = result?.goodcount ?? value;
+          }
+          if (errors.goodcount?.hasError) {
+            runValidationTasks("goodcount", value);
+          }
+          setGoodcount(value);
+        }}
+        onBlur={() => runValidationTasks("goodcount", goodcount)}
+        errorMessage={errors.goodcount?.errorMessage}
+        hasError={errors.goodcount?.hasError}
+        {...getOverrideProps(overrides, "goodcount")}
+      ></TextField>
+      <TextField
+        label="Pbcount"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={pbcount}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              FamilyName,
+              LastName,
+              city,
+              mail,
+              birthdate,
+              staff,
+              phoneNumber,
+              statut,
+              goodcount,
+              pbcount: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.pbcount ?? value;
+          }
+          if (errors.pbcount?.hasError) {
+            runValidationTasks("pbcount", value);
+          }
+          setPbcount(value);
+        }}
+        onBlur={() => runValidationTasks("pbcount", pbcount)}
+        errorMessage={errors.pbcount?.errorMessage}
+        hasError={errors.pbcount?.hasError}
+        {...getOverrideProps(overrides, "pbcount")}
       ></TextField>
       <Flex
         justifyContent="space-between"

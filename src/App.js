@@ -56,11 +56,19 @@ import AccountTypeList from './pages/AccountTypeList';
 import AffiliationForm from './pages/AffiliationForm';
 import AffiliateMain from './pages/affiliatemain';
 import StaffAffiliate from './pages/StaffAffiliate';
-import CrmHomePage from './CRM/pages/HomePage';
 import ProspectPage from './CRM/pages/ProspectPage';
 import UpdateCrmLine from './CRM/pages/updateCrmline';
 import AddProspect from './CRM/pages/AddProspect';
 import PageEnkasWeb from './pages/enkasweb';
+import CrmHomePage from './CRM/pages/Home/HomePage';
+import HomeClick from './CRM/pages/HomeClick';
+import Prospect from './CRM/pages/ProspectManager';
+import DescPage from './CRM/pages/DescriptionsPage';
+import ProsClick from './CRM/pages/prospect click';
+import UpdatePros from './CRM/pages/update_prospect';
+import PointClick from './CRM/pages/point_click';
+import Good from './CRM/pages/good';
+import Pbcount from './CRM/pages/pbcount';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -460,9 +468,16 @@ function App() {
           /*paths for the crm app */
 
             <Route path='/crm-HomePage' Component={CrmHomePage}/>
-            <Route path='/crm-prospect' Component={ProspectPage}/>
+            <Route path='/crm-good' Component={Good}/>
+            <Route path='/crm-pbcount' Component={Pbcount}/>
+            <Route path='/crm-Home-click' Component={HomeClick}/>
+            <Route path='/crm-prospect' Component={Prospect}/>
+            <Route path='/crm-description' Component={DescPage}/>
             <Route path='/crm-update-line' Component={UpdateCrmLine}/>
             <Route path='/crm-add-line' Component={AddProspect}/>
+            <Route path='/crm-pros-click' Component={ProsClick}/>
+            <Route path='/crm-point-click' Component={PointClick}/>
+            <Route path='/crm-update-pro' Component={UpdatePros}/>
  
              
           </Routes>

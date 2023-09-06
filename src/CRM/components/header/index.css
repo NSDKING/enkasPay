@@ -1,8 +1,7 @@
-.crm-navbar {
+header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
     background-color: #FFFFFF;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -13,4 +12,26 @@
     font-size: 24px;
     font-weight: bold;
     color: #000000;
+    margin-left: 20px;
    }
+
+
+.buttons-container{
+    display: flex;
+    width: 40%;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.buttons-container a{
+    text-decoration: none;
+    color: #000000;
+    font-weight: 600;
+}
+
+.buttons-container a:hover{
+   text-decoration:underline;
+     
+}
+

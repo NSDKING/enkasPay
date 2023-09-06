@@ -6,6 +6,38 @@ import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@a
 
 
 
+type EagerDescription = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Description, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly text?: string | null;
+  readonly title?: string | null;
+  readonly userID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyDescription = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Description, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly text?: string | null;
+  readonly title?: string | null;
+  readonly userID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Description = LazyLoading extends LazyLoadingDisabled ? EagerDescription : LazyDescription
+
+export declare const Description: (new (init: ModelInit<Description>) => Description) & {
+  copyOf(source: Description, mutator: (draft: MutableModel<Description>) => MutableModel<Description> | void): Description;
+}
+
 type EagerProspect = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Prospect, 'id'>;
@@ -16,9 +48,6 @@ type EagerProspect = {
   readonly valeur?: number | null;
   readonly statut?: string | null;
   readonly userID: string;
-  readonly goodcount?: number | null;
-  readonly pbcount?: number | null;
-  readonly description?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -33,9 +62,6 @@ type LazyProspect = {
   readonly valeur?: number | null;
   readonly statut?: string | null;
   readonly userID: string;
-  readonly goodcount?: number | null;
-  readonly pbcount?: number | null;
-  readonly description?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -390,6 +416,9 @@ type EagerUser = {
   readonly AffiliationContacts?: (AffiliationContact | null)[] | null;
   readonly statut?: string | null;
   readonly Prospects?: (Prospect | null)[] | null;
+  readonly goodcount?: number | null;
+  readonly pbcount?: number | null;
+  readonly Descriptions?: (Description | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -414,6 +443,9 @@ type LazyUser = {
   readonly AffiliationContacts: AsyncCollection<AffiliationContact>;
   readonly statut?: string | null;
   readonly Prospects: AsyncCollection<Prospect>;
+  readonly goodcount?: number | null;
+  readonly pbcount?: number | null;
+  readonly Descriptions: AsyncCollection<Description>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

@@ -1,6 +1,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateDescription = /* GraphQL */ `
+  subscription OnCreateDescription(
+    $filter: ModelSubscriptionDescriptionFilterInput
+  ) {
+    onCreateDescription(filter: $filter) {
+      id
+      text
+      title
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateDescription = /* GraphQL */ `
+  subscription OnUpdateDescription(
+    $filter: ModelSubscriptionDescriptionFilterInput
+  ) {
+    onUpdateDescription(filter: $filter) {
+      id
+      text
+      title
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteDescription = /* GraphQL */ `
+  subscription OnDeleteDescription(
+    $filter: ModelSubscriptionDescriptionFilterInput
+  ) {
+    onDeleteDescription(filter: $filter) {
+      id
+      text
+      title
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
 export const onCreateProspect = /* GraphQL */ `
   subscription OnCreateProspect($filter: ModelSubscriptionProspectFilterInput) {
     onCreateProspect(filter: $filter) {
@@ -14,6 +68,7 @@ export const onCreateProspect = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -30,6 +85,7 @@ export const onUpdateProspect = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -46,6 +102,7 @@ export const onDeleteProspect = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -62,6 +119,7 @@ export const onCreateAffiliationContact = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -78,6 +136,7 @@ export const onUpdateAffiliationContact = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -94,6 +153,7 @@ export const onDeleteAffiliationContact = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -109,6 +169,7 @@ export const onCreateAffiliation = /* GraphQL */ `
       AffiliationContacts {
         nextToken
         startedAt
+        __typename
       }
       userID
       statut
@@ -117,6 +178,7 @@ export const onCreateAffiliation = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -132,6 +194,7 @@ export const onUpdateAffiliation = /* GraphQL */ `
       AffiliationContacts {
         nextToken
         startedAt
+        __typename
       }
       userID
       statut
@@ -140,6 +203,7 @@ export const onUpdateAffiliation = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -155,6 +219,7 @@ export const onDeleteAffiliation = /* GraphQL */ `
       AffiliationContacts {
         nextToken
         startedAt
+        __typename
       }
       userID
       statut
@@ -163,6 +228,7 @@ export const onDeleteAffiliation = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -178,6 +244,7 @@ export const onCreateOrder = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -193,6 +260,7 @@ export const onUpdateOrder = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -208,6 +276,7 @@ export const onDeleteOrder = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -222,6 +291,7 @@ export const onCreateOneYear = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -236,6 +306,7 @@ export const onUpdateOneYear = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -250,6 +321,7 @@ export const onDeleteOneYear = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -266,6 +338,7 @@ export const onCreateThreeMonth = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -282,6 +355,7 @@ export const onUpdateThreeMonth = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -298,6 +372,7 @@ export const onDeleteThreeMonth = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -312,6 +387,7 @@ export const onCreateOneMonth = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -326,6 +402,7 @@ export const onUpdateOneMonth = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -340,6 +417,7 @@ export const onDeleteOneMonth = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -357,6 +435,7 @@ export const onCreateCart = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -374,6 +453,7 @@ export const onUpdateCart = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -391,6 +471,7 @@ export const onDeleteCart = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -406,6 +487,7 @@ export const onCreateProduct = /* GraphQL */ `
       Carts {
         nextToken
         startedAt
+        __typename
       }
       OneMonth {
         id
@@ -416,6 +498,7 @@ export const onCreateProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       ThreeMonth {
         id
@@ -426,6 +509,7 @@ export const onCreateProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       OneYear {
         id
@@ -436,11 +520,13 @@ export const onCreateProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       slug
       Orders {
         nextToken
         startedAt
+        __typename
       }
       createdAt
       updatedAt
@@ -450,6 +536,7 @@ export const onCreateProduct = /* GraphQL */ `
       productOneMonthId
       productThreeMonthId
       productOneYearId
+      __typename
     }
   }
 `;
@@ -465,6 +552,7 @@ export const onUpdateProduct = /* GraphQL */ `
       Carts {
         nextToken
         startedAt
+        __typename
       }
       OneMonth {
         id
@@ -475,6 +563,7 @@ export const onUpdateProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       ThreeMonth {
         id
@@ -485,6 +574,7 @@ export const onUpdateProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       OneYear {
         id
@@ -495,11 +585,13 @@ export const onUpdateProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       slug
       Orders {
         nextToken
         startedAt
+        __typename
       }
       createdAt
       updatedAt
@@ -509,6 +601,7 @@ export const onUpdateProduct = /* GraphQL */ `
       productOneMonthId
       productThreeMonthId
       productOneYearId
+      __typename
     }
   }
 `;
@@ -524,6 +617,7 @@ export const onDeleteProduct = /* GraphQL */ `
       Carts {
         nextToken
         startedAt
+        __typename
       }
       OneMonth {
         id
@@ -534,6 +628,7 @@ export const onDeleteProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       ThreeMonth {
         id
@@ -544,6 +639,7 @@ export const onDeleteProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       OneYear {
         id
@@ -554,11 +650,13 @@ export const onDeleteProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       slug
       Orders {
         nextToken
         startedAt
+        __typename
       }
       createdAt
       updatedAt
@@ -568,6 +666,7 @@ export const onDeleteProduct = /* GraphQL */ `
       productOneMonthId
       productThreeMonthId
       productOneYearId
+      __typename
     }
   }
 `;
@@ -589,6 +688,7 @@ export const onCreateAccount = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -610,6 +710,7 @@ export const onUpdateAccount = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -631,6 +732,7 @@ export const onDeleteAccount = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -648,33 +750,47 @@ export const onCreateUser = /* GraphQL */ `
       Carts {
         nextToken
         startedAt
+        __typename
       }
       Account {
         nextToken
         startedAt
+        __typename
       }
       Orders {
         nextToken
         startedAt
+        __typename
       }
       Affiliations {
         nextToken
         startedAt
+        __typename
       }
       AffiliationContacts {
         nextToken
         startedAt
+        __typename
       }
       statut
       Prospects {
         nextToken
         startedAt
+        __typename
+      }
+      goodcount
+      pbcount
+      Descriptions {
+        nextToken
+        startedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -692,33 +808,47 @@ export const onUpdateUser = /* GraphQL */ `
       Carts {
         nextToken
         startedAt
+        __typename
       }
       Account {
         nextToken
         startedAt
+        __typename
       }
       Orders {
         nextToken
         startedAt
+        __typename
       }
       Affiliations {
         nextToken
         startedAt
+        __typename
       }
       AffiliationContacts {
         nextToken
         startedAt
+        __typename
       }
       statut
       Prospects {
         nextToken
         startedAt
+        __typename
+      }
+      goodcount
+      pbcount
+      Descriptions {
+        nextToken
+        startedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -736,33 +866,47 @@ export const onDeleteUser = /* GraphQL */ `
       Carts {
         nextToken
         startedAt
+        __typename
       }
       Account {
         nextToken
         startedAt
+        __typename
       }
       Orders {
         nextToken
         startedAt
+        __typename
       }
       Affiliations {
         nextToken
         startedAt
+        __typename
       }
       AffiliationContacts {
         nextToken
         startedAt
+        __typename
       }
       statut
       Prospects {
         nextToken
         startedAt
+        __typename
+      }
+      goodcount
+      pbcount
+      Descriptions {
+        nextToken
+        startedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;

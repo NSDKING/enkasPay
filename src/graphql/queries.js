@@ -1,6 +1,111 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getDescription = /* GraphQL */ `
+  query GetDescription($id: ID!) {
+    getDescription(id: $id) {
+      id
+      text
+      title
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const listDescriptions = /* GraphQL */ `
+  query ListDescriptions(
+    $filter: ModelDescriptionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDescriptions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        text
+        title
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const syncDescriptions = /* GraphQL */ `
+  query SyncDescriptions(
+    $filter: ModelDescriptionFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncDescriptions(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        text
+        title
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const descriptionsByUserID = /* GraphQL */ `
+  query DescriptionsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelDescriptionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    descriptionsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        text
+        title
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
 export const getProspect = /* GraphQL */ `
   query GetProspect($id: ID!) {
     getProspect(id: $id) {
@@ -14,6 +119,7 @@ export const getProspect = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -35,9 +141,11 @@ export const listProspects = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -65,9 +173,11 @@ export const syncProspects = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -97,9 +207,11 @@ export const prospectsByUserID = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -114,6 +226,7 @@ export const getAffiliationContact = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -137,9 +250,11 @@ export const listAffiliationContacts = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -165,9 +280,11 @@ export const syncAffiliationContacts = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -195,9 +312,11 @@ export const affiliationContactsByAffiliationID = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -225,9 +344,11 @@ export const affiliationContactsByUserID = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -241,6 +362,7 @@ export const getAffiliation = /* GraphQL */ `
       AffiliationContacts {
         nextToken
         startedAt
+        __typename
       }
       userID
       statut
@@ -249,6 +371,7 @@ export const getAffiliation = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -271,9 +394,11 @@ export const listAffiliations = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -302,9 +427,11 @@ export const syncAffiliations = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -335,9 +462,11 @@ export const affiliationsByUserID = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -353,6 +482,7 @@ export const getOrder = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -373,9 +503,11 @@ export const listOrders = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -402,9 +534,11 @@ export const syncOrders = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -433,9 +567,11 @@ export const ordersByUserID = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -464,9 +600,11 @@ export const ordersByProductID = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -481,6 +619,7 @@ export const getOneYear = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -500,9 +639,11 @@ export const listOneYears = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -528,9 +669,11 @@ export const syncOneYears = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -545,6 +688,7 @@ export const getThreeMonth = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -564,9 +708,11 @@ export const listThreeMonths = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -592,9 +738,11 @@ export const syncThreeMonths = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -609,6 +757,7 @@ export const getOneMonth = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -628,9 +777,11 @@ export const listOneMonths = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -656,9 +807,11 @@ export const syncOneMonths = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -676,6 +829,7 @@ export const getCart = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -698,9 +852,11 @@ export const listCarts = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -729,9 +885,11 @@ export const syncCarts = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -762,9 +920,11 @@ export const cartsByProductID = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -795,9 +955,11 @@ export const cartsByUserID = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -813,6 +975,7 @@ export const getProduct = /* GraphQL */ `
       Carts {
         nextToken
         startedAt
+        __typename
       }
       OneMonth {
         id
@@ -823,6 +986,7 @@ export const getProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       ThreeMonth {
         id
@@ -833,6 +997,7 @@ export const getProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       OneYear {
         id
@@ -843,11 +1008,13 @@ export const getProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       slug
       Orders {
         nextToken
         startedAt
+        __typename
       }
       createdAt
       updatedAt
@@ -857,6 +1024,7 @@ export const getProduct = /* GraphQL */ `
       productOneMonthId
       productThreeMonthId
       productOneYearId
+      __typename
     }
   }
 `;
@@ -883,9 +1051,11 @@ export const listProducts = /* GraphQL */ `
         productOneMonthId
         productThreeMonthId
         productOneYearId
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -918,9 +1088,11 @@ export const syncProducts = /* GraphQL */ `
         productOneMonthId
         productThreeMonthId
         productOneYearId
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -942,6 +1114,7 @@ export const getAccount = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -968,9 +1141,11 @@ export const listAccounts = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -1003,9 +1178,11 @@ export const syncAccounts = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -1040,9 +1217,11 @@ export const accountsByUserID = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -1060,33 +1239,47 @@ export const getUser = /* GraphQL */ `
       Carts {
         nextToken
         startedAt
+        __typename
       }
       Account {
         nextToken
         startedAt
+        __typename
       }
       Orders {
         nextToken
         startedAt
+        __typename
       }
       Affiliations {
         nextToken
         startedAt
+        __typename
       }
       AffiliationContacts {
         nextToken
         startedAt
+        __typename
       }
       statut
       Prospects {
         nextToken
         startedAt
+        __typename
+      }
+      goodcount
+      pbcount
+      Descriptions {
+        nextToken
+        startedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -1107,14 +1300,18 @@ export const listUsers = /* GraphQL */ `
         staff
         phoneNumber
         statut
+        goodcount
+        pbcount
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -1141,14 +1338,18 @@ export const syncUsers = /* GraphQL */ `
         staff
         phoneNumber
         statut
+        goodcount
+        pbcount
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;

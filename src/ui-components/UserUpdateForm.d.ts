@@ -22,6 +22,8 @@ export declare type UserUpdateFormInputValues = {
     staff?: boolean;
     phoneNumber?: string;
     statut?: string;
+    goodcount?: number;
+    pbcount?: number;
 };
 export declare type UserUpdateFormValidationValues = {
     FamilyName?: ValidationFunction<string>;
@@ -32,6 +34,8 @@ export declare type UserUpdateFormValidationValues = {
     staff?: ValidationFunction<boolean>;
     phoneNumber?: ValidationFunction<string>;
     statut?: ValidationFunction<string>;
+    goodcount?: ValidationFunction<number>;
+    pbcount?: ValidationFunction<number>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UserUpdateFormOverridesProps = {
@@ -44,6 +48,8 @@ export declare type UserUpdateFormOverridesProps = {
     staff?: PrimitiveOverrideProps<SwitchFieldProps>;
     phoneNumber?: PrimitiveOverrideProps<TextFieldProps>;
     statut?: PrimitiveOverrideProps<TextFieldProps>;
+    goodcount?: PrimitiveOverrideProps<TextFieldProps>;
+    pbcount?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UserUpdateFormProps = React.PropsWithChildren<{
     overrides?: UserUpdateFormOverridesProps | undefined | null;
