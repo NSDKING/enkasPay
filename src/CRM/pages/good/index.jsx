@@ -39,7 +39,7 @@ export default function Good() {
         const response = await API.graphql(graphqlOperation(updateUser, {
             input: input,
         }));
-        navigate(-3)
+        navigate(-4)
         console.log(response)
     }
 
