@@ -1,12 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import Dropdown from "../Dropdown";
 import "./index.css"
 import { useState } from "react";
 
-
+ 
 
 export default function SHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
 
   const toggleSidebar = () => {
@@ -15,20 +17,17 @@ export default function SHeader() {
 
   
   const Dropitems =[
-    { label: 'Conclue', link: '#' },
-    { label: 'Nouveau', link: '#' },
-    { label: 'Perdue', link: '#' },
-    { label: 'Proposition', link: '#' },
-    { label: 'Decouverte', link: '#' },
-    { label: 'Negociation', link: '#' },
+    { label: 'Conclue', link: '/crm-concluePage' },
+    { label: 'Nouveau', link: '/crm-nouveau' },
+    { label: 'Perdue', link: '/crm-perdu' },
+    { label: 'Proposition', link: '/crm-proposition' },
+    { label: 'Decouverte', link: '/crm-decouverte' },
+    { label: 'Negociation', link: '/crm-negociation' },
   ]
   
   const navLinks = [
-    { title: 'Prospect', link: '/crm-prospect' },
-    { title: 'Today', link: '#' },
-    { title: 'ajouter', link: '/crm-add-line' },
-    { title: 'goodpoint', link: '#' },
-    { title: 'pbcount', link: '#' },
+     { title: 'ranking', link: '#' },
+ 
   ];
 
   const renderNavLinks = () => {
@@ -38,7 +37,9 @@ export default function SHeader() {
   };
   return(
     <header>
-        <h2 className="crm-logo">ENKAS</h2>
+        <h2 className="crm-logo"
+          onClick={()=>{navigate("/crm-HomePage")}}
+        >ENKAS</h2>
         <div className="buttons-container">
           <Dropdown title="statut" items={Dropitems} />
           {renderNavLinks()}

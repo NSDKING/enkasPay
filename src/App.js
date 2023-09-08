@@ -69,6 +69,12 @@ import UpdatePros from './CRM/pages/update_prospect';
 import PointClick from './CRM/pages/point_click';
 import Good from './CRM/pages/good';
 import Pbcount from './CRM/pages/pbcount';
+import ConcluePage from './CRM/pages/statut_pages';
+import PerduePge from './CRM/pages/statut_pages/perdue';
+import DecouvertePage from './CRM/pages/statut_pages/decouverte';
+import NegoPage from './CRM/pages/statut_pages/Negociation';
+import NewPage from './CRM/pages/statut_pages/Nouveau';
+import PropositionPage from './CRM/pages/statut_pages/proposition';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -468,6 +474,12 @@ function App() {
           /*paths for the crm app */
 
             <Route path='/crm-HomePage' Component={CrmHomePage}/>
+            <Route path='/crm-concluePage' Component={ConcluePage}/>
+            <Route path='/crm-perdu' Component={PerduePge}/>
+            <Route path='/crm-decouverte' Component={DecouvertePage}/>
+            <Route path='/crm-negociation' Component={NegoPage}/>
+            <Route path='/crm-nouveau' Component={NewPage}/>
+            <Route path='/crm-proposition' Component={PropositionPage}/>
             <Route path='/crm-good' Component={Good}/>
             <Route path='/crm-pbcount' Component={Pbcount}/>
             <Route path='/crm-Home-click' Component={HomeClick}/>
