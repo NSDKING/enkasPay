@@ -20,27 +20,31 @@ export default function ClickAccount() {
         // Navigate to a different page after the action
         navigate("/dashboard");
       };
-
-      const handleDelete = async (item) => {
-        console.log(item)
-        try {
-          const input = { 
-            id: item.id,
-            _version:item._version,
+ 
 
  
-        };
-          const result = await API.graphql(graphqlOperation(deleteAccount, { input }));
-          console.log(result);
-          navigate("/ConsultPage");
-
-        } catch (error) {
-          console.error(error);
+      const handleDelete= async (item) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this account?");
+      
+        if (confirmDelete) {
+          console.log(item);
+          try {
+            const input = {
+              id: item.id,
+              _version: item._version,
+            };
+            const result = await API.graphql(graphqlOperation(deleteAccount, { input }));
+            console.log(result);
+            alert("Account deleted successfully");
+            navigate("/ConsultPage");
+          } catch (error) {
+            console.error(error);
+          }
+        } else {
+          alert("Deletion canceled");
         }
       };
-
- 
-
+      
       const handleClick3 = () => {
    
         navigate("/updateAccount", { state: {  item: item } }) 
