@@ -66,7 +66,7 @@ export default function AccountList() {
       } else {
         listAccount.forEach((account) => {
           if (account.mail == item.mail) {
-            if(!item.free){
+            if(!item.free && item._deleted != true){
               let updatedAccount = { ...account, remplissage: account.remplissage + 1 };
               listAccount = listAccount.map((a) => (a.mail === item.mail ? updatedAccount : a));
             }

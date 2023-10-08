@@ -65,7 +65,7 @@ export default function UpdateAccount() {
               
      
             alert('ok')
-            navigate("/accounts-list")
+            navigate("/choose-accounts-list-type")
 
        
         }catch(e){
@@ -204,7 +204,7 @@ export default function UpdateAccount() {
 
                                 <input type="submit" id="add-client-btn"  />
                                 </form>
-                    <button onClick={()=>{ navigate("/ConsultPage")}}>close the page</button>
+                    <button onClick={()=>{ navigate("/choose-accounts-list-type") }}>close the page</button>
 
                              </div>
                         </div>

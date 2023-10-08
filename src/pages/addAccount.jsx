@@ -87,7 +87,10 @@ export default function AddAccount() {
               const response =  await API.graphql(
                 graphqlOperation(createAccount, { input: newAccount })
             );
+
+            console.log(response)
              alert('ok')
+            
             navigate("/ManageAccount")
           }catch(e){
             console.log(e)
