@@ -1,0 +1,42 @@
+/* Adjust styles as needed */
+.search-container {
+    display: flex;
+    margin-bottom: 20px;
+  }
+ 
+  
+  .Payments button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px; /* Larger font */
+  }
+  
+  .Payments table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .Payments  table, th, td {
+    border: 1px solid #121111;
+
+  }
+  
+  .Payments th, td {
+    padding: 12px; /* Increased padding for better spacing */
+    text-align: left;
+  }
+
+  .Payments  td {
+   background-color: #007bff;
+  }
+  
+  
+  .Payments th {
+    background-color: #9c9b9b;
+    color: whitesmoke; /* Darker text color */
+  }
+  

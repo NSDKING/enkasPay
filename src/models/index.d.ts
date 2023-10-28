@@ -6,6 +6,42 @@ import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@a
 
 
 
+type EagerPayments = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Payments, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly amounts?: number | null;
+  readonly sender_number?: string | null;
+  readonly sender_name?: string | null;
+  readonly transaction_id?: string | null;
+  readonly messages?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyPayments = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Payments, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly amounts?: number | null;
+  readonly sender_number?: string | null;
+  readonly sender_name?: string | null;
+  readonly transaction_id?: string | null;
+  readonly messages?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Payments = LazyLoading extends LazyLoadingDisabled ? EagerPayments : LazyPayments
+
+export declare const Payments: (new (init: ModelInit<Payments>) => Payments) & {
+  copyOf(source: Payments, mutator: (draft: MutableModel<Payments>) => MutableModel<Payments> | void): Payments;
+}
+
 type EagerDescription = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Description, 'id'>;

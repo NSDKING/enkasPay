@@ -1,6 +1,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreatePayments = /* GraphQL */ `
+  subscription OnCreatePayments($filter: ModelSubscriptionPaymentsFilterInput) {
+    onCreatePayments(filter: $filter) {
+      id
+      amounts
+      sender_number
+      sender_name
+      transaction_id
+      messages
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdatePayments = /* GraphQL */ `
+  subscription OnUpdatePayments($filter: ModelSubscriptionPaymentsFilterInput) {
+    onUpdatePayments(filter: $filter) {
+      id
+      amounts
+      sender_number
+      sender_name
+      transaction_id
+      messages
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeletePayments = /* GraphQL */ `
+  subscription OnDeletePayments($filter: ModelSubscriptionPaymentsFilterInput) {
+    onDeletePayments(filter: $filter) {
+      id
+      amounts
+      sender_number
+      sender_name
+      transaction_id
+      messages
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
 export const onCreateDescription = /* GraphQL */ `
   subscription OnCreateDescription(
     $filter: ModelSubscriptionDescriptionFilterInput

@@ -1,6 +1,69 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createPayments = /* GraphQL */ `
+  mutation CreatePayments(
+    $input: CreatePaymentsInput!
+    $condition: ModelPaymentsConditionInput
+  ) {
+    createPayments(input: $input, condition: $condition) {
+      id
+      amounts
+      sender_number
+      sender_name
+      transaction_id
+      messages
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const updatePayments = /* GraphQL */ `
+  mutation UpdatePayments(
+    $input: UpdatePaymentsInput!
+    $condition: ModelPaymentsConditionInput
+  ) {
+    updatePayments(input: $input, condition: $condition) {
+      id
+      amounts
+      sender_number
+      sender_name
+      transaction_id
+      messages
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const deletePayments = /* GraphQL */ `
+  mutation DeletePayments(
+    $input: DeletePaymentsInput!
+    $condition: ModelPaymentsConditionInput
+  ) {
+    deletePayments(input: $input, condition: $condition) {
+      id
+      amounts
+      sender_number
+      sender_name
+      transaction_id
+      messages
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
 export const createDescription = /* GraphQL */ `
   mutation CreateDescription(
     $input: CreateDescriptionInput!

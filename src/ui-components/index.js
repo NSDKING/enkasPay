@@ -10,6 +10,8 @@ export { default as OneMonthCreateForm } from "./OneMonthCreateForm";
 export { default as OneMonthUpdateForm } from "./OneMonthUpdateForm";
 export { default as OneYearCreateForm } from "./OneYearCreateForm";
 export { default as OneYearUpdateForm } from "./OneYearUpdateForm";
+export { default as PaymentsCreateForm } from "./PaymentsCreateForm";
+export { default as PaymentsUpdateForm } from "./PaymentsUpdateForm";
 export { default as ProductCreateForm } from "./ProductCreateForm";
 export { default as ProductUpdateForm } from "./ProductUpdateForm";
 export { default as ThreeMonthCreateForm } from "./ThreeMonthCreateForm";

@@ -75,6 +75,7 @@ import DecouvertePage from './CRM/pages/statut_pages/decouverte';
 import NegoPage from './CRM/pages/statut_pages/Negociation';
 import NewPage from './CRM/pages/statut_pages/Nouveau';
 import PropositionPage from './CRM/pages/statut_pages/proposition';
+import PaymentList from './pages/paymentList';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -305,6 +306,7 @@ function App() {
           <Routes>
           <Route path='/Account' Component={Account}/>
           <Route path='/enkas-web-devellopment' Component={PageEnkasWeb}/>
+          <Route path='/PaymentList-enkas' Component={PaymentList}/>
 
           <Route path='/' element={<StorePage
                                             Articles={Articles} 

@@ -1,3 +1,12 @@
+type Payments @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  amounts: Float
+  sender_number: String
+  sender_name: String
+  transaction_id: String
+  messages: String
+}
+
 type Description @model @auth(rules: [{allow: public}]) {
   id: ID!
   text: String
