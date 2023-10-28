@@ -165,7 +165,7 @@ export default function TakeAccount() {
                             <p>pin: {theAccount.pin}</p>
                         </div>
                     
-                        <label>Nombre de jours à ajouter :</label>
+                        <label>Nombre de jours à ajouter:</label>
                         <input
                         type="number"
                         value={daysToAdd}
