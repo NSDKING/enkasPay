@@ -65,9 +65,8 @@ export default function UpdateAccount() {
               
      
             alert('ok')
-            navigate("/choose-accounts-list-type")
+            navigate(-2);
 
-       
         }catch(e){
                 console.log(e)
       
@@ -85,8 +84,10 @@ export default function UpdateAccount() {
       try {
       
         const response= await API.graphql(graphqlOperation(listUsers, { limit: 1000 }));
-        setUserList(response.data.listUsers.items)
-     
+
+        // Filter users with _deleted: false
+        const filteredUsers = response.data.listUsers.items.filter((user) => user._deleted !== true);
+        setUserList(filteredUsers);        
       }catch(e){
               console.log(e)
     

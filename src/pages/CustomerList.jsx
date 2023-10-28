@@ -10,8 +10,8 @@ export default function CustomerList() {
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
-  const handleClick = (UserID) => {
-    navigate("/customer-data", { state: { item: UserID } });
+  const handleClick = (User) => {
+    navigate("/customer-data", { state: { item: User } });
   }
 
   const getListUsers = async () => {
@@ -84,7 +84,7 @@ export default function CustomerList() {
               <h2>Loading...</h2>
             ) : (
               filteredUsers.filter(item => !item._deleted).map(item => (
-                <tr key={item.id} onClick={() => { handleClick(item.id) }}>
+                <tr key={item.id} onClick={() => { handleClick(item) }}>
                   <td>{item.FamilyName}</td>
                   <td>{item.LastName}</td>
                   <td>{item.city}</td>

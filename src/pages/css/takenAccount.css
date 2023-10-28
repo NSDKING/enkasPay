@@ -1,7 +1,7 @@
 .takeAccountPage{
     width: 100%;
     align-items: center;
-   
+    
 }
 .pp{
     margin-bottom: 100px;
@@ -11,10 +11,11 @@
     margin-left: auto;
     margin-right: auto;
     width: 90%;
-    border: 1px solid rgb(186, 183, 183);
+    border: 1px solid rgb(199, 0, 0);
     padding: 4px;
     border-radius: 4px;
     margin-bottom: 25px;
+     
 }
 
 .miniform{
@@ -51,3 +52,6 @@
     background-color: #45a049;
   }
   
+.boxs{
+  background-color: blue;
+}

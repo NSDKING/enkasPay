@@ -93,12 +93,11 @@ export default function AddGuestCust() {
                                     })}
                                 placeholder='saisissez votre numero de telephone'
                             />
-                {errors.password && <p className="text-error">{errors.password?.message}</p>}
+                {errors.phoneNumber && <p className="text-error">{errors.phoneNumber?.message}</p>}
 
 
 
-                <Link className='p1' style={{ textDecoration: 'none' }} to={"/password-reset"}>mot de passe oublié ?</Link>
-
+ 
                 <DefaultButton text={loading? 'Loading ....': 'creer'} bgcolor={"#eb0625"} textcolor={"white"} width={"100%"} height={"50px"} marginTop={"30px"} WebkitBoxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} MozBoxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} boxShadow={'10px 10px 15px -10px rgba(245,59,80,1)'} type={'submit'}/>
 
 

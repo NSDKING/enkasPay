@@ -44,39 +44,44 @@ export default function AccountList() {
     setLoading(false);
   }
 
-  const uniqueAccount = () => {
-    let listAccount = []
-    let listAccountMail = []
+   
 
+  const uniqueAccount = () => {
+    let listAccount = [];
+    let listAccountMail = [];
+  
     AccountList.forEach((item) => {
-      if (!listAccountMail.includes(item.mail) && item._deleted != true) {
+      if (!listAccountMail.includes(item.mail) && !item._deleted) {
+        // Create a new account item if it's unique
         let newItem = {
           id: item.id,
           mail: item.mail,
           passe: item.passe,
           endDateAccount: item.endDateAccount,
-          free: item.free,
           service: item.service,
           _version: item._version,
           _deleted: item._deleted,
           remplissage: item.free ? 0 : 1,
-        }
-        listAccount.push(newItem)
-        listAccountMail.push(newItem.mail)
+        };
+        listAccount.push(newItem);
+        listAccountMail.push(newItem.mail);
       } else {
-        listAccount.forEach((account) => {
-          if (account.mail == item.mail) {
-            if(!item.free && item._deleted != true){
-              let updatedAccount = { ...account, remplissage: account.remplissage + 1 };
-              listAccount = listAccount.map((a) => (a.mail === item.mail ? updatedAccount : a));
-            }
+        // Find the existing account with the same email and update it immutably
+        listAccount = listAccount.map((account) => {
+          if (account.mail === item.mail && !item.free && !item._deleted) {
+            console.log(account)
+            return { ...account, remplissage: account.remplissage + 1 };
           }
-        })
+          return account;
+        }); 
       }
-    })
-    setUaccountList(listAccount)
-    console.log(listAccount)
-  }
+    });
+  
+    // Set the updated list of unique accounts
+    setUaccountList(listAccount);
+    console.log(listAccount);
+  };
+  
 
   useEffect(() => {
     getAccount();
@@ -116,8 +121,7 @@ export default function AccountList() {
               <th>password</th>
               <th>fin</th>
               <th>service</th>
-              <th>remplissage</th>
-            </tr>
+             </tr>
           </thead>
           <tbody>
             {loading ? (
@@ -131,8 +135,7 @@ export default function AccountList() {
                   <td className="std">{item.passe}</td>
                   <td className="std">{item.endDateAccount}</td>
                   <td className="std">{item.service}</td>
-                  <td className="std">{item.remplissage}</td>
-                </tr>
+                 </tr>
               ))
             )}
           </tbody>

@@ -19,6 +19,8 @@ export default function TakeAccount() {
     const [show, setShow] = useState(false)
     const [userList, setUserList] = useState([])
     const [theAccount, setTheAccount] = useState({})
+    const [daysToAdd, setDaysToAdd] = useState(0); // New state for the number of days to add
+    
     const [disp, setDisp] = useState(0)
     const navigate = useNavigate();
 
@@ -105,15 +107,30 @@ export default function TakeAccount() {
         }
         
         setLoading(true)
+         
         try {
-            const input = { 
-                id: theAccount.id,
-                _version: theAccount._version,   
-                userID: data.user,
-                free:false,
-              };
+        
 
+            const today = new Date();
+            today.setDate(today.getDate() + daysToAdd);
+            
+            // Convert to a string in the correct format (e.g., AWSDate format)
+            const formattedDate = today.toISOString().slice(0, 10); // Extract YYYY-MM-DD
+            
+            // Include 'endDateProfil' in the input object with the formatted date
+            const input = {
+              id: theAccount.id,
+              _version: theAccount._version,
+              userID: data.user,
+              free: false,
+              endDateProfil: formattedDate,
+            };
+            
+    
+
+              
             const response= await API.graphql(graphqlOperation(updateAccount, { input: input }));
+            console.log(response)
              setShow(false)
        
         }catch(e){
@@ -148,6 +165,14 @@ export default function TakeAccount() {
                             <p>pin: {theAccount.pin}</p>
                         </div>
                     
+                        <label>Nombre de jours à ajouter :</label>
+                        <input
+                        type="number"
+                        value={daysToAdd}
+                        onChange={(e) => setDaysToAdd(Number(e.target.value))}
+                        />
+
+
                     <label>utilisateur :</label>
                     <input type="text" 
                                     list="user" 
@@ -180,3 +205,4 @@ export default function TakeAccount() {
         </section>
     )
 }
+
