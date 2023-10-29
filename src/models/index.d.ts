@@ -455,6 +455,7 @@ type EagerUser = {
   readonly goodcount?: number | null;
   readonly pbcount?: number | null;
   readonly Descriptions?: (Description | null)[] | null;
+  readonly solde?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -482,6 +483,7 @@ type LazyUser = {
   readonly goodcount?: number | null;
   readonly pbcount?: number | null;
   readonly Descriptions: AsyncCollection<Description>;
+  readonly solde?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

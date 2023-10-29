@@ -1365,6 +1365,13 @@ export const schema = {
                         ]
                     }
                 },
+                "solde": {
+                    "name": "solde",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -1411,5 +1418,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "b35822475ce502f6e18d2876da20efd9"
+    "version": "3048d73eaf139061121dfc59174a070e"
 };

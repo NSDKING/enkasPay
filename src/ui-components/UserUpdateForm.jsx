@@ -13,9 +13,8 @@ import {
   SwitchField,
   TextField,
 } from "@aws-amplify/ui-react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { User } from "../models";
-import { fetchByPath, validateField } from "./utils";
+import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
 export default function UserUpdateForm(props) {
   const {
@@ -40,6 +39,7 @@ export default function UserUpdateForm(props) {
     statut: "",
     goodcount: "",
     pbcount: "",
+    solde: "",
   };
   const [FamilyName, setFamilyName] = React.useState(initialValues.FamilyName);
   const [LastName, setLastName] = React.useState(initialValues.LastName);
@@ -53,6 +53,7 @@ export default function UserUpdateForm(props) {
   const [statut, setStatut] = React.useState(initialValues.statut);
   const [goodcount, setGoodcount] = React.useState(initialValues.goodcount);
   const [pbcount, setPbcount] = React.useState(initialValues.pbcount);
+  const [solde, setSolde] = React.useState(initialValues.solde);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = userRecord
@@ -68,6 +69,7 @@ export default function UserUpdateForm(props) {
     setStatut(cleanValues.statut);
     setGoodcount(cleanValues.goodcount);
     setPbcount(cleanValues.pbcount);
+    setSolde(cleanValues.solde);
     setErrors({});
   };
   const [userRecord, setUserRecord] = React.useState(userModelProp);
@@ -92,6 +94,7 @@ export default function UserUpdateForm(props) {
     statut: [],
     goodcount: [],
     pbcount: [],
+    solde: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -129,6 +132,7 @@ export default function UserUpdateForm(props) {
           statut,
           goodcount,
           pbcount,
+          solde,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -194,6 +198,7 @@ export default function UserUpdateForm(props) {
               statut,
               goodcount,
               pbcount,
+              solde,
             };
             const result = onChange(modelFields);
             value = result?.FamilyName ?? value;
@@ -227,6 +232,7 @@ export default function UserUpdateForm(props) {
               statut,
               goodcount,
               pbcount,
+              solde,
             };
             const result = onChange(modelFields);
             value = result?.LastName ?? value;
@@ -260,6 +266,7 @@ export default function UserUpdateForm(props) {
               statut,
               goodcount,
               pbcount,
+              solde,
             };
             const result = onChange(modelFields);
             value = result?.city ?? value;
@@ -293,6 +300,7 @@ export default function UserUpdateForm(props) {
               statut,
               goodcount,
               pbcount,
+              solde,
             };
             const result = onChange(modelFields);
             value = result?.mail ?? value;
@@ -327,6 +335,7 @@ export default function UserUpdateForm(props) {
               statut,
               goodcount,
               pbcount,
+              solde,
             };
             const result = onChange(modelFields);
             value = result?.birthdate ?? value;
@@ -360,6 +369,7 @@ export default function UserUpdateForm(props) {
               statut,
               goodcount,
               pbcount,
+              solde,
             };
             const result = onChange(modelFields);
             value = result?.staff ?? value;
@@ -393,6 +403,7 @@ export default function UserUpdateForm(props) {
               statut,
               goodcount,
               pbcount,
+              solde,
             };
             const result = onChange(modelFields);
             value = result?.phoneNumber ?? value;
@@ -426,6 +437,7 @@ export default function UserUpdateForm(props) {
               statut: value,
               goodcount,
               pbcount,
+              solde,
             };
             const result = onChange(modelFields);
             value = result?.statut ?? value;
@@ -463,6 +475,7 @@ export default function UserUpdateForm(props) {
               statut,
               goodcount: value,
               pbcount,
+              solde,
             };
             const result = onChange(modelFields);
             value = result?.goodcount ?? value;
@@ -500,6 +513,7 @@ export default function UserUpdateForm(props) {
               statut,
               goodcount,
               pbcount: value,
+              solde,
             };
             const result = onChange(modelFields);
             value = result?.pbcount ?? value;
@@ -513,6 +527,40 @@ export default function UserUpdateForm(props) {
         errorMessage={errors.pbcount?.errorMessage}
         hasError={errors.pbcount?.hasError}
         {...getOverrideProps(overrides, "pbcount")}
+      ></TextField>
+      <TextField
+        label="Solde"
+        isRequired={false}
+        isReadOnly={false}
+        value={solde}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              FamilyName,
+              LastName,
+              city,
+              mail,
+              birthdate,
+              staff,
+              phoneNumber,
+              statut,
+              goodcount,
+              pbcount,
+              solde: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.solde ?? value;
+          }
+          if (errors.solde?.hasError) {
+            runValidationTasks("solde", value);
+          }
+          setSolde(value);
+        }}
+        onBlur={() => runValidationTasks("solde", solde)}
+        errorMessage={errors.solde?.errorMessage}
+        hasError={errors.solde?.hasError}
+        {...getOverrideProps(overrides, "solde")}
       ></TextField>
       <Flex
         justifyContent="space-between"

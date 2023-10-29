@@ -119,4 +119,6 @@ type User @model @auth(rules: [{allow: public}]) {
   goodcount: Float
   pbcount: Float
   Descriptions: [Description] @hasMany(indexName: "byUser", fields: ["id"])
-} 
+  solde: String
+}
+ 
