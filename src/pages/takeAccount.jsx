@@ -67,8 +67,10 @@ export default function TakeAccount() {
 
         try {
 
-            const response= await API.graphql(graphqlOperation(listAccounts));
-            setAccount(response.data.listAccounts.items)
+            const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
+            const availableAccounts = Accounts.filter((item) => item.free === true && item.service === service && !item.deleted);
+
+            setAccount(availableAccounts)
          }catch(e){
                 console.log(e)
 
@@ -88,7 +90,7 @@ export default function TakeAccount() {
         setShow(true)
         let i=0
         Accounts.map((item)=>{
-                if(item.free == true && item.service == service ){
+                if(item.free == true && item.service == service && !item.deleted){
                     setTheAccount(item)
                      i++
                 }else{
