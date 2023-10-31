@@ -40,15 +40,17 @@ export default function RegisterPage() {
                 username: data.email,
                 password:data.password,
             });
-          
-            navigate("/register-confirmation", { state: { 
+
+            const signresponse = await Auth.signIn(data.email, data.password);
+           
+            navigate("/data-registration", { state: { 
                 password: data.password,
                 email:data.email,
             } }) 
              
           }catch(e){
             setError(e.message)
-       
+        
          }
         setLoading(false)
      }   

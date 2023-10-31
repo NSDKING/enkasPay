@@ -7,7 +7,7 @@ import { API, Auth, graphqlOperation } from 'aws-amplify';
 import { useForm, Controller } from "react-hook-form";
 import { createUser } from '../graphql/mutations';
 import { useLocation, useNavigate } from "react-router-dom";
-
+ 
 
 
 export default function DataRegistration() {
