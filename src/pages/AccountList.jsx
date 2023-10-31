@@ -30,8 +30,10 @@ export default function AccountList() {
 
     try {
       let list= []
-      const response = await API.graphql(graphqlOperation(listAccounts));
-      response.data.listAccounts.items.forEach((item)=>{
+      const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
+      const availableAccounts = response.data.listAccounts.items.filter((item) => item.service === service  );
+
+       availableAccounts.forEach((item)=>{
         if(item.service == service){
           list.push(item)
         }
@@ -43,6 +45,8 @@ export default function AccountList() {
     }
     setLoading(false);
   }
+
+  
 
    
 

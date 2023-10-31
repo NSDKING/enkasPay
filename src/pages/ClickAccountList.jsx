@@ -57,9 +57,11 @@ export default function ClickAccountList() {
 
   const getAccount = async () => {
     try {
-      const response = await API.graphql(graphqlOperation(listAccounts));
-      setAccountList(response.data.listAccounts.items);
-    } catch (error) {
+      const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
+      const availableAccounts = response.data.listAccounts.items.filter((item) => !item.deleted);
+
+      setAccountList(availableAccounts)
+     } catch (error) {
       console.error(error);
     }
   };

@@ -25,8 +25,10 @@ export default function UpdateAccountList() {
         setLoading(true);
     
         try {
-          const response = await API.graphql(graphqlOperation(listAccounts));
-          setAccountList(response.data.listAccounts.items);
+          const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
+          const availableAccounts = response.data.listAccounts.items.filter((item) =>  !item.deleted);
+    
+          setAccountList(availableAccounts);
         } catch (e) {
           console.log(e);
         }

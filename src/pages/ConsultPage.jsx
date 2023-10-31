@@ -49,7 +49,9 @@ export default function ConsultPage() {
         try {
 
             const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
-            setAccount(response.data.listAccounts.items)
+            const availableAccounts = response.data.listAccounts.items.filter((item) => !item.deleted);
+
+            setAccount(availableAccounts)
          }catch(e){
                 console.log(e)
  

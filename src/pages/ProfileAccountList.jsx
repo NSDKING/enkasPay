@@ -27,7 +27,9 @@ export default function ProfilAccountList() {
 
     try {
       const response = await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
-      setAccountList(response.data.listAccounts.items);
+      const availableAccounts = response.data.listAccounts.items.filter((item) => !item.deleted);
+
+      setAccountList(availableAccounts);
     } catch (e) {
       console.log(e);
     }
@@ -129,7 +131,7 @@ export default function ProfilAccountList() {
         await Promise.all(deletePromises);
 
         alert("Selected profiles deleted successfully");
-       } catch (error) {
+      } catch (error) {
         console.error(error);
         alert("An error occurred during deletion");
       }
@@ -137,6 +139,86 @@ export default function ProfilAccountList() {
       alert("Deletion canceled or no profiles selected");
     }
   };
+
+  const handleLogDuplicates = () => {
+    const profileMap = new Map(); // Map to keep track of profiles based on the userID and profil
+    const profilesToDelete = []; // List of profiles to delete
+  
+    profileList.forEach((profile) => {
+      // Check if profile is of "1" or "2" or another number
+      if (profile.profil === "1" || profile.profil === "2") {
+        const key = `${profile.userID}_${profile.profil}`;
+  
+        // Check if the account is not already in the map
+        if (!profileMap.has(key)) {
+          profileMap.set(key, profile);
+        } else {
+          profilesToDelete.push(profile);
+        }
+      } else if (["3", "4", "5"].includes(profile.profil)) {
+        // Check if the profile is 3, 4, or 5 and doesn't have a userID
+        if (!profile.userID) {
+          profilesToDelete.push(profile);
+        }
+      }
+    });
+  
+    // Ensure that the list contains two profiles "1", two profiles "2," and three profiles (3, 4, 5)
+    let countProfiles1 = 0;
+    let countProfiles2 = 0;
+    let countProfiles345 = 0;
+    const userIds = new Set();
+  
+    const profilesToKeep = [];
+    profilesToDelete.forEach((profile) => {
+      if (["1", "2"].includes(profile.profil)) {
+        if (profile.userID) {
+          if (profile.profil === "1" && countProfiles1 < 2) {
+            if (!userIds.has(profile.userID)) {
+              profilesToKeep.push(profile);
+              userIds.add(profile.userID);
+              countProfiles1++;
+            }
+          } else if (profile.profil === "2" && countProfiles2 < 2) {
+            if (!userIds.has(profile.userID)) {
+              profilesToKeep.push(profile);
+              userIds.add(profile.userID);
+              countProfiles2++;
+            }
+          }
+        } else {
+          if (countProfiles345 < 3) {
+            profilesToKeep.push(profile);
+            countProfiles345++;
+          }
+        }
+      }
+    });
+  
+    console.log("Profiles to delete:", profilesToDelete);
+    console.log("Profiles to keep:", profilesToKeep);
+  
+    // Commented out the deletion part
+    // try {
+    //   const deletePromises = profilesToDelete.map(async (profile) => {
+    //     const input = {
+    //       id: profile.id,
+    //       _version: profile._version,
+    //     };
+    //     await API.graphql(graphqlOperation(deleteAccount, { input }));
+    //   });
+  
+    //   await Promise.all(deletePromises);
+  
+    //   alert("Duplicate profiles removed successfully");
+    //   getProfile(); // Refresh the profile list after deletion
+    // } catch (error) {
+    //   console.error(error);
+    //   alert("An error occurred during deletion");
+    // }
+  };
+  
+  
 
   useEffect(() => {
     getAccount();
@@ -150,7 +232,9 @@ export default function ProfilAccountList() {
   return (
     <div>
       <StafNavbar></StafNavbar>
-      <h3>{state.mail} : {state.remplissage}</h3>
+      <h3>
+        {state.mail} : {state.remplissage}
+      </h3>
       <div className="tableContainer">
         <table>
           <thead>
@@ -178,13 +262,23 @@ export default function ProfilAccountList() {
                       onChange={() => handleCheckboxChange(item.id)}
                     />
                   </td>
-                    <td className="std"  onClick={() => { handleupdate(item) }}>{item.profil}</td>
-                    <td className="std"  onClick={() => { handleupdate(item) }}>{item.pin}</td>
-                    <td className="std"  onClick={() => { handleupdate(item) }}>{item.endDateProfil}</td>
-                    <td className="std"  onClick={() => { handleupdate(item) }}>{item.service}</td>
-                    <td className="std"  onClick={() => { handleupdate(item) }}>{String(item.free)}</td>
-                    <td>{handleName(item.userID)}</td>
-                    <td>{handleNum(item.userID)}</td>
+                  <td className="std" onClick={() => { handleupdate(item) }}>
+                    {item.profil}
+                  </td>
+                  <td className="std" onClick={() => { handleupdate(item) }}>
+                    {item.pin}
+                  </td>
+                  <td className="std" onClick={() => { handleupdate(item) }}>
+                    {item.endDateProfil}
+                  </td>
+                  <td className="std" onClick={() => { handleupdate(item) }}>
+                    {item.service}
+                  </td>
+                  <td className="std" onClick={() => { handleupdate(item) }}>
+                    {String(item.free)}
+                  </td>
+                  <td>{handleName(item.userID)}</td>
+                  <td>{handleNum(item.userID)}</td>
                 </tr>
               ))
             )}
@@ -194,6 +288,7 @@ export default function ProfilAccountList() {
       <button className="button" onClick={handleDeleteSelected}>
         Delete Selected
       </button>
+  
     </div>
   );
 }

@@ -34,6 +34,7 @@ export default function ProfileToday() {
           try {
           
             const response= await API.graphql(graphqlOperation(listUsers));
+            
             setUserList(response.data.listUsers.items)
      
           }catch(e){
@@ -62,8 +63,10 @@ export default function ProfileToday() {
         setLoading(true);
     
         try {
-          const response = await API.graphql(graphqlOperation(listAccounts));
-          let list = response.data.listAccounts.items.filter(item => {
+          const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
+          const availableAccounts = response.data.listAccounts.items.filter((item) => item.free === true && !item.deleted);
+    
+          let list = availableAccounts.filter(item => {
             if (item._deleted !== true) {
               return item;
             }

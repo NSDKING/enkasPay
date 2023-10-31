@@ -50,8 +50,10 @@ export default function AccountSoon() {
     setLoading(true);
 
     try {
-      const response = await API.graphql(graphqlOperation(listAccounts));
-      let list = response.data.listAccounts.items.filter(item => {
+      const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
+      const availableAccounts = response.data.listAccounts.items.filter((item) => !item.deleted);
+
+      let list = availableAccounts.filter(item => {
         if (item._deleted !== true) {
           return item;
         }

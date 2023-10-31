@@ -68,7 +68,7 @@ export default function TakeAccount() {
         try {
 
             const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
-            const availableAccounts = Accounts.filter((item) => item.free === true && item.service === service && !item.deleted);
+            const availableAccounts = response.data.listAccounts.items.filter((item) => item.free === true && item.service === service && !item.deleted);
 
             setAccount(availableAccounts)
          }catch(e){

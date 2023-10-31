@@ -76,6 +76,7 @@ import NegoPage from './CRM/pages/statut_pages/Negociation';
 import NewPage from './CRM/pages/statut_pages/Nouveau';
 import PropositionPage from './CRM/pages/statut_pages/proposition';
 import PaymentList from './pages/paymentList';
+import TestPage from './pages/tests';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -371,6 +372,7 @@ function App() {
                   <Route path='/User-order-list' Component={UserOrderList}/>
                   <Route path='/order-list' Component={OrderList}/>
                   <Route exact path="/ProductPage/:slug" Component={ProductPage} />
+                  <Route exact path="/test-test" Component={TestPage} />
             
               
               <Route path="/categories2" element={<CatPage2 
