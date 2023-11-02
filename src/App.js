@@ -77,6 +77,8 @@ import NewPage from './CRM/pages/statut_pages/Nouveau';
 import PropositionPage from './CRM/pages/statut_pages/proposition';
 import PaymentList from './pages/paymentList';
 import TestPage from './pages/tests';
+import UserAccountPage from './pages/UserAccount.jsx';
+import RedeemCodePage from './pages/Redeem_code';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -161,7 +163,7 @@ function App() {
       <Router>
         <Routes>
                 <Route path='/register' Component={RegisterPage}/>
-                <Route path='/Account' Component={Account}/>
+                 <Route path='/Account' Component={Account}/>
                 <Route path='/login' Component={LoginPage}/>
                 <Route path='/login' Component={LoginPage}/>
                 <Route path='/password-reset' Component={PasswordForgotPage}/>
@@ -373,7 +375,8 @@ function App() {
                   <Route path='/order-list' Component={OrderList}/>
                   <Route exact path="/ProductPage/:slug" Component={ProductPage} />
                   <Route exact path="/test-test" Component={TestPage} />
-            
+                  <Route path='/user-account-info' Component={UserAccountPage}/>
+
               
               <Route path="/categories2" element={<CatPage2 
                                                       Articles={Articles} 
@@ -494,6 +497,10 @@ function App() {
             <Route path='/crm-pros-click' Component={ProsClick}/>
             <Route path='/crm-point-click' Component={PointClick}/>
             <Route path='/crm-update-pro' Component={UpdatePros}/>
+
+            /*paths for the redeem the card */
+            <Route path='/crediter-compte' Component={RedeemCodePage}/>
+
  
              
           </Routes>
@@ -526,7 +533,7 @@ function App() {
                 <Route path='/cart' element={<CartPage>
 
                 </CartPage>}/>
-                <Route path='/Account' Component={Account}/>
+                <Route path='/user-account-info' Component={UserAccountPage}/>
                  
                 <Route path='/affiliation' Component={AffiliatePage}/>
                 <Route path='/affiliation-form' Component={AffiliationForm}/>

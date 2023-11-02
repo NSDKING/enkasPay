@@ -926,6 +926,7 @@ export const createUser = /* GraphQL */ `
         startedAt
         __typename
       }
+      solde
       createdAt
       updatedAt
       _version
@@ -987,6 +988,7 @@ export const updateUser = /* GraphQL */ `
         startedAt
         __typename
       }
+      solde
       createdAt
       updatedAt
       _version
@@ -1048,6 +1050,7 @@ export const deleteUser = /* GraphQL */ `
         startedAt
         __typename
       }
+      solde
       createdAt
       updatedAt
       _version

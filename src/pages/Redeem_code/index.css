@@ -1,0 +1,37 @@
+.RedeemPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+
+.RedeemPage .info{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.p-texts{
+    font-size: 16px;
+    font-weight: 500;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgb(135, 132, 132);
+    white-space: 1em;
+    text-align: left;
+
+}
+
+.RedeemPage input{
+    width: 90%;
+    height: 55px;
+    border: none;
+    background-color: #DFE3E7;
+    margin-bottom:6%;
+    border-radius: 10px;
+    color: rgb(2, 4, 52);
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 10%;
+}

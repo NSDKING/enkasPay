@@ -5,6 +5,7 @@ type Payments @model @auth(rules: [{allow: public}]) {
   sender_name: String
   transaction_id: String
   messages: String
+  used: Boolean
 }
 
 type Description @model @auth(rules: [{allow: public}]) {

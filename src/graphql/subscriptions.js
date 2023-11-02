@@ -839,6 +839,7 @@ export const onCreateUser = /* GraphQL */ `
         startedAt
         __typename
       }
+      solde
       createdAt
       updatedAt
       _version
@@ -897,6 +898,7 @@ export const onUpdateUser = /* GraphQL */ `
         startedAt
         __typename
       }
+      solde
       createdAt
       updatedAt
       _version
@@ -955,6 +957,7 @@ export const onDeleteUser = /* GraphQL */ `
         startedAt
         __typename
       }
+      solde
       createdAt
       updatedAt
       _version

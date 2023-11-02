@@ -1352,6 +1352,7 @@ export const getUser = /* GraphQL */ `
         startedAt
         __typename
       }
+      solde
       createdAt
       updatedAt
       _version
@@ -1380,6 +1381,7 @@ export const listUsers = /* GraphQL */ `
         statut
         goodcount
         pbcount
+        solde
         createdAt
         updatedAt
         _version
@@ -1418,6 +1420,7 @@ export const syncUsers = /* GraphQL */ `
         statut
         goodcount
         pbcount
+        solde
         createdAt
         updatedAt
         _version

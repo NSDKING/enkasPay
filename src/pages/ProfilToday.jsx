@@ -64,15 +64,10 @@ export default function ProfileToday() {
     
         try {
           const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
-          const availableAccounts = response.data.listAccounts.items.filter((item) => item.free === true && !item.deleted);
+          const NotDeleted = response.data.listAccounts.items.filter((item) => !item.deleted);
     
-          let list = availableAccounts.filter(item => {
-            if (item._deleted !== true) {
-              return item;
-            }
-          });
-    
-          setAccount(list);
+         
+          setAccount(NotDeleted);
           console.log(Accounts)
          } catch (e) {
           console.log(e);

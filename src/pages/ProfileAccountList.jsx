@@ -27,9 +27,9 @@ export default function ProfilAccountList() {
 
     try {
       const response = await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
-      const availableAccounts = response.data.listAccounts.items.filter((item) => !item.deleted);
+      const NotDeleted = response.data.listAccounts.items.filter((item) => !item.deleted);
 
-      setAccountList(availableAccounts);
+      setAccountList(NotDeleted);
     } catch (e) {
       console.log(e);
     }
@@ -229,6 +229,36 @@ export default function ProfilAccountList() {
     getProfile();
   }, [AccountList]);
 
+  function removeDuplicates(profileList) {
+    const profileMap = new Map(); // Map pour suivre les profils en fonction de l'utilisateur et du profil
+    const profilesToDelete = []; // Liste des profils à supprimer
+  
+    // Parcourir la liste des profils
+    profileList.forEach((profile) => {
+      const key = `${profile.userID}_${profile.profil}`;
+  
+      // Vérifier si le profil est déjà dans la map
+      if (profileMap.has(key)) {
+        // Règle 1: Éviter de supprimer un profil avec un utilisateur dessus, sauf s'il y a deux profils identiques avec le même utilisateur
+        if (profileMap.get(key).length === 1) {
+          profilesToDelete.push(profileMap.get(key)[0]);
+          profilesToDelete.push(profile); // Supprimer le profil en cours
+        } else {
+          // Deux profils identiques avec le même utilisateur, ne supprimez pas
+        }
+      } else {
+        // Ajouter le profil à la map
+        if (!profileMap.has(key)) {
+          profileMap.set(key, []);
+        }
+        profileMap.get(key).push(profile);
+      }
+    });
+  
+    return profilesToDelete;
+  }
+  
+
   return (
     <div>
       <StafNavbar></StafNavbar>
@@ -289,6 +319,7 @@ export default function ProfilAccountList() {
         Delete Selected
       </button>
   
+              
     </div>
   );
 }

@@ -51,9 +51,9 @@ export default function Past() {
         try {
 
             const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
-            const availableAccounts = response.data.listAccounts.items.filter((item) => !item.deleted);
+            const NotDeleted = response.data.listAccounts.items.filter((item) => !item.deleted);
       
-            setAccount(availableAccounts)
+            setAccount(NotDeleted)
            }catch(e){
                 console.log(e)
 

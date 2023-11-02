@@ -1,8 +1,10 @@
-import { API, graphqlOperation } from "aws-amplify";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getUser, listAccounts, listUsers } from "../graphql/queries";
+import { API, Auth, graphqlOperation, Hub } from "aws-amplify";
+
 import StafNavbar from "../components/StafNavbar";
+import Navbar from "../components/navbar";
 
 
 export default function UserAccountList(){  
@@ -11,6 +13,8 @@ export default function UserAccountList(){
     const [Accounts, setAccount] = useState([])
     const [UserAccountList, setUserAccountList] = useState([])
     const [loading, setLoading] = useState(false)
+    const [staf, setStaf]= useState(false)
+    const [user, setUser]= useState(undefined)
     const [userList, setUserList] = useState([])
     const navigate = useNavigate();
 
@@ -20,6 +24,24 @@ export default function UserAccountList(){
      }
 
   
+    const checkUser = async ()=>{
+        try {
+            const authUser = await Auth.currentAuthenticatedUser({
+                bypassCache: true,
+              });
+            const userData = await API.graphql(
+                graphqlOperation(getUser, { id: authUser.attributes.sub })
+              );
+            
+          setUser(authUser)
+          setStaf(userData.data.getUser.staff)
+     
+        } catch(e){
+            setUser(null);
+    
+        }
+
+        }
 
     const getListUsers = async()=>{
         if(loading){
@@ -38,6 +60,7 @@ export default function UserAccountList(){
       setLoading(false)
      
       }
+      
 
 
 
@@ -50,9 +73,9 @@ export default function UserAccountList(){
         try {
 
             const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
-            const availableAccounts = response.data.listAccounts.items.filter((item) => !item.deleted);
+            const NotDeleted = response.data.listAccounts.items.filter((item) => !item.deleted);
             
-            setAccount(availableAccounts)
+            setAccount(NotDeleted)
          }catch(e){
                 console.log(e)
 
@@ -81,6 +104,7 @@ export default function UserAccountList(){
         getAccount()
        getListUsers()
        console.log(UserAccountList)
+       checkUser()
 
      }, [ ])
 
@@ -116,8 +140,20 @@ export default function UserAccountList(){
 
      return(
         <section>
-            <StafNavbar></StafNavbar>
-             <div className="tableContainer">
+            {
+                staf?(
+                    <StafNavbar/>
+                ):(
+                    <>
+                        <Navbar/>
+                        <div className="marge"></div>
+                        <div className="marge"></div>
+                        
+                    </>
+                 )
+                
+            }
+            <div className="tableContainer">
             <table>
                     <thead>
                         <tr>
@@ -126,8 +162,6 @@ export default function UserAccountList(){
                             <th>profil</th>
                             <th>fin compte</th>
                             <th>pin</th>
-                            <th>utilisateur</th>
-                            <th>numero</th>
                             <th>fin du profil</th>
                          </tr>
                     </thead>
@@ -149,8 +183,7 @@ export default function UserAccountList(){
                                         <td>{item.profil}</td>
                                         <td>{item.endDateAccount}</td>
                                         <td>{item.pin}</td>
-                                        <td>{handleName(item.userID)}</td>
-                                        <td>{handleNum(item.userID)}</td>
+                                        
                                         <td>{item.endDateProfil}</td>
                                      </tr>
                                 ))
