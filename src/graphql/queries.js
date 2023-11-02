@@ -10,6 +10,7 @@ export const getPayments = /* GraphQL */ `
       sender_name
       transaction_id
       messages
+      used
       createdAt
       updatedAt
       _version
@@ -33,6 +34,7 @@ export const listPayments = /* GraphQL */ `
         sender_name
         transaction_id
         messages
+        used
         createdAt
         updatedAt
         _version
@@ -66,6 +68,7 @@ export const syncPayments = /* GraphQL */ `
         sender_name
         transaction_id
         messages
+        used
         createdAt
         updatedAt
         _version

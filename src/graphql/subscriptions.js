@@ -10,6 +10,7 @@ export const onCreatePayments = /* GraphQL */ `
       sender_name
       transaction_id
       messages
+      used
       createdAt
       updatedAt
       _version
@@ -28,6 +29,7 @@ export const onUpdatePayments = /* GraphQL */ `
       sender_name
       transaction_id
       messages
+      used
       createdAt
       updatedAt
       _version
@@ -46,6 +48,7 @@ export const onDeletePayments = /* GraphQL */ `
       sender_name
       transaction_id
       messages
+      used
       createdAt
       updatedAt
       _version
