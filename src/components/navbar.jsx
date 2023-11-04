@@ -107,7 +107,7 @@ export default function Navbar() {
             navigate('/login')
         }
         else(
-            navigate("/Account")
+            navigate("/user-account-info")
         )
 
         

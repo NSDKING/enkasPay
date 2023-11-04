@@ -12,10 +12,8 @@ import { set } from "date-fns";
 
 export default function UserAccountPage() {
     const navigate = useNavigate();
-    const [staf, setStaf]= useState(false)
     const [user, setUser]= useState(undefined)
     const [solde, setSolde]= useState(undefined)
-    const [Name, setName]= useState(undefined)
     const [UserData, setUserData]= useState(undefined)
  
      
@@ -29,10 +27,8 @@ export default function UserAccountPage() {
               );
             
           setUser(authUser.attributes.sub)
-          setStaf(userData.data.getUser.staff)
           setUserData(userData.data.getUser)
           UserData.solde?(setSolde(UserData.solde)):(setSolde(0))
-          setName(userData.data.getUser.FamilyName + userData.data.getUser.LastName)
       
         } catch(e){
             setUser(null);
@@ -54,8 +50,8 @@ export default function UserAccountPage() {
             </div> 
             
             <div className="userAccount-box-head">
-               <p className="p-title">{Name}</p> 
-               <p className="p-title">{UserData.phoneNumber}</p> 
+               <p className="p-title">{UserData?.FamilyName + UserData?.LastName}</p> 
+               <p className="p-title">{UserData?.phoneNumber}</p> 
                 <div className="soldebox">
                     <p className="p-title">{solde}</p> 
                 </div>
@@ -87,7 +83,14 @@ export default function UserAccountPage() {
  
             </div>
              <DefaultButtonLink text={"Crediter mon solde"} bgcolor={"rgb(250, 44, 44)"} textcolor={"white"} width={"90%"} height={"50px"} marginTop={"10px"} location={"/crediter-compte"}/>
+            
+            <div className="account-bottom">
+                <p className="p-title">ton compte netflix en moins de 30min?</p> 
 
+                <DefaultButtonLink text={"cliquer"} bgcolor={"#f6dfe2"} textcolor={"#eb0625"} width={"90%"} height={"50px"} marginTop={"10px"} location={"/simplify-website"}/>
+ 
+
+            </div>
             </section>
     )
 

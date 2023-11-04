@@ -26,11 +26,9 @@ export default function ProfilAccountList() {
     setLoading(true);
 
     try {
-      const response = await API.graphql(graphqlOperation(listAccounts, { limit: 10000 }));
+      const response = await API.graphql(graphqlOperation(listAccounts, { limit: 100000 }));
       const NotDeleted = response.data.listAccounts.items.filter((item) => !item.deleted);
-      console.log("NotDeleted");
-      console.log(NotDeleted);
-      console.log("NotDeleted");
+
       setAccountList(NotDeleted);
     } catch (e) {
       console.log(e);
@@ -94,66 +92,20 @@ export default function ProfilAccountList() {
       }
     });
     return username;
-  }
-
-  const handleCheckboxChange = (profileId) => {
-    // Toggle the selection status of the profile
-    setSelectedProfiles((prevSelected) => {
-      if (prevSelected.includes(profileId)) {
-        // Deselect if already selected
-        return prevSelected.filter((id) => id !== profileId);
-      } else {
-        // Select if not selected
-        return [...prevSelected, profileId];
-      }
-    });
-  };
-
-  const handleDeleteSelected = async () => {
-    // Implement deletion logic for selected profiles
-    const confirmDelete = window.confirm("Are you sure you want to delete the selected profiles?");
-
-    if (confirmDelete && selectedProfiles.length > 0) {
-      try {
-        // Delete selected profiles
-        const deletePromises = selectedProfiles.map(async (profileId) => {
-          const profileToDelete = profileList.find((profile) => profile.id === profileId);
-
-          if (profileToDelete) {
-            const input = {
-              id: profileToDelete.id,
-              _version: profileToDelete._version,
-            };
-            const Response = await API.graphql(graphqlOperation(deleteAccount, { input }));
-            console.log(Response)
-
-          }
-        });
-
-       await Promise.all(deletePromises);
-        alert("Selected profiles deleted successfully");
-      } catch (error) {
-        console.error(error);
-        alert("An error occurred during deletion");
-      }
-    } else {
-      alert("Deletion canceled or no profiles selected");
-    }
-  };
-
-
+   }
+ 
+   
   useEffect(() => {
     getAccount();
     getListUsers();
-  }, []);
+   }, []);
 
   useEffect(() => {
     getProfile();
-  }, [AccountList]);
+
+   }, [AccountList]);
 
  
-  
-
   return (
     <div>
       <StafNavbar></StafNavbar>
@@ -184,8 +136,7 @@ export default function ProfilAccountList() {
                     <input
                       type="checkbox"
                       checked={selectedProfiles.includes(item.id)}
-                      onChange={() => handleCheckboxChange(item.id)}
-                    />
+                     />
                   </td>
                   <td className="std" onClick={() => { handleupdate(item) }}>
                     {item.profil}
@@ -202,19 +153,15 @@ export default function ProfilAccountList() {
                   <td className="std" onClick={() => { handleupdate(item) }}>
                     {String(item.free)}
                   </td>
-                  <td onClick={() => { handleupdate(item) }}>{handleName(item.userID)}</td>
-                  <td onClick={() => { handleupdate(item) }}>{handleNum(item.userID)}</td>
+                  <td>{handleName(item.userID)}</td>
+                  <td>{handleNum(item.userID)}</td>
                 </tr>
               ))
             )}
           </tbody>
         </table>
       </div>
-      <button className="button" onClick={handleDeleteSelected}>
-        Delete Selected
-      </button>
   
-              
     </div>
   );
 }

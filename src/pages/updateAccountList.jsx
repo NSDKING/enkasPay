@@ -97,8 +97,7 @@ export default function UpdateAccountList() {
        
         <div>
             <StafNavbar></StafNavbar>
-                <div className="modal">
-                            <div className="modal-content">
+                             <div className="modal-content">
                             <form id="my-form"
                                     onSubmit={handleSubmit((data=>{handleFormClick(data)}))}>
                                 <h3>mail: {item.mail}</h3>
@@ -132,8 +131,7 @@ export default function UpdateAccountList() {
                                 <button onClick={()=>{ navigate("/accounts-list")}}>close the page</button>
 
                              </div>
-                        </div>
-        </div>
+         </div>
     )
 
 }

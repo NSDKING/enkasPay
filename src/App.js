@@ -79,6 +79,10 @@ import PaymentList from './pages/paymentList';
 import TestPage from './pages/tests';
 import UserAccountPage from './pages/UserAccount.jsx';
 import RedeemCodePage from './pages/Redeem_code';
+import SympHome from './simplify/pages/Simp_Home';
+import SympLoginPage from './simplify/pages/Login';
+import SympRegister from './simplify/pages/Register';
+import NetflixChoicePage from './simplify/pages/NetflixChoicePage';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -294,7 +298,16 @@ function App() {
               <Route path='/register-confirmation' Component={ConfirmPage}/>
               <Route path='/register-confirmation-help' Component={ConfirmPageHelp}/>
               <Route path='/data-registration' Component={DataRegistration}/>
-                             
+
+                                            
+            {/*root for the simplfy verison of the website */}
+
+            <Route path='/simplify-website' Component={SympHome}/>
+            <Route path='/simplify-website-login' Component={SympLoginPage}/>
+            <Route path='/simplify-website-register' Component={SympRegister}/>
+            <Route path='/simplify-data-registration' Component={DataRegistration}/>
+            <Route path='/simplify-netflix-solo-choice' Component={NetflixChoicePage}/>
+                 
               
         </Routes>
       </Router>
@@ -501,7 +514,16 @@ function App() {
             /*paths for the redeem the card */
             <Route path='/crediter-compte' Component={RedeemCodePage}/>
 
- 
+
+                              
+            {/*root for the simplfy verison of the website */}
+
+            <Route path='/simplify-website' Component={SympHome}/>
+            <Route path='/simplify-website-login' Component={SympLoginPage}/>
+            <Route path='/simplify-website-register' Component={SympRegister}/>
+            <Route path='/simplify-data-registration' Component={DataRegistration}/>
+            <Route path='/simplify-netflix-solo-choice' Component={NetflixChoicePage}/>
+            
              
           </Routes>
         </Router>
@@ -639,7 +661,15 @@ function App() {
                                                       setProdId={setProdId}
                                                       />} exact />
                               
-              
+            {/*root for the simplfy verison of the website */}
+
+            <Route path='/simplify-website' Component={SympHome}/>
+            <Route path='/simplify-website-login' Component={SympLoginPage}/>
+            <Route path='/simplify-website-register' Component={SympRegister}/>
+            <Route path='/simplify-data-registration' Component={DataRegistration}/>
+            <Route path='/simplify-netflix-solo-choice' Component={NetflixChoicePage}/>
+             
+
         </Routes>
       </Router>
     </div>

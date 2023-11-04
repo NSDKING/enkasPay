@@ -103,8 +103,7 @@ export default function UpdateAccount() {
      
     return(
         <section>
-                <div className="modal">
-                            <div className="modal-content">
+                             <div className="modal-content">
                             <form id="my-form"
                                     onSubmit={handleSubmit((data=>{handleFormClick(data)}))}>
 
@@ -208,8 +207,6 @@ export default function UpdateAccount() {
                     <button onClick={()=>{ navigate("/choose-accounts-list-type") }}>close the page</button>
 
                              </div>
-                        </div>
-
-         </section>
+          </section>
     )
 }

@@ -30,11 +30,11 @@ export default function AccountList() {
 
     try {
       let list= []
-      const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
+      const response= await API.graphql(graphqlOperation(listAccounts, { limit: 10000 }));
       const availableAccounts = response.data.listAccounts.items.filter((item) => item.service === service && !item._deleted );
 
        availableAccounts.forEach((item)=>{
-        if(item.service == service){
+        if(item.service == service && item._deleted != true ){
           list.push(item)
         }
 

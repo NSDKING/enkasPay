@@ -1,19 +1,19 @@
 import logo from './img/logo.png'
-import "./css/login.css"
-import DefaultButton from '../components/DefaultButton'
+import "./index.css"
 import { Link } from 'react-router-dom'
-import DefaultButtonLink from '../components/DefaultbuttonLink'
 import { Auth } from 'aws-amplify'
- import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
+import DefaultButton from '../../../components/DefaultButton'
+import DefaultButtonLink from '../../../components/DefaultbuttonLink'
 
 
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
  
-export default function LoginPage() {
+export default function SympLoginPage() {
     const {formState: {errors}, handleSubmit, register, watch} = useForm();
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false);
@@ -40,6 +40,7 @@ export default function LoginPage() {
         setLoading(true)
         try {
 
+            console.log('okay dude')
             const response = await Auth.signIn(data.email, data.password)
             navigate("/simplify-website")
              
@@ -56,7 +57,7 @@ export default function LoginPage() {
     return(
         <section className='loginpage' >
             <div className="logo" onClick={()=>{
-                    navigate("/")
+                    navigate("/simplify-website")
                 }}>
                             <img src={logo} width="90%"/>
             </div>

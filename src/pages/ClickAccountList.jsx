@@ -36,7 +36,7 @@ export default function ClickAccountList() {
     setLoading(true);
 
     try {
-      await Promise.all(
+      const response = await Promise.all(
         profileList.map(async (item) => {
           const input = {
             id: item.id,
@@ -45,6 +45,8 @@ export default function ClickAccountList() {
           return API.graphql(graphqlOperation(deleteAccount, { input }));
         })
       );
+
+      console.log(response)
 
       alert('Account deleted successfully');
       navigate("/choose-accounts-list-type");
