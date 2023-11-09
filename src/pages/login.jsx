@@ -41,7 +41,7 @@ export default function LoginPage() {
         try {
 
             const response = await Auth.signIn(data.email, data.password)
-            navigate("/simplify-website")
+            navigate("/")
              
         }catch(e){
             setError(e.message)
