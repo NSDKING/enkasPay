@@ -141,9 +141,9 @@ export default function TakeAccount() {
         }
         setLoading(false)
 
-
-
     }
+
+    
     return(
         <section className="takeAccountPage">
         	
