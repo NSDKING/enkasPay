@@ -1,0 +1,18 @@
+.button-profile-box{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+  }
+
+.button-profile{
+    border: 2.5px solid #0056B3;
+    background-color: rgb(146, 164, 215);
+    height: 40px;
+    width: 10%;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 16px;
+    font-weight: 500;
+}

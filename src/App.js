@@ -43,7 +43,7 @@ import CustomerData from './pages/CustomerData';
 import UserAccountList from './pages/UserAccountList';
 import UserOrderList from './pages/UserOrderList';
 import AccountList from './pages/AccountList';
-import ProfilAccountList from './pages/ProfileAccountList';
+import ProfilAccountList from './pages/ProfileAccountLis/index.jsx';
 import ClickAccountList from './pages/ClickAccountList';
 import UpdateAccountList from './pages/updateAccountList';
 import OrderList from './pages/OrderList';

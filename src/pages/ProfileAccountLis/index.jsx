@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import StafNavbar from "../components/StafNavbar";
-import { listAccounts, listUsers } from "../graphql/queries";
-import { deleteAccount, updateAccount } from "../graphql/mutations";
+import StafNavbar from "../../components/StafNavbar";
+import { listAccounts, listUsers } from "../../graphql/queries";
+import { deleteAccount, updateAccount } from "../../graphql/mutations";
 import { API, graphqlOperation } from 'aws-amplify';
 import { useLocation, useNavigate } from "react-router-dom";
-import DefaultButton from "../components/DefaultButton";
+import DefaultButton from "../../components/DefaultButton";
 import { useForm } from "react-hook-form";
+import "./index.css"
 
 
 export default function ProfilAccountList() {
@@ -20,9 +21,13 @@ export default function ProfilAccountList() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const [disp, setDisp] = useState(0)
+  const [freeAccount, setFreeAccount] = useState({})
 
 
   const {formState: {errors}, handleSubmit, register, control} = useForm();
+ 
+
+
 
 
   const handleupdate = (data) => {
@@ -103,6 +108,55 @@ export default function ProfilAccountList() {
     return username;
   }
 
+  
+const handleLibererSelected = async () => {
+  const confirmLiberer = window.confirm("Are you sure you want to release the selected profiles?");
+
+  if (confirmLiberer && selectedProfiles.length > 0) {
+    try {
+      // Update selected profiles to set date to "2000-01-01", user to null, and free to true
+      const libererPromises = selectedProfiles.map(async (profileId) => {
+        const profileToUpdate = profileList.find((profile) => profile.id === profileId);
+
+        if (profileToUpdate) {
+          const input = {
+            id: profileToUpdate.id,
+            _version: profileToUpdate._version,
+            endDateProfil: "2000-01-01",
+            userID: null,
+            free: true,
+          };
+          const response = await API.graphql(graphqlOperation(updateAccount, { input }));
+        }
+      });
+
+      await Promise.all(libererPromises);
+      alert("Selected profiles released successfully");
+    } catch (error){
+      console.log(error)
+    }finally {
+        // Refresh the page after updating the profiles
+        window.location.reload();
+      }
+
+
+  }
+
+}
+
+function getRandomElement(arr) {
+    // Check if the array is not empty
+    if (arr.length === 0) {
+      return undefined; // or handle the empty array case as needed
+    }
+  
+    // Generate a random index between 0 and the length of the array minus 1
+    const randomIndex = Math.floor(Math.random() * arr.length);
+  
+    // Return the element at the random index
+    return arr[randomIndex];
+  }
+
   const handleCheckboxChange = (profileId) => {
     // Toggle the selection status of the profile
     setSelectedProfiles((prevSelected) => {
@@ -160,7 +214,9 @@ export default function ProfilAccountList() {
 
   useEffect(()=>{
     handleAccount();
-  },[theAccount])
+    console.log(freeAccount)
+    console.log(theAccount)
+  },[profileList])
 
  
   const handleTakeAccount = ()=>{
@@ -202,19 +258,61 @@ export default function ProfilAccountList() {
 
 }
 
-    const handleAccount = ()=>{
-      let i=0
-      profileList.map((item)=>{
-              if(item.free == true  && !item.deleted){
-                  setTheAccount(item)
-                  i++
-              } 
-    })
-    setDisp(i)
-    return(theAccount)
+   
 
+    const handleAccount = () => {
+        let freeAccountList = [];
+        profileList.forEach(item => {
+            if (item.free && !item._deleted) {
+                freeAccountList.push(item)
+            }
+        });
 
+        setDisp(freeAccountList.length)
+        setFreeAccount(freeAccountList)
+        setTheAccount(getRandomElement(freeAccountList))
+ 
     }
+
+    const handleTerminer = async () => {
+        const userConfirmation = window.confirm("Are you sure you want to terminate profiles with past end dates? This action cannot be undone.");
+      
+        if (userConfirmation) {
+          const confirmTerminer = window.confirm("This action will release profiles with past end dates. Are you absolutely sure you want to proceed?");
+      
+          if (confirmTerminer) {
+            try {
+              // Filter out profiles with past end dates
+              const profilesToTerminate = profileList.filter((profile) => new Date(profile.endDateProfil) < new Date());
+      
+              if (profilesToTerminate.length > 0) {
+                const terminerPromises = profilesToTerminate.map(async (profileToTerminate) => {
+                  const input = {
+                    id: profileToTerminate.id,
+                    _version: profileToTerminate._version,
+                    endDateProfil: "2000-01-01", // Update end date as needed
+                    userID: null,
+                    free: true,
+                  };
+      
+                  await API.graphql(graphqlOperation(updateAccount, { input }));
+                });
+      
+                await Promise.all(terminerPromises);
+                alert("Profiles terminated successfully");
+                window.location.reload(); // Refresh the page after updating the profiles
+              } else {
+                alert("No profiles with past end dates found");
+              }
+            } catch (error) {
+              console.error(error);
+              alert("An error occurred during termination");
+            }
+          }
+        }
+      };
+      
+    
 
   return (
     <>
@@ -230,10 +328,10 @@ export default function ProfilAccountList() {
                                   }))}
                             >
                                 <div className='account-box'>
-                                    <p>mail: {theAccount.mail}</p>
-                                    <p>passe: {theAccount.passe}</p>
-                                    <p>profil: {theAccount.profil}</p>
-                                    <p>pin: {theAccount.pin}</p>
+                                    <p>mail: {theAccount?.mail}</p>
+                                    <p>passe: {theAccount?.passe}</p>
+                                    <p>profil: {theAccount?.profil}</p>
+                                    <p>pin: {theAccount?.pin}</p>
                                 </div>
                             
                                 <label>Nombre de jours à ajouter:</label>
@@ -270,16 +368,23 @@ export default function ProfilAccountList() {
                  
               <div>
                 <StafNavbar></StafNavbar>
-                <h3>
-                  {state.mail} : {state.remplissage}
-                </h3>
-                <div>
-                  <button className="button" onClick={()=>{handleTakeAccount()}}>
-                    take Account
-                  </button>
-                  <button className="button" onClick={handleDeleteSelected}>
+          
+                <div className="button-profile-box">
+                    {theAccount?.id && (
+                    <button className="button-profile" onClick={handleTakeAccount}>
+                        take Account
+                    </button>
+                    )}
+                  <button className="button-profile" onClick={handleDeleteSelected}>
                     Delete Selected
+                  </button>                  
+                  <button className="button-profile" onClick={handleLibererSelected}>
+                    Liberer
                   </button>
+                    <button className="button-profile" onClick={handleTerminer}>
+                        Terminer
+                    </button>
+
                 </div>
                 <div className="tableContainer">
                   <table>
@@ -343,3 +448,7 @@ export default function ProfilAccountList() {
     </>
   );
 }
+
+
+
+

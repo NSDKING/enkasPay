@@ -19,26 +19,26 @@ export default function TakeAccount() {
     const [show, setShow] = useState(false)
     const [userList, setUserList] = useState([])
     const [theAccount, setTheAccount] = useState({})
+     const [freeAccount, setFreeAccount] = useState({})
     const [daysToAdd, setDaysToAdd] = useState(0); // New state for the number of days to add
     
     const [disp, setDisp] = useState(0)
-    const navigate = useNavigate();
-
+ 
 
     const {formState: {errors}, handleSubmit, register, control} = useForm();
 
+    function getRandomElement(arr) {
+        // Check if the array is not empty
+        if (arr.length === 0) {
+          return undefined; // or handle the empty array case as needed
+        }
       
-    const linkStyle = {
-        float: "left",
-        display: "block",
-        color: '#fff',
-        textAlign: "center",
-        textDecoration: "none",
-        paddingTop: "14px",
-        paddingBottom: "14px",
-        paddingRight:"16px",
-        paddingLeft:"16px",
-    }
+        // Generate a random index between 0 and the length of the array minus 1
+        const randomIndex = Math.floor(Math.random() * arr.length);
+      
+        // Return the element at the random index
+        return arr[randomIndex];
+      }
 
     const getListUsers = async()=>{
         if(loading){
@@ -82,26 +82,33 @@ export default function TakeAccount() {
     useEffect(() => {
        getAccount()
        getListUsers()
- 
-         
-    }, [ ])
+     }, [ ])
+     useEffect(() => {
+        handleAccount()
+
      
-    const handleAccount = ()=>{
-        setShow(true)
-        let i=0
-        Accounts.map((item)=>{
-                if(item.free == true && item.service == service && !item.deleted){
-                    setTheAccount(item)
-                     i++
-                }else{
-                    console.log('no '+ service + item.service)  
-                }
-    })
-    setDisp(i)
-    return(theAccount)
- 
+       return () => {
+          
+       }
+     }, [theAccount])
+     
+     
+    const handleAccount = () => {
+         let freeAccountList = [];
+        console.log(Accounts)
+        Accounts.forEach(item => {
+            if (item.free && !item._deleted && item.service == service) {
+                freeAccountList.push(item)
+            }
+        });
+
+        setDisp(freeAccountList.length)
+        setFreeAccount(freeAccountList)
+        setTheAccount(getRandomElement(freeAccountList))
+        
+    };
     
-    }
+    
 
     const handleUseAccount= async (data)=> {
         if(loading){
@@ -161,10 +168,10 @@ export default function TakeAccount() {
                           }))}
                     >
                         <div className='account-box'>
-                            <p>mail: {theAccount.mail}</p>
-                            <p>passe: {theAccount.passe}</p>
-                            <p>profil: {theAccount.profil}</p>
-                            <p>pin: {theAccount.pin}</p>
+                            <p>mail: {theAccount?.mail}</p>
+                            <p>passe: {theAccount?.passe}</p>
+                            <p>profil: {theAccount?.profil}</p>
+                            <p>pin: {theAccount?.pin}</p>
                         </div>
                     
                         <label>Nombre de jours à ajouter:</label>
@@ -198,7 +205,15 @@ export default function TakeAccount() {
                 </section>
             ):(
                 <div>
-                    <DefaultButton text={'comptes'} bgcolor={"black"} textcolor={"white"} width={"50%"} height={"50px"} onPress={handleAccount}/>
+                    <DefaultButton
+                    text="Click me"
+                    onPress={() =>setShow(true)}
+                    bgcolor="blue"
+                    textcolor="white"
+                    width="100px"
+                    height="40px"
+                    marginTop="10px"
+                     />
 
                 </div>
             )
