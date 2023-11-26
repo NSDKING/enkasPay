@@ -15,7 +15,6 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { getUser } from './graphql/queries';
 import ManageAccount from './pages/ManageAccount';
 import ConsultPage from './pages/ConsultPage';
-import AddAccount from './pages/addAccount';
 import takeAccount from './pages/takeAccount';
 import CatPage from "./pages/CatPage1.jsx";
 import CatPage2 from "./pages/CatPage2.jsx";
@@ -83,6 +82,7 @@ import SympHome from './simplify/pages/Simp_Home';
 import SympLoginPage from './simplify/pages/Login';
 import SympRegister from './simplify/pages/Register';
 import NetflixChoicePage from './simplify/pages/NetflixChoicePage';
+import AddAccount from './pages/AddAccount/index.jsx';
   
 function App() {
   const [user, setUser]= useState(null)

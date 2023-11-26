@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import './css/AddAccount.css'
+import './index.css'
 import { useForm, Controller } from "react-hook-form";
 import { API, graphqlOperation } from 'aws-amplify';
-import { createAccount } from '../graphql/mutations';
-import { listUsers } from '../graphql/queries';
+import { createAccount } from '../../graphql/mutations';
+import { listUsers } from '../../graphql/queries';
 import { useNavigate } from 'react-router-dom';
-import StafNavbar from '../components/StafNavbar';
-import DefaultButton from '../components/DefaultButton';
+import StafNavbar from '../../components/StafNavbar';
+import DefaultButton from '../../components/DefaultButton';
  
 
 export default function AddAccount() {
