@@ -40,63 +40,47 @@ export default function AddAccount() {
       
     }, [])
     
-    const linkStyle = {
-        float: "left",
-        display: "block",
-        color: '#fff',
-        textAlign: "center",
-        textDecoration: "none",
-        paddingTop: "14px",
-        paddingBottom: "14px",
-        paddingRight:"16px",
-        paddingLeft:"16px",
-    }
-     
-    const onPress = async (data) =>{
-        if(loading){
-            return;
+    const onPress = async (data) => {
+        if (loading) {
+          return;
         }
-        console.log(data)
-        setLoading(true)  
+      
+        setLoading(true);
+      
         try {
-            let freeValue;
-            let endDateProfilValue;
-            if(data.endDateProfil==""){
-                endDateProfilValue=null
-            }else{
-                endDateProfilValue=data.endDateProfil
-            }
-            if(data.user==" "){
-                freeValue= true
-            }else{
-                freeValue=false
-            }
+          const accountsToCreate = [];
+      
+          for (let i = 1; i <= 5; i++) {
             const newAccount = {
-                mail: data.mail,
-                profil: data.profil,
-                passe:data.passe,
-                endDateAccount:data.endDateAccount,
-                endDateProfil:endDateProfilValue,
-                pin:data.pin,
-                numero:data.numero,
-                userID:data.user,
-                service:data.service,
-                free:freeValue,
-              };
-        
-              const response =  await API.graphql(
-                graphqlOperation(createAccount, { input: newAccount })
-            );
-
-            console.log(response)
-             alert('ok')
-            
-            navigate("/ManageAccount")
-          }catch(e){
-            console.log(e)
-         }
-        setLoading(false)
-     }   
+              mail: data.mail,
+              profil: i,
+              passe: data.passe,
+              endDateAccount: data.endDateAccount,
+              endDateProfil: "2000-01-01",
+              userID: null,
+              service: data.service,
+              free: true,
+            };
+      
+            accountsToCreate.push(newAccount);
+          }
+      
+          const createAccountPromises = accountsToCreate.map(async (account) => {
+            await API.graphql(graphqlOperation(createAccount, { input: account }));
+          });
+      
+          await Promise.all(createAccountPromises);
+      
+          alert('Accounts created successfully');
+          navigate("/ManageAccount");
+        } catch (e) {
+          console.log(e);
+          alert('Error creating accounts');
+        }
+      
+        setLoading(false);
+      };
+       
 
     return(
         <section className="AddAccountPage">
@@ -115,13 +99,6 @@ export default function AddAccount() {
 
                 />
 
-                <label for="profil">profil :</label>
-                <input 
-                    type="number" 
-                    id="profil" 
-                    name="profil"
-                    {...register('profil', { required: false })}
-                    />
 
                 <label for="profil">passe :</label>
                 <input 
@@ -132,14 +109,6 @@ export default function AddAccount() {
                     
                     />
 
-                <label for="telephone">fin du profil :</label>
-                <input 
-                    type="date" 
-                    id="fin-abonnement" 
-                    name="fin-abonnement"
-                    {...register('endDateProfil')}
-                    
-                    />
 
                 <label for="fin-abonnement">fin du compte :</label>
                 <input 
@@ -150,31 +119,6 @@ export default function AddAccount() {
 
                         
                     />
-
-                <label for="pin">pin :</label>
-                <input 
-                    type="number" 
-                    id="pin" 
-                    name="pin"
-                    {...register('pin', { required: 'ceci est obligatoire'})}
-                    
-                    />
-
-                <label for="pin">utilisateur :</label>
-                
-                    
-                <input type="text" list="user" {...register('user', { required: false })} />
-
-                <datalist id="user">
-                    <option value=" ">Select...</option>
-
-                        {
-                            userList.map(item => (
-                                <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
-                            ))
-                        }
-
-                </datalist>
                 <label for="pin">service :</label>
                 <Controller
                         name="service"
