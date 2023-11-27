@@ -253,7 +253,11 @@ function getRandomElement(arr) {
     }catch(e){
             console.log(e)
   
+    }finally {
+      // Refresh the page after updating the profiles
+      window.location.reload();
     }
+
     setLoading(false)
 
 }
