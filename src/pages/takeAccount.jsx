@@ -90,7 +90,7 @@ export default function TakeAccount() {
        return () => {
           
        }
-     }, [theAccount])
+     }, [Accounts])
      
      
     const handleAccount = () => {
