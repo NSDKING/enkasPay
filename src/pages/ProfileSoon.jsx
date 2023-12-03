@@ -46,8 +46,9 @@ export default function ProfileSoon() {
       setLoading(true)
       try {
       
-        const response= await API.graphql(graphqlOperation(listUsers));
-        setUserList(response.data.listUsers.items)
+        const response= await API.graphql(graphqlOperation(listUsers, { limit: 100000 }));
+        const NotDeleted = response.data.listUsers.items.filter((item) => !item.deleted);
+        setUserList(NotDeleted)
  
       }catch(e){
               console.log(e)
@@ -66,7 +67,7 @@ export default function ProfileSoon() {
 
         try {
 
-             const response= await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
+            const response= await API.graphql(graphqlOperation(listAccounts, { limit: 100000 }));
             const NotDeleted = response.data.listAccounts.items.filter((item) => !item.deleted);
       
             setAccount(NotDeleted)
@@ -85,27 +86,19 @@ export default function ProfileSoon() {
 
   
 
-       const handleName = (userid)=>{
-        let username = "test"
-        userList.map((item)=>{
-            if(item.id === userid){
-                username = item.FamilyName +" "+ item.LastName
-            }
-        })
-        return username
-
-    }
-
-    const handleNum = (userid)=>{
-        let username = " "
-        userList.map((item)=>{
-            if(item.id === userid){
-                username = item.phoneNumber
-            }
-        })
-        return username
-
-    }
+     const handleName = (userId) => {
+        const user = userList.find((item) => item.id === userId);
+        if(!user){
+            console.log(userId)
+        }
+        return user ? `${user.FamilyName} ${user.LastName}` : "N/A";
+      };
+      
+      const handleNum = (userId) => {
+        const user = userList.find((item) => item.id === userId);
+        return user ? user.phoneNumber : "N/A";
+      };
+      
 
     function getCurrentDate() {
         const today = new Date();
@@ -120,57 +113,54 @@ export default function ProfileSoon() {
         let today = getCurrentDate();
  
         let finishSoonAccounts = Accounts.filter(item => {
-          return today < item.endDateProfil && item.endDateProfil < newDate;
+          return today < item.endDateProfil && item.endDateProfil < newDate && !item._deleted;
         });
     
         setFinishSoon(finishSoonAccounts);
-       };
+        console.log(finishSoonAccounts)
+        };
     
     return(
         <section>
         <StafNavbar></StafNavbar>
-        <div className="tableContainer">
-                <table>
-                        <thead>
-                            <tr>
-                                <th>mail</th>
-                                <th>passe</th>
-                                <th>profil</th>
-                                <th>utilisateur</th>
-                                <th>numero</th>
-                                <th>fin du profil</th>
-                                <th>day left</th>
+            <div className="tableContainer">
+            <table>
+                    <thead>
+                        <tr>
+                            <th>mail</th>
+                            <th>passe</th>
+                            <th>profil</th>
+                            <th>utilisateur</th>
+                            <th>numero</th>
+                            <th>fin du profil</th>
+                            <th>day left</th>
 
-                             </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                
-                                finishSoon.filter(item =>{
-                                    if (item._deleted !=true) {
-                                            return item;
-                                            }     
-                                    }).map(item => (
-                                        <tr key={item.id} onClick={()=>{
-                                            handleupdate(item)
-    
-                                            }}>
-                                            <td>{item.mail}</td>
-                                            <td>{item.passe}</td>
-                                            <td>{item.profil}</td>
-                                            <td>{handleName(item.userID)}</td>
-                                            <td>{handleNum(item.userID)}</td>
-                                            <td>{item.endDateProfil}</td>
-                                            <td>{daysBetween(item.endDateProfil, getCurrentDate())}</td>
-                                         </tr>
-
-                                    ))
-                            } 
+                         </tr>
+                    </thead>
+                    <tbody>
+                        {
                             
-                        </tbody>
-                    </table>
+                            finishSoon.map(item => (
+                                    <tr key={item.id} onClick={()=>{
+                                        handleupdate(item)
 
-            </div>
+                                        }}>
+                                        <td>{item.mail}</td>
+                                        <td>{item.passe}</td>
+                                        <td>{item.profil}</td>
+                                        <td>{handleName(item.userID)}</td>
+                                        <td>{handleNum(item.userID)}</td>
+                                        <td>{item.endDateProfil}</td>
+                                        <td>{daysBetween(item.endDateProfil, getCurrentDate())}</td>
+                                     </tr>
+
+                                ))
+                        } 
+                        
+                    </tbody>
+                </table>
+
+        </div> 
 
         </section>
     )

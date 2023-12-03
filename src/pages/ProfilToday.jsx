@@ -33,9 +33,10 @@ export default function ProfileToday() {
           setLoading(true)
           try {
           
-            const response= await API.graphql(graphqlOperation(listUsers));
+            const response= await API.graphql(graphqlOperation(listUsers, { limit: 100000 }));
+            const NotDeleted = response.data.listUsers.items.filter((item) => !item.deleted);
             
-            setUserList(response.data.listUsers.items)
+            setUserList(NotDeleted)
      
           }catch(e){
                   console.log(e)

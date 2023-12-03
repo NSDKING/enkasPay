@@ -31,10 +31,11 @@ export default function CustomerList() {
   }
 
   const filteredUsers = userList.filter((user) => {
-    const { FamilyName, LastName, phoneNumber, mail } = user;
+    const { id,FamilyName, LastName, phoneNumber, mail } = user;
     const searchLower = searchQuery.toLowerCase();
 
     return (
+      id.toLowerCase().includes(searchLower) ||
       FamilyName.toLowerCase().includes(searchLower) ||
       LastName.toLowerCase().includes(searchLower) ||
       (phoneNumber && phoneNumber.includes(searchQuery)) ||

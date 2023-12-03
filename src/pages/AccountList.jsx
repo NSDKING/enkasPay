@@ -125,6 +125,7 @@ export default function AccountList() {
               <th>password</th>
               <th>fin</th>
               <th>service</th>
+              <th>remplissage</th>
              </tr>
           </thead>
           <tbody>
@@ -139,6 +140,7 @@ export default function AccountList() {
                   <td className="std">{item.passe}</td>
                   <td className="std">{item.endDateAccount}</td>
                   <td className="std">{item.service}</td>
+                  <td className="std">{item.remplissage}</td>
                  </tr>
               ))
             )}
