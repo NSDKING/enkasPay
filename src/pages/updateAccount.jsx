@@ -65,7 +65,7 @@ export default function UpdateAccount() {
               
      
             alert('ok')
-            navigate(-2);
+            navigate(-2           );
 
         }catch(e){
                 console.log(e)

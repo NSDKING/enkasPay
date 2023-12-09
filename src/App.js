@@ -83,6 +83,7 @@ import SympLoginPage from './simplify/pages/Login';
 import SympRegister from './simplify/pages/Register';
 import NetflixChoicePage from './simplify/pages/NetflixChoicePage';
 import AddAccount from './pages/AddAccount/index.jsx';
+import ProfileFinish from './pages/finishProfiles/index.jsx';
   
 function App() {
   const [user, setUser]= useState(null)
@@ -167,7 +168,7 @@ function App() {
       <Router>
         <Routes>
                 <Route path='/register' Component={RegisterPage}/>
-                 <Route path='/Account' Component={Account}/>
+                <Route path='/Account' Component={Account}/>
                 <Route path='/login' Component={LoginPage}/>
                 <Route path='/login' Component={LoginPage}/>
                 <Route path='/password-reset' Component={PasswordForgotPage}/>
@@ -175,7 +176,8 @@ function App() {
                 <Route path='/store' Component={StorePage}/>
                 <Route path='/enkas-web-devellopment' Component={PageEnkasWeb}/>
                 <Route exact path="/ProductPage/:slug" Component={ProductPage} />
-          
+
+           
           
                 <Route path='/affiliation' Component={AffiliatePage}/>
                 <Route path='/bundle' Component={BundlePage}/>
@@ -323,6 +325,7 @@ function App() {
           <Route path='/Account' Component={Account}/>
           <Route path='/enkas-web-devellopment' Component={PageEnkasWeb}/>
           <Route path='/PaymentList-enkas' Component={PaymentList}/>
+          <Route exact path="/finshprofils" Component={ProfileFinish} />
 
           <Route path='/' element={<StorePage
                                             Articles={Articles} 

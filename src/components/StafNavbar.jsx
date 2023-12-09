@@ -27,6 +27,7 @@ export default function StafNavbar() {
                     <Link to="/ManageAccount" style={linkStyle}>prendre</Link>
                     <Link to="/ConsultPage" style={linkStyle}>consulter</Link>
                     <Link to="/soon" style={linkStyle}>soon</Link>
+                    <Link to="/finshprofils" style={linkStyle}>finish</Link>
                     <Link to="/SaveOrder" style={linkStyle}>order</Link>
                     <Link to="/today" style={linkStyle}>today</Link>
                     <Link to="/customer-list" style={linkStyle}>clients</Link>
