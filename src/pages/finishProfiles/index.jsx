@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import StafNavbar from "../../components/StafNavbar";
 import { listAccounts, listUsers } from "../../graphql/queries";
-import { deleteAccount, updateAccount } from "../../graphql/mutations";
+import { createOrder, deleteAccount, updateAccount } from "../../graphql/mutations";
  
 
  export default function ProfileFinish() {
@@ -191,7 +191,9 @@ import { deleteAccount, updateAccount } from "../../graphql/mutations";
         };
       
       
-        
+ 
+      
+      
     return(
         <section>
         <StafNavbar></StafNavbar>

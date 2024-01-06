@@ -62,8 +62,10 @@ export default function ProfilAccountList() {
 
     try {
       const response = await API.graphql(graphqlOperation(listUsers, { limit: 10000 }));
-      setUserList(response.data.listUsers.items);
-    } catch (e) {
+      const nonDeletedUser = response.data.listUsers.items.filter(user=>!user._deleted);
+      setUserList(nonDeletedUser)
+    
+     } catch (e) {
       console.log(e);
     }
 

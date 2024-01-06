@@ -49,8 +49,9 @@ export default function TakeAccount() {
       try {
       
         const response= await API.graphql(graphqlOperation(listUsers, { limit: 1000 }));
-        const nonDelete =  response.data.listUsers.items.filter((elt)=>!elt._deleted)
-        setUserList(nonDelete);
+        const nonDeletedUser = response.data.listUsers.items.filter(user=>!user._deleted);
+
+        setUserList(nonDeletedUser);
      
       }catch(e){
               console.log(e)
