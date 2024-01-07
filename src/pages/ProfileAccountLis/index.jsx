@@ -321,7 +321,10 @@ function getRandomElement(arr) {
       
 
      const handleUpdtateProfil = async (data) => {
+
       setLoading(true)
+
+      
       try {
         if(data.pin){
           const input = { 

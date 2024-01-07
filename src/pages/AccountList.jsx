@@ -5,12 +5,13 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
+import { updateAccount } from "../graphql/mutations";
 
 
 export default function AccountList() {
   const { state } = useLocation();
   const { service } = state;
-
+  const [editMode, setEditMode] = useState({ rowId: null, colName: null });
   const [loading, setLoading] = useState(false);
   const [AccountList, setAccountList] = useState([]);
   const [UaccountList, setUaccountList] = useState([]);
@@ -46,9 +47,6 @@ export default function AccountList() {
     setLoading(false);
   }
 
-  
-
-   
 
   const uniqueAccount = () => {
     let listAccount = [];
@@ -73,7 +71,6 @@ export default function AccountList() {
         // Find the existing account with the same email and update it immutably
         listAccount = listAccount.map((account) => {
           if (account.mail === item.mail && !item.free && !item._deleted) {
-            console.log(account)
             return { ...account, remplissage: account.remplissage + 1 };
           }
           return account;
@@ -98,6 +95,87 @@ export default function AccountList() {
   const filteredAccountList = UaccountList.filter(item =>
     item.mail.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleUpdtateAccount = async (data) => {
+    setLoading(true);
+  
+    try {
+      if (data.mail) {
+        // Filter all accounts that match the edited email
+        const accountsToUpdate = AccountList.filter(
+          (item) => item.mail === data.mailClick
+        );
+  
+        // Update each matching account
+        const updatePromises = accountsToUpdate.map(async (account) => {
+          const input = {
+            id: account.id,
+            mail: data.mail,
+            _version: account._version,
+          };
+          const response = await API.graphql(
+            graphqlOperation(updateAccount, { input: input })
+          );
+          console.log(response);
+        });
+  
+        await Promise.all(updatePromises);
+        alert("changement effectué");
+      }
+  
+      if (data.passe) {
+        // Filter all accounts that match the edited email
+        const accountsToUpdate = AccountList.filter(
+          (item) => item.mail === data.mailClick
+        );
+  
+        // Update each matching account
+        const updatePromises = accountsToUpdate.map(async (account) => {
+          const input = {
+            id: account.id,
+            passe: data.passe,
+            _version: account._version,
+          };
+          const response = await API.graphql(
+            graphqlOperation(updateAccount, { input: input })
+          );
+          console.log(response);
+        });
+  
+        await Promise.all(updatePromises);
+        window.location.reload();
+        alert("changement effectué");
+      }
+  
+      if (data.endDateAccount) {
+        // Filter all accounts that match the edited email
+        const accountsToUpdate = AccountList.filter(
+          (item) => item.mail === data.mailClick
+        );
+
+        // Update each matching account
+        const updatePromises = accountsToUpdate.map(async (account) => {
+          const input = {
+            id: account.id,
+            endDateAccount: data.endDateAccount,
+            _version: account._version,
+          };
+          const response = await API.graphql(
+            graphqlOperation(updateAccount, { input: input })
+          );
+          console.log(response);
+        });
+        await Promise.all(updatePromises);
+        window.location.reload();
+        alert("changement effectué");
+      }
+      setEditMode({ rowId: null });
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+  };
+  
 
   return (
     <div>
@@ -133,14 +211,94 @@ export default function AccountList() {
               <h2>Loading...</h2>
             ) : (
               filteredAccountList.map(item => (
-                <tr key={item.id} onClick={() => {
-                  handleClick(item)
-                }}>
-                  <td className="std">{item.mail}</td>
-                  <td className="std">{item.passe}</td>
-                  <td className="std">{item.endDateAccount}</td>
-                  <td className="std">{item.service}</td>
-                  <td className="std">{item.remplissage}</td>
+                <tr key={item.id} >
+
+                  <td className="std" onDoubleClick={() => {setEditMode({rowId:item.id, colName:item.mail})}}>
+                  {
+                    editMode.rowId===item.id && editMode.colName==item.mail? (
+                          <input
+                          className='input-click'
+                          type='text'
+                          onBlur={(e) =>{ 
+                            const data = {
+                              id: item.id,
+                              version:item._version,
+                              mail:e.target.value,
+                              mailClick:item.mail,
+                              endDateAccount:null,
+                              passe:null,
+                            }
+                            handleUpdtateAccount(data)}}
+                          defaultValue={item.mail}
+                        />
+                          ):(
+                            <h3>
+                              {item.mail}
+                            </h3>
+                          )
+                    }
+                  </td>
+
+                  <td className="std" onDoubleClick={() => {setEditMode({rowId:item.id, colName:item.passe})}}>
+                  {
+                    editMode.rowId===item.id && editMode.colName==item.passe? (
+                          <input
+                          className='input-click'
+                          type='text'
+                          onBlur={(e) =>{ 
+                            const data = {
+                              id: item.id,
+                              version:item._version,
+                              passe:e.target.value,
+                              endDateAccount:null,
+                              mail:null,
+                              mailClick:item.mail,
+
+                             }
+                            handleUpdtateAccount(data)}}
+                          defaultValue={item.passe}
+                        />
+                          ):(
+                            <h3>
+                              {item.passe}
+                            </h3>
+                          )
+                    }
+                  </td>
+
+                  <td className="std" onDoubleClick={() => {setEditMode({rowId:item.id, colName:item.endDateAccount})}}>
+                  {
+                    editMode.rowId===item.id && editMode.colName==item.endDateAccount? (
+                          <input
+                          className='input-click'
+                          type='text'
+                          onBlur={(e) =>{ 
+                            const data = {
+                              id: item.id,
+                              version:item._version,
+                              endDateAccount:e.target.value,
+                              mail:null,
+                              passe:null,
+                              mailClick:item.mail,
+
+                            }
+                            handleUpdtateAccount(data)}}
+                          defaultValue={item.endDateAccount}
+                        />
+                          ):(
+                            <h3>
+                              {item.endDateAccount}
+                            </h3>
+                          )
+                    }
+                  </td>
+                  
+
+          
+                  <td className="std" onClick={() => {handleClick(item)
+                }}>{item.service}</td>
+                  <td className="std"  onClick={() => { handleClick(item)
+                }}>{item.remplissage}</td>
                  </tr>
               ))
             )}
@@ -150,3 +308,5 @@ export default function AccountList() {
     </div>
   );
 }
+
+
