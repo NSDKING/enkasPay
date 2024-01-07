@@ -62,7 +62,7 @@ import { API, Auth, graphqlOperation } from "aws-amplify"
       
         const response= await API.graphql(graphqlOperation(listProducts));
         setArticles(response.data.listProducts.items)
-     
+      
       }catch(e){
               console.log(e)
     
