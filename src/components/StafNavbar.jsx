@@ -37,6 +37,7 @@ export default function StafNavbar() {
                     <Link to="/staff-Affiliation" style={linkStyle}>affiliation</Link>
                     <Link to="/crm-HomePage" style={linkStyle}>crm</Link>
                     <Link to="/PaymentList-enkas" style={linkStyle}>payment</Link>
+                    <Link to="/change-price-selector" style={linkStyle}>prix</Link>
                 </nav>
         </section>
     )

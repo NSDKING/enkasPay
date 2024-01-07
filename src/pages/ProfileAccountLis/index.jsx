@@ -22,6 +22,7 @@ export default function ProfilAccountList() {
   const navigate = useNavigate();
   const [disp, setDisp] = useState(0)
   const [freeAccount, setFreeAccount] = useState({})
+  const [editMode, setEditMode] = useState({ rowId: null, colName: null });
 
 
   const {formState: {errors}, handleSubmit, register, control} = useForm();
@@ -318,6 +319,64 @@ function getRandomElement(arr) {
         }
       };
       
+
+     const handleUpdtateProfil = async (data) => {
+      setLoading(true)
+      try {
+        if(data.pin){
+          const input = { 
+            id:data.id,
+            pin:data.pin, 
+            _version:data.version,
+          }; 
+          const response= await API.graphql(graphqlOperation(updateAccount, { input: input }));
+          window.location.reload();
+          alert("changement effectué")
+         }
+  
+        if(data.endDateProfil){
+          const input = { 
+            id:data.id,
+            endDateProfil:data.endDateProfil,
+            _version:data.version,
+          }; 
+          const response= await API.graphql(graphqlOperation(updateAccount, { input: input }));       
+          window.location.reload();
+          alert("changement effectué")
+
+        }
+  
+        if(data.free){
+          const input = { 
+            id:data.id,
+            free:data.free,
+            _version:data.version,
+          }; 
+          const response= await API.graphql(graphqlOperation(updateAccount, { input: input }));
+          console.log(response)
+          window.location.reload();
+          alert("changement effectué")
+         }
+
+         if(data.userID){
+          const input = { 
+            id:data.id,
+            userID:data.userID,
+            _version:data.version,
+          }; 
+          const response= await API.graphql(graphqlOperation(updateAccount, { input: input }));
+          console.log(response)
+          window.location.reload();
+          alert("changement effectué")
+         }
+        setEditMode({ rowId: null });
+      } catch (error) {
+        console.log(error)
+      }
+  
+      setLoading(false)
+      
+     }
     
 
   return (
@@ -419,23 +478,132 @@ function getRandomElement(arr) {
                                 onChange={() => handleCheckboxChange(item.id)}
                               />
                             </td>
-                            <td className="std" onClick={() => { handleupdate(item) }}>
+                            <td className="std">
                               {item.profil}
                             </td>
-                            <td className="std" onClick={() => { handleupdate(item) }}>
-                              {item.pin}
-                            </td>
-                            <td className="std" onClick={() => { handleupdate(item) }}>
-                              {item.endDateProfil}
-                            </td>
-                            <td className="std" onClick={() => { handleupdate(item) }}>
+                            <td className="std" onDoubleClick={() => {setEditMode({rowId:item.id, colName:item.pin})}}>
+                              {
+                               editMode.rowId===item.id && editMode.colName==item.pin? (
+                                    <input
+                                    className='input-click'
+                                    type='number'
+                                    onBlur={(e) =>{ 
+                                      const data = {
+                                        id: item.id,
+                                        version:item._version,
+                                        pin:e.target.value,
+                                        endDateProfil:null,
+                                        free:null,
+                                        userID:null,
+                                      }
+                                      handleUpdtateProfil(data)}}
+                                    defaultValue={item.pin}
+                                  />
+                                    ):(
+                                      <h3>
+                                        {item.pin}
+                                      </h3>
+                                    )
+                                
+                              }
+                             </td>
+                             <td className="std" onDoubleClick={() => {setEditMode({rowId:item.id, colName:item.endDateProfil })}}>
+                            
+                               {editMode.rowId===item.id && editMode.colName==item.endDateProfil ? (
+                                    <input
+                                    className='input-click'
+                                    type='date'
+                                    onBlur={(e) => {
+                                      const data = {
+                                        id: item.id,
+                                        version:item._version,
+                                        pin:null,
+                                        endDateProfil:e.target.value,
+                                        free:null,
+                                        userID:null,
+
+                                      }
+                                      handleUpdtateProfil(data)
+                                    }
+                                    }
+                                    defaultValue={item.endDateProfil}
+                                  />
+                                    ):(
+                                      <h3>
+                                        {item.endDateProfil}
+                                      </h3>
+                                    )
+                                
+                              }
+                             </td>
+                            <td className="std" >
                               {item.service}
                             </td>
-                            <td className="std" onClick={() => { handleupdate(item) }}>
-                              {String(item.free)}
-                            </td>
-                            <td onClick={() => { handleupdate(item) }}>{handleName(item.userID)}</td>
-                            <td onClick={() => { handleupdate(item) }}>{handleNum(item.userID)}</td>
+                            <td className="std" onDoubleClick={() => {setEditMode({rowId:item.id, colName:item.free})}}>
+                              {
+                               editMode.rowId===item.id && editMode.colName==item.free ? (
+
+                                <select 
+                                  className='input-click'
+                                  onBlur={(e) => {
+                                    const updateValue =  e.target.value ==="true"
+                                    const data = {
+                                      id: item.id,
+                                      version:item._version,
+                                      pin:null,
+                                      endDateProfil:null,
+                                      free:updateValue,
+                                      userID:null,
+                                    }
+                                    handleUpdtateProfil(data)
+                                  }}
+                                  defaultValue={item.free}
+                                >
+
+                                  <option value="">select....</option>
+                                  <option value={true}>true</option>
+                                  <option value={false}>false</option>
+                        
+                                </select>
+                                                           
+                                    ):(
+                                      <h3>
+                                        {String(item.free)}
+                                      </h3>
+                                    )
+                                
+                              }
+                             </td>
+
+                             <td onDoubleClick={() => { setEditMode({ rowId: item.id, colName: "userID" }) }}>
+                                  {editMode.rowId === item.id && editMode.colName === "userID" ? (
+                                    <select
+                                      className='input-click'
+                                      onBlur={(e) => {
+                                        const data = {
+                                          id: item.id,
+                                          version: item._version,
+                                          pin: null,
+                                          endDateProfil: null,
+                                          free: null,
+                                          userID: e.target.value,
+                                        };
+                                        handleUpdtateProfil(data);
+                                      }}
+                                      defaultValue={item.userID}
+                                    >
+                                      <option value="">Select...</option>
+                                      {userList.map(user => (
+                                        <option value={user.id} key={user.id}>
+                                          {user.FamilyName} {user.LastName}
+                                        </option>
+                                      ))}
+                                    </select>
+                                  ) : (
+                                    <h3>{handleName(item.userID)}</h3>
+                                  )}
+                                </td>
+                            <td>{handleNum(item.userID)}</td>
                           </tr>
                         ))
                       )}

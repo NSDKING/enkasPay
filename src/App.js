@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/login';
-import HomePage from './pages/Home';
 import PasswordForgotPage from './pages/passwordForgotPage';
 import RegisterPage from './pages/register';
 import StorePage from './pages/store';
@@ -46,7 +45,6 @@ import ProfilAccountList from './pages/ProfileAccountLis/index.jsx';
 import ClickAccountList from './pages/ClickAccountList';
 import UpdateAccountList from './pages/updateAccountList';
 import OrderList from './pages/OrderList';
-import { updateOrder } from './graphql/mutations';
 import UpdateOrder from './pages/UpdateOrder';
 import Past from './pages/past';
 import CustomerUpdate from './pages/customerUpdate';
@@ -84,7 +82,10 @@ import SympRegister from './simplify/pages/Register';
 import NetflixChoicePage from './simplify/pages/NetflixChoicePage';
 import AddAccount from './pages/AddAccount/index.jsx';
 import ProfileFinish from './pages/finishProfiles/index.jsx';
-  
+import ChangePriceSelector from './pages/ChangePriceSelector/index.jsx';
+import ChangePrice from './pages/pricechange/index.jsx';
+import ChangePriceDef from './pages/changepricedef/index.jsx';
+   
 function App() {
   const [user, setUser]= useState(null)
   const [staf, setStaf]= useState(false)
@@ -99,11 +100,7 @@ function App() {
   const [type ,setProdType] = useState()
   const [id ,setProdId] = useState()
 
-
-  
  
-  
-
   const checkUser = async ()=>{
     try {
         const authUser = await Auth.currentAuthenticatedUser({
@@ -176,7 +173,7 @@ function App() {
                 <Route path='/store' Component={StorePage}/>
                 <Route path='/enkas-web-devellopment' Component={PageEnkasWeb}/>
                 <Route exact path="/ProductPage/:slug" Component={ProductPage} />
-
+ 
            
           
                 <Route path='/affiliation' Component={AffiliatePage}/>
@@ -326,6 +323,9 @@ function App() {
           <Route path='/enkas-web-devellopment' Component={PageEnkasWeb}/>
           <Route path='/PaymentList-enkas' Component={PaymentList}/>
           <Route exact path="/finshprofils" Component={ProfileFinish} />
+          <Route path='/change-price-selector' Component={ChangePriceSelector}/>
+          <Route path='/change-price' Component={ChangePrice}/>
+          <Route path='/change-price-def' Component={ChangePriceDef}/>
 
           <Route path='/' element={<StorePage
                                             Articles={Articles} 
@@ -539,7 +539,7 @@ function App() {
       <Router>
         <Routes>
         <Route path='/enkas-web-devellopment' Component={PageEnkasWeb}/>
-         
+          
         <Route path='/' element={<StorePage
                                             Articles={Articles} 
                                             setArticles={setArticles} 
