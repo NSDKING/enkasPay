@@ -1,4 +1,3 @@
-
 import { useLocation, useNavigate } from "react-router-dom";
 import './css/consultPage.css'
 import { updateAccount, updateOrder, updateUser } from "../graphql/mutations";
@@ -28,7 +27,7 @@ export default function CustomerUpdate() {
       setLoading(true)
       try {
       
-        const response= await API.graphql(graphqlOperation(listUsers));
+        const response= await API.graphql(graphqlOperation(listUsers, { limit: 10000 }));
         setUserList(response.data.listUsers.items)
      
       }catch(e){
@@ -72,19 +71,17 @@ export default function CustomerUpdate() {
 
     useEffect(() => {
         GetTheUser() 
-        console.log(user)        
-    }, [ ])
+     }, [userList])
 
     const GetTheUser = ()=>{
         setLoading(true)
-        const user = userList.find(element => element.id=== item);
-        setUser(user)
+        const userItem = userList.find(element => element.id == item);
+        setUser(userItem)
         setLoading(false)
-
-    }
+     }
     return(
         <section>
-                <div className="modal">
+                <div className="">
                             <div className="modal-content">
                             <form id="my-form"
                                     onSubmit={handleSubmit((data=>{handleFormClick(data)}))}>
