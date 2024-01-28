@@ -19,7 +19,9 @@ export default function Compta() {
     setLoading(true);
     try {
       const response = await API.graphql(graphqlOperation(listComptas, { limit: 1000000000 }));
-      setComptaList(response.data.listComptas.items);
+      const NoneDeleted = response.data.listComptas.items.filter(item => !item._deleted);
+
+      setComptaList(NoneDeleted);
     } catch (e) {
       console.error('Error fetching Compta data:', e);
     }
@@ -41,9 +43,15 @@ export default function Compta() {
     setLoading(false);
   };
 
-  const handleDelete = async (comptaId) => {
+  const handleDelete = async (item) => {
     try {
-      await API.graphql(graphqlOperation(deleteCompta, { input: { id: comptaId } }));
+      const input = { 
+        id: item.id,  
+        _version: item._version
+      };
+      const response = await API.graphql(graphqlOperation(deleteCompta, { input: input }));
+      console.log(response)
+
       // After successful deletion, fetch the updated data
       getComptaData();
     } catch (error) {
@@ -108,7 +116,7 @@ export default function Compta() {
                     userList.find((user) => user.id === item.userID)?.FamilyName}</td>
                   <td>{userList.find((user) => user.id === item.userID)?.phoneNumber}</td>
                   <td>
-                    <button onClick={() => handleDelete(item.id)}>Delete</button>
+                    <button onClick={() => handleDelete(item)}>Delete</button>
                   </td>
                 </tr>
               ))

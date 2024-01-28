@@ -86,7 +86,7 @@ export default function PaymentAdvance() {
       userID:user,
     }
   
-    const ComptaResponse = await API.graphql(graphqlOperation(createCompta, { input: { inputCompta } }));
+    const ComptaResponse = await API.graphql(graphqlOperation(createCompta, { input:  inputCompta  }));
     console.log(ComptaResponse)
 
     // Reset the form state

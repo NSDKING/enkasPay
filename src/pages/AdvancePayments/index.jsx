@@ -3,7 +3,8 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { listOrders, listTransactions, listUsers } from '../../graphql/queries';
 import './index.css';
 import StafNavbar from '../../components/StafNavbar';
-import { deleteTransactions } from '../../graphql/mutations';
+import { deleteTransactions, updateTransactions } from '../../graphql/mutations';
+import { createCompta } from '../../graphql/mutations';
 
 export default function AdvancePayments() {
   const [transactionsList, setTransactionsList] = useState([]);
@@ -11,7 +12,6 @@ export default function AdvancePayments() {
   const [searchTerm, setSearchTerm] = useState('');
   const [userList, setUserList] = useState([]);
   const [OrderList, setOrderList] = useState([]);
-
 
   const getAdvancePaymentsData = async () => {
     if (loading) {
@@ -34,19 +34,46 @@ export default function AdvancePayments() {
     getAdvancePaymentsData();
     getListUsers();
     getListOrder();
-   }, []);
+  }, []);
 
   const handleSearch = () => {
     // Implement search logic here
     // Filter transactionsList based on searchTerm
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (item) => {
     try {
-      await API.graphql(graphqlOperation(deleteTransactions, { input: { id } }));
+       const input = { 
+            id: item.id,  
+            _version: item._version
+        };
+      await API.graphql(graphqlOperation(deleteTransactions, { input: input  }));
       getAdvancePaymentsData();
     } catch (error) {
       console.error('Error deleting Advance Payment:', error);
+    }
+  };
+
+  const handleSetAdvanceFalse = async (id) => {
+    try {
+      // Set advance to false
+      const item = transactionsList.find(item => item.id === id);
+      await API.graphql(graphqlOperation(updateTransactions, { input: { id, advance: false, _version: item._version } }));
+
+      // Create a new compta with the "reste à payer" as a transaction
+      const remainingAmount = parseInt(item.full) - parseInt(item.amount);
+      const newComptaInput = {
+        title: 'Reste à Payer',
+        amount: remainingAmount.toString(),
+        type: 'abonnement-complet',
+        userID: item.userID,
+      };
+      await API.graphql(graphqlOperation(createCompta, { input: newComptaInput }));
+
+      // Refresh the data
+      getAdvancePaymentsData();
+    } catch (error) {
+      console.error('Error setting advance to false and creating compta:', error);
     }
   };
 
@@ -87,16 +114,15 @@ export default function AdvancePayments() {
                       userList.find((user) => user.id === compta.userID)?.FamilyName || '').toLowerCase();
     const phoneNumber = userList.find((user) => user.id === compta.userID)?.phoneNumber.toLowerCase();
     const productName = (OrderList.find((order) => order.id === compta.orderID)?.ProductName || '').toLowerCase();
-  
+
     const searchTermLower = searchTerm.toLowerCase();
-  
+
     return (
       userName.includes(searchTermLower) ||
       phoneNumber.includes(searchTermLower) ||
       productName.includes(searchTermLower)
     );
   });
-  
 
   return (
     <section>
@@ -132,16 +158,17 @@ export default function AdvancePayments() {
                 <td colSpan="6">Loading...</td>
               </tr>
             ) : (
-                filteredTransaction.map((item) => (
+              filteredTransaction.map((item) => (
                 <tr key={item.id}>
-                  <td>{parseInt(item.full)-parseInt(item.amount)}</td>
+                  <td>{parseInt(item.full) - parseInt(item.amount)}</td>
                   <td>{item.full}</td>
                   <td>{userList.find((user) => user.id === item.userID)?.LastName + ' ' +
                     userList.find((user) => user.id === item.userID)?.FamilyName}</td>
                   <td>{userList.find((user) => user.id === item.userID)?.phoneNumber}</td>
                   <td>{OrderList.find((order) => order.id === item.orderID)?.ProductName}</td>
                   <td>
-                    <button onClick={() => handleDelete(item.id)}>Delete</button>
+                    <button onClick={() => handleDelete(item)}>Delete</button>
+                    <button onClick={() => handleSetAdvanceFalse(item.id)}>Set Advance False</button>
                   </td>
                 </tr>
               ))
