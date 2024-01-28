@@ -336,7 +336,17 @@ function getRandomElement(arr) {
           window.location.reload();
           alert("changement effectué")
          }
-  
+
+         if(data.profil){
+          const input = { 
+            id:data.id,
+            profil:data.profil, 
+            _version:data.version,
+          }; 
+          const response= await API.graphql(graphqlOperation(updateAccount, { input: input }));
+          window.location.reload();
+          alert("changement effectué")
+         }
         if(data.endDateProfil){
           const input = { 
             id:data.id,
@@ -481,8 +491,32 @@ function getRandomElement(arr) {
                                 onChange={() => handleCheckboxChange(item.id)}
                               />
                             </td>
-                            <td className="std">
-                              {item.profil}
+                            <td className="std" onDoubleClick={() => {setEditMode({rowId:item.id, colName:item.profil})}}>
+                               {
+                               editMode.rowId===item.id && editMode.colName==item.profil? (
+                                    <input
+                                    className='input-click'
+                                    type='number'
+                                    onBlur={(e) =>{ 
+                                      const data = {
+                                        id: item.id,
+                                        version:item._version,
+                                        pin:null,
+                                        endDateProfil:null,
+                                        free:null,
+                                        userID:null,
+                                        profil:e.target.value,
+                                      }
+                                      handleUpdtateProfil(data)}}
+                                    defaultValue={item.profil}
+                                  />
+                                    ):(
+                                      <h3>
+                                        {item.profil}
+                                      </h3>
+                                    )
+                                
+                              }
                             </td>
                             <td className="std" onDoubleClick={() => {setEditMode({rowId:item.id, colName:item.pin})}}>
                               {

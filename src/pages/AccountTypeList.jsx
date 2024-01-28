@@ -32,7 +32,7 @@ export default function AccountTypeList() {
                 <div className="categories-mobile-boxs" onClick={handleClick1}><img src={netflix} width="75%" alt="netflid"/></div>
                 <div className="categories-mobile-boxs" onClick={handleClick2}><img src={disney} width="80%" alt="disney plus"/></div>
                 <div className="categories-mobile-boxs" onClick={handleClick3}><img src={spotify} width="80%"alt="spotify"/></div>
-                <div className="categories-mobile-boxs" onClick={handleClick3}><img src={PV} width="80%"alt="spotify"/></div>
+                <div className="categories-mobile-boxs" onClick={handleClick4}><img src={PV} width="80%"alt="spotify"/></div>
  
             </div>
             
