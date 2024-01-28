@@ -1,6 +1,263 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getCompta = /* GraphQL */ `
+  query GetCompta($id: ID!) {
+    getCompta(id: $id) {
+      id
+      title
+      amount
+      type
+      userID
+      createdAt
+      updatedAt
+      _versionf
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const listComptas = /* GraphQL */ `
+  query ListComptas(
+    $filter: ModelComptaFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listComptas(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        amount
+        type
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const syncComptas = /* GraphQL */ `
+  query SyncComptas(
+    $filter: ModelComptaFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncComptas(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        title
+        amount
+        type
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const comptasByUserID = /* GraphQL */ `
+  query ComptasByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelComptaFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    comptasByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        title
+        amount
+        type
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const getTransactions = /* GraphQL */ `
+  query GetTransactions($id: ID!) {
+    getTransactions(id: $id) {
+      id
+      amount
+      advance
+      full
+      userID
+      orderID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const listTransactions = /* GraphQL */ `
+  query ListTransactions(
+    $filter: ModelTransactionsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTransactions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        amount
+        advance
+        full
+        userID
+        orderID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const syncTransactions = /* GraphQL */ `
+  query SyncTransactions(
+    $filter: ModelTransactionsFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncTransactions(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        amount
+        advance
+        full
+        userID
+        orderID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const transactionsByUserID = /* GraphQL */ `
+  query TransactionsByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelTransactionsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    transactionsByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        amount
+        advance
+        full
+        userID
+        orderID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const transactionsByOrderID = /* GraphQL */ `
+  query TransactionsByOrderID(
+    $orderID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelTransactionsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    transactionsByOrderID(
+      orderID: $orderID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        amount
+        advance
+        full
+        userID
+        orderID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
 export const getPayments = /* GraphQL */ `
   query GetPayments($id: ID!) {
     getPayments(id: $id) {
@@ -558,6 +815,12 @@ export const getOrder = /* GraphQL */ `
       price
       userID
       productID
+      ProductName
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -579,6 +842,7 @@ export const listOrders = /* GraphQL */ `
         price
         userID
         productID
+        ProductName
         createdAt
         updatedAt
         _version
@@ -610,6 +874,7 @@ export const syncOrders = /* GraphQL */ `
         price
         userID
         productID
+        ProductName
         createdAt
         updatedAt
         _version
@@ -643,6 +908,7 @@ export const ordersByUserID = /* GraphQL */ `
         price
         userID
         productID
+        ProductName
         createdAt
         updatedAt
         _version
@@ -676,6 +942,7 @@ export const ordersByProductID = /* GraphQL */ `
         price
         userID
         productID
+        ProductName
         createdAt
         updatedAt
         _version
@@ -1356,6 +1623,16 @@ export const getUser = /* GraphQL */ `
         __typename
       }
       solde
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
+      Comptas {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version

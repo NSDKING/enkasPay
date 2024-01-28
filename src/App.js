@@ -85,6 +85,9 @@ import ProfileFinish from './pages/finishProfiles/index.jsx';
 import ChangePriceSelector from './pages/ChangePriceSelector/index.jsx';
 import ChangePrice from './pages/pricechange/index.jsx';
 import ChangePriceDef from './pages/changepricedef/index.jsx';
+import PaymentAdvance from './pages/PaymentAdvance/index.jsx';
+import Compta from './pages/compta/index.jsx';
+import AdvancePayments from './pages/AdvancePayments/index.jsx';
    
 function App() {
   const [user, setUser]= useState(null)
@@ -322,6 +325,9 @@ function App() {
           <Route path='/Account' Component={Account}/>
           <Route path='/enkas-web-devellopment' Component={PageEnkasWeb}/>
           <Route path='/PaymentList-enkas' Component={PaymentList}/>
+          <Route path='/PaymentList-Compta' Component={Compta}/>
+          <Route path='/PaymentList-Advance' Component={AdvancePayments}/>
+ 
           <Route exact path="/finshprofils" Component={ProfileFinish} />
           <Route path='/change-price-selector' Component={ChangePriceSelector}/>
           <Route path='/change-price' Component={ChangePrice}/>
@@ -363,6 +369,8 @@ function App() {
                   <Route path='/updateAccount' Component={UpdateAccount}/>
                   <Route path='/ManageAccount' Component={ManageAccount}/>
                   <Route path='/takeAccount' Component={takeAccount}/>
+                  <Route path='/Payment-advance' Component={PaymentAdvance}/>
+
                   <Route path='/ConsultPage' Component={ConsultPage}/>
                   <Route path='/consult-account' Component={ConsultAccount}/>
                   <Route path='/AddAccount' Component={AddAccount}/>

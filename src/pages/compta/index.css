@@ -1,0 +1,46 @@
+/* index.css */
+
+.compta-controls {
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.compta-table-container {
+  width: 80%;
+  margin: 0 auto;
+  color: black;
+
+}
+
+.compta-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: black;
+
+}
+
+.compta-table th, .compta-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.compta-table th {
+  background-color: #f2f2f2;
+  color: black;
+
+}
+
+.compta-table td button {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.compta-table td button:hover {
+  background-color: #ddd;
+  color: black;
+}

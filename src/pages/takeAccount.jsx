@@ -1,13 +1,12 @@
 import { API, graphqlOperation } from 'aws-amplify';
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DefaultButton from '../components/DefaultButton';
 import { listAccounts } from '../graphql/queries';
 import './css/takenAccount.css';
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { listUsers } from '../graphql/queries';
 import { updateAccount } from '../graphql/mutations';
-import { useNavigate } from 'react-router-dom';
 import StafNavbar from '../components/StafNavbar';
 
 
@@ -19,9 +18,10 @@ export default function TakeAccount() {
     const [show, setShow] = useState(false)
     const [userList, setUserList] = useState([])
     const [theAccount, setTheAccount] = useState({})
-     const [freeAccount, setFreeAccount] = useState({})
+    const [freeAccount, setFreeAccount] = useState({})
     const [daysToAdd, setDaysToAdd] = useState(0); // New state for the number of days to add
-    
+    const navigate = useNavigate();
+
     const [disp, setDisp] = useState(0)
  
 
@@ -142,7 +142,9 @@ export default function TakeAccount() {
               
             const response= await API.graphql(graphqlOperation(updateAccount, { input: input }));
             console.log(response)
-             setShow(false)
+            setShow(false)
+            navigate("/Payment-advance", { state: { user: data.user, product: service + String(daysToAdd) } });
+            
        
         }catch(e){
                 console.log(e)

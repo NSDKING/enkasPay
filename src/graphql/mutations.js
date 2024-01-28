@@ -1,6 +1,129 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createCompta = /* GraphQL */ `
+  mutation CreateCompta(
+    $input: CreateComptaInput!
+    $condition: ModelComptaConditionInput
+  ) {
+    createCompta(input: $input, condition: $condition) {
+      id
+      title
+      amount
+      type
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const updateCompta = /* GraphQL */ `
+  mutation UpdateCompta(
+    $input: UpdateComptaInput!
+    $condition: ModelComptaConditionInput
+  ) {
+    updateCompta(input: $input, condition: $condition) {
+      id
+      title
+      amount
+      type
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const deleteCompta = /* GraphQL */ `
+  mutation DeleteCompta(
+    $input: DeleteComptaInput!
+    $condition: ModelComptaConditionInput
+  ) {
+    deleteCompta(input: $input, condition: $condition) {
+      id
+      title
+      amount
+      type
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const createTransactions = /* GraphQL */ `
+  mutation CreateTransactions(
+    $input: CreateTransactionsInput!
+    $condition: ModelTransactionsConditionInput
+  ) {
+    createTransactions(input: $input, condition: $condition) {
+      id
+      amount
+      advance
+      full
+      userID
+      orderID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const updateTransactions = /* GraphQL */ `
+  mutation UpdateTransactions(
+    $input: UpdateTransactionsInput!
+    $condition: ModelTransactionsConditionInput
+  ) {
+    updateTransactions(input: $input, condition: $condition) {
+      id
+      amount
+      advance
+      full
+      userID
+      orderID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const deleteTransactions = /* GraphQL */ `
+  mutation DeleteTransactions(
+    $input: DeleteTransactionsInput!
+    $condition: ModelTransactionsConditionInput
+  ) {
+    deleteTransactions(input: $input, condition: $condition) {
+      id
+      amount
+      advance
+      full
+      userID
+      orderID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
 export const createPayments = /* GraphQL */ `
   mutation CreatePayments(
     $input: CreatePaymentsInput!
@@ -326,6 +449,12 @@ export const createOrder = /* GraphQL */ `
       price
       userID
       productID
+      ProductName
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -345,6 +474,12 @@ export const updateOrder = /* GraphQL */ `
       price
       userID
       productID
+      ProductName
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -364,6 +499,12 @@ export const deleteOrder = /* GraphQL */ `
       price
       userID
       productID
+      ProductName
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -930,6 +1071,16 @@ export const createUser = /* GraphQL */ `
         __typename
       }
       solde
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
+      Comptas {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -992,6 +1143,16 @@ export const updateUser = /* GraphQL */ `
         __typename
       }
       solde
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
+      Comptas {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -1054,6 +1215,16 @@ export const deleteUser = /* GraphQL */ `
         __typename
       }
       solde
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
+      Comptas {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version

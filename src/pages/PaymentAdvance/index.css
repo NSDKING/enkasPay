@@ -1,0 +1,54 @@
+/* index.css */
+
+.payment-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px; /* Adjust the margin based on your design */
+  }
+  
+  .full-payment-button {
+    background-color: #4caf50; /* Green color, you can change it */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .advance-button {
+    background-color: #2196f3; /* Blue color, you can change it */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  /* index.css */
+
+.payment-form {
+    display: none;
+    margin-top: 20px; /* Adjust the margin based on your design */
+  }
+  
+  .payment-form.visible {
+    display: block;
+  }
+  
+  .price-input,
+  .advance-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .submit-button {
+    background-color: #4caf50; /* Green color, you can change it */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  

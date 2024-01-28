@@ -38,9 +38,11 @@ export default function StafNavbar() {
                     <Link to="/crm-HomePage" style={linkStyle}>crm</Link>
                     <Link to="/PaymentList-enkas" style={linkStyle}>payment</Link>
                     <Link to="/change-price-selector" style={linkStyle}>prix</Link>
+                    <Link to="/PaymentList-Compta" style={linkStyle}>compta</Link>
+                    <Link to="/PaymentList-Advance" style={linkStyle}>avance</Link>
                 </nav>
         </section>
     )
 }
-
+ 
    

@@ -1,3 +1,20 @@
+type Compta @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String
+  amount: String
+  type: String
+  userID: ID! @index(name: "byUser")
+}
+
+type Transactions @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  amount: String
+  advance: Boolean
+  full: String
+  userID: ID! @index(name: "byUser")
+  orderID: ID! @index(name: "byOrder")
+}
+
 type Payments @model @auth(rules: [{allow: public}]) {
   id: ID!
   amounts: Float
@@ -43,7 +60,9 @@ type Order @model @auth(rules: [{allow: public}]) {
   id: ID!
   price: String
   userID: ID! @index(name: "byUser")
-  productID: ID! @index(name: "byProduct")
+  productID: ID @index(name: "byProduct")
+  ProductName: String
+  Transactions: [Transactions] @hasMany(indexName: "byOrder", fields: ["id"])
 }
 
 type OneYear @model @auth(rules: [{allow: public}]) {
@@ -121,5 +140,7 @@ type User @model @auth(rules: [{allow: public}]) {
   pbcount: Float
   Descriptions: [Description] @hasMany(indexName: "byUser", fields: ["id"])
   solde: String
+  Transactions: [Transactions] @hasMany(indexName: "byUser", fields: ["id"])
+  Comptas: [Compta] @hasMany(indexName: "byUser", fields: ["id"])
 }
  

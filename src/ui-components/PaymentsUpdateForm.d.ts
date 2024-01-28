@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { Payments } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -28,6 +28,7 @@ export declare type PaymentsUpdateFormInputValues = {
     sender_name?: string;
     transaction_id?: string;
     messages?: string;
+    used?: boolean;
 };
 export declare type PaymentsUpdateFormValidationValues = {
     amounts?: ValidationFunction<number>;
@@ -35,6 +36,7 @@ export declare type PaymentsUpdateFormValidationValues = {
     sender_name?: ValidationFunction<string>;
     transaction_id?: ValidationFunction<string>;
     messages?: ValidationFunction<string>;
+    used?: ValidationFunction<boolean>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type PaymentsUpdateFormOverridesProps = {
@@ -44,6 +46,7 @@ export declare type PaymentsUpdateFormOverridesProps = {
     sender_name?: PrimitiveOverrideProps<TextFieldProps>;
     transaction_id?: PrimitiveOverrideProps<TextFieldProps>;
     messages?: PrimitiveOverrideProps<TextFieldProps>;
+    used?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
 export declare type PaymentsUpdateFormProps = React.PropsWithChildren<{
     overrides?: PaymentsUpdateFormOverridesProps | undefined | null;

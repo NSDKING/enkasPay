@@ -1,6 +1,117 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateCompta = /* GraphQL */ `
+  subscription OnCreateCompta($filter: ModelSubscriptionComptaFilterInput) {
+    onCreateCompta(filter: $filter) {
+      id
+      title
+      amount
+      type
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateCompta = /* GraphQL */ `
+  subscription OnUpdateCompta($filter: ModelSubscriptionComptaFilterInput) {
+    onUpdateCompta(filter: $filter) {
+      id
+      title
+      amount
+      type
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteCompta = /* GraphQL */ `
+  subscription OnDeleteCompta($filter: ModelSubscriptionComptaFilterInput) {
+    onDeleteCompta(filter: $filter) {
+      id
+      title
+      amount
+      type
+      userID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onCreateTransactions = /* GraphQL */ `
+  subscription OnCreateTransactions(
+    $filter: ModelSubscriptionTransactionsFilterInput
+  ) {
+    onCreateTransactions(filter: $filter) {
+      id
+      amount
+      advance
+      full
+      userID
+      orderID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateTransactions = /* GraphQL */ `
+  subscription OnUpdateTransactions(
+    $filter: ModelSubscriptionTransactionsFilterInput
+  ) {
+    onUpdateTransactions(filter: $filter) {
+      id
+      amount
+      advance
+      full
+      userID
+      orderID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteTransactions = /* GraphQL */ `
+  subscription OnDeleteTransactions(
+    $filter: ModelSubscriptionTransactionsFilterInput
+  ) {
+    onDeleteTransactions(filter: $filter) {
+      id
+      amount
+      advance
+      full
+      userID
+      orderID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
 export const onCreatePayments = /* GraphQL */ `
   subscription OnCreatePayments($filter: ModelSubscriptionPaymentsFilterInput) {
     onCreatePayments(filter: $filter) {
@@ -296,6 +407,12 @@ export const onCreateOrder = /* GraphQL */ `
       price
       userID
       productID
+      ProductName
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -312,6 +429,12 @@ export const onUpdateOrder = /* GraphQL */ `
       price
       userID
       productID
+      ProductName
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -328,6 +451,12 @@ export const onDeleteOrder = /* GraphQL */ `
       price
       userID
       productID
+      ProductName
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -843,6 +972,16 @@ export const onCreateUser = /* GraphQL */ `
         __typename
       }
       solde
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
+      Comptas {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -902,6 +1041,16 @@ export const onUpdateUser = /* GraphQL */ `
         __typename
       }
       solde
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
+      Comptas {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -961,6 +1110,16 @@ export const onDeleteUser = /* GraphQL */ `
         __typename
       }
       solde
+      Transactions {
+        nextToken
+        startedAt
+        __typename
+      }
+      Comptas {
+        nextToken
+        startedAt
+        __typename
+      }
       createdAt
       updatedAt
       _version

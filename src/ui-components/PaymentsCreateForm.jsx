@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  SwitchField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { Payments } from "../models";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
@@ -27,6 +33,7 @@ export default function PaymentsCreateForm(props) {
     sender_name: "",
     transaction_id: "",
     messages: "",
+    used: false,
   };
   const [amounts, setAmounts] = React.useState(initialValues.amounts);
   const [sender_number, setSender_number] = React.useState(
@@ -39,6 +46,7 @@ export default function PaymentsCreateForm(props) {
     initialValues.transaction_id
   );
   const [messages, setMessages] = React.useState(initialValues.messages);
+  const [used, setUsed] = React.useState(initialValues.used);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setAmounts(initialValues.amounts);
@@ -46,6 +54,7 @@ export default function PaymentsCreateForm(props) {
     setSender_name(initialValues.sender_name);
     setTransaction_id(initialValues.transaction_id);
     setMessages(initialValues.messages);
+    setUsed(initialValues.used);
     setErrors({});
   };
   const validations = {
@@ -54,6 +63,7 @@ export default function PaymentsCreateForm(props) {
     sender_name: [],
     transaction_id: [],
     messages: [],
+    used: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -86,6 +96,7 @@ export default function PaymentsCreateForm(props) {
           sender_name,
           transaction_id,
           messages,
+          used,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -149,6 +160,7 @@ export default function PaymentsCreateForm(props) {
               sender_name,
               transaction_id,
               messages,
+              used,
             };
             const result = onChange(modelFields);
             value = result?.amounts ?? value;
@@ -177,6 +189,7 @@ export default function PaymentsCreateForm(props) {
               sender_name,
               transaction_id,
               messages,
+              used,
             };
             const result = onChange(modelFields);
             value = result?.sender_number ?? value;
@@ -205,6 +218,7 @@ export default function PaymentsCreateForm(props) {
               sender_name: value,
               transaction_id,
               messages,
+              used,
             };
             const result = onChange(modelFields);
             value = result?.sender_name ?? value;
@@ -233,6 +247,7 @@ export default function PaymentsCreateForm(props) {
               sender_name,
               transaction_id: value,
               messages,
+              used,
             };
             const result = onChange(modelFields);
             value = result?.transaction_id ?? value;
@@ -261,6 +276,7 @@ export default function PaymentsCreateForm(props) {
               sender_name,
               transaction_id,
               messages: value,
+              used,
             };
             const result = onChange(modelFields);
             value = result?.messages ?? value;
@@ -275,6 +291,35 @@ export default function PaymentsCreateForm(props) {
         hasError={errors.messages?.hasError}
         {...getOverrideProps(overrides, "messages")}
       ></TextField>
+      <SwitchField
+        label="Used"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={used}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              amounts,
+              sender_number,
+              sender_name,
+              transaction_id,
+              messages,
+              used: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.used ?? value;
+          }
+          if (errors.used?.hasError) {
+            runValidationTasks("used", value);
+          }
+          setUsed(value);
+        }}
+        onBlur={() => runValidationTasks("used", used)}
+        errorMessage={errors.used?.errorMessage}
+        hasError={errors.used?.hasError}
+        {...getOverrideProps(overrides, "used")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

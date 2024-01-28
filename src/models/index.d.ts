@@ -6,6 +6,76 @@ import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@a
 
 
 
+type EagerCompta = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Compta, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly title?: string | null;
+  readonly amount?: string | null;
+  readonly type?: string | null;
+  readonly userID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyCompta = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Compta, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly title?: string | null;
+  readonly amount?: string | null;
+  readonly type?: string | null;
+  readonly userID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Compta = LazyLoading extends LazyLoadingDisabled ? EagerCompta : LazyCompta
+
+export declare const Compta: (new (init: ModelInit<Compta>) => Compta) & {
+  copyOf(source: Compta, mutator: (draft: MutableModel<Compta>) => MutableModel<Compta> | void): Compta;
+}
+
+type EagerTransactions = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Transactions, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly amount?: string | null;
+  readonly advance?: boolean | null;
+  readonly full?: string | null;
+  readonly userID: string;
+  readonly orderID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyTransactions = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Transactions, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly amount?: string | null;
+  readonly advance?: boolean | null;
+  readonly full?: string | null;
+  readonly userID: string;
+  readonly orderID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Transactions = LazyLoading extends LazyLoadingDisabled ? EagerTransactions : LazyTransactions
+
+export declare const Transactions: (new (init: ModelInit<Transactions>) => Transactions) & {
+  copyOf(source: Transactions, mutator: (draft: MutableModel<Transactions>) => MutableModel<Transactions> | void): Transactions;
+}
+
 type EagerPayments = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Payments, 'id'>;
@@ -17,6 +87,7 @@ type EagerPayments = {
   readonly sender_name?: string | null;
   readonly transaction_id?: string | null;
   readonly messages?: string | null;
+  readonly used?: boolean | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -32,6 +103,7 @@ type LazyPayments = {
   readonly sender_name?: string | null;
   readonly transaction_id?: string | null;
   readonly messages?: string | null;
+  readonly used?: boolean | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -184,7 +256,9 @@ type EagerOrder = {
   readonly id: string;
   readonly price?: string | null;
   readonly userID: string;
-  readonly productID: string;
+  readonly productID?: string | null;
+  readonly ProductName?: string | null;
+  readonly Transactions?: (Transactions | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -197,7 +271,9 @@ type LazyOrder = {
   readonly id: string;
   readonly price?: string | null;
   readonly userID: string;
-  readonly productID: string;
+  readonly productID?: string | null;
+  readonly ProductName?: string | null;
+  readonly Transactions: AsyncCollection<Transactions>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -456,6 +532,8 @@ type EagerUser = {
   readonly pbcount?: number | null;
   readonly Descriptions?: (Description | null)[] | null;
   readonly solde?: string | null;
+  readonly Transactions?: (Transactions | null)[] | null;
+  readonly Comptas?: (Compta | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -484,6 +562,8 @@ type LazyUser = {
   readonly pbcount?: number | null;
   readonly Descriptions: AsyncCollection<Description>;
   readonly solde?: string | null;
+  readonly Transactions: AsyncCollection<Transactions>;
+  readonly Comptas: AsyncCollection<Compta>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
