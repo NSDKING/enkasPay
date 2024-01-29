@@ -116,18 +116,12 @@ export default function TakeAccount() {
         if(loading){
             return;
         }
-        
-        setLoading(true)
-         
+        setLoading(true)     
         try {
-        
-
             const today = new Date();
             today.setDate(today.getDate() + daysToAdd);
-            
             // Convert to a string in the correct format (e.g., AWSDate format)
             const formattedDate = today.toISOString().slice(0, 10); // Extract YYYY-MM-DD
-            
             // Include 'endDateProfil' in the input object with the formatted date
             const input = {
               id: theAccount.id,
@@ -135,23 +129,15 @@ export default function TakeAccount() {
               userID: data.user,
               free: false,
               endDateProfil: formattedDate,
-            };
-            
-    
-
-              
+            };  
             const response= await API.graphql(graphqlOperation(updateAccount, { input: input }));
             console.log(response)
             setShow(false)
             navigate("/Payment-advance", { state: { user: data.user, product: service + String(daysToAdd) } });
-            
-       
         }catch(e){
                 console.log(e)
-      
         }
         setLoading(false)
-
     }
 
     

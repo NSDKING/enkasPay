@@ -7,6 +7,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import DefaultButton from "../../components/DefaultButton";
 import { useForm } from "react-hook-form";
 import "./index.css"
+import RenewalModal from "../RenewalModal";
+import { createCompta } from "../PaymentAdvance";
 
 
 export default function ProfilAccountList() {
@@ -21,19 +23,30 @@ export default function ProfilAccountList() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const [disp, setDisp] = useState(0)
+  const [profileRenewal, setProfileRenewal] = useState(0)
   const [freeAccount, setFreeAccount] = useState({})
   const [editMode, setEditMode] = useState({ rowId: null, colName: null });
+  const [showRenewalModal, setShowRenewalModal] = useState(false);
+  const { mail: account, service: accountService } = state;
 
+
+     // Open Renewal Modal
+  const handleRenewalModalOpen = (item) => {
+    setShowRenewalModal(true);
+    setProfileRenewal(item)
+  };
+
+  // Close Renewal Modal
+  const handleRenewalModalClose = () => {
+    setShowRenewalModal(false);
+  };
 
   const {formState: {errors}, handleSubmit, register, control} = useForm();
  
 
 
 
-
-  const handleupdate = (data) => {
-    navigate("/click-account", { state: { item: data } });
-  }
+ 
 
   const getAccount = async () => {
     if (loading) {
@@ -78,7 +91,7 @@ export default function ProfilAccountList() {
     let profileNotDeleted = [];
 
     AccountList.forEach((item) => {
-      if (item.mail === state.mail) {
+      if (item.mail === account) {
         profile.push(item);
       }
     });
@@ -391,6 +404,8 @@ function getRandomElement(arr) {
       
      }
     
+ 
+     
 
   return (
     <>
@@ -411,6 +426,7 @@ function getRandomElement(arr) {
                                     <p>profil: {theAccount?.profil}</p>
                                     <p>pin: {theAccount?.pin}</p>
                                 </div>
+                                
                             
                                 <label>Nombre de jours à ajouter:</label>
                                 <input
@@ -459,9 +475,10 @@ function getRandomElement(arr) {
                   <button className="button-profile" onClick={handleLibererSelected}>
                     Liberer
                   </button>
-                    <button className="button-profile" onClick={handleTerminer}>
+                  <button className="button-profile" onClick={handleTerminer}>
                         Terminer
-                    </button>
+                  </button>
+        
 
                 </div>
                 <div className="tableContainer">
@@ -476,7 +493,9 @@ function getRandomElement(arr) {
                         <th>free</th>
                         <th>utilisateur</th>
                         <th>numero</th>
+                        <th>Action</th>
                       </tr>
+                      
                     </thead>
                     <tbody>
                       {loading ? (
@@ -641,6 +660,12 @@ function getRandomElement(arr) {
                                   )}
                                 </td>
                             <td>{handleNum(item.userID)}</td>
+                            <td>
+                              <button onClick={() => handleRenewalModalOpen(item)}>renewal</button>
+
+                            </td>
+
+                            
                           </tr>
                         ))
                       )}
@@ -656,6 +681,14 @@ function getRandomElement(arr) {
             
             
       }
+      {showRenewalModal && (
+        <RenewalModal
+          selectedProfiles={selectedProfiles}
+          onClose={handleRenewalModalClose}
+          service ={accountService}
+          profileRenewal={profileRenewal}
+         />
+      )}
     </>
   );
 }

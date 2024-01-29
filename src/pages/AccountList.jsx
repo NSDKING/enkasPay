@@ -17,9 +17,9 @@ export default function AccountList() {
   const [UaccountList, setUaccountList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
-
+ 
   const handleClick = (item) => {
-    navigate("/click-accountList", { state: { item:item } }) 
+    navigate("/click-accountList", { state: { item:item, service: service } }) 
 
   }
 

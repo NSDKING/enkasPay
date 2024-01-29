@@ -8,6 +8,7 @@ import { useState, useEffect} from "react";
  
 export default function ClickAccountList() {  
   const { state } = useLocation();
+  const { item: account, service: accountService } = state;
   const { item } = state;
   const [loading, setLoading]= useState(false)
   const [AccountList, setAccountList] = useState([]);
@@ -18,7 +19,7 @@ export default function ClickAccountList() {
  
 
   const handleClick = () => {
-    navigate("/profile-list", { state: { mail: item.mail, remplissage: item.remplissage } });
+    navigate("/profile-list", { state: { mail: account.mail, service: accountService } });
   };
 
   const handleClick3 = () => {

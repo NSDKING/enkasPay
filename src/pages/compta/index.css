@@ -38,7 +38,18 @@
 .compta-table td button {
   margin-right: 5px;
   cursor: pointer;
+  color: black;
+
 }
+
+.compta-table td{
+  color: black;
+}
+
+.compta-table th{
+    color: black;
+}
+
 
 .compta-table td button:hover {
   background-color: #ddd;

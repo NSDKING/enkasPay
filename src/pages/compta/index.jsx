@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listComptas, listUsers } from '../../graphql/queries';
-import { deleteCompta, updateCompta } from '../../graphql/mutations';
+import { deleteCompta, createCompta, updateCompta } from '../../graphql/mutations';
 import './index.css';
 import StafNavbar from '../../components/StafNavbar';
+import Modal from 'react-modal';
 
 export default function Compta() {
   const [comptaList, setComptaList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [userList, setUserList] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isAddComptaModalOpen, setIsAddComptaModalOpen] = useState(false);
+  const [newCompta, setNewCompta] = useState({
+    title: '',
+    amount: '',
+    type: '',
+    userID: '',
+  });
+  const [editMode, setEditMode] = useState({ rowId: null, colName: null, newValue: null });
 
   const getComptaData = async () => {
     if (loading) {
@@ -24,8 +33,9 @@ export default function Compta() {
       setComptaList(NoneDeleted);
     } catch (e) {
       console.error('Error fetching Compta data:', e);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const getListUsers = async () => {
@@ -39,8 +49,9 @@ export default function Compta() {
       setUserList(response.data.listUsers.items);
     } catch (e) {
       console.log(e);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleDelete = async (item) => {
@@ -49,8 +60,8 @@ export default function Compta() {
         id: item.id,  
         _version: item._version
       };
-      const response = await API.graphql(graphqlOperation(deleteCompta, { input: input }));
-      console.log(response)
+      await API.graphql(graphqlOperation(deleteCompta, { input }));
+      alert('Delete successful');
 
       // After successful deletion, fetch the updated data
       getComptaData();
@@ -59,10 +70,78 @@ export default function Compta() {
     }
   };
 
-  const handleUpdate = async (comptaId) => {
-    // Implement the logic to update the Compta element
-    // You can use a modal or redirect to another page for updating
-    console.log('Update Compta with ID:', comptaId);
+  const handleUpdate = async (item) => {
+    try {
+      setLoading(true);
+
+      // Create a copy of the Compta item to track changes
+      const updatedCompta = { ...item };
+
+      // Check if the title is being edited
+      if (editMode.colName === 'title') {
+        updatedCompta.title = editMode.newValue;
+      }
+
+      // Check if the amount is being edited
+      if (editMode.colName === 'amount') {
+        updatedCompta.amount = editMode.newValue;
+      }
+
+      // Check if the type is being edited
+      if (editMode.colName === 'type') {
+        updatedCompta.type = editMode.newValue;
+      }
+
+      // Check if the userID is being edited
+      if (editMode.colName === 'userID') {
+        updatedCompta.userID = editMode.newValue;
+      }
+
+      // Prepare the input for the update mutation
+      const input = {
+        id: updatedCompta.id,
+        _version: updatedCompta._version,
+        title: updatedCompta.title,
+        amount: updatedCompta.amount,
+        type: updatedCompta.type,
+        userID: updatedCompta.userID,
+      };
+
+      // Call the update mutation
+      await API.graphql(graphqlOperation(updateCompta, { input }));
+
+      alert('Update successful');
+
+      // Reset edit mode
+      setEditMode({ rowId: null, colName: null, newValue: null });
+
+      // Fetch the updated data
+      getComptaData();
+    } catch (error) {
+      console.error('Error updating Compta:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAddCompta = async () => {
+    try {
+      // Validate the new Compta data
+      if (!newCompta.title || !newCompta.amount || !newCompta.type || !newCompta.userID) {
+        console.error('Please fill in all the fields for the new Compta element.');
+        return;
+      }
+
+      await API.graphql(graphqlOperation(createCompta, { input: newCompta }));
+
+      // After successful addition, close the modal and fetch the updated data
+      setIsAddComptaModalOpen(false);
+      alert('Addition successful');
+
+      getComptaData();
+    } catch (error) {
+      console.error('Error adding new Compta element:', error);
+    }
   };
 
   useEffect(() => {
@@ -87,7 +166,11 @@ export default function Compta() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        <button className='addComptaButton' onClick={() => setIsAddComptaModalOpen(true)}>
+          Add Compta
+        </button>
       </div>
+
       <div className='compta-table-container'>
         <table className='compta-table'>
           <thead>
@@ -109,14 +192,77 @@ export default function Compta() {
             ) : (
               filteredComptas.map((item) => (
                 <tr key={item.id}>
-                  <td>{item.title}</td>
-                  <td>{item.amount}</td>
-                  <td>{item.type}</td>
-                  <td>{userList.find((user) => user.id === item.userID)?.LastName + ' ' +
-                    userList.find((user) => user.id === item.userID)?.FamilyName}</td>
+                  <td 
+                    onDoubleClick={() => {setEditMode({rowId:item.id, colName:'title', newValue: item.title})}}
+                  >
+                    {editMode.rowId === item.id && editMode.colName === 'title' ? (
+                      <input
+                        className='input-click'
+                        type='text'
+                        onBlur={(e) => setEditMode({ ...editMode, newValue: e.target.value })}
+                        defaultValue={item.title}
+                      />
+                    ) : (
+                      <h3>{item.title}</h3>
+                    )}
+                  </td>
+                  <td 
+                    onDoubleClick={() => {setEditMode({rowId:item.id, colName:'amount', newValue: item.amount})}}
+                  >
+                    {editMode.rowId === item.id && editMode.colName === 'amount' ? (
+                      <input
+                        className='input-click'
+                        type='text'
+                        onBlur={(e) => setEditMode({ ...editMode, newValue: e.target.value })}
+                        defaultValue={item.amount}
+                      />
+                    ) : (
+                      <h3>{item.amount}</h3>
+                    )}
+                  </td>
+                  <td 
+                    onDoubleClick={() => {setEditMode({rowId:item.id, colName:'type', newValue: item.type})}}
+                  >
+                    {editMode.rowId === item.id && editMode.colName === 'type' ? (
+                      <input
+                        className='input-click'
+                        type='text'
+                        onBlur={(e) => setEditMode({ ...editMode, newValue: e.target.value })}
+                        defaultValue={item.type}
+                      />
+                    ) : (
+                      <h3>{item.type}</h3>
+                    )}
+                  </td>
+                  <td 
+                    onDoubleClick={() => {setEditMode({rowId:item.id, colName:'userID', newValue: item.userID})}}
+                  >
+                    {editMode.rowId === item.id && editMode.colName === 'userID' ? (
+                      <>
+                        <input
+                          type="text" 
+                          value={newCompta.userID} 
+                          onChange={(e) => setNewCompta({ ...newCompta, userID: e.target.value })}
+                          onBlur={(e) => setEditMode({ ...editMode, newValue: e.target.value })}
+                          list="user" 
+                        />
+                        <datalist id="user">
+                          <option value="">Select...</option>
+                          {userList.map(item => (
+                            <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
+                          ))}
+                        </datalist>
+                      </>
+                    ) : (
+                      <h3>
+                        {userList.find((user) => user.id === item.userID)?.LastName + ' ' + userList.find((user) => user.id === item.userID)?.FamilyName}
+                      </h3>
+                    )}
+                  </td>
                   <td>{userList.find((user) => user.id === item.userID)?.phoneNumber}</td>
                   <td>
                     <button onClick={() => handleDelete(item)}>Delete</button>
+                    <button onClick={() => handleUpdate(item)}>Update</button>
                   </td>
                 </tr>
               ))
@@ -124,6 +270,37 @@ export default function Compta() {
           </tbody>
         </table>
       </div>
+
+      {/* Modal for adding a new Compta element */}
+      <Modal
+        isOpen={isAddComptaModalOpen}
+        onRequestClose={() => setIsAddComptaModalOpen(false)}
+        contentLabel='Add Compta Modal'
+      >
+        <h2>Add New Compta Element</h2>
+        <form>
+          <label>Title:</label>
+          <input type='text' value={newCompta.title} onChange={(e) => setNewCompta({ ...newCompta, title: e.target.value })} />
+          <label>Amount:</label>
+          <input type='text' value={newCompta.amount} onChange={(e) => setNewCompta({ ...newCompta, amount: e.target.value })} />
+          <label>Type:</label>
+          <input type='text' value={newCompta.type} onChange={(e) => setNewCompta({ ...newCompta, type: e.target.value })} />
+          <label>User ID:</label>
+          <input
+            type="text" 
+            value={newCompta.userID} 
+            onChange={(e) => setNewCompta({ ...newCompta, userID: e.target.value })}
+            list="user" 
+          />
+          <datalist id="user">
+            <option value="">Select...</option>
+            {userList.map(item => (
+              <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
+            ))}
+          </datalist>
+          <button type='button' onClick={handleAddCompta}>Add Compta Element</button>
+        </form>
+      </Modal>
     </section>
   );
 }
