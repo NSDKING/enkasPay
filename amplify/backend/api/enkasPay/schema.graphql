@@ -4,6 +4,7 @@ type Compta @model @auth(rules: [{allow: public}]) {
   amount: String
   type: String
   userID: ID! @index(name: "byUser")
+  date: AWSDate
 }
 
 type Transactions @model @auth(rules: [{allow: public}]) {
@@ -13,6 +14,7 @@ type Transactions @model @auth(rules: [{allow: public}]) {
   full: String
   userID: ID! @index(name: "byUser")
   orderID: ID! @index(name: "byOrder")
+  date: AWSDate
 }
 
 type Payments @model @auth(rules: [{allow: public}]) {
@@ -63,6 +65,7 @@ type Order @model @auth(rules: [{allow: public}]) {
   productID: ID @index(name: "byProduct")
   ProductName: String
   Transactions: [Transactions] @hasMany(indexName: "byOrder", fields: ["id"])
+  date: AWSDate
 }
 
 type OneYear @model @auth(rules: [{allow: public}]) {
@@ -142,5 +145,4 @@ type User @model @auth(rules: [{allow: public}]) {
   solde: String
   Transactions: [Transactions] @hasMany(indexName: "byUser", fields: ["id"])
   Comptas: [Compta] @hasMany(indexName: "byUser", fields: ["id"])
-}
- 
+} 

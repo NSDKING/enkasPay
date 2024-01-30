@@ -9,9 +9,10 @@ export const getCompta = /* GraphQL */ `
       amount
       type
       userID
+      date
       createdAt
       updatedAt
-      _versionf
+      _version
       _deleted
       _lastChangedAt
       __typename
@@ -31,6 +32,7 @@ export const listComptas = /* GraphQL */ `
         amount
         type
         userID
+        date
         createdAt
         updatedAt
         _version
@@ -63,6 +65,7 @@ export const syncComptas = /* GraphQL */ `
         amount
         type
         userID
+        date
         createdAt
         updatedAt
         _version
@@ -97,6 +100,7 @@ export const comptasByUserID = /* GraphQL */ `
         amount
         type
         userID
+        date
         createdAt
         updatedAt
         _version
@@ -119,6 +123,7 @@ export const getTransactions = /* GraphQL */ `
       full
       userID
       orderID
+      date
       createdAt
       updatedAt
       _version
@@ -142,6 +147,7 @@ export const listTransactions = /* GraphQL */ `
         full
         userID
         orderID
+        date
         createdAt
         updatedAt
         _version
@@ -175,6 +181,7 @@ export const syncTransactions = /* GraphQL */ `
         full
         userID
         orderID
+        date
         createdAt
         updatedAt
         _version
@@ -210,6 +217,7 @@ export const transactionsByUserID = /* GraphQL */ `
         full
         userID
         orderID
+        date
         createdAt
         updatedAt
         _version
@@ -245,6 +253,7 @@ export const transactionsByOrderID = /* GraphQL */ `
         full
         userID
         orderID
+        date
         createdAt
         updatedAt
         _version
@@ -821,6 +830,7 @@ export const getOrder = /* GraphQL */ `
         startedAt
         __typename
       }
+      date
       createdAt
       updatedAt
       _version
@@ -843,6 +853,7 @@ export const listOrders = /* GraphQL */ `
         userID
         productID
         ProductName
+        date
         createdAt
         updatedAt
         _version
@@ -875,6 +886,7 @@ export const syncOrders = /* GraphQL */ `
         userID
         productID
         ProductName
+        date
         createdAt
         updatedAt
         _version
@@ -909,6 +921,7 @@ export const ordersByUserID = /* GraphQL */ `
         userID
         productID
         ProductName
+        date
         createdAt
         updatedAt
         _version
@@ -943,6 +956,7 @@ export const ordersByProductID = /* GraphQL */ `
         userID
         productID
         ProductName
+        date
         createdAt
         updatedAt
         _version

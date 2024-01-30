@@ -16,6 +16,7 @@ type EagerCompta = {
   readonly amount?: string | null;
   readonly type?: string | null;
   readonly userID: string;
+  readonly date?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -30,6 +31,7 @@ type LazyCompta = {
   readonly amount?: string | null;
   readonly type?: string | null;
   readonly userID: string;
+  readonly date?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -51,6 +53,7 @@ type EagerTransactions = {
   readonly full?: string | null;
   readonly userID: string;
   readonly orderID: string;
+  readonly date?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -66,6 +69,7 @@ type LazyTransactions = {
   readonly full?: string | null;
   readonly userID: string;
   readonly orderID: string;
+  readonly date?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -259,6 +263,7 @@ type EagerOrder = {
   readonly productID?: string | null;
   readonly ProductName?: string | null;
   readonly Transactions?: (Transactions | null)[] | null;
+  readonly date?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -274,6 +279,7 @@ type LazyOrder = {
   readonly productID?: string | null;
   readonly ProductName?: string | null;
   readonly Transactions: AsyncCollection<Transactions>;
+  readonly date?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

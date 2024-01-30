@@ -12,6 +12,7 @@ export const createCompta = /* GraphQL */ `
       amount
       type
       userID
+      date
       createdAt
       updatedAt
       _version
@@ -32,6 +33,7 @@ export const updateCompta = /* GraphQL */ `
       amount
       type
       userID
+      date
       createdAt
       updatedAt
       _version
@@ -52,6 +54,7 @@ export const deleteCompta = /* GraphQL */ `
       amount
       type
       userID
+      date
       createdAt
       updatedAt
       _version
@@ -73,6 +76,7 @@ export const createTransactions = /* GraphQL */ `
       full
       userID
       orderID
+      date
       createdAt
       updatedAt
       _version
@@ -94,6 +98,7 @@ export const updateTransactions = /* GraphQL */ `
       full
       userID
       orderID
+      date
       createdAt
       updatedAt
       _version
@@ -115,6 +120,7 @@ export const deleteTransactions = /* GraphQL */ `
       full
       userID
       orderID
+      date
       createdAt
       updatedAt
       _version
@@ -455,6 +461,7 @@ export const createOrder = /* GraphQL */ `
         startedAt
         __typename
       }
+      date
       createdAt
       updatedAt
       _version
@@ -480,6 +487,7 @@ export const updateOrder = /* GraphQL */ `
         startedAt
         __typename
       }
+      date
       createdAt
       updatedAt
       _version
@@ -505,6 +513,7 @@ export const deleteOrder = /* GraphQL */ `
         startedAt
         __typename
       }
+      date
       createdAt
       updatedAt
       _version

@@ -3,6 +3,7 @@ import StafNavbar from "../../components/StafNavbar";
 import "./index.css";
 import { useLocation } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify";
+import { createOrder, createTransactions, createCompta } from '../../graphql/mutations';
 
 export default function PaymentAdvance() {
   const { state } = useLocation();
@@ -24,14 +25,21 @@ export default function PaymentAdvance() {
   };
 
   const handleFullPaymentSubmit = async () => {
+    const today = new Date();
+
     // Handle full payment logic
     console.log("Full Payment button clicked");
+    
+    // current date
+    const awsDateFormat = today.toISOString();
+
     
     // Use the createOrder mutation to create an order
     const inputOrder = {
       price: fullPrice, 
       ProductName: product, 
-      userID:user
+      userID: user,
+      date: awsDateFormat,
     }
     const orderResponse = await API.graphql(graphqlOperation(createOrder, { input: inputOrder }));
     const orderId = orderResponse.data.createOrder.id;
@@ -41,24 +49,24 @@ export default function PaymentAdvance() {
       amount: fullPrice, 
       userID: user, 
       orderID: orderId, 
-      advance:false, 
-      full:fullPrice
+      advance: false, 
+      full: fullPrice,
+      date: awsDateFormat,
     }
 
     const ResponseTransaction = await API.graphql(graphqlOperation(createTransactions, { input: inputTransaction }));
  
     // Use the createCompta mutation to create compta
-
     const inputCompta = {
-      title:product,
-      amount:fullPrice,
-      type:"abonnement",
-      userID:user,
+      title: product,
+      amount: fullPrice,
+      type: "abonnement",
+      userID: user,
+      date: awsDateFormat,
     }
   
     const ResponseCompta = await API.graphql(graphqlOperation(createCompta, { input: inputCompta }));
-    console.log(ResponseCompta)
-
+    console.log(awsDateFormat)
     alert("tout est ok");
     // Reset the form state
     setShowFullPaymentForm(false);
@@ -66,27 +74,47 @@ export default function PaymentAdvance() {
    };
 
   const handleAdvanceSubmit = async () => {
+    const today = new Date();
+
     // Handle advance payment logic
     console.log("Advance button clicked");
+    const awsDateFormat = today.toISOString();
+
     
     // Use the createOrder mutation to create an order
-    const orderResponse = await API.graphql(graphqlOperation(createOrder, { input: { price: fullPrice, ProductName: product, userID:user } }));
+    const orderInput ={ 
+      price: fullPrice, 
+      ProductName: product, 
+      userID: user,
+      date: awsDateFormat,
+
+    }
+    const orderResponse = await API.graphql(graphqlOperation(createOrder, { input: orderInput }));
     const orderId = orderResponse.data.createOrder.id;
 
     // Use the createTransactions mutation to create transactions
-    const responseTransaction = await API.graphql(graphqlOperation(createTransactions, { input: { amount: advance, userID: user, full:fullPrice, advance:true, orderID: orderId } }));
+    const transactionInput = { 
+      amount: advance, 
+      userID: user, 
+      full: fullPrice, 
+      advance: true, 
+      orderID: orderId,
+      date: awsDateFormat,
+    }
+
+    const responseTransaction = await API.graphql(graphqlOperation(createTransactions, { input: transactionInput  }));
     console.log(responseTransaction);
-
+ 
     // Use the createCompta mutation to create compta
-
     const inputCompta = {
-      title:product,
-      amount:fullPrice,
-      type:"abonnement",
-      userID:user,
+      title: product,
+      amount: fullPrice,
+      type: "abonnement",
+      userID: user,
+      date: awsDateFormat,
     }
   
-    const ComptaResponse = await API.graphql(graphqlOperation(createCompta, { input:  inputCompta  }));
+    const ComptaResponse = await API.graphql(graphqlOperation(createCompta, { input: inputCompta  }));
     console.log(ComptaResponse)
 
     // Reset the form state
@@ -117,7 +145,7 @@ export default function PaymentAdvance() {
           value={fullPrice}
           onChange={(e) => setFullPrice(e.target.value)}
         />
-        <button type="submit" className="submit-button" onClick={()=>{handleFullPaymentSubmit()}}>
+        <button type="submit" className="submit-button" onClick={() => { handleFullPaymentSubmit() }}>
           Submit
         </button>
       </div>
@@ -139,77 +167,10 @@ export default function PaymentAdvance() {
           value={advance}
           onChange={(e) => setAdvance(e.target.value)}
         />
-        <button type="submit" className="submit-button" onClick={()=>{handleAdvanceSubmit()}}>
+        <button type="submit" className="submit-button" onClick={() => { handleAdvanceSubmit() }}>
           Submit
         </button>
       </div>
     </section>
   );
 }
-
- 
- 
-
-
-export const createOrder = /* GraphQL */ `
-  mutation CreateOrder(
-    $input: CreateOrderInput!
-    $condition: ModelOrderConditionInput
-  ) {
-    createOrder(input: $input, condition: $condition) {
-      id
-      price
-      userID
-      productID
-      ProductName
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-  }
-`;
-export const createTransactions = /* GraphQL */ `
-  mutation CreateTransactions(
-    $input: CreateTransactionsInput!
-    $condition: ModelTransactionsConditionInput
-  ) {
-    createTransactions(input: $input, condition: $condition) {
-      id
-      amount
-      advance
-      full
-      userID
-      orderID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-  }
-`;
-
-export const createCompta = /* GraphQL */ `
-  mutation CreateCompta(
-    $input: CreateComptaInput!
-    $condition: ModelComptaConditionInput
-  ) {
-    createCompta(input: $input, condition: $condition) {
-      id
-      title
-      amount
-      type
-      userID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-  }
-`;

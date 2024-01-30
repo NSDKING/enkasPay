@@ -38,6 +38,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "date": {
+                    "name": "date",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -132,6 +139,13 @@ export const schema = {
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "date": {
+                    "name": "date",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "createdAt": {
@@ -708,6 +722,13 @@ export const schema = {
                             "orderID"
                         ]
                     }
+                },
+                "date": {
+                    "name": "date",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -1674,5 +1695,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "749ad272ae4bffa38afbb8378a584648"
+    "version": "3fa0ebfc322ff1d76831c105f7ee8208"
 };

@@ -17,6 +17,7 @@ export default function Compta() {
     amount: '',
     type: '',
     userID: '',
+    date: '', // Added the date field
   });
   const [editMode, setEditMode] = useState({ rowId: null, colName: null, newValue: null });
 
@@ -97,6 +98,11 @@ export default function Compta() {
         updatedCompta.userID = editMode.newValue;
       }
 
+      // Check if the date is being edited
+      if (editMode.colName === 'date') {
+        updatedCompta.date = editMode.newValue;
+      }
+
       // Prepare the input for the update mutation
       const input = {
         id: updatedCompta.id,
@@ -105,6 +111,7 @@ export default function Compta() {
         amount: updatedCompta.amount,
         type: updatedCompta.type,
         userID: updatedCompta.userID,
+        date: updatedCompta.date,
       };
 
       // Call the update mutation
@@ -127,7 +134,7 @@ export default function Compta() {
   const handleAddCompta = async () => {
     try {
       // Validate the new Compta data
-      if (!newCompta.title || !newCompta.amount || !newCompta.type || !newCompta.userID) {
+      if (!newCompta.title || !newCompta.amount || !newCompta.type || !newCompta.userID || !newCompta.date) {
         console.error('Please fill in all the fields for the new Compta element.');
         return;
       }
@@ -180,6 +187,7 @@ export default function Compta() {
               <th>Type</th>
               <th>Nom</th>
               <th>Numero</th>
+              <th>Date</th> {/* Added Date column */}
               <th>Actions</th>
               {/* Add more columns based on your Compta data structure */}
             </tr>
@@ -260,6 +268,20 @@ export default function Compta() {
                     )}
                   </td>
                   <td>{userList.find((user) => user.id === item.userID)?.phoneNumber}</td>
+                  <td 
+                    onDoubleClick={() => {setEditMode({rowId:item.id, colName:'date', newValue: item.date})}}
+                  >
+                    {editMode.rowId === item.id && editMode.colName === 'date' ? (
+                      <input
+                        className='input-click'
+                        type='date'
+                        onBlur={(e) => setEditMode({ ...editMode, newValue: e.target.value })}
+                        defaultValue={item.date}
+                      />
+                    ) : (
+                      <h3>{item.date}</h3>
+                    )}
+                  </td>
                   <td>
                     <button onClick={() => handleDelete(item)}>Delete</button>
                     <button onClick={() => handleUpdate(item)}>Update</button>
@@ -298,6 +320,13 @@ export default function Compta() {
               <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
             ))}
           </datalist>
+          {/* New date field */}
+          <label>Date:</label>
+          <input 
+            type="date" 
+            value={newCompta.date} 
+            onChange={(e) => setNewCompta({ ...newCompta, date: e.target.value })} 
+          />
           <button type='button' onClick={handleAddCompta}>Add Compta Element</button>
         </form>
       </Modal>
