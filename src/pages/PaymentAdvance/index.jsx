@@ -39,7 +39,7 @@ export default function PaymentAdvance() {
       price: fullPrice, 
       ProductName: product, 
       userID: user,
-      date: awsDateFormat,
+      
     }
     const orderResponse = await API.graphql(graphqlOperation(createOrder, { input: inputOrder }));
     const orderId = orderResponse.data.createOrder.id;
@@ -51,7 +51,7 @@ export default function PaymentAdvance() {
       orderID: orderId, 
       advance: false, 
       full: fullPrice,
-      date: awsDateFormat,
+      
     }
 
     const ResponseTransaction = await API.graphql(graphqlOperation(createTransactions, { input: inputTransaction }));
@@ -62,7 +62,7 @@ export default function PaymentAdvance() {
       amount: fullPrice,
       type: "abonnement",
       userID: user,
-      date: awsDateFormat,
+      
     }
   
     const ResponseCompta = await API.graphql(graphqlOperation(createCompta, { input: inputCompta }));
@@ -86,7 +86,7 @@ export default function PaymentAdvance() {
       price: fullPrice, 
       ProductName: product, 
       userID: user,
-      date: awsDateFormat,
+      
 
     }
     const orderResponse = await API.graphql(graphqlOperation(createOrder, { input: orderInput }));
@@ -99,7 +99,7 @@ export default function PaymentAdvance() {
       full: fullPrice, 
       advance: true, 
       orderID: orderId,
-      date: awsDateFormat,
+      
     }
 
     const responseTransaction = await API.graphql(graphqlOperation(createTransactions, { input: transactionInput  }));
@@ -111,8 +111,7 @@ export default function PaymentAdvance() {
       amount: fullPrice,
       type: "abonnement",
       userID: user,
-      date: awsDateFormat,
-    }
+     }
   
     const ComptaResponse = await API.graphql(graphqlOperation(createCompta, { input: inputCompta  }));
     console.log(ComptaResponse)

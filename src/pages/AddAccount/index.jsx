@@ -132,6 +132,7 @@ export default function AddAccount() {
                             <option value="spotify">spotify</option>
                             <option value="disney">disney</option>
                             <option value="prime">Prime</option>
+                            <option value="Crunshyroll">Crunshyroll</option>
                         </select>
                         )}
                     />

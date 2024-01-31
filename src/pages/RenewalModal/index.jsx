@@ -47,7 +47,7 @@ const RenewalModal = ({ selectedProfiles, onClose, service, profileRenewal }) =>
         amount: !showAdvanceInputs? fullPrice: advanceAmount,
         type: "abonnement",
         userID: profileRenewal.userID,
-        date:awsDateFormat,
+        
       };
       const ResponseCompta = await API.graphql(graphqlOperation(createCompta, { input: inputCompta }));
       console.log(ResponseCompta);
@@ -59,7 +59,7 @@ const RenewalModal = ({ selectedProfiles, onClose, service, profileRenewal }) =>
         price: fullPrice, 
         ProductName: service + days, 
         userID:profileRenewal.userID,
-        date:awsDateFormat,
+        
       } 
       const orderResponse = await API.graphql(graphqlOperation(createOrder, { input:  OrderInput}));
       const orderId = orderResponse.data.createOrder.id;
@@ -72,7 +72,7 @@ const RenewalModal = ({ selectedProfiles, onClose, service, profileRenewal }) =>
          full:fullPrice, 
          advance:showAdvanceInputs && advanceAmount ? true : false, 
          orderID: orderId,
-         date:awsDateFormat,
+         
 
         }
       const responseTransaction = await API.graphql(graphqlOperation(createTransactions, { input: inputTransaction }));

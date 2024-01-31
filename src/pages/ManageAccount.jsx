@@ -24,6 +24,9 @@ export default function ManageAccount() {
     }
     const handleClick3 = ()=>{
         navigate("/takeAccount", {state:{ service:'prime'}}) 
+    }    
+    const handleClick4 = ()=>{
+        navigate("/takeAccount", {state:{ service:'Crunshyroll'}}) 
     }
  
  
@@ -35,6 +38,7 @@ export default function ManageAccount() {
                 <div className="categories-mobile-boxs" onClick={handleClick2}><img src={disney} width="80%" alt="disney plus"/></div>
                 <div className="categories-mobile-boxs" onClick={handleClick3}><img src={PV} width="80%"alt="spotify"/></div>
                 <div className="categories-mobile-boxs" onClick={handleClick}><h1>vpn</h1></div>
+                <div className="categories-mobile-boxs" onClick={handleClick4}><h1>Crunshyroll</h1></div>
 
             </div>
             
