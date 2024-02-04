@@ -47,7 +47,8 @@ export default function Compta() {
     setLoading(true);
     try {
       const response = await API.graphql(graphqlOperation(listUsers, { limit: 100000 }));
-      setUserList(response.data.listUsers.items);
+      const NonDeletUser = response.data.listUsers.items.filter(user=>!user._deleted)
+      setUserList(NonDeletUser);
     } catch (e) {
       console.log(e);
     } finally {
