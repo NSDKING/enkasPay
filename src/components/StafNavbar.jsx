@@ -25,7 +25,6 @@ export default function StafNavbar() {
                 <nav className="special_navbar">
                     <Link to="/AddAccount" style={linkStyle}>ajouter</Link>
                     <Link to="/ManageAccount" style={linkStyle}>prendre</Link>
-                    <Link to="/ConsultPage" style={linkStyle}>consulter</Link>
                     <Link to="/soon" style={linkStyle}>soon</Link>
                     <Link to="/finshprofils" style={linkStyle}>finish</Link>
                     <Link to="/SaveOrder" style={linkStyle}>order</Link>
@@ -34,12 +33,11 @@ export default function StafNavbar() {
                     <Link to="/choose-accounts-list-type" style={linkStyle}>comptes</Link>
                     <Link to="/order-list" style={linkStyle}>OrderList</Link>
                     <Link to="/Past" style={linkStyle}>past</Link>
-                    <Link to="/staff-Affiliation" style={linkStyle}>affiliation</Link>
-                    <Link to="/crm-HomePage" style={linkStyle}>crm</Link>
-                    <Link to="/PaymentList-enkas" style={linkStyle}>payment</Link>
+                    {/*<Link to="/PaymentList-enkas" style={linkStyle}>payment</Link>*/}
                     <Link to="/change-price-selector" style={linkStyle}>prix</Link>
                     <Link to="/PaymentList-Compta" style={linkStyle}>compta</Link>
                     <Link to="/PaymentList-Advance" style={linkStyle}>avance</Link>
+                    <Link to="/PaymentList-Board" style={linkStyle}>Board</Link>
                 </nav>
         </section>
     )

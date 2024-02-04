@@ -88,6 +88,7 @@ import ChangePriceDef from './pages/changepricedef/index.jsx';
 import PaymentAdvance from './pages/PaymentAdvance/index.jsx';
 import Compta from './pages/compta/index.jsx';
 import AdvancePayments from './pages/AdvancePayments/index.jsx';
+import Board from './pages/Board/index.jsx';
    
 function App() {
   const [user, setUser]= useState(null)
@@ -327,6 +328,7 @@ function App() {
           <Route path='/PaymentList-enkas' Component={PaymentList}/>
           <Route path='/PaymentList-Compta' Component={Compta}/>
           <Route path='/PaymentList-Advance' Component={AdvancePayments}/>
+          <Route path='/PaymentList-Board' Component={Board}/>
  
           <Route exact path="/finshprofils" Component={ProfileFinish} />
           <Route path='/change-price-selector' Component={ChangePriceSelector}/>
