@@ -47,7 +47,7 @@ export default function Compta() {
     setLoading(true);
     try {
       const response = await API.graphql(graphqlOperation(listUsers, { limit: 100000 }));
-      const NonDeletUser = response.data.listUsers.items.filter(user=>!user._deleted)
+      const NonDeletUser = response.data.listUsers.items.filter(user => !user._deleted)
       setUserList(NonDeletUser);
     } catch (e) {
       console.log(e);
@@ -58,8 +58,8 @@ export default function Compta() {
 
   const handleDelete = async (item) => {
     try {
-      const input = { 
-        id: item.id,  
+      const input = {
+        id: item.id,
         _version: item._version
       };
       await API.graphql(graphqlOperation(deleteCompta, { input }));
@@ -152,6 +152,36 @@ export default function Compta() {
     }
   };
 
+  const handleDuplicate = async (item) => {
+    try {
+      // Create a duplicate of the selected Compta item
+      const duplicatedCompta = { ...item };
+
+      // Update the date to today
+      const today = new Date().toISOString().split('T')[0];
+      duplicatedCompta.date = today;
+
+      const input = {
+        title: duplicatedCompta.title,
+        amount: duplicatedCompta.amount,
+        type: duplicatedCompta.type,
+        userID: duplicatedCompta.userID,
+        date: duplicatedCompta.date,
+      };
+
+      // Call the create mutation to add the duplicated Compta
+      const response = await API.graphql(graphqlOperation(createCompta, { input: input }));
+      console.log(response)
+
+      alert('Transaction duplicated successfully');
+
+      // Fetch the updated data
+      getComptaData();
+    } catch (error) {
+      console.error('Error duplicating Compta:', error);
+    }
+  };
+
   useEffect(() => {
     getComptaData();
     getListUsers();
@@ -159,7 +189,7 @@ export default function Compta() {
 
   const filteredComptas = comptaList.filter((compta) => {
     const username = (userList.find((user) => user.id === compta.userID)?.LastName + ' ' +
-                      userList.find((user) => user.id === compta.userID)?.FamilyName || '').toLowerCase();
+      userList.find((user) => user.id === compta.userID)?.FamilyName || '').toLowerCase();
     return username.includes(searchTerm.toLowerCase());
   });
 
@@ -188,21 +218,20 @@ export default function Compta() {
               <th>Type</th>
               <th>Nom</th>
               <th>Numero</th>
-              <th>Date</th> {/* Added Date column */}
+              <th>Date</th>
               <th>Actions</th>
-              {/* Add more columns based on your Compta data structure */}
-            </tr>
+             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan='7'>Loading...</td>
+                <td colSpan='8'>Loading...</td>
               </tr>
             ) : (
               filteredComptas.map((item) => (
                 <tr key={item.id}>
-                  <td 
-                    onDoubleClick={() => {setEditMode({rowId:item.id, colName:'title', newValue: item.title})}}
+                  <td
+                    onDoubleClick={() => { setEditMode({ rowId: item.id, colName: 'title', newValue: item.title }) }}
                   >
                     {editMode.rowId === item.id && editMode.colName === 'title' ? (
                       <input
@@ -215,8 +244,8 @@ export default function Compta() {
                       <h3>{item.title}</h3>
                     )}
                   </td>
-                  <td 
-                    onDoubleClick={() => {setEditMode({rowId:item.id, colName:'amount', newValue: item.amount})}}
+                  <td
+                    onDoubleClick={() => { setEditMode({ rowId: item.id, colName: 'amount', newValue: item.amount }) }}
                   >
                     {editMode.rowId === item.id && editMode.colName === 'amount' ? (
                       <input
@@ -229,8 +258,8 @@ export default function Compta() {
                       <h3>{item.amount}</h3>
                     )}
                   </td>
-                  <td 
-                    onDoubleClick={() => {setEditMode({rowId:item.id, colName:'type', newValue: item.type})}}
+                  <td
+                    onDoubleClick={() => { setEditMode({ rowId: item.id, colName: 'type', newValue: item.type }) }}
                   >
                     {editMode.rowId === item.id && editMode.colName === 'type' ? (
                       <input
@@ -243,22 +272,22 @@ export default function Compta() {
                       <h3>{item.type}</h3>
                     )}
                   </td>
-                  <td 
-                    onDoubleClick={() => {setEditMode({rowId:item.id, colName:'userID', newValue: item.userID})}}
+                  <td
+                    onDoubleClick={() => { setEditMode({ rowId: item.id, colName: 'userID', newValue: item.userID }) }}
                   >
                     {editMode.rowId === item.id && editMode.colName === 'userID' ? (
                       <>
                         <input
-                          type="text" 
-                          value={newCompta.userID} 
+                          type="text"
+                          value={newCompta.userID}
                           onChange={(e) => setNewCompta({ ...newCompta, userID: e.target.value })}
                           onBlur={(e) => setEditMode({ ...editMode, newValue: e.target.value })}
-                          list="user" 
+                          list="user"
                         />
                         <datalist id="user">
                           <option value="">Select...</option>
                           {userList.map(item => (
-                            <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
+                            <option value={item.id} key={item.id}>{item.FamilyName + " " + item.LastName}</option>
                           ))}
                         </datalist>
                       </>
@@ -269,8 +298,8 @@ export default function Compta() {
                     )}
                   </td>
                   <td>{userList.find((user) => user.id === item.userID)?.phoneNumber}</td>
-                  <td 
-                    onDoubleClick={() => {setEditMode({rowId:item.id, colName:'date', newValue: item.date})}}
+                  <td
+                    onDoubleClick={() => { setEditMode({ rowId: item.id, colName: 'date', newValue: item.date }) }}
                   >
                     {editMode.rowId === item.id && editMode.colName === 'date' ? (
                       <input
@@ -284,6 +313,7 @@ export default function Compta() {
                     )}
                   </td>
                   <td>
+                    <button onClick={() => handleDuplicate(item)}>Duplicate</button>
                     <button onClick={() => handleDelete(item)}>Delete</button>
                     <button onClick={() => handleUpdate(item)}>Update</button>
                   </td>
@@ -310,23 +340,23 @@ export default function Compta() {
           <input type='text' value={newCompta.type} onChange={(e) => setNewCompta({ ...newCompta, type: e.target.value })} />
           <label>User ID:</label>
           <input
-            type="text" 
-            value={newCompta.userID} 
+            type="text"
+            value={newCompta.userID}
             onChange={(e) => setNewCompta({ ...newCompta, userID: e.target.value })}
-            list="user" 
+            list="user"
           />
           <datalist id="user">
             <option value="">Select...</option>
             {userList.map(item => (
-              <option value={item.id} key={item.id}>{item.FamilyName +" "+ item.LastName}</option>
+              <option value={item.id} key={item.id}>{item.FamilyName + " " + item.LastName}</option>
             ))}
           </datalist>
           {/* New date field */}
           <label>Date:</label>
-          <input 
-            type="date" 
-            value={newCompta.date} 
-            onChange={(e) => setNewCompta({ ...newCompta, date: e.target.value })} 
+          <input
+            type="date"
+            value={newCompta.date}
+            onChange={(e) => setNewCompta({ ...newCompta, date: e.target.value })}
           />
           <button type='button' onClick={handleAddCompta}>Add Compta Element</button>
         </form>

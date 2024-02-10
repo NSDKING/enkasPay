@@ -1,26 +1,54 @@
-.dashboard {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 20px;
-  }
-  
-  .dashboard-box {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dashboard-box h2 {
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .dashboard-box p {
-    font-size: 18px;
-    font-weight: bold;
-    color: #4CAF50;
-  }
-  
+/* Board.css */
+
+.dashboard-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.grid-item {
+  flex: 1 1 30%;
+  margin: 15px;
+}
+
+.dashboard-box {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.dashboard-box:hover {
+  background-color: #e0e0e0;
+}
+
+.return-box {
+  padding: 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: 1px solid #45a049;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.return-box:hover {
+  background-color: #45a049;
+}
+
+.margin-box {
+  padding: 20px;
+  background-color: #2196f3;
+  color: #fff;
+  border: 1px solid #1e87db;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.margin-box:hover {
+  background-color: #1e87db;
+}
