@@ -4,11 +4,18 @@ import { listAccounts, listComptas, listUsers } from '../../graphql/queries';
 import './index.css';
 
 export default function Board() {
-  const [comptas, setComptas] = useState([]);
+  const [comptasMonth, setComptasMonth] = useState([]);
+  const [comptasAnnual, setComptasAnnual] = useState([]);
   const [comptastoDay, setComptastoDay] = useState([]);
   const [users, setUsers] = useState([]);
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  function getCurrentYear() {
+    const today = new Date();
+    const yearNumber = today.getFullYear();
+    return yearNumber;
+  }
 
   function getCurrentMonthNumber() {
     const today = new Date();
@@ -28,6 +35,12 @@ export default function Board() {
     return monthNumber;
   }
 
+  function getYearFromDate(dateString) {
+    const dateObject = new Date(dateString);
+    const yearNumber = dateObject.getFullYear();
+    return yearNumber;
+  }
+
   function getDayFromDate(dateString) {
     const dateObject = new Date(dateString);
     const day = dateObject.getDate();
@@ -41,8 +54,10 @@ export default function Board() {
 
         // Fetch Comptas
         const responseComptas = await API.graphql(graphqlOperation(listComptas, { limit: 1000 }));
-        const filterComptas = responseComptas.data.listComptas.items.filter(item => getMonthNumberFromDate(item.date) === getCurrentMonthNumber());
-        setComptas(filterComptas);
+        const filteryearComptas = responseComptas.data.listComptas.items.filter(item => getYearFromDate(item.date) === getCurrentYear());
+        const filterComptas = filteryearComptas.filter(item => getMonthNumberFromDate(item.date) === getCurrentMonthNumber());
+        setComptasMonth(filterComptas);
+        setComptasAnnual(filteryearComptas);
 
         // Fetch Users
         const responseUsers = await API.graphql(graphqlOperation(listUsers, { limit: 1000 }));
@@ -68,10 +83,15 @@ export default function Board() {
   }, []);
 
   // Calculate totalCa, totalExpense, solde, and new user count
-  const totalCa = comptas.reduce((sum, compta) => (compta.amount >= 0 ? sum + parseFloat(compta.amount) : sum), 0);
-  const totalExpense = comptas.reduce((sum, compta) => (compta.amount < 0 ? sum + parseFloat(compta.amount) : sum), 0);
-  const solde = totalCa + totalExpense;
+  const totalCa = comptasMonth.reduce((sum, compta) => (compta.amount >= 0 ? sum + parseFloat(compta.amount) : sum), 0);
+  const totalExpense = comptasMonth.reduce((sum, compta) => (compta.amount < 0 ? sum + parseFloat(compta.amount) : sum), 0);
   const newUserCount = users.length;
+  const annualCa = comptasAnnual.reduce((sum, compta) =>(compta.amount >= 0 ? sum + parseFloat(compta.amount) : sum), 0)
+  const annualExpense = comptasAnnual.reduce((sum, compta) =>(compta.amount <= 0 ? sum + parseFloat(compta.amount) : sum), 0)
+  const solde = annualCa + annualExpense;
+
+ 
+
 
   // Calculate totalCa for the day
   const totalCaDay = comptastoDay.reduce((sum, compta) => (compta.amount >= 0 ? sum + parseFloat(compta.amount) : sum), 0);
@@ -90,26 +110,23 @@ export default function Board() {
     return monthlyMarginPercentage.toFixed(2);
   };
 
-  // Calculate annual return and margin
-  const calculateAnnualCa = () => {
-    const annualCa = comptas.reduce((sum, compta) => (getMonthNumberFromDate(compta.date) === getCurrentMonthNumber() ? sum + parseFloat(compta.amount) : sum), 0);
-    return annualCa.toFixed(2);
-  };
-
-  const calculateAnnualExpense = () => {
-    const annualExpense = comptas.reduce((sum, compta) => (getMonthNumberFromDate(compta.date) === getCurrentMonthNumber() && compta.amount < 0 ? sum + parseFloat(compta.amount) : sum), 0);
-    return Math.abs(annualExpense).toFixed(2);
-  };
-
+ 
   const calculateAnnualReturn = () => {
-    const annualReturnPercentage = (parseFloat(calculateAnnualCa()) + parseFloat(calculateAnnualExpense())) / parseFloat(calculateAnnualExpense()) * 100;
+    const annualReturnPercentage = (annualCa + annualExpense) / -annualExpense * 100;
     return annualReturnPercentage.toFixed(2);
   };
 
   const calculateAnnualMargin = () => {
-    const annualMarginPercentage = (parseFloat(calculateAnnualCa()) + parseFloat(calculateAnnualExpense())) / parseFloat(calculateAnnualCa()) * 100;
+    const annualMarginPercentage = (annualCa + annualExpense) / annualCa * 100;
+  
     return annualMarginPercentage.toFixed(2);
   };
+
+  useEffect(() => {
+     
+    console.log("test")
+  }, [])
+  
 
   return (
     <section className="dashboard">
@@ -160,12 +177,12 @@ export default function Board() {
 
       <div className="dashboard-box">
         <h2>Annual CA</h2>
-        <p>{calculateAnnualCa()}</p>
+        <p>{annualCa}</p>
       </div>
 
       <div className="dashboard-box">
         <h2>Annual Expense</h2>
-        <p>{calculateAnnualExpense()}</p>
+        <p>{annualExpense}</p>
       </div>
     </section>
   );
