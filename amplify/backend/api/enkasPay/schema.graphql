@@ -1,3 +1,12 @@
+type Bilan @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  ca: String
+  expense: String
+  solde: String
+  date: AWSDate
+  ActiveCustomer: String
+}
+
 type Compta @model @auth(rules: [{allow: public}]) {
   id: ID!
   title: String
@@ -145,4 +154,5 @@ type User @model @auth(rules: [{allow: public}]) {
   solde: String
   Transactions: [Transactions] @hasMany(indexName: "byUser", fields: ["id"])
   Comptas: [Compta] @hasMany(indexName: "byUser", fields: ["id"])
-} 
+}
+ 

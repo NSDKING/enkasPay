@@ -54,19 +54,23 @@ export default function Board() {
 
         // Fetch Comptas
         const responseComptas = await API.graphql(graphqlOperation(listComptas, { limit: 1000 }));
-        const filteryearComptas = responseComptas.data.listComptas.items.filter(item => getYearFromDate(item.date) === getCurrentYear());
+        const NondeletedCompta = responseComptas.data.listComptas.items.filter(item=>!item._deleted)
+        const filteryearComptas = NondeletedCompta.filter(item => getYearFromDate(item.date) === getCurrentYear());
         const filterComptas = filteryearComptas.filter(item => getMonthNumberFromDate(item.date) === getCurrentMonthNumber());
         setComptasMonth(filterComptas);
         setComptasAnnual(filteryearComptas);
 
         // Fetch Users
         const responseUsers = await API.graphql(graphqlOperation(listUsers, { limit: 1000 }));
-        const filterUsers = responseUsers.data.listUsers.items.filter(user => getMonthNumberFromDate(user.createdAt) === getCurrentMonthNumber());
+        const nonDeletedUser = responseUsers.data.listUsers.items.filter(user=>!user._deleted);
+
+        const filterUsers = nonDeletedUser.filter(user => getMonthNumberFromDate(user.createdAt) === getCurrentMonthNumber());
         setUsers(filterUsers);
 
         // Fetch Accounts
         const responseAccounts = await API.graphql(graphqlOperation(listAccounts, { limit: 1000 }));
-        const filterAccounts = responseAccounts.data.listAccounts.items.filter(account => !account.free); // Active customers
+        const nonDeletedAccount = responseAccounts.data.listAccounts.items.filter(account=>!account._deleted);
+        const filterAccounts = nonDeletedAccount.filter(account => !account.free); // Active customers
         setAccounts(filterAccounts);
 
         // Filter Comptas for the current day

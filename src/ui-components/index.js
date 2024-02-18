@@ -6,6 +6,8 @@
 
 export { default as AccountCreateForm } from "./AccountCreateForm";
 export { default as AccountUpdateForm } from "./AccountUpdateForm";
+export { default as BilanCreateForm } from "./BilanCreateForm";
+export { default as BilanUpdateForm } from "./BilanUpdateForm";
 export { default as OneMonthCreateForm } from "./OneMonthCreateForm";
 export { default as OneMonthUpdateForm } from "./OneMonthUpdateForm";
 export { default as OneYearCreateForm } from "./OneYearCreateForm";

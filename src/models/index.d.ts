@@ -6,6 +6,42 @@ import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@a
 
 
 
+type EagerBilan = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Bilan, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly ca?: string | null;
+  readonly expense?: string | null;
+  readonly solde?: string | null;
+  readonly date?: string | null;
+  readonly ActiveCustomer?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyBilan = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Bilan, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly ca?: string | null;
+  readonly expense?: string | null;
+  readonly solde?: string | null;
+  readonly date?: string | null;
+  readonly ActiveCustomer?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Bilan = LazyLoading extends LazyLoadingDisabled ? EagerBilan : LazyBilan
+
+export declare const Bilan: (new (init: ModelInit<Bilan>) => Bilan) & {
+  copyOf(source: Bilan, mutator: (draft: MutableModel<Bilan>) => MutableModel<Bilan> | void): Bilan;
+}
+
 type EagerCompta = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Compta, 'id'>;
