@@ -30,8 +30,10 @@ export default function Compta() {
     try {
       const response = await API.graphql(graphqlOperation(listComptas, { limit: 1000000000 }));
       const NoneDeleted = response.data.listComptas.items.filter(item => !item._deleted);
+      // Sort the items array in descending order based on the date property
+      const sortedComptas = NoneDeleted.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 
-      setComptaList(NoneDeleted);
+      setComptaList(sortedComptas);
     } catch (e) {
       console.error('Error fetching Compta data:', e);
     } finally {
@@ -364,3 +366,5 @@ export default function Compta() {
     </section>
   );
 }
+
+
