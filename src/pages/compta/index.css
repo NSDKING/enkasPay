@@ -55,3 +55,10 @@
   background-color: #ddd;
   color: black;
 }
+
+.compta-table td:first-child {
+  max-width: 100px; /* Adjust the value based on your preference */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
