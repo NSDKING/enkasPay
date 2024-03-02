@@ -46,6 +46,11 @@ export default function Board() {
     const day = dateObject.getDate();
     return day;
   }
+  
+  const calculateMonthlyBenefit = () => {
+    const monthlyBenefit = parseFloat(totalCa) + parseFloat(totalExpense);
+    return monthlyBenefit.toFixed(2);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -168,6 +173,12 @@ export default function Board() {
         <h2>Monthly Return</h2>
         <p>{calculateMonthlyReturn()}%</p>
       </div>
+
+      <div className="dashboard-box">
+        <h2>Monthly Benefit</h2>
+        <p>{calculateMonthlyBenefit()}</p>
+      </div>
+
 
       <div className="margin-box">
         <h2>Annual Margin</h2>
