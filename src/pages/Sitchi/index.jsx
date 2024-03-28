@@ -1,7 +1,7 @@
 import "./index.css";
 import logo from "./img/logo.png";
 import st from "./img/R.png";
-import telec from "./img/telec.jpeg";
+import telec from "./img/telec.png";
 import { useNavigate } from "react-router-dom";
 
 export default function SitchiPage() {
