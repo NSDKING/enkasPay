@@ -1,6 +1,162 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getSitchi = /* GraphQL */ `
+  query GetSitchi($id: ID!) {
+    getSitchi(id: $id) {
+      id
+      Nom
+      Prenom
+      numero
+      cite
+      precommender
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const listSitchis = /* GraphQL */ `
+  query ListSitchis(
+    $filter: ModelSitchiFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSitchis(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        Nom
+        Prenom
+        numero
+        cite
+        precommender
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const syncSitchis = /* GraphQL */ `
+  query SyncSitchis(
+    $filter: ModelSitchiFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncSitchis(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        Nom
+        Prenom
+        numero
+        cite
+        precommender
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const getBilan = /* GraphQL */ `
+  query GetBilan($id: ID!) {
+    getBilan(id: $id) {
+      id
+      ca
+      expense
+      solde
+      date
+      ActiveCustomer
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const listBilans = /* GraphQL */ `
+  query ListBilans(
+    $filter: ModelBilanFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBilans(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        ca
+        expense
+        solde
+        date
+        ActiveCustomer
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const syncBilans = /* GraphQL */ `
+  query SyncBilans(
+    $filter: ModelBilanFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncBilans(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        ca
+        expense
+        solde
+        date
+        ActiveCustomer
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
 export const getCompta = /* GraphQL */ `
   query GetCompta($id: ID!) {
     getCompta(id: $id) {

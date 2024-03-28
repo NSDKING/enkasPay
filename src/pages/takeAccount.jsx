@@ -19,7 +19,7 @@ export default function TakeAccount() {
     const [userList, setUserList] = useState([])
     const [theAccount, setTheAccount] = useState({})
     const [freeAccount, setFreeAccount] = useState({})
-    const [daysToAdd, setDaysToAdd] = useState(0); // New state for the number of days to add
+    const [daysToAdd, setDaysToAdd] = useState(0); 
     const navigate = useNavigate();
 
     const [disp, setDisp] = useState(0)

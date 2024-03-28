@@ -16,6 +16,8 @@ export { default as PaymentsCreateForm } from "./PaymentsCreateForm";
 export { default as PaymentsUpdateForm } from "./PaymentsUpdateForm";
 export { default as ProductCreateForm } from "./ProductCreateForm";
 export { default as ProductUpdateForm } from "./ProductUpdateForm";
+export { default as SitchiCreateForm } from "./SitchiCreateForm";
+export { default as SitchiUpdateForm } from "./SitchiUpdateForm";
 export { default as ThreeMonthCreateForm } from "./ThreeMonthCreateForm";
 export { default as ThreeMonthUpdateForm } from "./ThreeMonthUpdateForm";
 export { default as UserCreateForm } from "./UserCreateForm";

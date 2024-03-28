@@ -6,6 +6,42 @@ import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@a
 
 
 
+type EagerSitchi = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Sitchi, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly Nom?: string | null;
+  readonly Prenom?: string | null;
+  readonly numero?: string | null;
+  readonly cite?: string | null;
+  readonly precommender?: boolean | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazySitchi = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Sitchi, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly Nom?: string | null;
+  readonly Prenom?: string | null;
+  readonly numero?: string | null;
+  readonly cite?: string | null;
+  readonly precommender?: boolean | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Sitchi = LazyLoading extends LazyLoadingDisabled ? EagerSitchi : LazySitchi
+
+export declare const Sitchi: (new (init: ModelInit<Sitchi>) => Sitchi) & {
+  copyOf(source: Sitchi, mutator: (draft: MutableModel<Sitchi>) => MutableModel<Sitchi> | void): Sitchi;
+}
+
 type EagerBilan = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Bilan, 'id'>;

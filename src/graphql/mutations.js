@@ -1,6 +1,132 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createSitchi = /* GraphQL */ `
+  mutation CreateSitchi(
+    $input: CreateSitchiInput!
+    $condition: ModelSitchiConditionInput
+  ) {
+    createSitchi(input: $input, condition: $condition) {
+      id
+      Nom
+      Prenom
+      numero
+      cite
+      precommender
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const updateSitchi = /* GraphQL */ `
+  mutation UpdateSitchi(
+    $input: UpdateSitchiInput!
+    $condition: ModelSitchiConditionInput
+  ) {
+    updateSitchi(input: $input, condition: $condition) {
+      id
+      Nom
+      Prenom
+      numero
+      cite
+      precommender
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const deleteSitchi = /* GraphQL */ `
+  mutation DeleteSitchi(
+    $input: DeleteSitchiInput!
+    $condition: ModelSitchiConditionInput
+  ) {
+    deleteSitchi(input: $input, condition: $condition) {
+      id
+      Nom
+      Prenom
+      numero
+      cite
+      precommender
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const createBilan = /* GraphQL */ `
+  mutation CreateBilan(
+    $input: CreateBilanInput!
+    $condition: ModelBilanConditionInput
+  ) {
+    createBilan(input: $input, condition: $condition) {
+      id
+      ca
+      expense
+      solde
+      date
+      ActiveCustomer
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const updateBilan = /* GraphQL */ `
+  mutation UpdateBilan(
+    $input: UpdateBilanInput!
+    $condition: ModelBilanConditionInput
+  ) {
+    updateBilan(input: $input, condition: $condition) {
+      id
+      ca
+      expense
+      solde
+      date
+      ActiveCustomer
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const deleteBilan = /* GraphQL */ `
+  mutation DeleteBilan(
+    $input: DeleteBilanInput!
+    $condition: ModelBilanConditionInput
+  ) {
+    deleteBilan(input: $input, condition: $condition) {
+      id
+      ca
+      expense
+      solde
+      date
+      ActiveCustomer
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
 export const createCompta = /* GraphQL */ `
   mutation CreateCompta(
     $input: CreateComptaInput!

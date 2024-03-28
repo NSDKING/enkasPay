@@ -1,6 +1,114 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateSitchi = /* GraphQL */ `
+  subscription OnCreateSitchi($filter: ModelSubscriptionSitchiFilterInput) {
+    onCreateSitchi(filter: $filter) {
+      id
+      Nom
+      Prenom
+      numero
+      cite
+      precommender
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateSitchi = /* GraphQL */ `
+  subscription OnUpdateSitchi($filter: ModelSubscriptionSitchiFilterInput) {
+    onUpdateSitchi(filter: $filter) {
+      id
+      Nom
+      Prenom
+      numero
+      cite
+      precommender
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteSitchi = /* GraphQL */ `
+  subscription OnDeleteSitchi($filter: ModelSubscriptionSitchiFilterInput) {
+    onDeleteSitchi(filter: $filter) {
+      id
+      Nom
+      Prenom
+      numero
+      cite
+      precommender
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onCreateBilan = /* GraphQL */ `
+  subscription OnCreateBilan($filter: ModelSubscriptionBilanFilterInput) {
+    onCreateBilan(filter: $filter) {
+      id
+      ca
+      expense
+      solde
+      date
+      ActiveCustomer
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateBilan = /* GraphQL */ `
+  subscription OnUpdateBilan($filter: ModelSubscriptionBilanFilterInput) {
+    onUpdateBilan(filter: $filter) {
+      id
+      ca
+      expense
+      solde
+      date
+      ActiveCustomer
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteBilan = /* GraphQL */ `
+  subscription OnDeleteBilan($filter: ModelSubscriptionBilanFilterInput) {
+    onDeleteBilan(filter: $filter) {
+      id
+      ca
+      expense
+      solde
+      date
+      ActiveCustomer
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
 export const onCreateCompta = /* GraphQL */ `
   subscription OnCreateCompta($filter: ModelSubscriptionComptaFilterInput) {
     onCreateCompta(filter: $filter) {

@@ -89,6 +89,8 @@ import PaymentAdvance from './pages/PaymentAdvance/index.jsx';
 import Compta from './pages/compta/index.jsx';
 import AdvancePayments from './pages/AdvancePayments/index.jsx';
 import Board from './pages/Board/index.jsx';
+import SitchiPage from './pages/Sitchi/index.jsx';
+import FormPage from './pages/Sitchi/form.jsx';
    
 function App() {
   const [user, setUser]= useState(null)
@@ -169,6 +171,9 @@ function App() {
       <Router>
         <Routes>
                 <Route path='/register' Component={RegisterPage}/>
+                <Route path='/Sitchi' Component={SitchiPage}/>
+                <Route path='/Sitchi/precommande' Component={FormPage}/>
+
                 <Route path='/Account' Component={Account}/>
                 <Route path='/login' Component={LoginPage}/>
                 <Route path='/login' Component={LoginPage}/>
@@ -323,6 +328,9 @@ function App() {
       <div className="App">
         <Router>
           <Routes>
+          <Route path='/Sitchi' Component={SitchiPage}/>
+          <Route path='/Sitchi/precommande' Component={FormPage}/>
+
           <Route path='/Account' Component={Account}/>
           <Route path='/enkas-web-devellopment' Component={PageEnkasWeb}/>
           <Route path='/PaymentList-enkas' Component={PaymentList}/>
@@ -549,7 +557,8 @@ function App() {
       <Router>
         <Routes>
         <Route path='/enkas-web-devellopment' Component={PageEnkasWeb}/>
-          
+        <Route path='/Sitchi' Component={SitchiPage}/>
+        <Route path='/Sitchi/precommande' Component={FormPage}/>
         <Route path='/' element={<StorePage
                                             Articles={Articles} 
                                             setArticles={setArticles} 
