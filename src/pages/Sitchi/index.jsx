@@ -1,6 +1,6 @@
 import "./index.css";
 import logo from "./img/logo.png";
-import st from "./img/R.jpeg";
+import st from "./img/R.png";
 import telec from "./img/telec.jpeg";
 import { useNavigate } from "react-router-dom";
 

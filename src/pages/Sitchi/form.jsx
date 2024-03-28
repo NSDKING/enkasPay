@@ -1,14 +1,11 @@
 import "./index.css";
 import logo from "./img/logo.png";
-import st from "./img/R.jpeg";
-import telec from "./img/telec.jpeg";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createSitchi } from "../../graphql/mutations";
 import { API, graphqlOperation } from "aws-amplify";
 import { listSitchis } from "../../graphql/queries";
-import { Alert } from "@aws-amplify/ui-react";
  
 
 export default function FormPage() {
